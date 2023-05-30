@@ -17,6 +17,7 @@ server.use(cors());
 
 server.use("/", routes);
 
+
 server.use((err, req, res, next) => {
   const status = err.status || 500;
   const message = err.message || err;
