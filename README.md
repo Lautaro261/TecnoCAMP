@@ -1,1 +1,1 @@
-<img src="./Client/src/imgs/Logopaby.png" alt="" />
+<img src="./Client/img/TecnoCAMP.jpg" alt="img" />
