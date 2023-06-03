@@ -45,11 +45,70 @@ let capsEntries = entries.map((entry) => [
 ]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-/* const {
+/////// ACA IMPORTAMOS LOS MODELOS ///////
 
-} = sequelize.models; */
+const {
+  User,
+  Profile,
+  Product,
+  Order,
+  Review,
+  Cart,
+  Category,
+  Brand,
+  Department,
+  Municipality,
+} = sequelize.models;
 
-// Aca vendrian las relaciones
+/////// ACA VIENEN LAS RELACIONES ///////
+
+// Usuario con Perfil
+User.hasOne(Profile);
+Profile.belongsTo(User);
+
+// Usuario con Carrito
+User.hasOne(Cart);
+Cart.belongsTo(User);
+
+// Usuario con Orden
+User.hasMany(Order);
+Order.belongsTo(User);
+
+// Usuario con Review
+User.hasMany(Review);
+Review.belongsTo(User);
+
+// Producto con Orden (relación muchos a muchos)
+Product.belongsToMany(Order, { through: "order_has_product" });
+Order.belongsToMany(Product, { through: "order_has_product" });
+
+// Producto con Carrito
+Cart.hasMany(Product);
+Product.belongsTo(Cart);
+
+// Producto con Review
+Product.hasMany(Review);
+Review.belongsTo(Product);
+
+// Producto con Categoría
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
+// Producto con Marca
+Brand.hasMany(Product);
+Product.belongsTo(Brand);
+
+// Departamento con Municipio
+Department.hasMany(Municipality);
+Municipality.belongsTo(Department);
+
+// Orden con Departamento
+Order.belongsTo(Department);
+Department.hasOne(Order);
+
+// Orden con Municipio
+Order.belongsTo(Municipality);
+Municipality.hasOne(Order);
 
 module.exports = {
   ...sequelize.models,
