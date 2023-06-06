@@ -8,15 +8,15 @@ require = "./db.js";
 
 const server = express();
 
-server.name = "API PIOLA";
+server.name = "API";
 server.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 server.use(bodyParser.json({ limit: "50mb" }));
 server.use(cookieParser());
 server.use(morgan("dev"));
 server.use(cors());
 
+//// EXPORTAR ENRUTADOR PRINCIPAL DESDE EL SERVIDOR ////
 server.use("/", routes);
-
 
 server.use((err, req, res, next) => {
   const status = err.status || 500;
