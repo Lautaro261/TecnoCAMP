@@ -4,8 +4,8 @@ require("dotenv").config();
 const { EMAIL_ADMIN, PASS_ADMIN } = process.env;
 
 const postCreateUser = async (sub, email, password) => {
-  const hashNum = 10;
   const user = await User.findOne({ where: { sub: sub } });
+  const hashNum = 10;
 
   if (user) {
     return null;
