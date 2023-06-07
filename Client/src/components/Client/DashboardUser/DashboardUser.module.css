@@ -46,10 +46,10 @@
     order: 0;
     width: 100vw;
 }
+.Icons{
+    gap: 100px;
+} */
 .logo{
     width: auto;
     height: 10vh;
 }
-.Icons{
-gap: 100px;
-} */
