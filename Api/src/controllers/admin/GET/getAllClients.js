@@ -1,4 +1,5 @@
 const { User } = require("../../../db");
+const { Profile } = require("../../../db");
 
 const getAllClients = async () => {
 
