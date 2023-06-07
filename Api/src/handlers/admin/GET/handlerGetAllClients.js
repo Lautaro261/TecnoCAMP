@@ -21,7 +21,7 @@ const handlerGetAllClients = async (req, res) => {
     if (allClients) {
       res.status(200).json(allClients);
     } else {
-      res.status(404).json({ message: "No hay clientes creados" });
+      res.status(404).json({ message: "¡Credenciales incorrectas!" });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });
