@@ -8,21 +8,15 @@ const  handlerLogin =async (req, res)=>{
     const {sub, email, password} = req.body;
 
     try {
-        //1) Verificar que el usuario exista
-
         const user = await getUser(sub);
-
         if(!user){
             res.status(404).json({message: `No existe usuario con email ${email}`})
         }
-
-        //2) Comparar credenciales
-
-        const validatePassword = await bcrypt.compare(password, user.password) // true o false
+        const validatePassword = await bcrypt.compare(password, user.password) 
 
         if(sub === user.sub && email === user.email && validatePassword){
-        //3) Generar token
         const rol = user.rol;
+
             jwt.sign({sub, email, rol}, KEY_SECRET, (err, token)=>{
                 res.status(200).json({
                 token,
@@ -30,6 +24,7 @@ const  handlerLogin =async (req, res)=>{
             })
             })  
         } else {
+            
             res.status(404).json({ message: "¡Credenciales Incorrectas!" });
           }
     } catch (error) {

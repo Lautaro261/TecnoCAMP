@@ -1,46 +1,43 @@
-const { User }= require('../../../db');
+const { User, Profile } = require("../../../db");
+const bcrypt = require("bcrypt");
 require("dotenv").config();
-const { EMAIL_ADMIN, NAME_ADMIN, PASS_ADMIN } = process.env;
+const { EMAIL_ADMIN, PASS_ADMIN } = process.env;
 
-const postCreateUser= async(sub, email, hashPassword)=>{
+const postCreateUser = async (sub, email, password) => {
+  const hashNum = 10;
+  const user = await User.findOne({ where: { sub: sub } });
 
+  if (user) {
+    return null;
+  }
 
-        const user = await User.findOne({ where: { sub: sub } });
+  const newObjUser = {
+    sub,
+    email,
+  };
 
-        if (user) {
-          console.log("Usuario ya existe");
-          //return user
-        }
-      
-        const newObjUser = {
-          sub,
-          email,
-        };
-      
-        if (hashPassword !== undefined || hashPassword !== null) {
-          newObjUser.password = hashPassword;
-        }
-      
-         if (
-          newObjUser.email === EMAIL_ADMIN &&
-          newObjUser.name === NAME_ADMIN &&
-          newObjUser.password === PASS_ADMIN
-        ) {
-          newObjUser.rol = "admin";
-        } 
-      
-        const newUser = await User.create(newObjUser);
-      
-       /*  const findProfile = await Profile.findOne({ where: { userSub: sub } });
-      
-        if (!findProfile) {
-          await Profile.create({ userSub: sub });
-        }
-        await sendRegisterEmail(newUser); */
+  if (password !== undefined || password !== null) {
+    newObjUser.password = password;
+  }
 
-        return newUser;
+  if (newObjUser.email === EMAIL_ADMIN && newObjUser.password === PASS_ADMIN) {
+    newObjUser.rol = "superAdmin";
+  }
 
-    
-}
+  const hashPassword = await bcrypt.hash(newObjUser.password, hashNum);
+
+  newObjUser.password = hashPassword;
+
+  const newUser = await User.create(newObjUser);
+  const findProfile = await Profile.findOne({ where: { userSub: sub } });
+
+  if (!findProfile) {
+    await Profile.create({ userSub: sub });
+  }
+
+  // await sendRegisterEmail(newUser);
+
+  return newUser;
+};
 
 module.exports = postCreateUser;
