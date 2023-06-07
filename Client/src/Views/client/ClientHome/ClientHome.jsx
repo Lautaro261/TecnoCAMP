@@ -1,19 +1,21 @@
-import { Layout, Space } from 'antd';
+import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
-import style from"./ClientHome.module.css"
+import style from "./ClientHome.module.css"
 const { Header, Footer, Content } = Layout;
-// const headerStyle = {
-//   textAlign: 'center',
-//   // color: '#fff',
-//   height: '300px',
-//     display: "flex",
-//   // lineHeight: '64px',
-//   // backgroundColor: '#7dbcea',
-// };
+const headerStyle = {
+  textAlign: 'center',
+  paddingInline: "0px",
+  // color: '#fff',
+  height: 220,
+  // display:"flex",
+  // width: "100vw",
+  // lineHeight: '60px',
+  // backgroundColor: '#7dbcea',
+};
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
+  minHeight: 200,
+  lineHeight: '90',
   color: '#fff',
   backgroundColor: '#108ee9',
 };
@@ -25,12 +27,12 @@ const footerStyle = {
 };
 const ClientHome = () => (
 
-    <Layout className={style.layout}>
-      <Header ><DashboardUser /></Header>
-      <Content style={contentStyle}>Content</Content>
-      <Footer style={footerStyle}>Footer</Footer>
-    </Layout>
+  <Layout className={style.layout}>
+    <Header style={headerStyle}><DashboardUser /></Header>
+    <Content style={contentStyle}>Content</Content>
+    <Footer style={footerStyle}>Footer</Footer>
+  </Layout>
 
- 
+
 );
 export default ClientHome;
