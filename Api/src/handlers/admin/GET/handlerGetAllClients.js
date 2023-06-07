@@ -12,14 +12,17 @@ const handlerGetAllClients = async (req, res) => {
     const user = await getUser(decoToken.sub);
 
     if (user.rol !== "admin") {
-      res
+      return res
         .status(404)
         .json({ message: "No cuenta con permisos para realizar la peticion" });
     }
     //3) Traer todos los usuarios con rol Client
     const allClients = await getAllClients();
-
-    res.status(200).json(allClients);
+    if (allClients) {
+      res.status(200).json(allClients);
+    } else {
+      res.status(404).json({ message: "No hay clientes creados" });
+    }
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

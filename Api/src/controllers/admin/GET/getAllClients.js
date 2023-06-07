@@ -8,6 +8,10 @@ const getAllClients = async () => {
     attributes: ["sub", "name", "email", "rol", "photo"],
   });
 
+  if (!allClients) {
+    return null;
+  }
+
   return allClients;
 };
 

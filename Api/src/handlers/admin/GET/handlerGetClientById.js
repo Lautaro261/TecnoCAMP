@@ -12,7 +12,7 @@ const handlerGetClientById = async (req, res) => {
     const user = await getUser(decoToken.sub);
 
     if (user.rol !== "admin") {
-      res
+      return res
         .status(404)
         .json({ message: "No cuenta con permisos para realizar la peticion" });
     }

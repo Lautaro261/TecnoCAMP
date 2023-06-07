@@ -5,7 +5,7 @@ const postCreateAdmin = async (sub, email, hashPassword) => {
   const user = await User.findOne({ where: { sub: sub } });
 
   if (user) {
-    console.log("Usuario ya existe");
+    return null;
   }
 
   const newObjUser = {

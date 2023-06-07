@@ -11,7 +11,9 @@ const handlerLogin = async (req, res) => {
     const user = await getUser(sub);
 
     if (!user) {
-      res.status(404).json({ message: `No existe usuario con email ${email}` });
+      return res
+        .status(404)
+        .json({ message: `No existe usuario con email ${email}` });
     }
 
     const validatePassword = await bcrypt.compare(password, user.password);

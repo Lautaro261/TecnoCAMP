@@ -1,8 +1,12 @@
 const { User } = require("../../../db");
 
 const deleteUser = async (sub, delet) => {
-  const findUser = await User.findOne({ where: { sub: sub } });
   let userDelete;
+  const findUser = await User.findOne({ where: { sub: sub } });
+
+  if (!findUser) {
+    return null;
+  }
 
   if (findUser[delet]) {
     userDelete = false;

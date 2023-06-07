@@ -14,7 +14,7 @@ const handlerCreateAdmin = async (req, res) => {
     const user = await getUser(decoToken.sub);
 
     if (user.rol !== "superAdmin") {
-      res
+      return res
         .status(404)
         .json({ message: "No cuenta con permisos para realizar la peticion" });
     }
@@ -22,13 +22,23 @@ const handlerCreateAdmin = async (req, res) => {
     const hashPassword = await bcrypt.hash(password, hashNum);
     const newUser = await postCreateAdmin(sub, email, hashPassword);
 
-    jwt.sign({ sub, email }, KEY_SECRET, (err, token) => {
-      res.status(200).json({
-        message: `Administrador creado correctamente`,
-        rol: newUser.dataValues.rol,
-        token: token,
+    if (!newUser) {
+      return res
+        .status(404)
+        .json({ message: `El administrador con el email ${email}, ya existe` });
+    }
+
+    if (newUser) {
+      jwt.sign({ sub, email }, KEY_SECRET, (err, token) => {
+        res.status(200).json({
+          message: "¡Administrador creado correctamente!",
+          rol: newUser.dataValues.rol,
+          token: token,
+        });
       });
-    });
+    } else {
+      res.status(404).json({ message: "¡Credenciales Incorrectas!" });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
