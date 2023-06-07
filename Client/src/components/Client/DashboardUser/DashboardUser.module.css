@@ -1,0 +1,55 @@
+/* .contenedor{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: normal;
+    align-content: stretch;
+    width: 100vw;
+}
+
+.contact{
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    height: 20vh;
+}
+
+.body{
+    display: flex;
+    width: 100vw;
+    background-color: #111D43;
+    height: 10vh;
+    flex-grow: 0;
+    flex-shrink: 1;
+    align-content: center;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between  ;
+    align-items: center;
+    align-content: stretch;
+
+}
+
+.NavigationBar{
+    display: inline;
+    flex-grow: 0;
+    flex-shrink: 1;
+    flex-basis: auto;
+    align-self: auto;
+    order: 0;
+    width: 100vw;
+}
+.logo{
+    width: auto;
+    height: 10vh;
+}
+.Icons{
+gap: 100px;
+} */
