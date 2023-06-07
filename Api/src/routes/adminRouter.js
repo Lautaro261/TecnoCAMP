@@ -1,8 +1,4 @@
 const { Router } = require("express");
-const handlerCreateUser = require("../handlers/admin/POST/handlerCreateUser");
-const handlerLogin = require("../handlers/admin/POST/handlerLogin");
-const handlerGetAllClients = require('../handlers/admin/GET/handlerGetAllClients');
-
 // VERIFY TOKEN
 const verifyToken = require("../utils/verifyToken.js");
 
@@ -11,9 +7,17 @@ const adminRouter = Router();
 
 /////////// HANDLERS ////////////
 
+// USUARIOS
+const handlerGetAllClients = require("../handlers/admin/GET/handlerGetAllClients");
+const handlerGetClientById = require("../handlers/admin/GET/handlerGetClientById");
+const handlerDeleteUser = require("../handlers/admin/PUT/handlerDeleteUser.js");
+
 /////////// ROUTES ////////////
-adminRouter.post("/singup", handlerCreateUser);
-adminRouter.post("/login", handlerLogin);
-adminRouter.get("/allclients", verifyToken ,handlerGetAllClients);
+
+// USUARIOS
+adminRouter.get("/allclients", verifyToken, handlerGetAllClients);
+adminRouter.get("/client/:sub", verifyToken, handlerGetClientById);
+adminRouter.put("/client/delete", verifyToken, handlerDeleteUser);
+
 //// EXPORTACION DE RUTAS ////
 module.exports = adminRouter;
