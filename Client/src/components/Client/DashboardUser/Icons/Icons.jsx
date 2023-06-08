@@ -6,7 +6,7 @@ export default function Icons() {
     <>
       <button className={styles.button}>
         <svg
-          width="45"
+          width="30"
           height="43"
           viewBox="0 0 45 43"
           fill="none"
@@ -29,7 +29,7 @@ export default function Icons() {
 
       <button className={styles.button}>
         <svg
-          width="47"
+          width="30"
           height="40"
           viewBox="0 0 47 40"
           fill="none"
@@ -44,9 +44,9 @@ export default function Icons() {
 
       <button className={styles.button}>
         <svg
-          width="33"
+          width="20"
           height="43"
-          viewBox="0 0 33 43"
+          viewBox="0 0 30 43"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >

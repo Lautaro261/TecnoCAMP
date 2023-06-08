@@ -1,6 +1,6 @@
-.contactIons{
-    background-color: #00042D;
-  }
-  button{
-    background-color:#00042D;
-  }
+  .button{
+
+    background-color: transparent;
+    border: none;
+  
+  } 
