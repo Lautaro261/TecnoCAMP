@@ -1,6 +1,10 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import style from "./ClientHome.module.css"
+import Slider from '../../../components/Client/Slider/Slider';
+
+import Categories from '../../../components/Client/Categories/Categories';
+import Holder from '../../../components/Client/Categories/Holder/Holder';
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
@@ -15,7 +19,7 @@ const headerStyle = {
 const contentStyle = {
   textAlign: 'center',
   minHeight: 200,
-  lineHeight: '90',
+  lineHeight: '8',
   color: '#fff',
   backgroundColor: '#108ee9',
 };
@@ -29,7 +33,11 @@ const ClientHome = () => (
 
   <Layout className={style.layout}>
     <Header style={headerStyle}><DashboardUser /></Header>
-    <Content style={contentStyle}>Content</Content>
+    <Content style={contentStyle}>
+      <Slider/>
+      <Holder/>
+
+    </Content>
     <Footer style={footerStyle}>Footer</Footer>
   </Layout>
 
