@@ -5,8 +5,7 @@ module.exports = (sequelize) => {
     "municipality",
     {
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.STRING(10),
         primaryKey: true,
         allowNull: false,
       },
