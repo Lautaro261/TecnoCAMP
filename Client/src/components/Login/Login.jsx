@@ -5,7 +5,7 @@ import axios from 'axios';
 const Login = () => {
 
     const LoginBack = async(values)=>{
-        const response = await axios.post('http://localhost:3001/admin/login', values)
+        const response = await axios.post('http://localhost:3001/login', values)
         console.log(response.data)
     }
 
