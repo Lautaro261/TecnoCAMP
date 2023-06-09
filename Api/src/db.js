@@ -51,6 +51,7 @@ const {
   User,
   Profile,
   Product,
+  Inventory,
   Order,
   Review,
   Cart,
@@ -82,13 +83,13 @@ Review.belongsTo(User);
 Product.belongsToMany(Order, { through: "order_has_product" });
 Order.belongsToMany(Product, { through: "order_has_product" });
 
-// Producto con Carrito
-Cart.hasMany(Product);
-Product.belongsTo(Cart);
-
 // Producto con Review
 Product.hasMany(Review);
 Review.belongsTo(Product);
+
+// Producto con Carrito
+Cart.hasMany(Product);
+Product.belongsTo(Cart);
 
 // Producto con Categoría
 Category.hasMany(Product);
@@ -97,6 +98,14 @@ Product.belongsTo(Category);
 // Producto con Marca
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
+
+// Producto con Inventario
+Product.hasOne(Inventory);
+Inventory.belongsTo(Product);
+
+// Producto con Inventario (relación muchos a muchos)
+Product.belongsToMany(Inventory, { through: "product_inventory" });
+Inventory.belongsToMany(Product, { through: "product_inventory" });
 
 // Departamento con Municipio
 Department.hasMany(Municipality);
