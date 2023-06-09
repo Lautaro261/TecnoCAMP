@@ -8,8 +8,8 @@ const getAllClients = async () => {
     attributes: ["sub", "name", "email", "rol", "photo"],
   });
 
-  if (!allClients) {
-    return null;
+  if (allClients.length === 0) {
+    return { message: "No hay clientes creados" };
   }
 
   return allClients;

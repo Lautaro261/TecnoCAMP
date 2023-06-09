@@ -21,7 +21,12 @@ const handlerLogin = async (req, res) => {
     if (sub === user.sub && email === user.email && validatePassword) {
       const rol = user.rol;
 
-      jwt.sign({ sub, email, rol }, KEY_SECRET, (err, token) => {
+      // Configurar opciones para la firma del token
+      const options = {
+        expiresIn: "2h", // <<-- Cambiar la duración de expiración aquí (30m-1h-2d)
+      };
+
+      jwt.sign({ sub, email, rol }, KEY_SECRET, options, (err, token) => {
         res.status(200).json({
           message: "¡Has ingresado correctamente!",
           token,
