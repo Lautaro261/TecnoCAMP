@@ -18,7 +18,7 @@ const getAllProducts = async () => {
     include: [
       {
         model: Inventory,
-        attributes: ["id", "color", "quantity_inventory", "productId"],
+        attributes: ["id", "color", "quantity_inventory"],
       },
     ],
   });

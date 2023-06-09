@@ -1,37 +1,27 @@
-const { Product, Inventory } = require("../../../db");
+const { Product, Inventory, sequelize } = require("../../../db");
+const { Op } = require("sequelize");
 
 const getProductById = async (id) => {
-  const products = await Inventory.findAll({
-    where: { productId: id },
-    attributes: ["id", "color", "quantity_inventory", "productId"],
+  const product = await Product.findByPk(id, {
     include: [
       {
-        model: Product,
-        attributes: [
-          "id",
-          "name",
-          "price",
-          "price_promotion",
-          "photo",
-          "product_description",
-          "e_product_type",
-          "total_quantity_inventory",
-          "cartId",
-          "categoryId",
-          "brandId",
-        ],
+        model: Inventory,
+        attributes: ["id", "color", "quantity_inventory"],
+        through: {
+          attributes: [],
+          where: {
+            productId: id,
+          },
+        },
       },
     ],
   });
 
-  if (products.length === 0) {
-    return {
-      message:
-        "No se encontraron productos con el ID proporcionado, revise los datos ingresados",
-    };
+  if (!product) {
+    return { message: "Producto no encontrado" };
   }
 
-  return products;
+  return product;
 };
 
 module.exports = getProductById;

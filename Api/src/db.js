@@ -99,10 +99,6 @@ Product.belongsTo(Category);
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
 
-// Producto con Inventario
-Product.hasOne(Inventory);
-Inventory.belongsTo(Product);
-
 // Producto con Inventario (relación muchos a muchos)
 Product.belongsToMany(Inventory, { through: "product_inventory" });
 Inventory.belongsToMany(Product, { through: "product_inventory" });
