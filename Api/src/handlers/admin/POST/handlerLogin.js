@@ -34,7 +34,7 @@ const handlerLogin = async (req, res) => {
         });
       });
     } else {
-      res.status(404).json({ message: "¡Credenciales Incorrectas!" });
+      res.status(202).json({ message: "¡Credenciales Incorrectas!" });
     }
   } catch (error) {
     res.status(400).json({ error: error.message });
