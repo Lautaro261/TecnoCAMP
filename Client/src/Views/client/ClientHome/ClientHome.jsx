@@ -3,7 +3,7 @@ import DashboardUser from '../../../components/Client/DashboardUser/DashboardUse
 import style from "./ClientHome.module.css"
 import Slider from '../../../components/Client/Slider/Slider';
 
-import Categories from '../../../components/Client/Categories/Categories';
+import Categories from '../../../components/Client/Categories/Holder/Holder';
 import Holder from '../../../components/Client/Categories/Holder/Holder';
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
