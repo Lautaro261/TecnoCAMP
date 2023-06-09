@@ -31,14 +31,29 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       e_color: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          "Blanco",
+          "Negro",
+          "Azul",
+          "Rojo",
+          "Amarillo",
+          "Rosado"
+        ),
         allowNull: false,
       },
       e_product_type: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM(
+          "Celular Smartphone",
+          "Celular Convencional",
+          "Audifonos alambricos",
+          "Audífonos bluetooth",
+          "Audifonos tipo diadema",
+          "SmartWatch con bluetooth",
+          "SmartWatch sin bluetooth"
+        ),
         allowNull: false,
       },
-      quantity_inventary: {
+      total_quantity_inventory: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

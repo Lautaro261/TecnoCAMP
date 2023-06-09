@@ -28,6 +28,12 @@ const {
   handlerDeleteBrand,
 } = require("../handlers/admin/PUT/handlerPutBrand.js");
 
+// PRODUCTOS
+const {
+  handlerCreateProduct,
+  handlerPostAddColorsToProduct,
+} = require("../handlers/admin/POST/handlerCreateProduct.js");
+
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
 
@@ -49,6 +55,10 @@ adminRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
 adminRouter.post("/createbrand", verifyToken, handlerCreateBrand);
 adminRouter.put("/updatebrand", verifyToken, handlerUpdateBrand);
 adminRouter.put("/deletebrand", verifyToken, handlerDeleteBrand);
+
+// PRODUCTOS
+adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
+adminRouter.put("/addcolor", verifyToken, handlerPostAddColorsToProduct);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 adminRouter.post("/loadcities", handlerCreateDepMunCo);
