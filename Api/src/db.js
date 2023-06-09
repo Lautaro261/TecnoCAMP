@@ -103,6 +103,10 @@ Product.belongsTo(Brand);
 Product.hasOne(Inventory);
 Inventory.belongsTo(Product);
 
+// Producto con Inventario (relación muchos a muchos)
+Product.belongsToMany(Inventory, { through: "product_inventory" });
+Inventory.belongsToMany(Product, { through: "product_inventory" });
+
 // Departamento con Municipio
 Department.hasMany(Municipality);
 Municipality.belongsTo(Department);

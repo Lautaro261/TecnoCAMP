@@ -30,17 +30,6 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      e_color: {
-        type: DataTypes.ENUM(
-          "Blanco",
-          "Negro",
-          "Azul",
-          "Rojo",
-          "Amarillo",
-          "Rosado"
-        ),
-        allowNull: false,
-      },
       e_product_type: {
         type: DataTypes.ENUM(
           "Celular Smartphone",
@@ -55,7 +44,7 @@ module.exports = (sequelize) => {
       },
       total_quantity_inventory: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       is_available: {
         type: DataTypes.BOOLEAN,

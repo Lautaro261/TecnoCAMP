@@ -11,14 +11,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       color: {
-        type: DataTypes.ENUM(
-          "Blanco",
-          "Negro",
-          "Azul",
-          "Rojo",
-          "Amarillo",
-          "Rosado"
-        ),
+        type: DataTypes.STRING,
         allowNull: false,
       },
       quantity_inventory: {
