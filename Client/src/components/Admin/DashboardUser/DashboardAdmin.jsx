@@ -7,7 +7,6 @@ import IconAdmin from './IconAdmin/IconAdmin'
 function DashboardAdmin() {
   return (
     <>
-    <ProductForm/>
     <ContacticonsAdmin/>
     <IconAdmin/>
     <Nav/>

@@ -12,11 +12,3 @@ const ProtectedRoutes =({ allowed, logged, children, redirect="/login"})=>{
 }
 
 export default ProtectedRoutes; 
-/* const ProtectedRoutes=({ adminAuth, children, redirect="/"})=>{
-    if (adminAuth != "admin" || adminAuth===undefined){
-        return <Navigate to={redirect} />
-    }
-    return children ? children : <Outlet/>
-}
-
-export default ProtectedRoutes */
