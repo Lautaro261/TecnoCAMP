@@ -9,6 +9,7 @@ import {
 } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 function getItem(label, key, icon, children, type) {
   return {
@@ -20,20 +21,22 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem('Inicio', '1', <HomeOutlined />),
-  getItem('Clientes', '2', <TeamOutlined />),
-  getItem('Inventario', '3', <InboxOutlined />),
-  getItem('Crear Producto', '4', <PlusCircleOutlined /> ),
-  getItem('Pedido en curso', '5', <SendOutlined />),
-  getItem('Comentarios', '6', <CommentOutlined />),
+  getItem('Inicio', '/admin/home', <HomeOutlined />, ),
+  getItem('Clientes', '/admin/clients', <TeamOutlined />),
+  getItem('Inventario', '/admin/inventary', <InboxOutlined />),
+  getItem('Crear Producto', '/admin/createproduct', <PlusCircleOutlined /> ),
+  getItem('Pedido en curso', '/admin/orders', <SendOutlined />),
+  getItem('Comentarios', '/admin/coments', <CommentOutlined />),
   
  
 ];
 const Nav = () => {
-  const [current, setCurrent] = useState('Inicio');
+  const navigate=useNavigate()
+  const current = window.localStorage.getItem("current")
   const onClick = (e) => {
     console.log('click ', e);
-    setCurrent(e.key);
+    window.localStorage.setItem("current", e.key)
+    navigate(e.key) 
   };
   return (
     <div
@@ -49,8 +52,6 @@ const Nav = () => {
         defaultOpenKeys={['sub1']}
         mode="inline"
         theme="dark"
-       
-        
       />
     </div>
   );
