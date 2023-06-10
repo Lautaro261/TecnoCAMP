@@ -14,8 +14,7 @@ const updateProduct = async (
   brandId,
   inventoryItems
 ) => {
-  // Validar que el producto, la categoria y la marca existen
-
+  // Validar que el producto, la categoría y la marca existen
   const product = await Product.findByPk(id);
 
   if (!product) {
@@ -32,11 +31,12 @@ const updateProduct = async (
   // Validar que los ID de colores no se repitan
   const inventoryIds = inventoryItems.map((item) => item.id);
   const uniqueInventoryIds = new Set(inventoryIds);
+
   if (inventoryIds.length !== uniqueInventoryIds.size) {
     return { message: "No se permiten ID de colores duplicados" };
   }
 
-  // Validar valores numéricos de precio, precio de promocion
+  // Validar valores numéricos de precio y precio de promoción
   if (price <= 0 || price_promotion <= 0) {
     return { message: "Los precios deben ser mayores que cero" };
   }
@@ -58,6 +58,7 @@ const updateProduct = async (
   const existingInventoryItemIds = existingInventoryItems.map(
     (item) => item.id
   );
+
   const invalidInventoryItemIds = inventoryIds.filter(
     (itemId) => !existingInventoryItemIds.includes(itemId)
   );
@@ -96,6 +97,11 @@ const updateProduct = async (
       // Actualizar el color y la cantidad del elemento de inventario
       inventoryItem.color = item.color;
       inventoryItem.quantity_inventory = item.quantity;
+      inventoryItem.is_available = item.is_available; // Agregar esta línea para actualizar la propiedad "is_available" individualmente
+
+      if (!item.is_available) {
+        inventoryItem.quantity_inventory = 0; // Establecer el stock a 0 si "is_available" es false
+      }
 
       await inventoryItem.save();
       updatedInventoryItems.push(inventoryItem);
@@ -116,13 +122,55 @@ const updateProduct = async (
     product.total_quantity_inventory = totalQuantity;
   }
 
+  // Verificar si se cambió la disponibilidad del producto
+  const oldAvailability = product.is_available;
+  const newAvailability = is_available;
+
+  if (!oldAvailability && newAvailability) {
+    // Recalcular el total_quantity_inventory si el producto se vuelve disponible
+    const allInventoryItems = await Inventory.findAll({
+      where: {
+        productIdInventory: product.id,
+      },
+    });
+
+    const totalQuantity = allInventoryItems.reduce(
+      (acc, item) => acc + item.quantity_inventory,
+      0
+    );
+    product.total_quantity_inventory = totalQuantity;
+  }
+
+  if (newAvailability === false) {
+    product.total_quantity_inventory = 0;
+  }
+
+  if (product.total_quantity_inventory === 0) {
+    product.is_available = false;
+  }
+
   await product.save();
+
+  // Actualizar los elementos de inventario asociados si se cambió la disponibilidad del producto
+
+  if (newAvailability === false || product.total_quantity_inventory === 0) {
+    const inventoryUpdateData = {
+      is_available: false,
+      quantity_inventory: 0,
+    };
+
+    await Inventory.update(inventoryUpdateData, {
+      where: {
+        productIdInventory: product.id,
+      },
+    });
+  }
 
   const productModified = await Product.findByPk(id, {
     include: [
       {
         model: Inventory,
-        attributes: ["id", "color", "quantity_inventory"],
+        attributes: ["id", "color", "quantity_inventory", "is_available"],
         through: {
           attributes: [],
           where: {
