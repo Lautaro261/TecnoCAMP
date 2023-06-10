@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const updateProduct = require("../../../controllers/admin/PUT/updateProduct");
+const updateProduct = require("../../../controllers/admin/PUT/putProduct");
 
 const handlerUpdateProduct = async (req, res) => {
   //1) Decodificar token con jwt

@@ -32,7 +32,7 @@ const {
 const handlerCreateProduct = require("../handlers/admin/POST/handlerCreateProduct.js");
 const handlerGetAllProducts = require("../handlers/admin/GET/handlerGetAllProducts.js");
 const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductById.js");
-const handlerUpdateProduct = require("../handlers/admin/PUT/handlerUpdateProduct.js");
+const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
