@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         // allowNull: false,
       },
       photo: {
-        type: DataTypes.TEXT,
+        type: DataTypes.ARRAY(DataTypes.TEXT), // Utilizar ARRAY para almacenar varias fotos
         allowNull: true,
       },
       product_description: {
@@ -52,7 +52,7 @@ module.exports = (sequelize) => {
       },
       product_favorite: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        defaultValue: true,
       },
     },
     { timestamps: false }

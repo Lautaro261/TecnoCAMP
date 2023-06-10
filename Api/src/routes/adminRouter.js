@@ -33,6 +33,7 @@ const handlerCreateProduct = require("../handlers/admin/POST/handlerCreateProduc
 const handlerGetAllProducts = require("../handlers/admin/GET/handlerGetAllProducts.js");
 const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductById.js");
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
+const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
@@ -61,6 +62,7 @@ adminRouter.get("/allproducts", verifyToken, handlerGetAllProducts);
 adminRouter.get("/product", verifyToken, handlerGetProductById);
 adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
+adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 adminRouter.post("/loadcities", handlerCreateDepMunCo);
