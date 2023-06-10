@@ -5,9 +5,10 @@ import { Divider } from 'antd';
 const LoginView =({setToken, setRol})=>{
     return(
         <div>
-            <SignUp/>
-            <Divider style={{color:"black",}}>Registrarse: </Divider>
+            <Divider style={{color:"black",}}>Iniciar sesion: </Divider>
             <Login setToken={setToken} setRol={setRol}/>
+            <Divider style={{color:"black",}}>Registrarse: </Divider> 
+            <SignUp/>
         </div>
     )
 } 
