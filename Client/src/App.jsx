@@ -10,6 +10,7 @@ import AdminHome from "./Views/admin/AdminHome/AdminHome";
 import CartView from "./Views/client/Cart/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
+import CategoriesView from "./Views/client/Categories/CategoriesView";
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
         <Route path="/home"  element={<ClientHome/>}/>
+        <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
+
         
         
 
