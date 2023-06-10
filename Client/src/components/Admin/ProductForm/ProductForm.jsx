@@ -3,16 +3,13 @@ import {
   Cascader,
   Form,
   Input,
-  Space
+  Space,
+  ColorPicker,
+  theme
 } from "antd";
 
 import { PlusSquareOutlined } from '@ant-design/icons';
-
-
-import { ColorPicker, theme  } from "antd";
-
 import { useState } from "react";
-
 const { TextArea } = Input;
 
 function ProductForm() {
@@ -46,18 +43,23 @@ function ProductForm() {
 
   const [color, setColor] = useState(token.colorPrimary);
 
+  const onFinish = (values) => {
+    console.log('Received values of form:', values);
+  };
+
 /*   const onSubmit = (values) => {
     console.log('Success:', values); 
     
-  };
+  };*/
   
-  const onFinishFailed = (errorInfo) => {
+/*   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   }; */
 
 
   return (
     <Form
+    name="basic"
       labelCol={{
         span: 4,
       }}
@@ -68,6 +70,8 @@ function ProductForm() {
       initialValues={{
         size: componentSize,
       }}
+      onFinish={onFinish}
+     /*  onFinishFailed={onFinishFailed} */
       onValuesChange={onFormLayoutChange}
       size={componentSize}
       style={{
@@ -75,12 +79,12 @@ function ProductForm() {
       }}
     >
       
-      <Form.Item label="Nombre ">
+      <Form.Item label="Nombre " name="name">
 
         <Input placeholder="Nombre" />
       </Form.Item>
 
-      <Form.Item label="Marca">
+       <Form.Item label="Marca" name="brand">
         <Cascader
           placeholder="Selecciona producto"
           options={[
@@ -116,40 +120,40 @@ function ProductForm() {
         />
         </Form.Item>
 
-        <Form.Item label='Precio Unitario'>
+        <Form.Item label='Precio Unitario' name="price">
           <Input placeholder="Precio" />
         </Form.Item>
         
-        <Form.Item label='Precio Oferta'>
+        <Form.Item label='Precio Oferta' name="price_promotion">
           <Input placeholder="Precio" />
-        </Form.Item >
+        </Form.Item > 
         
-        <Form.Item label='Colores'>
-        <ColorPicker value={color} onChange={setColor} />   
-        </Form.Item>  {/* <label>Seleccionar Color</label> */}
+        <Form.Item label='Colores'  name="colors">
+          <ColorPicker value={color} onChange={setColor} />   
+        </Form.Item>  
 
-        <Form.Item label='Descripcion'>
+        <Form.Item label='Descripcion' name="product_description">
           <TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item label='Fotos'>
-        <Space direction="vertical">
-        <Button
+        <Form.Item label='Fotos' name="photo">
+          <Space direction="vertical">
+          <Button
           type="primary"
           icon={<PlusSquareOutlined />}
           loading={loadings[1]}
           onClick={() => enterLoading(1)}
           >
           Agragar Foto
-        </Button>
-      </Space>
+          </Button>
+        </Space>
           </Form.Item>
 
-        <Form.Item label='En Stock'>
+        <Form.Item label='En Stock' name="stock">
           <Input placeholder="Unidades" />
         </Form.Item>
       <Form.Item >
-        <Button type="primary" htmlType="submit">Guardar</Button>
+        <Button type="primary" htmlType="submit">Submit</Button>
       </Form.Item>
     </Form>
   );

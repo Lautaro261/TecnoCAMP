@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider } from 'antd';
 import { useEffect } from 'react';
 import { getClientsback } from '../../../Redux/Features/admin/adminSlice';
+import TableClients from '../../../components/Admin/TableClients/TableClients';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
@@ -53,7 +54,7 @@ const ViewClients = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
         <Content style={contentStyle}>
-        <div>{}</div>
+        <div><TableClients clients={clientes}/></div>
         </Content>
       </Layout>
     </Layout>
