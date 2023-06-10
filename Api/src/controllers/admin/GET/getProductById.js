@@ -6,7 +6,7 @@ const getProductById = async (id) => {
     include: [
       {
         model: Inventory,
-        attributes: ["id", "color", "quantity_inventory"],
+        attributes: ["id", "color", "quantity_inventory", "is_available"],
         through: {
           attributes: [],
           where: {
