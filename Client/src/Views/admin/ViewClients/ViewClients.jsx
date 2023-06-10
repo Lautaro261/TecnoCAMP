@@ -1,7 +1,9 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
-
+import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider } from 'antd';
+import { useEffect } from 'react';
+import { getClientsback } from '../../../Redux/Features/admin/adminSlice';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
@@ -16,7 +18,7 @@ const contentStyle = {
   minHeight: 120,
   lineHeight: '120px',
   color: '#fff',
-  backgroundColor: '#108ee9',
+  backgroundColor: '#fff',
 };
 const siderStyle = {
   textAlign: 'center',
@@ -24,14 +26,18 @@ const siderStyle = {
   color: '#fff',
   backgroundColor: '#3ba0e9',
 };
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
-};
 
 
-const AdminHome = ()=>{
+
+const ViewClients = ()=>{
+  const token =window.localStorage.getItem("token")
+  const dispach= useDispatch()
+  const clientes = useSelector(state=>state.admin.clients)
+  useEffect(()=>{
+    dispach(getClientsback({token}))
+    console.log(clientes)
+  },[])
+  
 
     return(
         <div>
@@ -47,7 +53,7 @@ const AdminHome = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
         <Content style={contentStyle}>
-        <ProductForm/>
+        <div>{}</div>
         </Content>
       </Layout>
     </Layout>
@@ -56,4 +62,4 @@ const AdminHome = ()=>{
     )
 }
 
-export default AdminHome;
+export default ViewClients;

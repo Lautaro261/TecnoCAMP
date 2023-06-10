@@ -11,6 +11,7 @@ import CartView from "./Views/client/Cart/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
+import ViewClients from "./Views/admin/ViewClients/ViewClients";
 
 
 function App() {
@@ -51,6 +52,8 @@ function App() {
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='admin'} redirect={rolA==="client"? redirect.client:redirect.superAdmin}/>}>
           <Route path="/admin/home"  element={<AdminHome/>}/>
           <Route path="/admin/createproduct" element={<CreateProductVew/>}/> 
+          <Route path="/admin/clients" element={<ViewClients/>}/> 
+
         </Route>
           
 
