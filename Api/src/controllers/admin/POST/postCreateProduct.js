@@ -77,7 +77,8 @@ const postCreateProduct = async (
     const newInventoryEntry = await Inventory.create({
       color: color,
       quantity_inventory: quantity,
-      is_available,
+      is_available: is_available,
+      productIdInventory: newProduct.id,
     });
 
     // Establecer la relación entre el nuevo producto y su entrada en el inventario

@@ -22,6 +22,11 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
+      productIdInventory: {
+        // Agrega la columna "productIdInventory"
+        type: DataTypes.UUID,
+        allowNull: false,
+      },
     },
     { timestamps: false }
   );
