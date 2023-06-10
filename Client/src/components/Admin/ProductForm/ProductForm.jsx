@@ -18,12 +18,14 @@ const { TextArea } = Input;
 function ProductForm() {
 
     const [loadings, setLoadings] = useState([]);
+    
   const enterLoading = (index) => {
     setLoadings((prevLoadings) => {
       const newLoadings = [...prevLoadings];
       newLoadings[index] = true;
       return newLoadings;
     });
+
     setTimeout(() => {
       setLoadings((prevLoadings) => {
         const newLoadings = [...prevLoadings];
@@ -35,11 +37,25 @@ function ProductForm() {
 
 
   const [componentSize, setComponentSize] = useState("default");
+ 
   const onFormLayoutChange = ({ size }) => {
     setComponentSize(size);
   };
+
   const { token } = theme.useToken();
+
   const [color, setColor] = useState(token.colorPrimary);
+
+/*   const onSubmit = (values) => {
+    console.log('Success:', values); 
+    
+  };
+  
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  }; */
+
+
   return (
     <Form
       labelCol={{
@@ -59,12 +75,12 @@ function ProductForm() {
       }}
     >
       
-      <Form.Item>
-        <label>Nombre del Producto</label>
+      <Form.Item label="Nombre ">
+
         <Input placeholder="Nombre" />
       </Form.Item>
 
-      <Form.Item label="Cascader">
+      <Form.Item label="Marca">
         <Cascader
           placeholder="Selecciona producto"
           options={[
@@ -100,54 +116,41 @@ function ProductForm() {
         />
         </Form.Item>
 
-        <Form.Item>
-          <label>$ Precio Unitario</label>
+        <Form.Item label='Precio Unitario'>
           <Input placeholder="Precio" />
         </Form.Item>
-        <Form.Item>
-          <label>$ Precio Oferta</label>
+        
+        <Form.Item label='Precio Oferta'>
           <Input placeholder="Precio" />
-        </Form.Item>
-          <label>Seleccionar Color</label>
-        <ColorPicker value={color} onChange={setColor} />
+        </Form.Item >
+        
+        <Form.Item label='Colores'>
+        <ColorPicker value={color} onChange={setColor} />   
+        </Form.Item>  {/* <label>Seleccionar Color</label> */}
 
-        <div>
-          <label>Descripcion</label>
+        <Form.Item label='Descripcion'>
           <TextArea rows={4} />
-        </div>
-
-        <Form.Item>
-          <Button>Agregar Foto</Button>
         </Form.Item>
+
+        <Form.Item label='Fotos'>
         <Space direction="vertical">
         <Button
           type="primary"
           icon={<PlusSquareOutlined />}
           loading={loadings[1]}
           onClick={() => enterLoading(1)}
-        >
+          >
           Agragar Foto
         </Button>
       </Space>
+          </Form.Item>
 
-        <Form.Item>
-          <label>En Stock</label>
+        <Form.Item label='En Stock'>
           <Input placeholder="Unidades" />
         </Form.Item>
-
-      
-
       <Form.Item >
-        <Button>Guardar</Button>
+        <Button type="primary" htmlType="submit">Guardar</Button>
       </Form.Item>
-
-
-
-     
-    
-
-
-
     </Form>
   );
 }
