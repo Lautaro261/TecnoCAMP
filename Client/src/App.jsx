@@ -37,6 +37,7 @@ function App() {
         <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
         <Route path="/home"  element={<ClientHome/>}/>
         <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
+        <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
 
         
         
@@ -51,7 +52,7 @@ function App() {
       {/* RUTAS PROTEGIDAS ADMIN*/}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='admin'} redirect={rolA==="client"? redirect.client:redirect.superAdmin}/>}>
           <Route path="/admin/home"  element={<AdminHome/>}/>
-          <Route path="/admin/createproduct" element={<CreateProductVew/>}/> 
+         {/*  <Route path="/admin/createproduct" element={<CreateProductVew/>}/>  */}
           <Route path="/admin/clients" element={<ViewClients/>}/> 
 
         </Route>
