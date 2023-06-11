@@ -15,6 +15,7 @@ const handlerDeleteUser = require("../handlers/admin/PUT/handlerDeleteUser.js");
 // CATEGORIAS
 const handlerCreateCategory = require("../handlers/admin/POST/handlerCreateCategory.js");
 const handlerGetAllCategories = require("../handlers/admin/GET/handlerGetAllCategories.js");
+const handlerGetCategoryById = require("../handlers/admin/GET/handlerGetCategoryById.js");
 const {
   handlerUpdateCategory,
   handlerDeleteCategory,
@@ -23,6 +24,7 @@ const {
 // MARCAS
 const handlerCreateBrand = require("../handlers/admin/POST/handlerCreateBrand.js");
 const handlerGetAllBrands = require("../handlers/admin/GET/handlerGetAllBrands.js");
+const handlerGetBrandById = require("../handlers/admin/GET/handlerGetBrandById.js");
 const {
   handlerUpdateBrand,
   handlerDeleteBrand,
@@ -30,6 +32,7 @@ const {
 
 // PRODUCTOS
 const handlerCreateProduct = require("../handlers/admin/POST/handlerCreateProduct.js");
+const handlerCreateColorProduct = require("../handlers/admin/POST/handlerCreateColorProduct.js");
 const handlerGetAllProducts = require("../handlers/admin/GET/handlerGetAllProducts.js");
 const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductById.js");
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
@@ -47,12 +50,14 @@ adminRouter.put("/client/delete", verifyToken, handlerDeleteUser);
 
 // CATEGORIAS
 adminRouter.get("/allcategories", verifyToken, handlerGetAllCategories);
+adminRouter.get("/category", verifyToken, handlerGetCategoryById);
 adminRouter.post("/createcategory", verifyToken, handlerCreateCategory);
 adminRouter.put("/updatecategory", verifyToken, handlerUpdateCategory);
 adminRouter.put("/deletecategory", verifyToken, handlerDeleteCategory);
 
 // MARCAS
 adminRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
+adminRouter.get("/brand", verifyToken, handlerGetBrandById);
 adminRouter.post("/createbrand", verifyToken, handlerCreateBrand);
 adminRouter.put("/updatebrand", verifyToken, handlerUpdateBrand);
 adminRouter.put("/deletebrand", verifyToken, handlerDeleteBrand);
@@ -61,6 +66,7 @@ adminRouter.put("/deletebrand", verifyToken, handlerDeleteBrand);
 adminRouter.get("/allproducts", verifyToken, handlerGetAllProducts);
 adminRouter.get("/product", verifyToken, handlerGetProductById);
 adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
+adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
 
