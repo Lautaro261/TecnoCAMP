@@ -41,7 +41,9 @@ const Nav = () => {
   return (
     <div
       style={{
-        width: 256,
+        width: 200,
+        backgroundColor:"#111D43"
+        
       }}
     >
       <Menu
