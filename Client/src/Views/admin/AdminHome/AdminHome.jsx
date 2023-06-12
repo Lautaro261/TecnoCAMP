@@ -15,14 +15,16 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
+  color: '#0000',
+  backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
-  lineHeight: '120px',
+  lineHeight: '40px',
   color: '#fff',
-  backgroundColor: '#3ba0e9',
+  backgroundColor: '#001529',
+  height:"100vh",
 };
 const footerStyle = {
   textAlign: 'center',
@@ -45,9 +47,9 @@ const AdminHome = ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
         <Content style={contentStyle}>
-        <ProductForm/>
+        
         </Content>
       </Layout>
     </Layout>

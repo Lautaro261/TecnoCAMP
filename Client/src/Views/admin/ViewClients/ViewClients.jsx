@@ -1,7 +1,6 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
 import { useDispatch, useSelector } from 'react-redux';
-import { Layout, Space, Divider } from 'antd';
+import { Layout, Space, Divider, } from 'antd';
 import { useEffect } from 'react';
 import { getClientsback } from '../../../Redux/Features/admin/adminSlice';
 import TableClients from '../../../components/Admin/TableClients/TableClients';
@@ -23,11 +22,11 @@ const contentStyle = {
 };
 const siderStyle = {
   textAlign: 'center',
-  lineHeight: '120px',
+  lineHeight: '40px',
   color: '#fff',
-  backgroundColor: '#3ba0e9',
+  backgroundColor: '#001529',
+  height:"100vh",
 };
-
 
 
 const ViewClients = ()=>{
@@ -52,7 +51,7 @@ const ViewClients = ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Clientes</Divider></Header>
         <Content style={contentStyle}>
         <div><TableClients clients={clientes}/></div>
         </Content>

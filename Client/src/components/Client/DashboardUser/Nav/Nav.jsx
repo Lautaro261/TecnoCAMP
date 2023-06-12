@@ -34,10 +34,10 @@ const items = [
 
 const  Nav= ()=>{
   const navigate=useNavigate()
-    const [current, setCurrent] = useState('Inicio');
+  const current = window.localStorage.getItem("current")
   const onClick = (e) => {
     console.log('click ', e);
-    setCurrent(e.key); 
+    window.localStorage.setItem("current", e.key)
     navigate(e.key) 
 
   };
