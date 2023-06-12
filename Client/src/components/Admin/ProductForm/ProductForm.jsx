@@ -7,7 +7,7 @@ import {
   ColorPicker,
   theme
 } from "antd";
-
+import Hola from './Hola';
 import { PlusSquareOutlined } from '@ant-design/icons';
 import { useState } from "react";
 const { TextArea } = Input;
@@ -43,14 +43,25 @@ function ProductForm() {
 
   const [color, setColor] = useState(token.colorPrimary);
 
+  const [countColor, setCountColor]=useState(1)
+
+  const handlerCountColor = ()=>{
+    const count = countColor +1;
+    setCountColor(count);
+  }
+
+  
+
   const onFinish = (values) => {
-    console.log('Received values of form:', values);
-  };
+    console.log('Enviando...', values); // {name, price, price_promotion, photo,
+  };                                                 //  product_description, e_product_type, 
+                                                     // brandId,categoryId, colors, quantities}
 
 /*   const onSubmit = (values) => {
     console.log('Success:', values); 
     
   };*/
+  
   
 /*   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -84,7 +95,7 @@ function ProductForm() {
         <Input placeholder="Nombre" />
       </Form.Item>
 
-       <Form.Item label="Marca" name="brand">
+       {/* <Form.Item label="Marca" name="brand">
         <Cascader
           placeholder="Selecciona producto"
           options={[
@@ -118,7 +129,7 @@ function ProductForm() {
             },
           ]}
         />
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item label='Precio Unitario' name="price">
           <Input placeholder="Precio" />
@@ -128,9 +139,15 @@ function ProductForm() {
           <Input placeholder="Precio" />
         </Form.Item > 
         
-        <Form.Item label='Colores'  name="colors">
+{/*         <Form.Item label='Colores'  name="colors">
           <ColorPicker value={color} onChange={setColor} />   
-        </Form.Item>  
+        </Form.Item>   */}
+       
+        <Form.Item label='Colores'  name="colors">
+          <Hola/>   
+        </Form.Item> 
+
+        <Button name="count_color" onClick={handlerCountColor}>+ Colores</Button> 
 
         <Form.Item label='Descripcion' name="product_description">
           <TextArea rows={4} />
@@ -149,13 +166,14 @@ function ProductForm() {
         </Space>
           </Form.Item>
 
-        <Form.Item label='En Stock' name="stock">
+       {/*  <Form.Item label='En Stock' name="stock">
           <Input placeholder="Unidades" />
-        </Form.Item>
+        </Form.Item> */}
       <Form.Item >
         <Button type="primary" htmlType="submit">Submit</Button>
       </Form.Item>
     </Form>
+
   );
 }
 
