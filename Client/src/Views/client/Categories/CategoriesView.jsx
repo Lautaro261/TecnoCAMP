@@ -1,6 +1,7 @@
 import { Layout, Pagination } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import Banner from '../../../components/Client/Banner/Banner';
+import Brands from '../../../components/Client/Brands/Brands';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -18,8 +19,8 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 200,
   lineHeight: '8',
-  color: '#fff',
-  backgroundColor: '#108ee9',
+  color: '#0000',
+  backgroundColor: '#fff',
 };
 
 const footerStyle = {
@@ -27,6 +28,8 @@ const footerStyle = {
   color: '#fff',
   backgroundColor: '#7dbcea',
 };
+const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+
 const CategoriesView = () => (
     
 
@@ -35,6 +38,7 @@ const CategoriesView = () => (
     <Content style={contentStyle}>
         
         <Banner categoria="earphones" ></Banner>
+        <Brands brands={brands}/>
         <Pagination defaultCurrent={1} total={50}/>
 
 

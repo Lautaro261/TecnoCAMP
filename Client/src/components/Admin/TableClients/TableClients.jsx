@@ -1,8 +1,8 @@
 import { Button, Form, Input, Popconfirm, Table } from 'antd';
 import React, { useContext, useEffect, useRef, useState} from 'react';
-
-
-
+import { banUser } from '../../../Redux/Features/admin/adminSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import {  notification } from 'antd';
 const EditableContext = React.createContext(null);
 const EditableRow = ({ index, ...props }) => {
     const [form] = Form.useForm();
@@ -80,23 +80,31 @@ const EditableCell = ({
     }
     return <td {...restProps}>{childNode}</td>;
 };
-const TableClients = ({clients}) => {
-    
-
-    const data = clients && clients.map(c => {
+const TableClients = () => {
+    const clientss=useSelector(state=>state.admin.clients)
+    const data = clientss && clientss.map(c => {
         return (
             {
                 key: c.sub,
                 photo: c.photo,
                 name: c.name,
                 email: c.email,
+                erased: c.erased,
+                rol : c.rol
             }
         )
     })
-
-
+    const token=window.localStorage.getItem("token")
+    const dispatch=useDispatch()
     const [count, setCount] = useState(2);
-    const handleDelete = (key) => {
+    const handleDelete = (key, erased) => {
+
+        notification.open({
+            message: 'ATENCIÓN',
+            description: erased?`Se ha restaurado el acceso al al usuario con el mail ${key}`:`Se ha bloqueado al usuario con el mail ${key}`,
+            placement:"top"
+          });
+        dispatch(banUser([key, token]))
        console.log("baneando", key)
     };
     const defaultColumns = [
@@ -108,7 +116,7 @@ const TableClients = ({clients}) => {
         },
         {
             title: 'Nombre',
-            dataIndex: 'name',
+            dataIndex: 'erased',
         },
         {
             title: 'Email',
@@ -118,11 +126,12 @@ const TableClients = ({clients}) => {
             title: 'Acciones',
             dataIndex: 'acciones',
             render: (_, record) =>
-                data.length >= 1 ? (
-                    <Popconfirm title="¿Desea restringir a este usuario?" onConfirm={() => handleDelete(record.key)}>
-                        <a>Delete</a>
+                (data.length >= 1) && record.erased ? 
+                    <Popconfirm title="¿Desea restaurar a este usuario?" onConfirm={() => handleDelete(record.key, record.erased)}>
+                    <Button type="primary">Restaurar</Button>
+                </Popconfirm> : <Popconfirm title="¿Desea restringir a este usuario?" onConfirm={() => handleDelete(record.key)}>
+                <Button danger >Restringir</Button>
                     </Popconfirm>
-                ) : null,
         },
     ];
 
@@ -160,7 +169,7 @@ const TableClients = ({clients}) => {
 
     return (
         <div>
-
+          
             <Table
                 components={components}
                 rowClassName={() => 'editable-row'}

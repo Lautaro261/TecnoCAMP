@@ -7,7 +7,7 @@ const Brands = ({ brands }) => {
             { brands.map((brand) => (
                 <Col span={ 4 } align="middle" key={ brand }>
                     <img
-                        src={ `/img/smartphones/${ brand }.png` }
+                        src={ `/img/Smartphones/${ brand }.png` }
                         alt={ brand }
                         className={ styles.brands__image}
                     />

@@ -4,7 +4,10 @@ const { Profile } = require("../../../db");
 const getClientById = async (sub) => {
   const rolName = "client";
 
-  const userById = await User.findByPk(sub, { where: { rol: rolName } });
+  const userById = await User.findByPk(sub, { 
+    where: { rol: rolName }, 
+    attributes: ["sub", "name", "email", "rol", "photo", "erased"]
+  });
 
   if (!userById) {
     return null;

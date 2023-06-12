@@ -15,14 +15,15 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
+  color: '#0000',
+  backgroundColor: '#ffff',
 };
 const siderStyle = {
   textAlign: 'center',
-  lineHeight: '120px',
+  lineHeight: '40px',
   color: '#fff',
-  backgroundColor: '#3ba0e9',
+  backgroundColor: '#001529',
+  height:"100vh",
 };
 const footerStyle = {
   textAlign: 'center',
@@ -49,7 +50,6 @@ const CreateProductVew = ()=>{
         <Content style={contentStyle}>
         <ProductForm/>
         </Content>
-        <Footer style={footerStyle}>Footer</Footer>
       </Layout>
     </Layout>
   </Space>
