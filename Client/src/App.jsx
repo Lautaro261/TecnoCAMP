@@ -12,7 +12,7 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductCard from "./components/Client/ProductCard/ProductCard";
+import CategoriesDetailsView from "./Views/client/CategoriesDetails/CategoriesDetailsView";
 
 
 function App() {
@@ -27,8 +27,6 @@ function App() {
     superAdmin:"/super/admins",
   }
 // TOCAR
-
-  const photos = ['https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'];
  
 
   return (
@@ -41,13 +39,7 @@ function App() {
         <Route path="/home"  element={<ClientHome/>}/>
         <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
         <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
-		<Route path="/product" element={<ProductCard 
-											id='abcdef123' 
-											e_product_type='Smartphone' 
-											photo={ photos[0] } 
-											name='Samsung Galaxy S23' 
-											price='4560' />} />
-
+        <Route path="/categories/details/:id" element={<CategoriesDetailsView />} /> 
         
         
 
