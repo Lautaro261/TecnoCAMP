@@ -6,6 +6,8 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 
+import CategoryView from '../CategoryView/CategoryView'
+
 // id será usado para la vista de detalle
 const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
@@ -36,6 +38,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				    />
 				    <div>$ { price }</div>
 				</Card>
+					<CategoryView/>
 			</Col>
 		</Row>
 	);
