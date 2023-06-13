@@ -1,7 +1,8 @@
-import { Layout, Pagination } from 'antd';
+import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import Banner from '../../../components/Client/Banner/Banner';
 import Brands from '../../../components/Client/Brands/Brands';
+import ContainerProducts from '../../../components/Client/ContainerProducts/ContainerProducts';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -37,9 +38,10 @@ const CategoriesView = () => (
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria="earphones" ></Banner>
+        <Banner categoria="earphones" />
         <Brands brands={brands}/>
-        <Pagination defaultCurrent={1} total={50}/>
+   
+        <ContainerProducts />
 
 
 
