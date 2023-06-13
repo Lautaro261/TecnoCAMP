@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
-import { getAllProducts } from '../../../Redux/Features/productsClient/productsClientSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import CardProduct from '../CardProduct/CardProduct';
-import { Pagination } from 'antd';
-
+import { Pagination,Row, Col } from 'antd';
+import { getAllProducts } from '../../../Redux/Features/productsClient/productsClientSlice';
+import ProductCard from '../ProductCard/ProductCard';
 
 const ContainerProducts = () => {
 
@@ -18,13 +17,17 @@ const ContainerProducts = () => {
     return (
         <div>
             <Pagination defaultCurrent={1} total={50} />
+
+            <Row gutter={[16, 16]}>
             {allProducts.length && allProducts.map(product => {
                 return (
-                    <div key={product.id}>
-                        <CardProduct e_product_type={product.e_product_type} name={product.name} price={product.price} />
-                    </div>
+                    <Col span={6} key={product.id}>
+                        <ProductCard e_product_type={product.e_product_type} name={product.name} price={product.price} id={product.id} />
+                    </Col>
                 )
             })}
+            </Row>
+            
             <Pagination defaultCurrent={1} total={50} />
         </div>
     )
