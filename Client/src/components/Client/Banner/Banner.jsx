@@ -7,22 +7,22 @@ import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
 const Banner = ({categoria}) => {
 
  
-        if( categoria === 'smartphones'){
+        if( categoria === '/categories/smartphones'){
             return(
                 <BannerSmartPhones/>
             )
         }
-        if( categoria === 'smartwatches'){
+        if( categoria === '/categories/smartwatches'){
             return(
                 <BannerSmartWatches/>
             )
         }
-        if( categoria === 'earphones'){
+        if( categoria === '/categories/earphones'){
             return(
                 <BannerEarPhones/>
             )
         }
-        if( categoria === 'all'){
+        if( categoria === '/categories/all'){
             return(
                 <BannerAllProducts />
             )

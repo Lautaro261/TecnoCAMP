@@ -30,15 +30,15 @@ const footerStyle = {
   backgroundColor: '#7dbcea',
 };
 const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+let  current = window.localStorage.getItem('current');
 
 const CategoriesView = () => (
-    
 
   <Layout >
-    <Header style={headerStyle}><DashboardUser /></Header>
+    <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria="all" />
+        <Banner categoria={current} /> 
         <Brands brands={brands}/>
    
         <ContainerProducts  />
