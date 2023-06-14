@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, createAction } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -31,14 +31,10 @@ export const getAllProducts = createAsyncThunk(
 )
 export const getProductDetails = createAsyncThunk(
     'productsClient/getProductDetails',
-    async ({ token }) => {
+    async (id) => {
 
         try {
-            const response = await axios('http://localhost:3001/client/product', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios(`http://localhost:3001/client/product/${id}`);
             console.log('getProductDetails OK', response.data)
 
             return response.data;
@@ -51,13 +47,18 @@ export const getProductDetails = createAsyncThunk(
 )
 
 
+export const clearDetails = createAction('productsClient/clearDetails')
 
 const productsClientSlice = createSlice({
     name: 'productsClient',
     initialState,
-    reducers: {},
+    reducers: { clearDetails: (state) => {
+        state.productDetails = {};
+      }},
     extraReducers: (builder) => {
         builder
+
+
             .addCase(getAllProducts.pending, (state) => {
                 state.status = 'loading';
             })
@@ -70,19 +71,24 @@ const productsClientSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message
             })
-            
+
+
+
             .addCase(getProductDetails.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(getProductDetails.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.productDetails= action.payload;
+                state.productDetails = action.payload;
                 state.error = null;
             })
             .addCase(getProductDetails.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.error = action.error.message
             })
+
+
+
 
     }
 })
