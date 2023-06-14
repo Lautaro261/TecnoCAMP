@@ -37,7 +37,7 @@ function App() {
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
         <Route path="/home"  element={<ClientHome/>}/>
-        <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
+        <Route path="/categories/all"  element={<CategoriesView/>}/>
         <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
         <Route path="/categories/details/:id" element={<CategoriesDetailsView />} /> 
         

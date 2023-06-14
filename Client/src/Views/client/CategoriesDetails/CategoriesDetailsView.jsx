@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
+import ProductDetails from '../../../components/Client/ProductDetails/ProductDetails';
 
 const { Header, Footer, Content } = Layout;
 
@@ -33,7 +34,7 @@ const CategoriesDetailsView = () => (
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-
+      <ProductDetails />
     </Content>
     <Footer style={footerStyle}>Footer</Footer>
   </Layout>

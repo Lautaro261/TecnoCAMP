@@ -16,6 +16,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
+		<Link to={`/categories/details/${id}`}>
 		<Row justify='center' className={ styles.productCard__mainCardContainer }>
 		    <Col className={ styles.productCard__secondaryCardContainer }>
 		        <Row justify='end' className={ styles.productCard__heart }>
@@ -38,6 +39,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				</Card>
 			</Col>
 		</Row>
+		</Link>
 	);
 };
 

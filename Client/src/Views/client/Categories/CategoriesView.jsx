@@ -38,10 +38,10 @@ const CategoriesView = () => (
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria="earphones" />
+        <Banner categoria="all" />
         <Brands brands={brands}/>
    
-        <ContainerProducts />
+        <ContainerProducts  />
 
 
 

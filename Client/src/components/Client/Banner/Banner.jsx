@@ -2,6 +2,7 @@ import React from "react";
 import BannerEarPhones from "./BannerEarPhones/BannerEarPhones";
 import BannerSmartPhones from "./BannerSmartPhones/BannerSmartPhones";
 import BannerSmartWatches from "./BannerSmartWatches/BannerSmartWatches";
+import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
 
 const Banner = ({categoria}) => {
 
@@ -19,6 +20,11 @@ const Banner = ({categoria}) => {
         if( categoria === 'earphones'){
             return(
                 <BannerEarPhones/>
+            )
+        }
+        if( categoria === 'all'){
+            return(
+                <BannerAllProducts />
             )
         }
 
