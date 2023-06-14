@@ -13,7 +13,7 @@ import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
 import ProductCard from "./components/Client/ProductCard/ProductCard";
-
+import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
 
 function App() {
   //NO TOCAR
@@ -47,7 +47,7 @@ function App() {
 											photo={ photos[0] } 
 											name='Samsung Galaxy S23' 
 											price='4560' />} />
-
+	    <Route path="/product/slider" element={<ProductsSliderFilter />} />
         
         
 
