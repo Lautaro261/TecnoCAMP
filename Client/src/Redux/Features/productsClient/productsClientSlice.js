@@ -14,7 +14,7 @@ export const getAllProducts = createAsyncThunk(
     async ({ token }) => {
 
         try {
-            const response = await axios('http://localhost:3001/client/allproducts', {
+            const response = await axios('/client/allproducts', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

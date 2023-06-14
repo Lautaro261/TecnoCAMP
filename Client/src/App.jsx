@@ -1,6 +1,7 @@
 
 
 import { Route, Routes } from "react-router";
+import axios from "axios";
 import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
 import LoginView from "./Views/login/loginView";
@@ -14,6 +15,9 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
 import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
+import ErrorView from "./Views/Error/ErrorView";
+
+axios.defaults.baseURL = "http://localhost:3001";
 
 
 function App() {
@@ -55,7 +59,7 @@ function App() {
       {/* RUTAS PROTEGIDAS ADMIN*/}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='admin'} redirect={rolA==="client"? redirect.client:redirect.superAdmin}/>}>
           <Route path="/admin/home"  element={<AdminHome/>}/>
-         {/*  <Route path="/admin/createproduct" element={<CreateProductVew/>}/>  */}
+          <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
           <Route path="/admin/clients" element={<ViewClients/>}/> 
 
         </Route>
@@ -65,6 +69,9 @@ function App() {
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='superAdmin'} redirect={rolA==="client"? redirect.client:redirect.admin}/>}>
           <Route path="/super/admins"  element={<SuperAdminHome/>}/>
        </Route>
+
+       {/* RUTA DE CONSTRUCCION*/}
+       <Route path="*" element={<ErrorView/>} />
   
         
       </Routes>

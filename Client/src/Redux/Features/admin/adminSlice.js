@@ -13,7 +13,7 @@ export const banUser = createAsyncThunk(
   async([sub,token]) => {
     try {
       console.log(sub, token, "AAAAAAAAAAA")
-      const response= await axios.put("http://localhost:3001/admin/client/delete", {"sub": sub} ,{
+      const response= await axios.put("/admin/client/delete", {"sub": sub} ,{
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -32,7 +32,7 @@ export const getClientsback = createAsyncThunk(
   'admin/getClientsback',
   async ({ token }) => {
     try {        
-      const response = await axios.get('http://localhost:3001/admin/allclients', {
+      const response = await axios.get('/admin/allclients', {
         headers: {
           Authorization: `Bearer ${token}`
         }

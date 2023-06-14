@@ -18,8 +18,7 @@ const ContainerProducts = () => {
         <div>
             <Space
                 direction="vertical"
-                size="middle"
-               
+                size="middle"    
             >
                 <Pagination defaultCurrent={1} total={50} />
 
@@ -27,7 +26,13 @@ const ContainerProducts = () => {
                     {allProducts.length ? allProducts.map(product => {
                         return (
                             <Col span={6} key={product.id}>
-                                <ProductCard e_product_type={product.e_product_type} name={product.name} price={product.price} id={product.id} />
+                                <ProductCard 
+                                e_product_type={product.e_product_type} 
+                                name={product.name} 
+                                price={product.price} 
+                                id={product.id} 
+                                photo={product.photo}
+                                />
                             </Col>
                         )
                     })
