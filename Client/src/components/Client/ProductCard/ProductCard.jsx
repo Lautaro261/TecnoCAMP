@@ -16,16 +16,16 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
-		<Link to={`/categories/product/${id}`}>
 		<Row justify='center' className={ styles.productCard__mainCardContainer }>
 		    <Col className={ styles.productCard__secondaryCardContainer }>
 		        <Row justify='end' className={ styles.productCard__heart }>
 		            <button onClick={ onClick } className={ styles.productCard__heartButton }>
 		                {
-		                	isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
+							isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
 		                }
 		            </button>
 		    	</Row>
+				<Link to={`/categories/product/${id}`}>
 				<Card
 				    hoverable
 				    style={{ width: 240 }}
@@ -37,9 +37,9 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				    />
 				    <div>$ { price }</div>
 				</Card>
+		</Link> 
 			</Col>
 		</Row>
-		</Link> 
 	);
 };
 
