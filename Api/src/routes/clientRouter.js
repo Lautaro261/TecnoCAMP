@@ -19,6 +19,11 @@ const handlerGetCategoryById = require("../handlers/client/GET/handlerGetCategor
 const handlerGetAllBrands = require("../handlers/client/GET/handlerGetAllBrands.js");
 const handlerGetBrandById = require("../handlers/client/GET/handlerGetBrandById.js");
 
+//filtros
+const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
+const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js");
+const handlerFilterPrice = require("../handlers/client/GET/handlerFilterPrice.js");
+const handlerFiltersComb = require("../handlers/client/GET/handlerFiltersComb.js");
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
   handlerGetAllDepartments,
@@ -28,16 +33,22 @@ const {
 /////////// ROUTES ////////////
 
 // PRODUCTOS
-clientRouter.get("/allproducts", verifyToken, handlerGetAllProducts);
-clientRouter.get("/product", verifyToken, handlerGetProductById);
+clientRouter.get("/allproducts",  handlerGetAllProducts);
+clientRouter.get("/product",  handlerGetProductById);
 
 // CATEGORIAS
-clientRouter.get("/allcategories", verifyToken, handlerGetAllCategories);
-clientRouter.get("/category", verifyToken, handlerGetCategoryById);
+clientRouter.get("/allcategories",  handlerGetAllCategories);
+clientRouter.get("/category",  handlerGetCategoryById);
 
 // MARCAS
-clientRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
-clientRouter.get("/brand", verifyToken, handlerGetBrandById);
+clientRouter.get("/allbrands",  handlerGetAllBrands);
+clientRouter.get("/brand",  handlerGetBrandById);
+
+// FILTROS
+clientRouter.get("/filterCategory",  handlerFilterCategory);
+clientRouter.get("/filterBrand",  handlerFilterBrand);
+clientRouter.get("/filterPrice", handlerFilterPrice);
+clientRouter.get("/filtersComb", handlerFiltersComb);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);
