@@ -2,23 +2,29 @@ import React from "react";
 import BannerEarPhones from "./BannerEarPhones/BannerEarPhones";
 import BannerSmartPhones from "./BannerSmartPhones/BannerSmartPhones";
 import BannerSmartWatches from "./BannerSmartWatches/BannerSmartWatches";
+import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
 
 const Banner = ({categoria}) => {
 
  
-        if( categoria === 'smartphones'){
+        if( categoria === '/categories/smartphones'){
             return(
                 <BannerSmartPhones/>
             )
         }
-        if( categoria === 'smartwatches'){
+        if( categoria === '/categories/smartwatches'){
             return(
                 <BannerSmartWatches/>
             )
         }
-        if( categoria === 'earphones'){
+        if( categoria === '/categories/earphones'){
             return(
                 <BannerEarPhones/>
+            )
+        }
+        if( categoria === '/categories/all'){
+            return(
+                <BannerAllProducts />
             )
         }
 

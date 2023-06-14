@@ -19,22 +19,3 @@ const DashboardUser = () => {
 }
 
 export default DashboardUser
-
-
-  // <div className={style.contenedor}>
-        //     <div className={style.Contact}>
-        //         <Contacticons/>
-        //     </div>
-
-        //     <div className={style.body}>
-        //         <img src={logo} className={style.logo}/>
-        //         <SearchBar/>
-        //         <div>
-        //         <Icons className={style.Icons}/>
-        //         </div>
-        //     </div>
-
-        //     <div className={style.NavigationBar}>
-        //     <Nav/>
-        //     </div>
-        // </div>
