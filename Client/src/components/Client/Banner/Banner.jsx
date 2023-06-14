@@ -3,9 +3,12 @@ import BannerEarPhones from "./BannerEarPhones/BannerEarPhones";
 import BannerSmartPhones from "./BannerSmartPhones/BannerSmartPhones";
 import BannerSmartWatches from "./BannerSmartWatches/BannerSmartWatches";
 import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
+import { useEffect } from "react";
 
 const Banner = ({categoria}) => {
+/*     useEffect(()=>{
 
+    },[categoria]) */
  
         if( categoria === '/categories/smartphones'){
             return(

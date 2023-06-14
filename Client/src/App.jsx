@@ -71,7 +71,7 @@ function App() {
        </Route>
 
        {/* RUTA DE CONSTRUCCION*/}
-       <Route path="*" element={<ErrorView/>} />
+      {/*  <Route path="*" element={<ErrorView/>} /> */}
   
         
       </Routes>
