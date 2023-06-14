@@ -5,7 +5,7 @@ import {
 	HeartFilled 
 } from '@ant-design/icons';
 import { useState } from 'react';
-
+import { Link } from 'react-router-dom';
 // id será usado para la vista de detalle
 const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
@@ -16,7 +16,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
-		<Link to={`/categories/details/${id}`}>
+		<Link to={`/categories/product/${id}`}>
 		<Row justify='center' className={ styles.productCard__mainCardContainer }>
 		    <Col className={ styles.productCard__secondaryCardContainer }>
 		        <Row justify='end' className={ styles.productCard__heart }>
@@ -39,7 +39,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				</Card>
 			</Col>
 		</Row>
-		</Link>
+		</Link> 
 	);
 };
 

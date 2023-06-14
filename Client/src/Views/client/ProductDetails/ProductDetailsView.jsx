@@ -11,12 +11,12 @@ const headerStyle = {
   height: 220,
   // display:"flex",
   // width: "100vw",
-  // lineHeight: '60px',
+  lineHeight: '60px',
   // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 200,
+  minHeight: 220,
   lineHeight: '8',
   color: '#0000',
   backgroundColor: '#fff',
@@ -28,7 +28,7 @@ const footerStyle = {
   backgroundColor: '#7dbcea',
 };
 
-const CategoriesDetailsView = () => (
+const ProductDetailsView = () => (
     
 
   <Layout >
@@ -41,4 +41,4 @@ const CategoriesDetailsView = () => (
 
 
 );
-export default CategoriesDetailsView;
+export default ProductDetailsView;

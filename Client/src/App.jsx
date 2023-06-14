@@ -12,9 +12,8 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductCard from "./components/Client/ProductCard/ProductCard";
 import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
-import CategoriesDetailsView from "./Views/client/CategoriesDetails/CategoriesDetailsView";
+import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 
 
 function App() {
@@ -41,7 +40,7 @@ function App() {
         <Route path="/home"  element={<ClientHome/>}/>
         <Route path="/categories/all"  element={<CategoriesView/>}/>
         <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
-        <Route path="/categories/details/:id" element={<CategoriesDetailsView />} /> 
+        <Route path="/categories/product/:id" element={<ProductDetailsView />} /> 
          <Route path="/product/slider" element={<ProductsSliderFilter />} />
         
         
