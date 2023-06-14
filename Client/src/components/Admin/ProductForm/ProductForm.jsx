@@ -15,6 +15,7 @@ const { TextArea } = Input;
 function ProductForm() {
 
     const [loadings, setLoadings] = useState([]);
+    const [colorHex, setColorHex] = useState('#1677ff');
     
   const enterLoading = (index) => {
     setLoadings((prevLoadings) => {
@@ -139,13 +140,18 @@ function ProductForm() {
           <Input placeholder="Precio" />
         </Form.Item > 
         
-{/*         <Form.Item label='Colores'  name="colors">
-          <ColorPicker value={color} onChange={setColor} />   
-        </Form.Item>   */}
-       
         <Form.Item label='Colores'  name="colors">
+         <ColorPicker
+              /* format={formatHex} */
+              value={colorHex}
+              onChange={setColorHex}
+             /*  onFormatChange={setFormatHex} */
+            />   
+        </Form.Item>   
+       
+     {/*    <Form.Item label='Colores'  name="colors">
           <Hola/>   
-        </Form.Item> 
+        </Form.Item>  */}
 
         <Button name="count_color" onClick={handlerCountColor}>+ Colores</Button> 
 
@@ -153,7 +159,7 @@ function ProductForm() {
           <TextArea rows={4} />
         </Form.Item>
 
-        <Form.Item label='Fotos' name="photo">
+       {/*  <Form.Item label='Fotos' name="photo">
           <Space direction="vertical">
           <Button
           type="primary"
@@ -164,11 +170,11 @@ function ProductForm() {
           Agragar Foto
           </Button>
         </Space>
-          </Form.Item>
+          </Form.Item> */}
 
-       {/*  <Form.Item label='En Stock' name="stock">
+         <Form.Item label='Cantidad' name="quantities">
           <Input placeholder="Unidades" />
-        </Form.Item> */}
+        </Form.Item>
       <Form.Item >
         <Button type="primary" htmlType="submit">Submit</Button>
       </Form.Item>
