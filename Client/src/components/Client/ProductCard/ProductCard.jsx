@@ -10,6 +10,7 @@ import { useState } from 'react';
 const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
 	const { Meta } = Card;
+	console.log(photo);
 
 	const onClick = () => {
 		setIsFavorite(!isFavorite);

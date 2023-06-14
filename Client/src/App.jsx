@@ -1,6 +1,7 @@
 
 
 import { Route, Routes } from "react-router";
+import axios from "axios";
 import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
 import LoginView from "./Views/login/loginView";
@@ -12,8 +13,10 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductCard from "./components/Client/ProductCard/ProductCard";
 import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
+import ErrorView from "./Views/Error/ErrorView";
+
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   //NO TOCAR
@@ -28,7 +31,6 @@ function App() {
   }
 // TOCAR
 
-  const photos = ['https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png'];
  
 
   return (
@@ -40,14 +42,7 @@ function App() {
         <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
         <Route path="/home"  element={<ClientHome/>}/>
         <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
-        <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
-		<Route path="/product" element={<ProductCard 
-											id='abcdef123' 
-											e_product_type='Smartphone' 
-											photo={ photos[0] } 
-											name='Samsung Galaxy S23' 
-											price='4560' />} />
-	    <Route path="/product/slider" element={<ProductsSliderFilter />} />
+	      <Route path="/product/slider" element={<ProductsSliderFilter />} />
         
         
 
@@ -61,7 +56,7 @@ function App() {
       {/* RUTAS PROTEGIDAS ADMIN*/}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='admin'} redirect={rolA==="client"? redirect.client:redirect.superAdmin}/>}>
           <Route path="/admin/home"  element={<AdminHome/>}/>
-         {/*  <Route path="/admin/createproduct" element={<CreateProductVew/>}/>  */}
+          <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
           <Route path="/admin/clients" element={<ViewClients/>}/> 
 
         </Route>
@@ -71,6 +66,9 @@ function App() {
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='superAdmin'} redirect={rolA==="client"? redirect.client:redirect.admin}/>}>
           <Route path="/super/admins"  element={<SuperAdminHome/>}/>
        </Route>
+
+       {/* RUTA DE CONSTRUCCION*/}
+       <Route path="*" element={<ErrorView/>} />
   
         
       </Routes>
