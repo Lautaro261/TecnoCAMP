@@ -1,11 +1,9 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
-import Banner from '../../../components/Client/Banner/Banner';
-import Brands from '../../../components/Client/Brands/Brands';
-import ContainerProducts from '../../../components/Client/ContainerProducts/ContainerProducts';
+import ProductDetails from '../../../components/Client/ProductDetails/ProductDetails';
 
 const { Header, Footer, Content } = Layout;
-const trendingBrands=[];
+
 const headerStyle = {
   textAlign: 'center',
   paddingInline: "0px",
@@ -13,12 +11,12 @@ const headerStyle = {
   height: 220,
   // display:"flex",
   // width: "100vw",
-  // lineHeight: '60px',
+  lineHeight: '60px',
   // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 200,
+  minHeight: 220,
   lineHeight: '8',
   color: '#0000',
   backgroundColor: '#fff',
@@ -29,26 +27,18 @@ const footerStyle = {
   color: '#fff',
   backgroundColor: '#7dbcea',
 };
-const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
 
-const CategoriesView = () => (
+const ProductDetailsView = () => (
     
 
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-        
-        <Banner categoria="all" />
-        <Brands brands={brands}/>
-   
-        <ContainerProducts  />
-
-
-
+      <ProductDetails />
     </Content>
     <Footer style={footerStyle}>Footer</Footer>
   </Layout>
 
 
 );
-export default CategoriesView;
+export default ProductDetailsView;

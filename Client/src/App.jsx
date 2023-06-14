@@ -14,9 +14,11 @@ import { useState } from "react";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
 import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
+import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
 
 axios.defaults.baseURL = "http://localhost:3001";
+
 
 function App() {
   //NO TOCAR
@@ -30,7 +32,6 @@ function App() {
     superAdmin:"/super/admins",
   }
 // TOCAR
-
  
 
   return (
@@ -41,8 +42,10 @@ function App() {
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
         <Route path="/home"  element={<ClientHome/>}/>
-        <Route path="/categories/smartphones"  element={<CategoriesView/>}/>
-	      <Route path="/product/slider" element={<ProductsSliderFilter />} />
+        <Route path="/categories/all"  element={<CategoriesView/>}/>
+        <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
+        <Route path="/categories/product/:id" element={<ProductDetailsView />} /> 
+         <Route path="/product/slider" element={<ProductsSliderFilter />} />
         
         
 
