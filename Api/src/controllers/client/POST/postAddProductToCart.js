@@ -67,15 +67,22 @@ const postAddProductToCart = async (
     };
   }
 
-  // Verificar si el producto ya está en el carrito
-  const existingProduct = await cart.hasProduct(product, {
-    through: { where: { "$inventory.id$": inventoryId } },
-  });
+  //   // Verificar si el producto ya está en el carrito
+  //   const existingProduct = await cart.getProducts({
+  //     where: { id: productId },
+  //   });
 
-  if (existingProduct) {
-    return { message: "El producto ya está en el carrito" };
-  }
+  //   if (existingProduct.length > 0) {
+  //     const existingInventories = await existingProduct[0].getInventories({
+  //       where: { id: inventoryId },
+  //     });
 
+  //     if (existingInventories.length > 0) {
+  //       return { message: "El producto ya está en el carrito" };
+  //     }
+  //   }
+
+  // Agregar producto al carrito
   await cart.addProduct(product, {
     through: {
       quantity_product: quantity,
@@ -93,10 +100,10 @@ const postAddProductToCart = async (
 
   // Actualizar el monto del carrito
   const products = await cart.getProducts();
+  console.log(products);
 
   const totalAmount = products.reduce((amount, product) => {
-    const quantity = product.cart_products.quantity_product;
-    const price = product.price;
+    const price = product.dataValues.price;
     return amount + quantity * price;
   }, 0);
 

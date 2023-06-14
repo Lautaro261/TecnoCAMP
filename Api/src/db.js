@@ -97,27 +97,23 @@ Order.belongsToMany(Product, {
   foreignKey: "orderId",
 });
 
-// Configuración adicional para obtener los items "quantity_unit_products" y "total_amount_unit_products"
-Order.belongsToMany(Product, {
-  through: "order_has_product",
-  as: "OrderProducts",
-  foreignKey: "orderId",
-});
-Product.belongsToMany(Order, {
-  through: "order_has_product",
-  as: "OrderDetails",
-  foreignKey: "productId",
-});
-
 ////////////////////////////////////
-
-// Producto con Review
-Product.hasMany(Review);
-Review.belongsTo(Product);
 
 // Producto con Carrito (relación uno a muchos)
 Cart.hasMany(Product);
 Product.belongsTo(Cart);
+
+// Producto con Inventario (relación uno a muchos)
+Product.hasMany(Inventory, {
+  foreignKey: "productId",
+});
+Inventory.belongsTo(Product, {
+  foreignKey: "productId",
+});
+
+// Producto con Review
+Product.hasMany(Review);
+Review.belongsTo(Product);
 
 // Producto con Categoría
 Category.hasMany(Product);
@@ -126,10 +122,6 @@ Product.belongsTo(Category);
 // Producto con Marca
 Brand.hasMany(Product);
 Product.belongsTo(Brand);
-
-// Producto con Inventario (relación muchos a muchos)
-Product.belongsToMany(Inventory, { through: "product_inventory" });
-Inventory.belongsToMany(Product, { through: "product_inventory" });
 
 // Departamento con Municipio
 Department.hasMany(Municipality);
