@@ -10,6 +10,11 @@ const items = [
     icon: <HomeOutlined />,
   },
   {
+    label: 'Todos los productos',
+    key: '/categories/all',
+    icon: <PhoneOutlined />,
+  },
+  {
     label: 'Celulares',
     key: '/categories/smartphones',
     icon: <PhoneOutlined />,
