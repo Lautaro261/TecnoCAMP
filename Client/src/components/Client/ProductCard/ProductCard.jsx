@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 // id será usado para la vista de detalle
 const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
