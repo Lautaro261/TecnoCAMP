@@ -2,6 +2,8 @@ import { HomeOutlined, PhoneOutlined, FieldTimeOutlined, QuestionCircleOutlined,
 import { Menu } from 'antd';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux"; 
 
 const items = [
   {
@@ -14,7 +16,7 @@ const items = [
     key: '/categories/all',
     icon: <PhoneOutlined />,
   },
-  {
+  /* {
     label: 'Celulares',
     key: '/categories/smartphones',
     icon: <PhoneOutlined />,
@@ -27,26 +29,58 @@ const items = [
     {
     label: 'Audifonos',
     key: '/categories/earphones',
-    icon: <CustomerServiceFilled />,
-  },
-  {
+    /* icon: <CustomerServiceFilled />, 
+  }, */
+ /*  {
     label: 'Quienes somos',
     key: 'Quienes somos',
     icon: <QuestionCircleOutlined />,
-  },
+  }, */
 ];
+ //   items = [{label, key}]
+ // allCategories = [{id, name, is_available}]
 
-
-const  Nav= ()=>{
+const  Nav = ()=>{
   const navigate=useNavigate()
   const current = window.localStorage.getItem("current")
-  const onClick = (e) => {
+  const allCategories = useSelector((state)=>state.productsClient.allCategories); 
+  useEffect(()=>{
+    console.log(allCategories, 'useEffect')
+    if(allCategories.length>0){
+      allCategories.forEach(category => {
+        items.push({
+          label: category.name,
+          key: `/categories/${category.name}`,
+         
+        });
+      });      
+      console.log(items);
+    }else{
+      
+    }
+  },[allCategories])
+
+
+
+
+  //console.log(allCategories);
+/*   const onClick = (e) => {
+
     console.log('click ', e);
     window.localStorage.setItem("current", e.key)
     navigate(e.key) 
+  }; */
 
-  };
-  return <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />;
+
+
+  return( 
+    <Menu 
+   /*  onClick={onClick}  */
+    selectedKeys={[current]} 
+    mode="horizontal" 
+    items={items} />
+    
+    )
 };
   //const ComponentDemo = App;
 

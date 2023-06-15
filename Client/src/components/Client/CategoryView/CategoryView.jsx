@@ -86,7 +86,6 @@ function CategoryView() {
     <>
     <div style={styles}>
       <Checkbox.Group options={plainOptions} onChange={onChange}  />
-
     </div>
      
     </>
