@@ -15,7 +15,7 @@ const initialState = {
         {
           label: 'Todos los productos',
           key: '/all-categories',
-        }],
+        },],
     error: null,
 }
 
@@ -122,12 +122,22 @@ const productsClientSlice = createSlice({
                 state.status = 'loading';
               })
             .addCase(getItems.fulfilled, (state, action) => {
+                const responseItems= action.payload.map(category => ({
+                  label: category.name,
+                  key: `/categories/${category.name}`,
+                  id: category.id
+                }))
+                state.items = [...state.items, ...responseItems];
+                console.log(state.items);
                 state.status = 'succeeded';
+                state.error = null;
+
+/* 
                 state.items = state.items.concat(action.payload.map(category => ({
                   label: category.name,
                   key: `/categories/${category.name}`,
-                })));
-                state.error = null;
+                  id: category.id
+                }))); */
               })
             .addCase(getItems.rejected, (state, action) => {
                 state.status = 'rejected';

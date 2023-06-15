@@ -41,9 +41,14 @@ import { useDispatch, useSelector } from "react-redux";
  // allCategories = [{id, name, is_available}]
 
 const  Nav = ()=>{
+
+  
   const navigate=useNavigate()
   const current = window.localStorage.getItem("current")
   const items = useSelector((state)=>state.productsClient.items);
+
+  const itemsSource = [ 
+  ]
   /* const allCategories = useSelector((state)=>state.productsClient.allCategories);  */
  /*  useEffect(()=>{
     /* console.log(allCategories, 'useEffect')
@@ -58,11 +63,11 @@ const  Nav = ()=>{
 
     if(allCategories.length>0){
       allCategories.forEach(category => {
-        items.push({
+        items.push();{
           label: category.name,
           key: `/categories/${category.name}`,
          
-        });
+        }
       });      
       console.log(items);
     } 
@@ -75,6 +80,7 @@ const  Nav = ()=>{
    const onClick = (e) => {
 
     console.log('click ', e);
+    console.log('ID CATEGORIA' )
     window.localStorage.setItem("current", e.key)
     navigate(e.key) 
   }; 
