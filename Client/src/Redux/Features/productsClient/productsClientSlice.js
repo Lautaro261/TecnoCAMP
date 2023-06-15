@@ -4,21 +4,34 @@ import axios from "axios";
 const initialState = {
     status: 'idle',
     allProducts: [],
+    productsByCategory: [],
     productDetails: {},
     error: null,
 }
 
 
+export const getProductsByCategory = createAsyncThunk(
+    'productsClient/getProductsByCategory',
+    async (id) => {
+        try {
+            const response = await axios.get('/client/filterCategory', { id })
+            console.log('getproductByCategory OKKKK', response.data)
+
+            return response.data;
+
+        } catch (error) {
+            console.log('ERRORRRRRR en getProductsByCategory', error)
+            throw error;
+        }
+    }
+)
+
 export const getAllProducts = createAsyncThunk(
     'productsClient/getAllProducts',
-    async ({ token }) => {
+    async () => {
 
         try {
-            const response = await axios('http://localhost:3001/client/allproducts', {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
+            const response = await axios('http://localhost:3001/client/allproducts');
             console.log('getAllProducts OK', response.data)
 
             return response.data;
@@ -34,7 +47,7 @@ export const getProductDetails = createAsyncThunk(
     async (id) => {
 
         try {
-            const response = await axios(`http://localhost:3001/client/product/${id}`);
+            const response = await axios(`http://localhost:3001/client/product`, { id });
             console.log('getProductDetails OK', response.data)
 
             return response.data;
@@ -48,13 +61,19 @@ export const getProductDetails = createAsyncThunk(
 
 
 export const clearDetails = createAction('productsClient/clearDetails')
+export const clearProductsByCategory = createAction('productsClient/clearProductsByCategory')
 
 const productsClientSlice = createSlice({
     name: 'productsClient',
     initialState,
-    reducers: { clearDetails: (state) => {
-        state.productDetails = {};
-      }},
+    reducers: {
+        clearProductsByCategory: (state) => {
+            state.productsByCategory={};
+        },
+        clearDetails: (state) => {
+            state.productDetails = {};
+        }
+    },
     extraReducers: (builder) => {
         builder
 
@@ -82,6 +101,20 @@ const productsClientSlice = createSlice({
                 state.error = null;
             })
             .addCase(getProductDetails.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message
+            })
+
+
+            .addCase(getProductsByCategory.pending, (state) => {
+                state.status = 'loading';
+            })
+            .addCase(getProductsByCategory.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.productsByCategory = action.payload;
+                state.error = null;
+            })
+            .addCase(getProductsByCategory.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.error = action.error.message
             })
