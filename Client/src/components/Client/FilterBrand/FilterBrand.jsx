@@ -81,16 +81,15 @@ const options = [
 
 const styles={width:"10vw", Height: '110px',}
 
-function CategoryView() {
+function FilterBrand() {
   return (
     <>
     <div style={styles}>
       <Checkbox.Group options={plainOptions} onChange={onChange}  />
-
     </div>
      
     </>
   );
 }
 
-export default CategoryView;
+export default FilterBrand;

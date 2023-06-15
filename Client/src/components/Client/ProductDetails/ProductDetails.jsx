@@ -1,7 +1,21 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import { Row, Col, Space } from "antd";
+import { useDispatch, useSelector} from 'react-redux';
+import { getProductDetails, clearDetails } from "../../../Redux/Features/productsClient/productsClientSlice";
+import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const productDetails = useSelector( state => state.productsClient.productDetails) 
+  const { id } = useParams();
+
+  useEffect(()=> {
+    dispatch(getProductDetails(id))
+    return function clean(){
+      dispatch(clearDetails())
+    }
+  }, [])
+
     return(
         <div>
         <Space

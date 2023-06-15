@@ -2,7 +2,7 @@ import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import Banner from '../../../components/Client/Banner/Banner';
 import Brands from '../../../components/Client/Brands/Brands';
-import ConteinerProductsByCategory from '../../../components/Client/ConteinerProductsByCategory/ConteinerProductsByCategory';
+import ContainerAllProducts from '../../../components/Client/ContainerAllProducts/ContainerAllProducts';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -18,7 +18,7 @@ const headerStyle = {
 };
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 200,
+  minHeight: 220,
   lineHeight: '8',
   color: '#0000',
   backgroundColor: '#fff',
@@ -32,15 +32,16 @@ const footerStyle = {
 const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
 let  current = window.localStorage.getItem('current');
 
-const CategoriesView = () => (
+const AllCategoriesView = () => (
 
   <Layout >
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria={current}/> 
+        <Banner categoria={current} /> 
         <Brands brands={brands}/>
-        <ConteinerProductsByCategory  />
+   
+        <ContainerAllProducts  />
 
 
 
@@ -50,4 +51,4 @@ const CategoriesView = () => (
 
 
 );
-export default CategoriesView;
+export default AllCategoriesView;

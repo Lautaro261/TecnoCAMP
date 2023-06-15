@@ -10,7 +10,7 @@ const Banner = ({categoria}) => {
 
     },[categoria]) */
  
-        if( categoria === '/categories/smartphones'){
+        if( categoria === '/categories/f2f573c2-3278-4f3e-888d-7fbde488e645'){
             return(
                 <BannerSmartPhones/>
             )
@@ -25,7 +25,7 @@ const Banner = ({categoria}) => {
                 <BannerEarPhones/>
             )
         }
-        if( categoria === '/categories/all'){
+        else{
             return(
                 <BannerAllProducts />
             )

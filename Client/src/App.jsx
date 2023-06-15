@@ -11,69 +11,63 @@ import AdminHome from "./Views/admin/AdminHome/AdminHome";
 import CartView from "./Views/client/Cart/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
-import CategoriesView from "./Views/client/Categories/CategoriesView";
+import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
 import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/ProductsSliderFilter";
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
+import CategoriesView from "./Views/client/Categories/CategoriesView";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
 
 function App() {
   //NO TOCAR
-  const [token,setToken]=useState("")
-  const [rol,setRol]=useState("")
-  const rolA =rol? rol:localStorage.getItem("rol")
-  const tokenA =token? token:localStorage.getItem("token")
-  const redirect= {
-    client:"/home",
-    admin:"/admin/home",
-    superAdmin:"/super/admins",
+  const [token, setToken] = useState("")
+  const [rol, setRol] = useState("")
+  const rolA = rol ? rol : localStorage.getItem("rol")
+  const tokenA = token ? token : localStorage.getItem("token")
+  const redirect = {
+    client: "/home",
+    admin: "/admin/home",
+    superAdmin: "/super/admins",
   }
-// TOCAR
- 
+  // TOCAR
+
 
   return (
 
-    <div> 
+    <div>
 
       <Routes >
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
-        <Route path="/login"  element={<LoginView setToken={setToken} setRol={setRol}/>}/>
-        <Route path="/home"  element={<ClientHome/>}/>
-        <Route path="/categories/all"  element={<CategoriesView/>}/>
-        <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
-        <Route path="/categories/product/:id" element={<ProductDetailsView />} /> 
-         <Route path="/product/slider" element={<ProductsSliderFilter />} />
-        
-        
+        <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} />
+        <Route path="/home" element={<ClientHome />} />
+        {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
+        <Route path="/all-categories" element={<AllCategoriesView />} />
+        <Route path='/categories/:category' element={<CategoriesView />} />
+        <Route path="/categories/product/:id" element={<ProductDetailsView />} />
+        <Route path="/product/slider" element={<ProductsSliderFilter />} />
 
 
-      {/* RUTAS PROTEGIDAS CLIENTE */}
-        <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='client'} redirect={rolA==="admin"? redirect.admin:redirect.superAdmin}/>}>
-          <Route path="/cart"  element={<CartView/>}/>
+
+
+        {/* RUTAS PROTEGIDAS CLIENTE */}
+        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+          <Route path="/cart" element={<CartView />} />
         </Route>
 
 
-      {/* RUTAS PROTEGIDAS ADMIN*/}
-        <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='admin'} redirect={rolA==="client"? redirect.client:redirect.superAdmin}/>}>
-          <Route path="/admin/home"  element={<AdminHome/>}/>
-          <Route path="/admin/createproduct" element={<CreateProductVew/>}/>
-          <Route path="/admin/clients" element={<ViewClients/>}/> 
+        {/* RUTAS PROTEGIDAS ADMIN*/}
+        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'admin'} redirect={rolA === "client" ? redirect.client : redirect.superAdmin} />}>
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/createproduct" element={<CreateProductVew />} />
+          <Route path="/admin/clients" element={<ViewClients />} />
 
         </Route>
-          
-
-      {/* RUTAS PROTEGIDAS SUPER ADMIN*/}
-        <Route element={<ProtectedRoutes logged={!!tokenA} allowed= {rolA==='superAdmin'} redirect={rolA==="client"? redirect.client:redirect.admin}/>}>
-          <Route path="/super/admins"  element={<SuperAdminHome/>}/>
-       </Route>
-
        {/* RUTA DE CONSTRUCCION*/}
       {/*  <Route path="*" element={<ErrorView/>} /> */}
-  
-        
+
       </Routes>
 
 
