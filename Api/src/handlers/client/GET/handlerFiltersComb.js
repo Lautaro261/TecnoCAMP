@@ -1,7 +1,7 @@
 const getFiltersComb = require("../../../controllers/client/GET/getFiltersComb");
 
 const handlerFiltersComb = async (req, res) => {
-    const { idCategory, idBrand, minPrice, maxPrice } = req.body;
+    const { idCategory, idBrand =[], minPrice, maxPrice } = req.body;
 
     try {
         const filters = await getFiltersComb(idCategory, idBrand, minPrice, maxPrice);

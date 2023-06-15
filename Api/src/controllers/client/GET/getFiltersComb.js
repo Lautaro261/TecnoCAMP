@@ -1,7 +1,7 @@
 const { Op } = require("sequelize");
 const { Product } = require("../../../db");
 
-const getFiltersComb = async (idCategory, idBrand, minPrice, maxPrice) => {
+const getFiltersComb = async (idCategory, idBrand = [], minPrice, maxPrice) => {
     const filters = {};
 
     if (idCategory) {
