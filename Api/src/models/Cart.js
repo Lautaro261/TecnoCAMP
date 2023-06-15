@@ -11,13 +11,23 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      quantity_products: {
+      quantity_all_products: {
         type: DataTypes.INTEGER,
         allowNull: true,
         defaultValue: 0,
       },
-      cart_amount: {
+      cart_total_amount: {
         type: DataTypes.FLOAT,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      quantity_unit_product: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        defaultValue: 0,
+      },
+      amount_unit_product: {
+        type: DataTypes.INTEGER,
         allowNull: true,
         defaultValue: 0,
       },
@@ -27,6 +37,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
     },
+    { timestamps: false },
     {
       indexes: [
         // Crea un índice condicional que incluye solo los carritos con estado "Vacio" o "Por pagar"

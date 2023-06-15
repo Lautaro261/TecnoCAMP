@@ -1,6 +1,6 @@
 const { Product, Inventory } = require("../../../db");
 
-const deleteProduct = async (productId, isAvailable) => {
+const deleteProduct = async (productId) => {
   // Variable Producto que va a cambiar
   let product;
 
@@ -13,7 +13,7 @@ const deleteProduct = async (productId, isAvailable) => {
     const inventoryItem = await Inventory.findByPk(productId);
 
     if (inventoryItem) {
-      product = await Product.findByPk(inventoryItem.productIdInventory);
+      product = await Product.findByPk(inventoryItem.productId);
     }
   }
 
@@ -22,10 +22,10 @@ const deleteProduct = async (productId, isAvailable) => {
   }
 
   // Actualizar la propiedad "is_available" del producto
-  product.is_available = isAvailable;
+  product.is_available = false;
 
   // Verificar si se deshabilita la disponibilidad del producto
-  if (!isAvailable) {
+  if (!product.isAvailable) {
     product.total_quantity_inventory = 0; // Establecer el stock total a 0
   }
 
@@ -34,26 +34,21 @@ const deleteProduct = async (productId, isAvailable) => {
   // Actualizar la propiedad "is_available" de los elementos de inventario asociados si el ID proporcionado es de un producto en la tabla "Product"
   if (productId.includes("-")) {
     await Inventory.update(
-      { is_available: isAvailable, quantity_inventory: 0 },
+      { is_available: false, quantity_inventory: 0 },
       {
         where: {
-          productIdInventory: product.id,
+          productId: product.id,
         },
       }
     );
   }
 
   const productModified = await Product.findByPk(product.id, {
+    attributes: ["id", "name", "total_quantity_inventory", "is_available"],
     include: [
       {
         model: Inventory,
         attributes: ["id", "color", "quantity_inventory", "is_available"],
-        through: {
-          attributes: [],
-          where: {
-            productId: product.id,
-          },
-        },
       },
     ],
   });

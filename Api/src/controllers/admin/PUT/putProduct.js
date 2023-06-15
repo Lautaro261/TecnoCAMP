@@ -51,7 +51,7 @@ const updateProduct = async (
   const existingInventoryItems = await Inventory.findAll({
     where: {
       id: inventoryIds,
-      productIdInventory: product.id,
+      productId: product.id,
     },
   });
 
@@ -110,7 +110,7 @@ const updateProduct = async (
     // Obtener todos los elementos de inventario asociados al producto
     const allInventoryItems = await Inventory.findAll({
       where: {
-        productIdInventory: product.id,
+        productId: product.id,
       },
     });
 
@@ -130,7 +130,7 @@ const updateProduct = async (
     // Recalcular el total_quantity_inventory si el producto se vuelve disponible
     const allInventoryItems = await Inventory.findAll({
       where: {
-        productIdInventory: product.id,
+        productId: product.id,
       },
     });
 
@@ -161,7 +161,7 @@ const updateProduct = async (
 
     await Inventory.update(inventoryUpdateData, {
       where: {
-        productIdInventory: product.id,
+        productId: product.id,
       },
     });
   }
@@ -171,12 +171,6 @@ const updateProduct = async (
       {
         model: Inventory,
         attributes: ["id", "color", "quantity_inventory", "is_available"],
-        through: {
-          attributes: [],
-          where: {
-            productId: id,
-          },
-        },
       },
     ],
   });

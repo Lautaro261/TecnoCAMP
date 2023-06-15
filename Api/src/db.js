@@ -79,37 +79,25 @@ Order.belongsTo(User);
 User.hasMany(Review);
 Review.belongsTo(User);
 
-// // Producto con Orden (relación muchos a muchos)
-// Product.belongsToMany(Order, { through: "order_has_product" });
-// Order.belongsToMany(Product, { through: "order_has_product" });
-
 ////////////////////////////////////
 
-// Producto con Orden (relación muchos a muchos)
-Product.belongsToMany(Order, {
-  through: "order_has_product",
-  as: "Orders",
-  foreignKey: "productId",
-});
-Order.belongsToMany(Product, {
-  through: "order_has_product",
-  as: "Products",
-  foreignKey: "orderId",
-});
+// Producto con Inventario
+Product.hasMany(Inventory);
+Inventory.belongsTo(Product);
+
+// Carrito con Producto
+Product.hasMany(Cart);
+Cart.belongsTo(Product, { foreignKey: "productId" });
+
+// Carrito con Inventario
+Inventory.hasMany(Cart);
+Cart.belongsTo(Inventory, { foreignKey: "inventoryId" });
+
+// Carrito con Order
+Cart.hasOne(Order);
+Order.belongsTo(Cart);
 
 ////////////////////////////////////
-
-// Producto con Carrito (relación uno a muchos)
-Cart.hasMany(Product);
-Product.belongsTo(Cart);
-
-// Producto con Inventario (relación uno a muchos)
-Product.hasMany(Inventory, {
-  foreignKey: "productId",
-});
-Inventory.belongsTo(Product, {
-  foreignKey: "productId",
-});
 
 // Producto con Review
 Product.hasMany(Review);

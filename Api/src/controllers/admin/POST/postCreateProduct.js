@@ -70,26 +70,34 @@ const postCreateProduct = async (
   }
 
   // Crear las entradas en el inventario para los colores del producto
-  for (let i = 0; i < colors.length; i++) {
-    const color = colors[i];
-    const quantity = quantities[i];
+  const inventoryEntries = colors.map(async (color, index) => {
+    const quantity = quantities[index];
 
-    const newInventoryEntry = await Inventory.create({
+    const inventoryEntry = await Inventory.create({
       color: color,
       quantity_inventory: quantity,
       is_available: is_available,
-      productIdInventory: newProduct.id,
+      productId: newProduct.id,
     });
 
-    // Establecer la relación entre el nuevo producto y su entrada en el inventario
-    await newProduct.addInventory(newInventoryEntry);
+    // Establecer la relación entre el producto y los inventarios
+    await newProduct.addInventory(inventoryEntry);
 
-    newInventoryEntry.productId = newProduct.id;
-    await newInventoryEntry.save();
-  }
+    return inventoryEntry;
+  });
 
-  const inventoryQuantities = quantities.reduce((acc, curr) => acc + curr, 0);
+  const newInventoryEntries = await Promise.all(inventoryEntries);
+
+  // Calcular la suma total de las cantidades de inventario asociadas al nuevo producto
+  const inventoryQuantities = newInventoryEntries.reduce(
+    (acc, entry) => acc + entry.quantity_inventory,
+    0
+  );
+
+  // Asignar la suma total al campo "total_quantity_inventory" del nuevo producto
   newProduct.total_quantity_inventory = inventoryQuantities;
+
+  // Guardar el producto con la suma total actualizada
   await newProduct.save();
 
   return newProduct;

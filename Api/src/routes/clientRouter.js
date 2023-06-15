@@ -20,6 +20,8 @@ const handlerGetAllBrands = require("../handlers/client/GET/handlerGetAllBrands.
 const handlerGetBrandById = require("../handlers/client/GET/handlerGetBrandById.js");
 
 // CARRITO DE COMPRAS
+const handlerGetCartById = require("../handlers/client/GET/handlerGetCartById.js");
+const handlerGetUserCarts = require("../handlers/client/GET/handlerGetUserCarts.js");
 const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js");
 const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
 
@@ -44,6 +46,8 @@ clientRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
 clientRouter.get("/brand", verifyToken, handlerGetBrandById);
 
 // CARRITO DE COMPRAS
+clientRouter.get("/cartid", verifyToken, handlerGetCartById);
+clientRouter.get("/cartofuser", verifyToken, handlerGetUserCarts);
 clientRouter.post("/createcart", verifyToken, handlerCreateCart);
 clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
 
