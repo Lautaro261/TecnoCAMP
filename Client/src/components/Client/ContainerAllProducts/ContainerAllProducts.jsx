@@ -4,15 +4,14 @@ import { Pagination, Row, Col, Empty, Space } from 'antd';
 import { getAllProducts } from '../../../Redux/Features/productsClient/productsClientSlice';
 import ProductCard from '../ProductCard/ProductCard';
 
-const ContainerProducts = () => {
+const ContainerAllProducts = () => {
 
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.productsClient.allProducts)
-    const token = window.localStorage.getItem('token')
     console.log('estoy en conteinerProduct', allProducts)
 
     useEffect(() => {
-        dispatch(getAllProducts({ token }))
+        dispatch(getAllProducts())
     }, [dispatch])
     return (
         <div>
@@ -49,4 +48,4 @@ const ContainerProducts = () => {
     )
 }
 
-export default ContainerProducts;
+export default ContainerAllProducts;
