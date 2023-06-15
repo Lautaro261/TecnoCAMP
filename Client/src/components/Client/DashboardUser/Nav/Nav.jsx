@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"; 
 
-const items = [
+/* const items = [
   {
     label: 'Inicio',
     key: '/home',
@@ -35,17 +35,27 @@ const items = [
     label: 'Quienes somos',
     key: 'Quienes somos',
     icon: <QuestionCircleOutlined />,
-  }, */
-];
+  }, 
+]; */
  //   items = [{label, key}]
  // allCategories = [{id, name, is_available}]
 
 const  Nav = ()=>{
   const navigate=useNavigate()
   const current = window.localStorage.getItem("current")
-  const allCategories = useSelector((state)=>state.productsClient.allCategories); 
-  useEffect(()=>{
-    console.log(allCategories, 'useEffect')
+  const items = useSelector((state)=>state.productsClient.items);
+  /* const allCategories = useSelector((state)=>state.productsClient.allCategories);  */
+ /*  useEffect(()=>{
+    /* console.log(allCategories, 'useEffect')
+
+
+    if(allCategories.length===2){
+      return(<div>
+        <h3>Cargando...</h3>
+      </div>)
+    }
+
+
     if(allCategories.length>0){
       allCategories.forEach(category => {
         items.push({
@@ -55,27 +65,25 @@ const  Nav = ()=>{
         });
       });      
       console.log(items);
-    }else{
-      
-    }
-  },[allCategories])
+    } 
+  },[allCategories]) */
 
 
 
 
   //console.log(allCategories);
-/*   const onClick = (e) => {
+   const onClick = (e) => {
 
     console.log('click ', e);
     window.localStorage.setItem("current", e.key)
     navigate(e.key) 
-  }; */
+  }; 
 
 
 
   return( 
     <Menu 
-   /*  onClick={onClick}  */
+     onClick={onClick} 
     selectedKeys={[current]} 
     mode="horizontal" 
     items={items} />

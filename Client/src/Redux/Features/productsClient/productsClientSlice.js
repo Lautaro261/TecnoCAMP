@@ -7,6 +7,15 @@ const initialState = {
     allCategories:[],
     productsByCategory: [],
     productDetails: {},
+    items:[
+        {
+          label: 'Inicio',
+          key: '/home',  
+        },
+        {
+          label: 'Todos los productos',
+          key: '/all-categories',
+        }],
     error: null,
 }
 
@@ -65,17 +74,13 @@ export const clearDetails = createAction('productsClient/clearDetails')
 export const clearProductsByCategory = createAction('productsClient/clearProductsByCategory')
 
 
-export const getAllCategories = createAsyncThunk(
-    'productsClient/getAllCategories',
+export const getItems = createAsyncThunk(
+    'productsClient/getItems',
     async () => {
 
         try {
-            const response = await axios.get('/client/allcategories', /* {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            } */);
-           // console.log('getAllCategories OK', response.data)
+            const response = await axios.get('/client/allcategories');
+            console.log('RESPUESTA BACK', response.data);
 
             return response.data;
 
@@ -113,18 +118,21 @@ const productsClientSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message
             })
-            .addCase(getAllCategories.pending, (state) => {
+            .addCase(getItems.pending, (state) => {
                 state.status = 'loading';
-            })
-            .addCase(getAllCategories.fulfilled, (state, action) => {
+              })
+            .addCase(getItems.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.allCategories = action.payload;
+                state.items = state.items.concat(action.payload.map(category => ({
+                  label: category.name,
+                  key: `/categories/${category.name}`,
+                })));
                 state.error = null;
-            })
-            .addCase(getAllCategories.rejected, (state, action) => {
+              })
+            .addCase(getItems.rejected, (state, action) => {
                 state.status = 'rejected';
-                state.error = action.error.message
-            })
+                state.error = action.error.message;
+              })
 
 
             .addCase(getProductDetails.pending, (state) => {
