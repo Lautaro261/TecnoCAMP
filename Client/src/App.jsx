@@ -17,7 +17,7 @@ import ProductsSliderFilter from "./components/Client/ProductsSliderFilter/Produ
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
-import Lading from "./Views/LandingView/Landing";
+import Landing from "./Views/Landing/Landing";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -42,7 +42,7 @@ function App() {
 
       <Routes >
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
-        <Route path="/" element={<Lading/>}/>
+        <Route path="/" element={<Landing/>} />
         <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} />
         <Route path="/home" element={<ClientHome />} />
         {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
