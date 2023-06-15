@@ -10,8 +10,13 @@ const items = [
     icon: <HomeOutlined />,
   },
   {
+    label: 'Todos los productos',
+    key: '/all-categories',
+    icon: <PhoneOutlined />,
+  },
+  {
     label: 'Celulares',
-    key: '/categories/smartphones',
+    key: '/categories/f2f573c2-3278-4f3e-888d-7fbde488e645',
     icon: <PhoneOutlined />,
   },
   {
@@ -34,10 +39,10 @@ const items = [
 
 const  Nav= ()=>{
   const navigate=useNavigate()
-    const [current, setCurrent] = useState('Inicio');
+  const current = window.localStorage.getItem("current")
   const onClick = (e) => {
     console.log('click ', e);
-    setCurrent(e.key); 
+    window.localStorage.setItem("current", e.key)
     navigate(e.key) 
 
   };

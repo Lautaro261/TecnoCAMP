@@ -2,6 +2,7 @@ import { Divider, Col, Row } from 'antd';
 import SmartPhones from"../../../../img/SmartPhones.png"
 import SmartWatches from"../../../../img/SmartWatches.png"
 import Earphones from"../../../../img/Earphones.png"
+import { Link } from 'react-router-dom';
 
 const styles={width:"20vw", Height: '90px',}
 const Holder = () => (
@@ -18,10 +19,14 @@ const Holder = () => (
   <Row gutter={16}>
     
     <Col span={8}>
-    <img alt="SmartPhones" src={SmartPhones} style={styles}/>
+      <Link to='/categories/smartphones'>
+       <img alt="SmartPhones" src={SmartPhones} style={styles}/>
+      </Link>
     </Col>
     <Col span={8}>
-    <img alt="SmartPhones" src={SmartWatches} style={styles}/>
+      <Link to='/categories/smartwatches'>
+        <img alt="SmartWatches" src={SmartWatches} style={styles}/>
+      </Link>
     </Col>
     <Col span={8}>
     <img alt="SmartPhones" src={Earphones} style={styles}/>

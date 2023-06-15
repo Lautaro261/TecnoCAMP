@@ -1,6 +1,8 @@
-import { Layout, Pagination } from 'antd';
+import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import Banner from '../../../components/Client/Banner/Banner';
+import Brands from '../../../components/Client/Brands/Brands';
+import ConteinerProductsByCategory from '../../../components/Client/ConteinerProductsByCategory/ConteinerProductsByCategory';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -18,8 +20,8 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 200,
   lineHeight: '8',
-  color: '#fff',
-  backgroundColor: '#108ee9',
+  color: '#0000',
+  backgroundColor: '#fff',
 };
 
 const footerStyle = {
@@ -27,15 +29,19 @@ const footerStyle = {
   color: '#fff',
   backgroundColor: '#7dbcea',
 };
+const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+let  current = window.localStorage.getItem('current');
+
 const CategoriesView = () => (
-    
 
   <Layout >
-    <Header style={headerStyle}><DashboardUser /></Header>
+    <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria="earphones" ></Banner>
-        <Pagination defaultCurrent={1} total={50}/>
+        <Banner categoria={current}/> 
+        <Brands brands={brands}/>
+   
+        <ConteinerProductsByCategory  />
 
 
 

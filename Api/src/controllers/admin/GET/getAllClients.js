@@ -5,7 +5,7 @@ const getAllClients = async () => {
 
   const allClients = await User.findAll({
     where: { rol: rolName },
-    attributes: ["sub", "name", "email", "rol", "photo"],
+    attributes: ["sub", "name", "email", "rol", "photo", "erased"],
   });
 
   if (allClients.length === 0) {

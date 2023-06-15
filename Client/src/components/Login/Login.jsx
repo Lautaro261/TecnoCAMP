@@ -10,17 +10,16 @@ const Login = ({setToken, setRol}) => {
         const response = await axios.post('http://localhost:3001/login', values)
         console.log(response.data)
         if(response.data.token && response.data.rol){
+          if(response.data.erased){console.log("BANEADISIMOOOOO")}
+          else{
           const token= response.data.token;
+          console
           const rol = response.data.rol;
           console.log("logeado en el front como: ", rol, "token: ", token)
-
-
           setToken(token)
           setRol(rol)
           window.localStorage.setItem("rol",rol)
           window.localStorage.setItem("token", token)
-
-          
           if(rol==="client"){
             navigate("/home");
           }
@@ -32,7 +31,7 @@ const Login = ({setToken, setRol}) => {
             navigate("/super/admins");
           }
           //
-        }else{
+        }}else{
           alert(response.data.message) //{message}
         }
         

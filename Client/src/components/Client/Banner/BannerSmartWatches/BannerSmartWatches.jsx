@@ -6,8 +6,8 @@ import image from '../../../../img/banner/Smartwatches.png';
 const BannerSmartWatches = () => {
 
     return (
-        <Row>
-            <Col span={24} style={{ backgroundImage: `url(${image})`, backgroundSize: 'cover' }}>
+        <Row style={{ backgroundImage: `url(${image})`, backgroundSize: 'contain', backgroundPosition: 'center' }}>
+            <Col span={24} style={{ color: '#fff', textAlign: 'center', fontSize: '20px', fontWeight: 'bold'}}>
                 Tecnología en tu muñeca | Descubre la última colección de smartwatches.
             </Col>
         </Row>
