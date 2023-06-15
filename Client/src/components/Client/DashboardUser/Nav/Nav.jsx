@@ -13,12 +13,12 @@ const items = [
   },
   {
     label: 'Todos los productos',
-    key: '/categories/all',
+    key: '/all-categories',
     icon: <PhoneOutlined />,
   },
   /* {
     label: 'Celulares',
-    key: '/categories/smartphones',
+    key: '/categories/f2f573c2-3278-4f3e-888d-7fbde488e645',
     icon: <PhoneOutlined />,
   },
   {

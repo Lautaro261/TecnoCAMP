@@ -81,7 +81,7 @@ const options = [
 
 const styles={width:"10vw", Height: '110px',}
 
-function CategoryView() {
+function FilterBrand() {
   return (
     <>
     <div style={styles}>
@@ -92,4 +92,4 @@ function CategoryView() {
   );
 }
 
-export default CategoryView;
+export default FilterBrand;
