@@ -1,7 +1,7 @@
 const getCategoryById = require("../../../controllers/client/GET/getCategoryById");
 
 const handlerGetCategoryById = async (req, res) => {
-  const { id } = req.body;
+  const id  = req.params.id;
 
   try {
     // Obtener el producto por su ID

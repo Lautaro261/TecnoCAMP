@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
     status: 'idle',
     allProducts: [],
+    allCategories:[],
     productsByCategory: [],
     productDetails: {},
     category:"hola",
@@ -13,9 +14,10 @@ const initialState = {
 
 export const getProductsByCategory = createAsyncThunk(
     'productsClient/getProductsByCategory',
-    async (id) => {
+    async (idProduct) => {
+        console.log('id filtro por categoria', idProduct )
         try {
-            const response = await axios.get('/client/filterCategory', { id })
+            const response = await axios.get(`/client/filterCategory/${idProduct}`)
             console.log('getproductByCategory OKKKK', response.data)
 
             return response.data;
@@ -32,7 +34,7 @@ export const getAllProducts = createAsyncThunk(
     async () => {
 
         try {
-            const response = await axios('http://localhost:3001/client/allproducts');
+            const response = await axios('/client/allproducts');
             console.log('getAllProducts OK', response.data)
 
             return response.data;
@@ -82,6 +84,24 @@ export const getCategory = createAsyncThunk(
 export const clearDetails = createAction('productsClient/clearDetails')
 export const clearProductsByCategory = createAction('productsClient/clearProductsByCategory')
 
+
+export const getItems = createAsyncThunk(
+    'productsClient/getItems',
+    async () => {
+
+        try {
+            const response = await axios.get('/client/allcategories');
+            console.log('RESPUESTA BACK', response.data);
+
+            return response.data;
+
+        } catch (error) {
+            console.log('ERRORR GETALLPRODUCTS REDUX', error)
+            throw error;
+        }
+    }
+)
+
 const productsClientSlice = createSlice({
     name: 'productsClient',
     initialState,
@@ -110,6 +130,18 @@ const productsClientSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message
             })
+            .addCase(getItems.pending, (state) => {
+                state.status = 'loading';
+              })
+            .addCase(getItems.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.allCategories = action.payload;
+                state.error = null;
+              })
+            .addCase(getItems.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message;
+              })
 //
 
             .addCase(getProductDetails.pending, (state) => {

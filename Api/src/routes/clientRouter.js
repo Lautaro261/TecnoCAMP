@@ -38,7 +38,7 @@ clientRouter.get("/product/:id",  handlerGetProductById);
 
 // CATEGORIAS
 clientRouter.get("/allcategories",  handlerGetAllCategories);
-clientRouter.get("/category",  handlerGetCategoryById);
+clientRouter.get("/category/:id",  handlerGetCategoryById);
 
 // MARCAS
 clientRouter.get("/allbrands",  handlerGetAllBrands);
