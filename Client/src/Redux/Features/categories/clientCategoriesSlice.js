@@ -42,4 +42,5 @@ const clientCategoriesSlice = createSlice({
     }
 });
 
+
 export default clientCategoriesSlice.reducer;

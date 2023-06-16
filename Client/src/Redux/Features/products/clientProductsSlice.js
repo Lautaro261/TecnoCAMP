@@ -188,4 +188,5 @@ const clientProductsSlice = createSlice({
   },
 });
 
+
 export default clientProductsSlice.reducer;
