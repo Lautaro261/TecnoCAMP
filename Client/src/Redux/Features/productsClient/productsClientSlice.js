@@ -7,24 +7,16 @@ const initialState = {
     allCategories:[],
     productsByCategory: [],
     productDetails: {},
-    items:[
-        {
-          label: 'Inicio',
-          key: '/home',  
-        },
-        {
-          label: 'Todos los productos',
-          key: '/all-categories',
-        },],
     error: null,
 }
 
 
 export const getProductsByCategory = createAsyncThunk(
     'productsClient/getProductsByCategory',
-    async (id) => {
+    async (idProduct) => {
+        console.log('id filtro por categoria', idProduct )
         try {
-            const response = await axios.get('/client/filterCategory', { id })
+            const response = await axios.get(`/client/filterCategory/${idProduct}`)
             console.log('getproductByCategory OKKKK', response.data)
 
             return response.data;
@@ -122,22 +114,9 @@ const productsClientSlice = createSlice({
                 state.status = 'loading';
               })
             .addCase(getItems.fulfilled, (state, action) => {
-                const responseItems= action.payload.map(category => ({
-                  label: category.name,
-                  key: `/categories/${category.name}`,
-                  id: category.id
-                }))
-                state.items = [...state.items, ...responseItems];
-                console.log(state.items);
                 state.status = 'succeeded';
+                state.allCategories = action.payload;
                 state.error = null;
-
-/* 
-                state.items = state.items.concat(action.payload.map(category => ({
-                  label: category.name,
-                  key: `/categories/${category.name}`,
-                  id: category.id
-                }))); */
               })
             .addCase(getItems.rejected, (state, action) => {
                 state.status = 'rejected';

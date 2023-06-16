@@ -4,22 +4,20 @@ import Contacticons from "./Contacticons/Contacticons"
 import MenuDash from "./MenuDash/MenuDash";
 import Nav from "./Nav/Nav";
 import { useEffect } from "react";
-//import { getAllCategories } from "../../../Redux/Features/productsClient/productsClientSlice";
-import { useDispatch, useSelector } from "react-redux"; 
+import { useDispatch, useSelector } from "react-redux";
+import { getItems } from "../../../Redux/Features/productsClient/productsClientSlice";
 
 const DashboardUser = () => {
-/*     const dispatch = useDispatch();
-    //const allCategories = useSelector((state)=>state.productsClient.allCategories); 
-
+   /*  const dispatch = useDispatch();
     useEffect(()=>{
-        dispatch(getAllCategories());
-    }, [dispatch]) */
+        dispatch(getItems())
+    },[]) */
     return (
  
         <Row>
             <Col span={24}><Contacticons/></Col>
             <Col span={24}><MenuDash/></Col>
-            <Col span={24}><Nav /* allCategories={allCategories} *//></Col>
+            <Col span={24}><Nav/></Col>
         </Row>
  
 
