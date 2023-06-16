@@ -15,11 +15,9 @@ const headerStyle = {
   // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
-  textAlign: 'center',
-  minHeight: 220,
-  lineHeight: '8',
+  width:"100vw",
   color: '#0000',
-  backgroundColor: '#fff',
+  
 };
 
 const footerStyle = {
@@ -34,7 +32,7 @@ const ProductDetailsView = () => (
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-      <ProductDetails />
+      <ProductDetails style={{width:"100vw", alignItems:"center"}}/>
     </Content>
     <Footer style={footerStyle}>Footer</Footer>
   </Layout>

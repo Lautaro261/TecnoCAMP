@@ -3,21 +3,38 @@ import BannerEarPhones from "./BannerEarPhones/BannerEarPhones";
 import BannerSmartPhones from "./BannerSmartPhones/BannerSmartPhones";
 import BannerSmartWatches from "./BannerSmartWatches/BannerSmartWatches";
 import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
+import { useEffect } from "react";
+import { getProductsByCategory } from "../../../Redux/Features/productsClient/productsClientSlice";
+import { useDispatch } from "react-redux";
 
-const Banner = ({categoria}) => {
+const Banner = () => {
+     let categoryName = window.localStorage.getItem('category_name');
+    const dispatch = useDispatch();
+    const idProduct = window.localStorage.getItem('category_id')
+    useEffect(() => {
+        dispatch(getProductsByCategory(idProduct))
+        // return function clean(){
+        //     dispatch(clearProductsByCategory())
+        // }
+    }, [idProduct, dispatch, categoryName])
+
+
 
  
-        if( categoria === '/categories/f2f573c2-3278-4f3e-888d-7fbde488e645'){
+        if( categoryName === 'Smartphone'){
+            console.log('ENTRE EN IF SMARTPHONE',categoryName); 
             return(
                 <BannerSmartPhones/>
             )
         }
-        if( categoria === '/categories/smartwatches'){
+        else if( categoryName === 'Smartwatch'){
+            console.log('ENTRE EN IF SMARTWATCH',categoryName); 
             return(
                 <BannerSmartWatches/>
             )
         }
-        if( categoria === '/categories/earphones'){
+        else if( categoryName === 'Earphone'){
+            
             return(
                 <BannerEarPhones/>
             )

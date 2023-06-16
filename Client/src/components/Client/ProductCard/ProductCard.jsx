@@ -30,7 +30,8 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				<Card
 				    hoverable
 				    style={{ width: 240 }}
-				    cover={<img alt={ name } src={ photo } />}
+				    cover={<img alt={ name } src={ photo } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
+					margin: '0 auto'} } />}
 				>
 				    <div>{ e_product_type }</div>
 				    <Meta 

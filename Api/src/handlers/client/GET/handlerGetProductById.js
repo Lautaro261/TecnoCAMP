@@ -5,7 +5,7 @@ const getUser = require("../../../controllers/admin/GET/getUser");
 const getProductById = require("../../../controllers/client/GET/getProductById");
 
 const handlerGetProductById = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
 
   try {
     // Obtener el producto por su ID

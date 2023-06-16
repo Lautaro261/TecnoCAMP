@@ -4,17 +4,20 @@ import axios from "axios";
 const initialState = {
     status: 'idle',
     allProducts: [],
+    allCategories:[],
     productsByCategory: [],
     productDetails: {},
+    category:"hola",
     error: null,
 }
 
 
 export const getProductsByCategory = createAsyncThunk(
     'productsClient/getProductsByCategory',
-    async (id) => {
+    async (idProduct) => {
+        console.log('id filtro por categoria', idProduct )
         try {
-            const response = await axios.get('/client/filterCategory', { id })
+            const response = await axios.get(`/client/filterCategory/${idProduct}`)
             console.log('getproductByCategory OKKKK', response.data)
 
             return response.data;
@@ -31,7 +34,7 @@ export const getAllProducts = createAsyncThunk(
     async () => {
 
         try {
-            const response = await axios('http://localhost:3001/client/allproducts');
+            const response = await axios('/client/allproducts');
             console.log('getAllProducts OK', response.data)
 
             return response.data;
@@ -47,10 +50,14 @@ export const getProductDetails = createAsyncThunk(
     async (id) => {
 
         try {
-            const response = await axios(`http://localhost:3001/client/product`, { id });
-            console.log('getProductDetails OK', response.data)
+            const response1 = await axios.get(`/client/product/${id}`);
+            const catid= response1.data.categoryId
+            const response2 = await axios.get(`/client/category/${catid}`);
 
-            return response.data;
+            console.log(id)
+            console.log('getProductDetails OK', response1.data)
+            console.log("categoriaaaa", response2.data)
+            return [response1.data, response2.data.name];
 
         } catch (error) {
             console.log('ERRORR GETPRODUCTDETAILS REDUX', error)
@@ -60,8 +67,27 @@ export const getProductDetails = createAsyncThunk(
 )
 
 
+
 export const clearDetails = createAction('productsClient/clearDetails')
 export const clearProductsByCategory = createAction('productsClient/clearProductsByCategory')
+
+
+export const getItems = createAsyncThunk(
+    'productsClient/getItems',
+    async () => {
+
+        try {
+            const response = await axios.get('/client/allcategories');
+            console.log('RESPUESTA BACK', response.data);
+
+            return response.data;
+
+        } catch (error) {
+            console.log('ERRORR GETALLPRODUCTS REDUX', error)
+            throw error;
+        }
+    }
+)
 
 const productsClientSlice = createSlice({
     name: 'productsClient',
@@ -69,15 +95,16 @@ const productsClientSlice = createSlice({
     reducers: {
         clearProductsByCategory: (state) => {
             state.productsByCategory={};
+            state.category=""
         },
         clearDetails: (state) => {
             state.productDetails = {};
+            state.category=""
+
         }
     },
     extraReducers: (builder) => {
         builder
-
-
             .addCase(getAllProducts.pending, (state) => {
                 state.status = 'loading';
             })
@@ -90,21 +117,34 @@ const productsClientSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message
             })
-
+            .addCase(getItems.pending, (state) => {
+                state.status = 'loading';
+              })
+            .addCase(getItems.fulfilled, (state, action) => {
+                state.status = 'succeeded';
+                state.allCategories = action.payload;
+                state.error = null;
+              })
+            .addCase(getItems.rejected, (state, action) => {
+                state.status = 'rejected';
+                state.error = action.error.message;
+              })
+//
 
             .addCase(getProductDetails.pending, (state) => {
                 state.status = 'loading';
             })
             .addCase(getProductDetails.fulfilled, (state, action) => {
                 state.status = 'succeeded';
-                state.productDetails = action.payload;
+                state.productDetails = action.payload[0];
+                state.category=action.payload[1]
                 state.error = null;
             })
             .addCase(getProductDetails.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.error = action.error.message
             })
-
+//
 
             .addCase(getProductsByCategory.pending, (state) => {
                 state.status = 'loading';
@@ -118,6 +158,8 @@ const productsClientSlice = createSlice({
                 state.status = 'rejected';
                 state.error = action.error.message
             })
+//
+            
 
     }
 })
