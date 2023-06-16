@@ -9,7 +9,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.productsClient.allCategories);
-  const [current, setCurrent] = useState('Inicio');
+ // const [current, setCurrent] = useState('Inicio');
 
 
   useEffect(() => {
@@ -57,6 +57,8 @@ const Nav = () => {
     dispatch(clearProductsByCategory())
 
     if(e.key === 'home'|| e.key === 'all-categories'){
+      window.localStorage.removeItem('category_id');
+      window.localStorage.removeItem('category_name');
       navigate(`/${e.key}`)
     }else{
       //console.log('FOR!!!',items);
@@ -83,7 +85,7 @@ const Nav = () => {
   };
 
   return (
-    <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={ items } />
+    <Menu onClick={onClick} /* selectedKeys={[current]} */ mode="horizontal" items={ items } />
   );
 };
 
