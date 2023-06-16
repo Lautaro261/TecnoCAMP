@@ -8,11 +8,12 @@ const ContainerAllProducts = () => {
 
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.productsClient.allProducts)
-    console.log('estoy en conteinerProduct', allProducts)
+    const categoryName = window.localStorage.getItem('category_name');
+    //console.log('estoy en conteinerProduct', allProducts)
 
     useEffect(() => {
         dispatch(getAllProducts())
-    }, [dispatch])
+    }, [dispatch, categoryName])
     return (
         <div>
             <Space

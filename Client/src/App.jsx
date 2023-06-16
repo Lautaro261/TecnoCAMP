@@ -67,16 +67,8 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
 
         </Route>
-
-
-        {/* RUTAS PROTEGIDAS SUPER ADMIN*/}
-        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'superAdmin'} redirect={rolA === "client" ? redirect.client : redirect.admin} />}>
-          <Route path="/super/admins" element={<SuperAdminHome />} />
-        </Route>
-
-        {/* RUTA DE CONSTRUCCION*/}
-        <Route path="*" element={<ErrorView />} />
-
+       {/* RUTA DE CONSTRUCCION*/}
+         <Route path="*" element={<ErrorView/>} /> 
 
       </Routes>
 
