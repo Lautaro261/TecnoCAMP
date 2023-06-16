@@ -32,10 +32,15 @@ const footerStyle = {
 };
 
 const CategoriesView = () => {
+  let nameCategory = window.localStorage.getItem('category_name');
+  
+  useEffect(()=>{
+
+  },[nameCategory])
   
   const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
   let  current = window.localStorage.getItem('current');
-  let idCategory = window.localStorage.getItem('category');
+
 /* 
   useEffect(()=>{
     console.log("HOLA! CATEGORIA ", idCategory);
@@ -47,9 +52,9 @@ const CategoriesView = () => {
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria={current}/> 
+        <Banner categoryName={nameCategory}/> 
         <Brands brands={brands}/>
-        <ConteinerProductsByCategory categoria={idCategory}  />
+        <ConteinerProductsByCategory  />
 
 
 

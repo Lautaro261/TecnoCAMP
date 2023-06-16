@@ -5,21 +5,21 @@ import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Fe
 import ProductCard from '../ProductCard/ProductCard';
 // import { useParams } from 'react-router-dom';
 
-const ConteinerProductsByCategory = ({categoria}) => {
+const ConteinerProductsByCategory = () => {
 
     const dispatch = useDispatch()
     const productsByCategory = useSelector( state => state.productsClient.productsByCategory)
-    // const idProduct = window.localStorage.getItem('category')
+    const idProduct = window.localStorage.getItem('category_id')
 
-    console.log('idparams en productcategori componente', categoria)
+    console.log('idparams en productcategori componente', idProduct)
     console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
-        dispatch(getProductsByCategory(categoria))
-        return function clean(){
-            dispatch(clearProductsByCategory())
-        }
-    }, [categoria, dispatch])
+        dispatch(getProductsByCategory(idProduct))
+        // return function clean(){
+        //     dispatch(clearProductsByCategory())
+        // }
+    }, [idProduct, dispatch])
 
     return (
         <div>
