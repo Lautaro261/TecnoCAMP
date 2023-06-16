@@ -8,10 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { getItems } from "../../../Redux/Features/productsClient/productsClientSlice";
 
 const DashboardUser = () => {
-   /*  const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(getItems())
-    },[]) */
     return (
  
         <Row>

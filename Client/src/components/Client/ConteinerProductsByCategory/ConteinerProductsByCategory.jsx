@@ -11,8 +11,8 @@ const ConteinerProductsByCategory = () => {
     const productsByCategory = useSelector( state => state.productsClient.productsByCategory)
     const idProduct = window.localStorage.getItem('category_id')
 
-    console.log('idparams en productcategori componente', idProduct)
-    console.log('estoy en conteinerProductByCategory', productsByCategory)
+    //console.log('idparams en productcategori componente', idProduct)
+    //console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
         dispatch(getProductsByCategory(idProduct))
@@ -23,6 +23,7 @@ const ConteinerProductsByCategory = () => {
 
     return (
         <div>
+            
             <Space
                 direction="vertical"
                 size="middle"    
