@@ -16,9 +16,6 @@ const ConteinerProductsByCategory = () => {
 
     useEffect(() => {
         dispatch(getProductsByCategory(idProduct))
-        // return function clean(){
-        //     dispatch(clearProductsByCategory())
-        // }
     }, [idProduct])
 
     return (

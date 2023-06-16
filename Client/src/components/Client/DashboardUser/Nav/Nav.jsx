@@ -11,7 +11,6 @@ const Nav = () => {
   const allCategories = useSelector((state) => state.productsClient.allCategories);
   const [current, setCurrent] = useState('Inicio');
 
-  //console.log('categories en nav', allCategories);
 
   useEffect(() => {
     dispatch(getItems());
