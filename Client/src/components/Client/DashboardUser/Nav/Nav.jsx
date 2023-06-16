@@ -2,7 +2,7 @@ import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined} from '@ant-
 import { Menu } from 'antd';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getItems } from '../../../../Redux/Features/productsClient/productsClientSlice';
+import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
@@ -54,6 +54,8 @@ const Nav = () => {
   ];  
 
   const onClick = (e)=>{  
+    dispatch(clearProductsByCategory())
+
     if(e.key === 'home'|| e.key === 'all-categories'){
       navigate(`/${e.key}`)
     }else{
@@ -65,9 +67,11 @@ const Nav = () => {
         for (let x = 0; x < chil.length; x++) {
           if (e.key === chil[x].label) {
             let id = chil[x].id;
+            let name = chil[x].label; 
             //console.log('Encontré el id', chil[x].id);
             //console.log("Es el let id", id)
-            window.localStorage.setItem('category', id)
+            window.localStorage.setItem('category_id', id)
+            window.localStorage.setItem('category_name', name)
             break; // Salir del bucle interno si se encuentra una coincidencia
           }
         }
