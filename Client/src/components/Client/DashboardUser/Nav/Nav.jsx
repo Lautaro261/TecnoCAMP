@@ -2,18 +2,20 @@ import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutl
 import { Menu } from 'antd';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
+//import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
+import { clearProductsByCategory } from '../../../../Redux/Features/products/clientProductsSlice';
+import { getAllCategories } from '../../../../Redux/Features/categories/clientCategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.productsClient.allCategories);
+  const allCategories = useSelector((state) => state.clientCategories.allCategories);
  // const [current, setCurrent] = useState('Inicio');
 
 
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   if (allCategories.length === 0) {
@@ -78,7 +80,6 @@ const Nav = () => {
           }
         }
       } 
-
       //console.log('ID ',items[2].children[0].children);
       navigate(`/categories/${e.key}`);
     }
