@@ -1,25 +1,25 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty, Space } from 'antd';
-import { getProductsByCategory} from '../../../Redux/Features/productsClient/productsClientSlice';
+import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Features/productsClient/productsClientSlice';
 import ProductCard from '../ProductCard/ProductCard';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
-const ConteinerProductsByCategory = () => {
+const ConteinerProductsByCategory = ({categoria}) => {
 
     const dispatch = useDispatch()
     const productsByCategory = useSelector( state => state.productsClient.productsByCategory)
-    const idProduct = window.localStorage.getItem('category')
+    // const idProduct = window.localStorage.getItem('category')
 
-    console.log('idparams en productcategori componente', idProduct)
+    console.log('idparams en productcategori componente', categoria)
     console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
-        dispatch(getProductsByCategory(idProduct))
-        // return function clean(){
-        //     dispatch(clearProductsByCategory())
-        // }
-    }, [idProduct])
+        dispatch(getProductsByCategory(categoria))
+        return function clean(){
+            dispatch(clearProductsByCategory())
+        }
+    }, [categoria, dispatch])
 
     return (
         <div>
