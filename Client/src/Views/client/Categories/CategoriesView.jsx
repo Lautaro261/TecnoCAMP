@@ -40,7 +40,6 @@ const CategoriesView = () => (
         
         <Banner categoria={current}/> 
         <Brands brands={brands}/>
-   
         <ConteinerProductsByCategory  />
 
 
