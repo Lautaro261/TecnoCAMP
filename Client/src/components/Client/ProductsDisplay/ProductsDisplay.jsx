@@ -39,16 +39,16 @@ const ProductsDisplay = () => {
 
     return (
         <div className={ styles.productsDisplay__container }>
-        { productsToBeDisplayed.map(product => (
-            <ProductCard
-                key={ product.id }
-                id={ product.id }
-                e_product_type={ product.e_product_type }
-                photo={ product.photo && product.photo[0] }
-                name={ product.name }
-                price={ product.price }
-            />
-        )) }
+            { productsToBeDisplayed.map(product => (
+                <ProductCard
+                    key={ product.id }
+                    id={ product.id }
+                    e_product_type={ product.e_product_type }
+                    photo={ product.photo && product.photo[0] }
+                    name={ product.name }
+                    price={ product.price }
+                />
+            )) }
         </div>
     );
 };

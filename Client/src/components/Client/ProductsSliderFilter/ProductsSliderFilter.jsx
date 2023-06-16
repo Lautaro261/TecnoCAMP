@@ -68,14 +68,10 @@ const ProductsSliderFilter = () => {
             />
             <p>Rango seleccionado: $ { minValue } - $ { maxValue }</p>
             <Row>
-                <Button type='primary' onClick={ applyPriceFilter }>
-                    Filtrar
-                </Button>
                 <Button type='primary' danger onClick={ removePriceFilter }>
-                    Quitar Filtro
+                    Remover filtro de Precio
                 </Button>
             </Row>
-            <div>Productos traidos: { filteredProducts.length }</div>
         </Col>
     );
 };

@@ -10,6 +10,7 @@ const ProductsByBrandFilter = () => {
 
     const dispatch = useDispatch();
     const allBrands = useSelector(state => state.clientBrands.allBrands);
+    const allBrandsIds = allBrands.map(brand => brand.id);
 
     const plainOptions = allBrands.map(brand => brand.name);
 
@@ -17,31 +18,28 @@ const ProductsByBrandFilter = () => {
         dispatch(getAllBrands());
     }, []);
 
-    // useEffect(() => {
-    //     if (allBrands > 0) {
-    //         const allBrandsIds = allBrands.map(brand => brand.id);
-    //         dispatch(setIdBrand(allBrandsIds));
-    //         console.log('brands ids', allBrandsIds);
-    //     }
-    // }, []);
-
     const onChange = (checkedValues) => {
         setCheckedValues(checkedValues);
         const brandsIds = checkedValues.map(name => {
             const brand = allBrands.find(brand => brand.name === name);
             return brand ? brand.id : null
         });
-        dispatch(setIdBrand(brandsIds));
+        if (brandsIds.length === 0) {
+            dispatch(setIdBrand(''));
+        } else {
+            dispatch(setIdBrand(brandsIds));
+        }
     };
 
     const resetFilter = () => {
         setCheckedValues([]);
+        dispatch(setIdBrand(allBrandsIds));
     };
 
     return (
         <Col className={ styles.productsByBrandFilter__container}>
             <Checkbox.Group options={ plainOptions } value={ checkedValues } onChange={ onChange }  />
-            <Button danger onClick={ resetFilter }>Eliminar filtro de marcas</Button>
+            <Button type='primary' danger onClick={ resetFilter }>Remover filtro de marcas</Button>
         </Col>
     );
 };
