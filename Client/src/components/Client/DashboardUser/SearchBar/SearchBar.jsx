@@ -1,6 +1,6 @@
 //import styles from './SearchBar.module.css';
 import { Input } from 'antd';
-import { getProductsSearched } from '../../../../Redux/Features/productsClient/productsClientSlice';
+import { getProductsSearched } from '../../../../Redux/Features/products/clientProductsSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 

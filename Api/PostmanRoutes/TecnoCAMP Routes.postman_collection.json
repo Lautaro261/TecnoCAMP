@@ -1,0 +1,1173 @@
+{
+	"info": {
+		"_postman_id": "2269c185-50fc-4da9-9f67-ba895c234b36",
+		"name": "TecnoCAMP Routes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25188452"
+	},
+	"item": [
+		{
+			"name": "SuperAdmin Routes",
+			"item": [
+				{
+					"name": "Crear SuperAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"armandoAdmin@gmail.com\",\n\t\"email\":\"armandoAdmin@gmail.com\",\n\t\"password\":\"soyarmando7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingresar Con SuperAdmin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"armandoAdmin@gmail.com\",\n\t\"email\":\"armandoAdmin@gmail.com\",\n\t\"password\":\"soyarmando7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NjE1NTkzOH0.Ud0YGjvtmtrarFUBTk2kt8bHcta32vC_wviD0wc4eTM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"andy@gmail.com\",\n\t\"email\":\"andy@gmail.com\",\n\t\"password\":\"andy123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/superadmin/createadmin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"superadmin",
+								"createadmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Admins por sub",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NjY5Mjg5NiwiZXhwIjoxNjg2Nzc5Mjk2fQ.lfCVo4LQgb1q4jjhp8h0-RrGZt3lX5qmYpOnrGFPRkY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/superadmin/idAdmin/andres@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"superadmin",
+								"idAdmin",
+								"andres@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer todos los admins",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NjY5Mjg5NiwiZXhwIjoxNjg2Nzc5Mjk2fQ.lfCVo4LQgb1q4jjhp8h0-RrGZt3lX5qmYpOnrGFPRkY",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/superadmin/allAdmins",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"superadmin",
+								"allAdmins"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin Routes",
+			"item": [
+				{
+					"name": "Traer Todos Los Clientes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/allclients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"allclients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Clientes Por Sub",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/client/jorge@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"client",
+								"jorge@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todos Los Productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/allproducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"allproducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Productos Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todas Las Categorias",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/allcategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"allcategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Categorias Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"f671c2da-d18b-4934-a98e-c1e7cc840b88\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todas Las Marcas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/allbrands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"allbrands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Marcas Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"10bb4f6a-3d07-4768-ab21-e760e4140237\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/brand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingresar Con Admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"andy@gmail.com\",\n\t\"email\":\"andy@gmail.com\",\n\t\"password\":\"andy123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Categoria Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Celulares\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/createcategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"createcategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Marca Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Blackberry\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/createbrand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"createbrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Realme Pro\",\n  \"price\": 800000,\n  \"price_promotion\": 700000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"categoryId\": \"bd2cf3fb-153b-4f44-9de1-01d733280d50\",\n  \"brandId\": \"5037419c-9db6-4f81-9ad3-91bd4be97bd9\",\n  \"colors\": [\"Negro\", \"Blanco\"],\n  \"quantities\": [22, 13]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/createproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"createproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Color De Producto",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": \"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\",\n    \"color\": \"Dorado\",\n    \"quantity\": 7\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/createcolorproduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"createcolorproduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0NjM2MiwiZXhwIjoxNjg2NTMyNzYyfQ.e6ADew7p5JIbvHM2B8q91mvLxckmsIzWa5CAoq7HEfM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Realme Pro Plus\",\n  \"price\": 850000,\n  \"price_promotion\": 750000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia. Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"is_available\": true,\n  \"product_favorite\": false,\n  \"categoryId\": \"f671c2da-d18b-4934-a98e-c1e7cc840b88\",\n  \"brandId\": \"10bb4f6a-3d07-4768-ab21-e760e4140237\",\n  \"inventoryItems\": [\n    {\n      \"id\": \"4cb152d8-2f15-4d2e-bf63-d873e0625c18\",\n      \"color\": \"Azul\",\n      \"quantity\": 77,\n      \"is_available\": true\n    },\n    {\n      \"id\": \"9e72da48-923f-4014-bcb8-c2bcce3109c7\",\n      \"color\": \"Rosado\",\n      \"quantity\": 123,\n      \"is_available\": true\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/update/d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"update",
+								"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminado Logico Producto",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"productId\": \"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cargar Dep y Mun Colombia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjI0MjQ5MywiZXhwIjoxNjg2MjQ5NjkzfQ.4om9vtEMyAZjDKx10tYNTMn5r6ITEyywJuAZT6kioe0",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/admin/loadcities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"loadcities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"4f7c473d-7e5e-490d-9475-bf3e5e6dac30\",\n    \"name\":\"Audifonos\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/updatecategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"updatecategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Marca",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"105c0721-4d96-41d7-ac07-b07b1e88a4a5\",\n    \"name\":\"Sony\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/updatebrand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"updatebrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminado Logico Categoria",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"4f7c473d-7e5e-490d-9475-bf3e5e6dac30\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/deletecategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"deletecategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminado Logico Marca",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"105c0721-4d96-41d7-ac07-b07b1e88a4a5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/deletebrand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"deletebrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Banear Cliente Por Sub",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjE3Mjk2NSwiZXhwIjoxNjg2MTc0NzY1fQ.LjSwGbCFi9nDuTBQkCGeFxBtNqShzCn0JaHa90jTJ9U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\":\"jorge@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/admin/client/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"admin",
+								"client",
+								"delete"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Client Routes",
+			"item": [
+				{
+					"name": "Traer Todos Los Productos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjY5OTAxOSwiZXhwIjoxNjg2Nzg1NDE5fQ.WRAt8KFw7xYilxUfAePVKt9BFys5u7-yy8kJvplTjl8",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/allproducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"allproducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Productos Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todas Las Categorias",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/allcategories",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"allcategories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Categorias Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"f671c2da-d18b-4934-a98e-c1e7cc840b88\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/category",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todas Las Marcas",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/allbrands",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"allbrands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Marcas Por Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"10bb4f6a-3d07-4768-ab21-e760e4140237\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/brand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"brand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Todos Los Departamentos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjMzMjk3MiwiZXhwIjoxNjg2MzQwMTcyfQ.2ULvg-utA9QFnQNMKRYx8lD_LYrnny3lpv3JfP080nM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/alldepartments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"alldepartments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Municipios Por Departamento",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjMzMjk3MiwiZXhwIjoxNjg2MzQwMTcyfQ.2ULvg-utA9QFnQNMKRYx8lD_LYrnny3lpv3JfP080nM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"departmentId\":\"8\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/munbydep",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"munbydep"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"jorge@gmail.com\",\n\t\"email\":\"jorge@gmail.com\",\n\t\"password\":\"jorge123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/signup",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ingresar Con Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"sub\": \"jorge@gmail.com\",\n\t\"email\":\"jorge@gmail.com\",\n\t\"password\":\"jorge123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
