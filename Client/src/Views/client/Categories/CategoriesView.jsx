@@ -3,6 +3,7 @@ import DashboardUser from '../../../components/Client/DashboardUser/DashboardUse
 import Banner from '../../../components/Client/Banner/Banner';
 import Brands from '../../../components/Client/Brands/Brands';
 import ConteinerProductsByCategory from '../../../components/Client/ConteinerProductsByCategory/ConteinerProductsByCategory';
+import { useEffect } from 'react';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -29,16 +30,29 @@ const footerStyle = {
   color: '#fff',
   backgroundColor: '#7dbcea',
 };
-const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
-let  current = window.localStorage.getItem('current');
 
-const CategoriesView = () => (
+const CategoriesView = () => {
+  let nameCategory = window.localStorage.getItem('category_name');
+  
+  useEffect(()=>{
+
+  },[nameCategory])
+  
+  const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+  let  current = window.localStorage.getItem('current');
+
+/* 
+  useEffect(()=>{
+    console.log("HOLA! CATEGORIA ", idCategory);
+  },[idCategory]) */
+
+  return(
 
   <Layout >
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoria={current}/> 
+        <Banner categoryName={nameCategory}/> 
         <Brands brands={brands}/>
         <ConteinerProductsByCategory  />
 
@@ -47,7 +61,7 @@ const CategoriesView = () => (
     </Content>
     <Footer style={footerStyle}>Footer</Footer>
   </Layout>
+  )
 
-
-);
+};
 export default CategoriesView;
