@@ -48,7 +48,7 @@ clientRouter.get("/brand",  handlerGetBrandById);
 clientRouter.get("/filterCategory",  handlerFilterCategory);
 clientRouter.get("/filterBrand",  handlerFilterBrand);
 clientRouter.get("/filterPrice", handlerFilterPrice);
-clientRouter.get("/filtersComb", handlerFiltersComb);
+clientRouter.post("/filtersComb", handlerFiltersComb);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);
