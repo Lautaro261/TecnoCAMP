@@ -1,4 +1,4 @@
-import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined} from '@ant-design/icons';
+import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutlined, ShopOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
@@ -17,14 +17,14 @@ const Nav = () => {
   }, [dispatch]);
 
   if (allCategories.length === 0) {
-    return <h1>Cargando...</h1>;
+    return <LoadingOutlined style={{ color: 'white', fontSize: '24px' }} />;
   }
 
   const childrenSource = allCategories && allCategories.map(c => {  //childrenSource = [{label key}, { } ]
     return {
       label: c.name,
       key: c.name,
-      icon: <TagsOutlined />,
+      icon: <TagsOutlined style={{ fontSize: '18px' }}/>,
       id: c.id
     };
   });
@@ -34,17 +34,17 @@ const Nav = () => {
     {
       label: 'Inicio',
       key: 'home',
-      icon: <HomeOutlined />,
+      icon: <HomeOutlined style={{ fontSize: '22px' }}/>,
     },
     {
       label: 'Todos los productos',
       key: 'all-categories',
-      icon: <ProfileFilled />,
+      icon: <ShopOutlined style={{ fontSize: '22px' }}/>,
     },
     {
       label: 'Categorias',
       key: 'categories',
-      icon: <DatabaseFilled />,
+      icon: <DatabaseFilled style={{ fontSize: '20px' }}/>,
       children:[ {
         type: 'group',
         label: '',
@@ -85,7 +85,7 @@ const Nav = () => {
   };
 
   return (
-    <Menu onClick={onClick} /* selectedKeys={[current]} */ mode="horizontal" items={ items } />
+    <Menu onClick={onClick} /* selectedKeys={[current]} */ mode="horizontal" items={ items } style={{ flex: 1, justifyContent: 'center', paddingLeft: '20px', paddingRight: '20px'}}/>
   );
 };
 
