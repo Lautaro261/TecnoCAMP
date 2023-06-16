@@ -34,7 +34,7 @@ const {
 
 // PRODUCTOS
 clientRouter.get("/allproducts",  handlerGetAllProducts);
-clientRouter.get("/product",  handlerGetProductById);
+clientRouter.get("/product/:id",  handlerGetProductById);
 
 // CATEGORIAS
 clientRouter.get("/allcategories",  handlerGetAllCategories);
@@ -45,10 +45,10 @@ clientRouter.get("/allbrands",  handlerGetAllBrands);
 clientRouter.get("/brand",  handlerGetBrandById);
 
 // FILTROS
-clientRouter.get("/filterCategory",  handlerFilterCategory);
+clientRouter.get("/filterCategory/:id",  handlerFilterCategory);
 clientRouter.get("/filterBrand",  handlerFilterBrand);
 clientRouter.get("/filterPrice", handlerFilterPrice);
-clientRouter.get("/filtersComb", handlerFiltersComb);
+clientRouter.post("/filtersComb", handlerFiltersComb);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);

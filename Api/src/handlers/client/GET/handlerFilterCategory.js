@@ -1,7 +1,7 @@
 const getCategoryProducts = require("../../../controllers/client/GET/getCategoryProducts");
 
 const handlerFilterCategory = async (req, res) => {
-    const id = req.body.id;
+    const id = req.params;
     try {
         const filterCategory = await getCategoryProducts(id);
         res.status(200).json(filterCategory);
