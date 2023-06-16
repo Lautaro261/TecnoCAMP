@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getAllCategories = createAsyncThunk(
-    'clientCategoriesSlice/getAllCategories',
+    'clientCategories/getAllCategories',
     async () => {
         try {
             const response = await axios.get('/client/allcategories');

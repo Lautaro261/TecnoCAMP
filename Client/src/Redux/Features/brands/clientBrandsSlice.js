@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getAllBrands = createAsyncThunk(
-    'clientBrandsSlice/getAllBrands',
+    'clientBrands/getAllBrands',
     async () => {
         try {
             const response = await axios.get('/client/allbrands');

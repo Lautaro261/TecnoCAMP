@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export const getAllProducts = createAsyncThunk(
-  "clientProductsSlice/getAllProducts",
+  "clientProducts/getAllProducts",
   async () => {
     try {
       const response = await axios.get("/client/allproducts");
@@ -29,7 +29,7 @@ export const getAllProducts = createAsyncThunk(
 );
 
 export const getFilteredProducts = createAsyncThunk(
-  "clientProductsSlice/getFilteredProducts",
+  "clientProducts/getFilteredProducts",
   async (dataBody) => {
     try {
       const response = await axios.post("/client/filtersComb", dataBody);
@@ -42,7 +42,7 @@ export const getFilteredProducts = createAsyncThunk(
 );
 
 export const getProductsByCategory = createAsyncThunk(
-  "clientProductsSlice/getProductsByCategory",
+  "clientProducts/getProductsByCategory",
   async (idProduct) => {
     //console.log('id filtro por categoria', idProduct )
     try {
@@ -58,7 +58,7 @@ export const getProductsByCategory = createAsyncThunk(
 );
 
 export const getProductDetails = createAsyncThunk(
-    "clientProductsSlice/getProductDetails",
+    "clientProducts/getProductDetails",
     async (id) => {
       try {
         const response1 = await axios.get(`/client/product/${id}`);
@@ -77,7 +77,7 @@ export const getProductDetails = createAsyncThunk(
   );
 
   export const getProductsSearched = createAsyncThunk(
-    "productsClient/getProductsSearched",
+    "clientProducts/getProductsSearched",
     async (name) => {
       try {
         const response = await axios.get(`/client/allproducts?name=${name}`);
@@ -137,20 +137,25 @@ const clientProductsSlice = createSlice({
         state.status = "loading";
       })
       .addCase(getAllProducts.fulfilled, (state, action) => {
-        (state.status = "succeeded"), (state.allProducts = action.payload), (state.error = null);
+        state.status = "succeeded";
+        state.allProducts = action.payload;
+        state.error = null;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
-        (state.status = "rejected"), (state.error = action.error.message);
+        state.status = "rejected";
+        state.error = action.error.message;
       })
 
       .addCase(getFilteredProducts.pending, (state) => {
         state.status = "loading";
       })
       .addCase(getFilteredProducts.fulfilled, (state, action) => {
-        (state.status = "succeeded"), (state.filteredProducts = action.payload);
+        state.status = "succeeded";
+        state.filteredProducts = action.payload;
       })
       .addCase(getFilteredProducts.rejected, (state, action) => {
-        (state.status = "rejected"), (state.error = action.error.message);
+        state.status = "rejected";
+        state.error = action.error.message;
       })
 
       .addCase(getProductsByCategory.pending, (state) => {
