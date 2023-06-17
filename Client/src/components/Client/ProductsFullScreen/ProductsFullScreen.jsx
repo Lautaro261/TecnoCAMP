@@ -7,11 +7,12 @@ import {
     setIdCategory,
     getFilteredProducts
 } from '../../../Redux/Features/products/clientProductsSlice';
-import ProductsByBrandFilter from "../ProductsByBrandFilter/ProductsByBrandFilter";
 import ProductsSliderFilter from "../ProductsSliderFilter/ProductsSliderFilter";
+import ProductsByBrandFilter from "../ProductsByBrandFilter/ProductsByBrandFilter";
+import ProductsSorting from "../ProductsSorting/ProductsSorting";
 import ProductsDisplay from '../ProductsDisplay/ProductsDisplay';
 
-const ProductsFilters = () => {
+const ProductsFullScreen = () => {
     const location = useLocation();
     const pathname = location.pathname;
     const searchedCategory = pathname.split('/').pop();
@@ -22,7 +23,6 @@ const ProductsFilters = () => {
     const idBrand = useSelector(state => state.clientProducts.idBrand);
     const minPrice = useSelector(state => state.clientProducts.minPrice);
     const maxPrice = useSelector(state => state.clientProducts.maxPrice);
-    const filteredProducts = useSelector(state => state.clientProducts.filteredProducts);
 
     const currentCategory = allCategories.find(category => category.name === searchedCategory);
     const currentCategoryId = currentCategory ? currentCategory.id : null;
@@ -37,7 +37,7 @@ const ProductsFilters = () => {
         }
     }, [currentCategoryId, dispatch]);
 
-    const filter = () => {
+    const filterCards = () => {
         const data = {
             idCategory,
             idBrand,
@@ -46,19 +46,19 @@ const ProductsFilters = () => {
         };
         dispatch(getFilteredProducts(data));
     }
-
     return (
-        <Row>
-            <Col span={ 6 }>
-                <ProductsSliderFilter />
-                <ProductsByBrandFilter />
-                <Button type='primary' onClick={ filter } style={{ margin: '20px' }}>
+        <Row gutter={ 32 }>
+            <Col><ProductsSliderFilter /></Col>
+            <Col>
+                <Button type='primary' onClick={ filterCards }>
                     Filtrar
                 </Button>
             </Col>
-            <Row><ProductsDisplay /></Row>
+            <Col><ProductsByBrandFilter /></Col>
+            <Col><ProductsSorting /></Col>
+            <Col><ProductsDisplay /></Col>
         </Row>
     );
 };
 
-export default ProductsFilters;
+export default ProductsFullScreen;
