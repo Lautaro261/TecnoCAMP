@@ -11,7 +11,7 @@ const ProductsDisplay = () => {
     const dispatch = useDispatch();
     const allProducts = useSelector(state => state.clientProducts.allProducts);
     const idCategory = useSelector(state => state.clientProducts.idCategory);
-    const filteredProducts = useSelector(state => state.clientProducts.filteredProducts);
+    const currentFilteredProducts = useSelector(state => state.clientProducts.currentFilteredProducts);
 
     useEffect(() => {
         dispatch(getAllProducts());
@@ -26,8 +26,8 @@ const ProductsDisplay = () => {
 
     return (
         <Row justify='center' gutter={ [16, 16] }>
-            { Array.isArray(filteredProducts) && filteredProducts.length > 0 ?
-                filteredProducts.map(product => (
+            { Array.isArray(currentFilteredProducts) && currentFilteredProducts.length > 0 ?
+                currentFilteredProducts.map(product => (
                     <ProductCard
                         key={ product.id }
                         id={ product.id }
