@@ -9,8 +9,9 @@ const initialState = {
   category:"",
   idCategory: "",
   idBrand: "",
-  minPrice: "",
-  maxPrice: "",
+  minPrice: 1,
+  maxPrice: 8000000,
+  selectedValueToFilter: "",
   status: "idle",
   error: null,
 };
@@ -91,13 +92,14 @@ export const getProductDetails = createAsyncThunk(
     }
   );
 
-export const setFilteredProductsToEmpty = createAction(
-  "clientProducts/setFilteredProductsToEmpty"
-);
+export const setFilteredProducts = createAction("clientProducts/setFilteredProducts");
 export const setIdCategory = createAction("clientProducts/setIdCategory");
 export const setIdBrand = createAction("clientProducts/setIdBrand");
 export const setMinPrice = createAction("clientProducts/setMinPrice");
 export const setMaxPrice = createAction("clientProducts/setMaxPrice");
+export const sortAlphabetically = createAction("clientProducts/sortAlphabetically");
+export const sortByPrice = createAction("clientProducts/sortByPrice");
+export const setSelectedValueToFilter = createAction("clientProducts/setSelectedValueToFilter");
 export const clearDetails = createAction("clientProducts/clearDetails");
 export const clearProductsByCategory = createAction(
   "clientProducts/clearProductsByCategory"
@@ -114,9 +116,9 @@ const clientProductsSlice = createSlice({
       state.productDetails = {};
       state.category = "";
     },
-    setFilteredProductsToEmpty: (state, action) => {
+    setFilteredProducts: (state, action) => {
       state.filteredProducts = action.payload;
-    },
+  },
     setIdCategory: (state, action) => {
       state.idCategory = action.payload;
     },
@@ -129,6 +131,37 @@ const clientProductsSlice = createSlice({
     setMaxPrice: (state, action) => {
       state.maxPrice = action.payload;
     },
+    sortAlphabetically: (state, action) => {
+      if (state.filteredProducts.length > 0) {
+        let sortedFilteredProducts = [...state.filteredProducts];
+        if (action.payload === 'ascendent') {
+          sortedFilteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+        }
+        if (action.payload === 'descendent') {
+          sortedFilteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+        }
+        state.filteredProducts = sortedFilteredProducts;
+      } else {
+        state.filteredProducts = [];
+      }
+    },
+    sortByPrice: (state, action) => {
+      if (state.filteredProducts.length > 0) {
+        let sortedFilteredProducts = [...state.filteredProducts];
+        if (action.payload === 'moreExpensive') {
+          sortedFilteredProducts.sort((a, b) => b.price - a.price);
+        }
+        if (action.payload === 'cheapest') {
+          sortedFilteredProducts.sort((a, b) => a.price - b.price);
+        }
+        state.filteredProducts = sortedFilteredProducts;
+      } else {
+        state.filteredProducts = [];
+      }
+    },
+    setSelectedValueToFilter: (state, action) => {
+      state.selectedValueToFilter = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -139,7 +172,6 @@ const clientProductsSlice = createSlice({
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.allProducts = action.payload;
-        state.error = null;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.status = "rejected";
@@ -151,7 +183,24 @@ const clientProductsSlice = createSlice({
       })
       .addCase(getFilteredProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.filteredProducts = action.payload;
+        if (state.selectedValueToFilter && action.payload.length > 0) {
+          let sortedFilteredProducts = [...action.payload];
+          if (state.selectedValueToFilter === 'ascendent') {
+            sortedFilteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+          }
+          if (state.selectedValueToFilter === 'descendent') {
+            sortedFilteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+          }
+          if (state.selectedValueToFilter === 'moreExpensive') {
+            sortedFilteredProducts.sort((a, b) => b.price - a.price);
+          }
+          if (state.selectedValueToFilter === 'cheapest') {
+            sortedFilteredProducts.sort((a, b) => a.price - b.price);
+          }
+          state.filteredProducts = sortedFilteredProducts;
+        } else {
+            state.filteredProducts = action.payload;
+        }
       })
       .addCase(getFilteredProducts.rejected, (state, action) => {
         state.status = "rejected";

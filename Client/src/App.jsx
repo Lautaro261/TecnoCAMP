@@ -13,7 +13,7 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductsFilters from "./components/Client/ProductsFilters/ProductsFilters";
+import ProductsFullScreen from "./components/Client/ProductsFullScreen/ProductsFullScreen";
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
@@ -49,7 +49,7 @@ function App() {
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
-        <Route path="/categories/Celulares" element={<ProductsFilters />} />
+        <Route path="/categories/Celulares" element={<ProductsFullScreen />} />
 
 
 
