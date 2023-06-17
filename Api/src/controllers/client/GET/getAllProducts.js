@@ -6,6 +6,9 @@ const getAllProducts = async () => {
       {
         model: Inventory,
         attributes: ["id", "color", "quantity_inventory", "is_available"],
+        through: {
+          attributes: [],
+        }
       },
     ],
   });

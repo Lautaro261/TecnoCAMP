@@ -11,7 +11,7 @@ const MenuDash = () => {
     <Row>
         <Col span={5}><img className={styles.logo} src={Logo} /> </Col>
         <Col span={11}><SearchBar /></Col>
-        <Col span={8}><Icons /></Col>
+        <Col span={5}><Icons /></Col> 
     </Row>
 
     )

@@ -26,6 +26,11 @@ const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js"
 const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
 const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
 
+//filtros
+const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
+const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js");
+const handlerFilterPrice = require("../handlers/client/GET/handlerFilterPrice.js");
+const handlerFiltersComb = require("../handlers/client/GET/handlerFiltersComb.js");
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
   handlerGetAllDepartments,
@@ -35,16 +40,16 @@ const {
 /////////// ROUTES ////////////
 
 // PRODUCTOS
-clientRouter.get("/allproducts", verifyToken, handlerGetAllProducts);
-clientRouter.get("/product", verifyToken, handlerGetProductById);
+clientRouter.get("/allproducts", handlerGetAllProducts);
+clientRouter.get("/product/:id", handlerGetProductById);
 
 // CATEGORIAS
-clientRouter.get("/allcategories", verifyToken, handlerGetAllCategories);
-clientRouter.get("/category", verifyToken, handlerGetCategoryById);
+clientRouter.get("/allcategories", handlerGetAllCategories);
+clientRouter.get("/category/:id", handlerGetCategoryById);
 
 // MARCAS
-clientRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
-clientRouter.get("/brand", verifyToken, handlerGetBrandById);
+clientRouter.get("/allbrands", handlerGetAllBrands);
+clientRouter.get("/brand", handlerGetBrandById);
 
 // CARRITO DE COMPRAS
 clientRouter.get("/cart/:id", verifyToken, handlerGetCartById);
@@ -52,6 +57,12 @@ clientRouter.get("/cartuser/:sub", verifyToken, handlerGetUserCarts);
 clientRouter.post("/createcart", verifyToken, handlerCreateCart);
 clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
 clientRouter.put("/updatecart", verifyToken, handlerPutProductQuantityCart);
+
+// FILTROS
+clientRouter.get("/filterCategory/:id", handlerFilterCategory);
+clientRouter.get("/filterBrand", handlerFilterBrand);
+clientRouter.get("/filterPrice", handlerFilterPrice);
+clientRouter.post("/filtersComb", handlerFiltersComb);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);

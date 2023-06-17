@@ -2,10 +2,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 3vh;
 }
 
 .icon__image {
-    inline-size: 200px;
+    height: 10vh;
+    width: auto;
 }
 
 .icon__button {

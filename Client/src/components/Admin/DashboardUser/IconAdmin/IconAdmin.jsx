@@ -1,11 +1,11 @@
 import styles from "./IconAdmin.module.css";
-import Logo from '/img/LOGO-FONDO-BLANCO.png';
+import Logo from '../../../../img/LogoTienda.png';
 import { Row, Col } from 'antd';
 
 const IconAdmin = () => {
     return (
         <Row>
-        <Col flex="200px">
+        <Col span={24}>
         <div className={ styles.icon__container }>
             <img src={ Logo } alt="Logo" className={ styles.icon__image } />
             <button className={ styles.icon__button }>
@@ -29,7 +29,7 @@ const IconAdmin = () => {
             <div>Jorge</div>
         </div>
         </Col>
-        <Col flex="auto"></Col>
+    
        </Row>
     );
 };
