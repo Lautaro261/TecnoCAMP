@@ -2,31 +2,38 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const deleteProduct = require("../../../controllers/admin/PUT/deleteProduct");
+const postCreateCart = require("../../../controllers/client/POST/postCreateCart");
 
-const handlerDeleteProduct = async (req, res) => {
+const handlerCreateCart = async (req, res) => {
   //1) Decodificar token con jwt
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
   //2) Traer usuario y verificar si tiene rol Admin
   const user = await getUser(decoToken.sub);
 
-  if (user.rol !== "admin") {
+  if (user.rol !== "client") {
     return res
       .status(404)
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { productId } = req.body;
+  const { userSub } = req.body;
 
   try {
     // Crear el producto
-    const modifiedProduct = await deleteProduct(productId);
+    const newCart = await postCreateCart(userSub);
 
-    res.status(200).json(modifiedProduct);
+    if (newCart) {
+      res.status(200).json(newCart);
+    }
+    if (!newCart) {
+      res.status(202).json({
+        message: "El usuario ya tiene un carrito activo",
+      });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = handlerDeleteProduct;
+module.exports = handlerCreateCart;

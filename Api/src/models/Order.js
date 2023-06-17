@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
-      quantity_all_products: {
+      total_quantity_all_products: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -24,10 +24,12 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       shipping_status: {
-        type: DataTypes.ENUM("Por revisar",
-        "Despachado",
-        "En camino",
-        "Entregado"),
+        type: DataTypes.ENUM(
+          "Por revisar",
+          "Despachado",
+          "En camino",
+          "Entregado"
+        ),
         defaultValue: "Por revisar",
         allowNull: false,
       },
@@ -54,7 +56,7 @@ module.exports = (sequelize) => {
       },
       contact_cellphone: {
         type: DataTypes.BIGINT,
-        allowNull: true,
+        allowNull: false,
       },
       address: {
         type: DataTypes.STRING,

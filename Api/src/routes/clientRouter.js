@@ -19,6 +19,13 @@ const handlerGetCategoryById = require("../handlers/client/GET/handlerGetCategor
 const handlerGetAllBrands = require("../handlers/client/GET/handlerGetAllBrands.js");
 const handlerGetBrandById = require("../handlers/client/GET/handlerGetBrandById.js");
 
+// CARRITO DE COMPRAS
+const handlerGetCartById = require("../handlers/client/GET/handlerGetCartById.js");
+const handlerGetUserCarts = require("../handlers/client/GET/handlerGetUserCarts.js");
+const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js");
+const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
+const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
+
 //filtros
 const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
 const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js");
@@ -33,20 +40,27 @@ const {
 /////////// ROUTES ////////////
 
 // PRODUCTOS
-clientRouter.get("/allproducts",  handlerGetAllProducts);
-clientRouter.get("/product/:id",  handlerGetProductById);
+clientRouter.get("/allproducts", handlerGetAllProducts);
+clientRouter.get("/product/:id", handlerGetProductById);
 
 // CATEGORIAS
-clientRouter.get("/allcategories",  handlerGetAllCategories);
-clientRouter.get("/category/:id",  handlerGetCategoryById);
+clientRouter.get("/allcategories", handlerGetAllCategories);
+clientRouter.get("/category/:id", handlerGetCategoryById);
 
 // MARCAS
-clientRouter.get("/allbrands",  handlerGetAllBrands);
-clientRouter.get("/brand",  handlerGetBrandById);
+clientRouter.get("/allbrands", handlerGetAllBrands);
+clientRouter.get("/brand", handlerGetBrandById);
+
+// CARRITO DE COMPRAS
+clientRouter.get("/cart/:id", verifyToken, handlerGetCartById);
+clientRouter.get("/cartuser/:sub", verifyToken, handlerGetUserCarts);
+clientRouter.post("/createcart", verifyToken, handlerCreateCart);
+clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
+clientRouter.put("/updatecart", verifyToken, handlerPutProductQuantityCart);
 
 // FILTROS
-clientRouter.get("/filterCategory/:id",  handlerFilterCategory);
-clientRouter.get("/filterBrand",  handlerFilterBrand);
+clientRouter.get("/filterCategory/:id", handlerFilterCategory);
+clientRouter.get("/filterBrand", handlerFilterBrand);
 clientRouter.get("/filterPrice", handlerFilterPrice);
 clientRouter.post("/filtersComb", handlerFiltersComb);
 

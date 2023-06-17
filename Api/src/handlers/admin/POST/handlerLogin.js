@@ -23,7 +23,7 @@ const handlerLogin = async (req, res) => {
 
       // Configurar opciones para la firma del token
       const options = {
-        expiresIn: "24h", // <<-- Cambiar la duración de expiración aquí (30m-1h-2d)
+        expiresIn: "22d", // <<-- Cambiar la duración de expiración aquí (30m-1h-2d)
       };
 
       jwt.sign({ sub, email, rol }, KEY_SECRET, options, (err, token) => {
