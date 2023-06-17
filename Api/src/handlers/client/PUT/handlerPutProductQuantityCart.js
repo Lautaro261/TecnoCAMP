@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const getCartById = require("../../../controllers/client/GET/getCartById");
+const putProductQuantityCart = require("../../../controllers/client/PUT/putProductQuantityCart");
 
-const handlerGetCartById = async (req, res) => {
+const handlerPutProductQuantityCart = async (req, res) => {
   //1) Decodificar token con jwt
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
@@ -17,16 +17,21 @@ const handlerGetCartById = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { id } = req.params;
+  const { idCart, productId, inventoryId, quantity } = req.body;
 
   try {
-    // Obtener el carrito por su ID
-    const cart = await getCartById(id);
+    // Crear el producto
+    const cartWithProduct = await putProductQuantityCart(
+      idCart,
+      productId,
+      inventoryId,
+      quantity
+    );
 
-    res.status(200).json(cart);
+    res.status(200).json(cartWithProduct);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = handlerGetCartById;
+module.exports = handlerPutProductQuantityCart;

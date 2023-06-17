@@ -24,6 +24,7 @@ const handlerGetCartById = require("../handlers/client/GET/handlerGetCartById.js
 const handlerGetUserCarts = require("../handlers/client/GET/handlerGetUserCarts.js");
 const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js");
 const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
+const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
@@ -46,10 +47,11 @@ clientRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
 clientRouter.get("/brand", verifyToken, handlerGetBrandById);
 
 // CARRITO DE COMPRAS
-clientRouter.get("/cartid", verifyToken, handlerGetCartById);
-clientRouter.get("/cartofuser", verifyToken, handlerGetUserCarts);
+clientRouter.get("/cart/:id", verifyToken, handlerGetCartById);
+clientRouter.get("/cartuser/:sub", verifyToken, handlerGetUserCarts);
 clientRouter.post("/createcart", verifyToken, handlerCreateCart);
 clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
+clientRouter.put("/updatecart", verifyToken, handlerPutProductQuantityCart);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);

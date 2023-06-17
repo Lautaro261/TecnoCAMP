@@ -14,11 +14,34 @@ const getUserCarts = async (userId) => {
     where: {
       userSub: user.sub,
     },
-    attributes: ["id", "cart_status", "cart_amount", "quantity_products"],
-    include: {
-      model: Product,
-      attributes: ["id", "name", "price"],
-    },
+    attributes: [
+      "idCart",
+      "quantity_all_products",
+      "cart_total_amount",
+      "quantity_unit_product",
+      "amount_unit_product",
+      "id",
+      "cart_status",
+    ],
+    raw: true,
+    include: [
+      {
+        model: Product,
+        attributes: [
+          "id",
+          "name",
+          "price",
+          "price_promotion",
+          "photo",
+          "product_description",
+        ],
+        include: {
+          model: Inventory,
+          attributes: ["id", "color", "quantity_inventory"],
+        },
+      },
+    ],
+    raw: true,
   });
 
   return carts;

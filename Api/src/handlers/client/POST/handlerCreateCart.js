@@ -23,7 +23,14 @@ const handlerCreateCart = async (req, res) => {
     // Crear el producto
     const newCart = await postCreateCart(userSub);
 
-    res.status(200).json(newCart);
+    if (newCart) {
+      res.status(200).json(newCart);
+    }
+    if (!newCart) {
+      res.status(202).json({
+        message: "El usuario ya tiene un carrito activo",
+      });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

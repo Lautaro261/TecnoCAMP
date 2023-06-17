@@ -1,20 +1,44 @@
-const { Product, Inventory, Cart } = require("../../../db");
+const { Cart, Product, Inventory } = require("../../../db");
 
 const getCartById = async (cartId) => {
-  // Verificar si el carrito existe
-  const cart = await Cart.findByPk(cartId);
-  if (!cart) {
-    return {
-      message: "Carrito no existe",
-    };
-  }
-
-  // Obtener todos los productos asociados al carrito
-  const products = await cart.getProducts({
-    attributes: ["id", "name", "price"],
+  // Verificar si el carrito existe por su idCart
+  const cart = await Cart.findAll({
+    where: {
+      idCart: cartId,
+    },
+    attributes: [
+      "idCart",
+      "quantity_all_products",
+      "cart_total_amount",
+      "quantity_unit_product",
+      "amount_unit_product",
+    ],
+    raw: true,
+    include: [
+      {
+        model: Product,
+        attributes: [
+          "id",
+          "name",
+          "price",
+          "price_promotion",
+          "photo",
+          "product_description",
+        ],
+        include: {
+          model: Inventory,
+          attributes: ["id", "color", "quantity_inventory"],
+        },
+      },
+    ],
+    raw: true,
   });
 
-  return products;
+  if (!cart) {
+    return { message: "El carrito no existe" };
+  }
+
+  return cart;
 };
 
 module.exports = getCartById;

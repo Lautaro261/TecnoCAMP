@@ -11,6 +11,10 @@ module.exports = (sequelize) => {
         primaryKey: true,
         allowNull: false,
       },
+      idCart: {
+        type: DataTypes.UUID,
+        allowNull: true,
+      },
       quantity_all_products: {
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -22,12 +26,12 @@ module.exports = (sequelize) => {
         defaultValue: 0,
       },
       quantity_unit_product: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: true,
         defaultValue: 0,
       },
       amount_unit_product: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.FLOAT,
         allowNull: true,
         defaultValue: 0,
       },
