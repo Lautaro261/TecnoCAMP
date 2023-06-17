@@ -26,11 +26,12 @@ const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js"
 const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
 const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
 
-//filtros
+// FILTROS
 const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
 const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js");
 const handlerFilterPrice = require("../handlers/client/GET/handlerFilterPrice.js");
 const handlerFiltersComb = require("../handlers/client/GET/handlerFiltersComb.js");
+
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
   handlerGetAllDepartments,

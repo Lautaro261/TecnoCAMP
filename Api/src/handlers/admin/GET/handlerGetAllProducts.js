@@ -16,10 +16,21 @@ const handlerGetAllProducts = async (req, res) => {
       .status(404)
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
+
+  const { name } = req.query;
+
   try {
     const allProducts = await getAllProducts();
-
-    res.status(200).json(allProducts);
+    if (name) {
+      let productName = await allProducts.filter((e) =>
+        e.name.toLowerCase().includes(name.toLowerCase())
+      );
+      productName.length
+        ? res.status(200).send(productName)
+        : res.status(202).send("No se encuentra el producto");
+    } else {
+      res.status(200).json(allProducts);
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
