@@ -34,6 +34,13 @@ const postCreateProduct = async (
     return { message: "Los precios deben ser mayores que cero" };
   }
 
+  if (price_promotion >= price) {
+    return {
+      message:
+        "El precio de promoción debe ser menor que el precio regular del producto",
+    };
+  }
+
   const brand = await Brand.findByPk(brandId);
   const category = await Category.findByPk(categoryId);
 

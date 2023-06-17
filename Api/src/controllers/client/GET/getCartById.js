@@ -12,8 +12,9 @@ const getCartById = async (cartId) => {
       "cart_total_amount",
       "quantity_unit_product",
       "amount_unit_product",
+      "id",
     ],
-    raw: true,
+    // raw: true,
     include: [
       {
         model: Product,
@@ -31,11 +32,15 @@ const getCartById = async (cartId) => {
         },
       },
     ],
-    raw: true,
+    // raw: true,
   });
 
   if (!cart) {
     return { message: "El carrito no existe" };
+  }
+
+  if (cart.length === 0) {
+    return { message: "El carrito no tiene productos agregados" };
   }
 
   return cart;

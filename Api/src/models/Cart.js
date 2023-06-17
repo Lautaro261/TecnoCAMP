@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
     },
-    { timestamps: false },
+    { timestamps: true },
     {
       indexes: [
         // Crea un índice condicional que incluye solo los carritos con estado "Vacio" o "Por pagar"

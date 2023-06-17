@@ -23,7 +23,7 @@ const getUserCarts = async (userId) => {
       "id",
       "cart_status",
     ],
-    raw: true,
+    // raw: true,
     include: [
       {
         model: Product,
@@ -41,8 +41,12 @@ const getUserCarts = async (userId) => {
         },
       },
     ],
-    raw: true,
+    // raw: true,
   });
+
+  if (carts.length === 0) {
+    return { message: "El usuario no tiene carritos activos" };
+  }
 
   return carts;
 };
