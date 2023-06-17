@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const getAllCategories = createAsyncThunk(
-    'clientCategoriesSlice/getAllCategories',
+    'clientCategories/getAllCategories',
     async () => {
         try {
             const response = await axios.get('/client/allcategories');
@@ -31,7 +31,8 @@ const clientCategoriesSlice = createSlice({
             })
             .addCase(getAllCategories.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.allCategories = action.payload
+                state.allCategories = action.payload,
+                state.error = null
             })
             .addCase(getAllCategories.rejected, (state, action) => {
                 state.status = 'rejected',
@@ -40,5 +41,6 @@ const clientCategoriesSlice = createSlice({
 
     }
 });
+
 
 export default clientCategoriesSlice.reducer;

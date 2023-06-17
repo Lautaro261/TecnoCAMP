@@ -1,31 +1,32 @@
-import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined} from '@ant-design/icons';
+import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutlined, ShopOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
+//import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
+import { clearProductsByCategory } from '../../../../Redux/Features/products/clientProductsSlice';
+import { getAllCategories } from '../../../../Redux/Features/categories/clientCategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const allCategories = useSelector((state) => state.productsClient.allCategories);
-  const [current, setCurrent] = useState('Inicio');
+  const allCategories = useSelector((state) => state.clientCategories.allCategories);
+ // const [current, setCurrent] = useState('Inicio');
 
-  //console.log('categories en nav', allCategories);
 
   useEffect(() => {
-    dispatch(getItems());
+    dispatch(getAllCategories());
   }, [dispatch]);
 
   if (allCategories.length === 0) {
-    return <h1>Cargando...</h1>;
+    return <LoadingOutlined style={{ color: 'white', fontSize: '24px' }} />;
   }
 
   const childrenSource = allCategories && allCategories.map(c => {  //childrenSource = [{label key}, { } ]
     return {
       label: c.name,
       key: c.name,
-      icon: <TagsOutlined />,
+      icon: <TagsOutlined style={{ fontSize: '18px' }}/>,
       id: c.id
     };
   });
@@ -35,17 +36,17 @@ const Nav = () => {
     {
       label: 'Inicio',
       key: 'home',
-      icon: <HomeOutlined />,
+      icon: <HomeOutlined style={{ fontSize: '22px' }}/>,
     },
     {
       label: 'Todos los productos',
       key: 'all-categories',
-      icon: <ProfileFilled />,
+      icon: <ShopOutlined style={{ fontSize: '22px' }}/>,
     },
     {
       label: 'Categorias',
       key: 'categories',
-      icon: <DatabaseFilled />,
+      icon: <DatabaseFilled style={{ fontSize: '20px' }}/>,
       children:[ {
         type: 'group',
         label: '',
@@ -58,6 +59,8 @@ const Nav = () => {
     dispatch(clearProductsByCategory())
 
     if(e.key === 'home'|| e.key === 'all-categories'){
+      window.localStorage.removeItem('category_id');
+      window.localStorage.removeItem('category_name');
       navigate(`/${e.key}`)
     }else{
       //console.log('FOR!!!',items);
@@ -77,14 +80,13 @@ const Nav = () => {
           }
         }
       } 
-
       //console.log('ID ',items[2].children[0].children);
       navigate(`/categories/${e.key}`);
     }
   };
 
   return (
-    <Menu onClick={onClick} selectedKeys={[current]} mode="horizontal" items={ items } />
+    <Menu onClick={onClick} /* selectedKeys={[current]} */ mode="horizontal" items={ items } style={{ flex: 1, justifyContent: 'center', paddingLeft: '20px', paddingRight: '20px'}}/>
   );
 };
 

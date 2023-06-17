@@ -1,7 +1,7 @@
 import React,{ useEffect } from "react";
 import { Row, Col, Space } from "antd";
 import { useDispatch, useSelector} from 'react-redux';
-import { getProductDetails, clearDetails} from "../../../Redux/Features/productsClient/productsClientSlice";
+import { getProductDetails, clearDetails} from "../../../Redux/Features/products/clientProductsSlice";
 import { Link, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
@@ -9,9 +9,9 @@ import { Button, InputNumber} from 'antd';
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
-  const productDetails = useSelector( state => state.productsClient.productDetails) 
+  const productDetails = useSelector( state => state.clientProducts.productDetails) 
   const { id } = useParams();
-  const category=  useSelector( state => state.productsClient.category) 
+  const category=  useSelector( state => state.clientProducts.category) 
   const [value, setValue] = useState('1');
 
 

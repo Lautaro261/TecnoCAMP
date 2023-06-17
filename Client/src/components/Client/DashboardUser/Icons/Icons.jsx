@@ -10,7 +10,7 @@ export default function Icons() {
 
   return (
     <div>
-      <Link to="/cart">
+   {/*    <Link to="/cart">
         <div name="cart">
           <svg
             width="30"
@@ -34,9 +34,9 @@ export default function Icons() {
             />
           </svg>
         </div>
-      </Link>
+      </Link> */}
 
-      <Link to="/favorites">
+     {/*  <Link to="/favorites">
         <div name="favorites">
           <svg
             width="30"
@@ -53,7 +53,7 @@ export default function Icons() {
             />
           </svg>
         </div>
-      </Link>
+      </Link> */}
 
       <Link to="/login">
         <div name="profile">
