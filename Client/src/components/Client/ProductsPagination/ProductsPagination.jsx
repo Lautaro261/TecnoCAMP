@@ -5,6 +5,7 @@ import {
   setCurrentFilteredProducts, 
   setCurrentPage 
 } from '../../../Redux/Features/products/clientProductsSlice';
+// Se paso el currentPage de estado local a estado global con Redux
 
 const itemRender = (_, type, originalElement) => {
   if (type === 'prev') {
