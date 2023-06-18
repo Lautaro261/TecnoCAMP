@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Pagination } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentFilteredProducts } from '../../../Redux/Features/products/clientProductsSlice';
+import { 
+  setCurrentFilteredProducts, 
+  setCurrentPage 
+} from '../../../Redux/Features/products/clientProductsSlice';
 
 const itemRender = (_, type, originalElement) => {
   if (type === 'prev') {
@@ -16,26 +19,30 @@ const itemRender = (_, type, originalElement) => {
 const ProductsPagination = () => {
     const dispatch = useDispatch();
     const filteredProducts = useSelector(state => state.clientProducts.filteredProducts);
+    const currentPage = useSelector(state => state.clientProducts.currentPage);
 
     const totalItems = filteredProducts.length;
     const itemsPerPage = 5;
-    const [currentPage, setCurrentPage] = useState(1);
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
+
+    useEffect(() => {
+      dispatch(setCurrentPage(1));
+    }, []);
     
     useEffect(() => {
       if (filteredProducts.length > 0) {
         const currentFilteredProducts = filteredProducts.slice(startIndex, endIndex);
         dispatch(setCurrentFilteredProducts(currentFilteredProducts));
       } else {
-        setCurrentPage(1);
+        dispatch(setCurrentPage(1));
         dispatch(setCurrentFilteredProducts([]));
       }
     }, [filteredProducts, currentPage, dispatch, startIndex, endIndex]);
 
     const handlePageChange = (pageNumber) => {
-      setCurrentPage(pageNumber);
+      dispatch(setCurrentPage(pageNumber));
     };
 
     return (
