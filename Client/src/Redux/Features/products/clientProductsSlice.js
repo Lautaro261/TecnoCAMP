@@ -6,6 +6,7 @@ const initialState = {
   filteredProducts: [],
   productsByCategory: [],
   productDetails: {},
+  searchedResult:[],
   category:"",
   idCategory: "",
   idBrand: "",
@@ -184,6 +185,19 @@ const clientProductsSlice = createSlice({
         state.error = action.error.message;
       })
 
+
+      .addCase(getProductsSearched.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getProductsSearched.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.searchedResult = action.payload;
+        state.error = null;
+      })
+      .addCase(getProductsSearched.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
+      })
 
   },
 });
