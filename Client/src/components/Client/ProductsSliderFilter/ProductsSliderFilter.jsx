@@ -37,22 +37,24 @@ const ProductsSliderFilter = () => {
     }, [maxValue, dispatch]);
 
     return (
-        <Col>
-            <h4>Filtro de Productos por Precio</h4>
-            <Slider
-                range
-                marks={ marks }
-                max={ 8000000 }
-                value={ [minValue, maxValue] }
-                onChange={ handleChange }
-            />
-            <p>Rango seleccionado: $ { minValue } - $ { maxValue }</p>
-            <Row>
-                <Button type='primary' danger onClick={ removePriceFilter }>
-                    Remover filtro de precio
-                </Button>
-            </Row>
-        </Col>
+        <Row justify="center">
+            <Col>
+                <h4>Filtro de Productos por Precio</h4>
+                <Slider
+                    range
+                    marks={ marks }
+                    max={ 8000000 }
+                    value={ [minValue, maxValue] }
+                    tooltip={{ open: true }}
+                    onChange={ handleChange }
+                />
+                <Row justify="center">
+                    <Button type='primary' danger onClick={ removePriceFilter }>
+                        Remover filtro de precio
+                    </Button>
+                </Row>
+            </Col>
+        </Row>
     );
 };
 

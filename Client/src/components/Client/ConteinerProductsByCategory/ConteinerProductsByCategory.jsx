@@ -3,6 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty, Space } from 'antd';
 import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Features/products/clientProductsSlice';
 import ProductCard from '../ProductCard/ProductCard';
+import {
+    getAllProducts,
+    setFilteredProducts
+} from '../../../Redux/Features/products/clientProductsSlice';
+import ProductsPagination from '../ProductsPagination/ProductsPagination';
 // import { useParams } from 'react-router-dom';
 
 const ConteinerProductsByCategory = () => {
@@ -11,8 +16,8 @@ const ConteinerProductsByCategory = () => {
     const productsByCategory = useSelector( state => state.clientProducts.productsByCategory)
     const idProduct = window.localStorage.getItem('category_id')
 
-    //console.log('idparams en productcategori componente', idProduct)
-    //console.log('estoy en conteinerProductByCategory', productsByCategory)
+    console.log('idparams en productcategori componente', idProduct)
+    console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
         dispatch(getProductsByCategory(idProduct))
@@ -21,6 +26,21 @@ const ConteinerProductsByCategory = () => {
         // }
     }, [idProduct, dispatch])
 
+    const allProducts = useSelector(state => state.clientProducts.allProducts);
+    const idCategory = useSelector(state => state.clientProducts.idCategory);
+    const currentFilteredProducts = useSelector(state => state.clientProducts.currentFilteredProducts);
+
+    useEffect(() => {
+        dispatch(getAllProducts());
+    }, []);
+
+    useEffect(() => {
+        if (allProducts.length > 0 && idCategory) {
+            const filteredProductsByCategoryId = allProducts.filter(product => product.categoryId === idCategory);
+            dispatch(setFilteredProducts(filteredProductsByCategoryId));
+        }
+    }, [allProducts, idCategory]);
+
     return (
         <div>
             
@@ -28,10 +48,10 @@ const ConteinerProductsByCategory = () => {
                 direction="vertical"
                 size="middle"    
             >
-                <Pagination defaultCurrent={1} total={50} />
+                <ProductsPagination />
 
-                <Row gutter={[16, 16]}>
-                    {productsByCategory.length ? productsByCategory.map(product => {
+                <Row justify='center' gutter={[16, 16]}>
+                    {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
                             <Col span={6} key={product.id}>
                                 <ProductCard 
@@ -49,8 +69,6 @@ const ConteinerProductsByCategory = () => {
                             <Empty description={false} />
                         </Col>}
                 </Row>
-
-                <Pagination defaultCurrent={1} total={50}  style={{ marginBottom: '20px' }}/>
                 
             </Space>
         </div>
