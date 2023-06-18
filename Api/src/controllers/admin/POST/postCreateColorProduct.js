@@ -1,5 +1,4 @@
 const { Product, Inventory } = require("../../../db");
-const getProductById = require("../../../controllers/admin/GET/getProductById");
 
 const createColorProduct = async (productId, color, quantity) => {
   // Verificar si el producto existe
@@ -13,7 +12,7 @@ const createColorProduct = async (productId, color, quantity) => {
   const existingColor = await Inventory.findOne({
     where: {
       color: color,
-      productIdInventory: productId,
+      productId: productId,
     },
   });
 
@@ -30,13 +29,13 @@ const createColorProduct = async (productId, color, quantity) => {
   const newColorProduct = await Inventory.create({
     color: color,
     quantity_inventory: quantity,
-    productIdInventory: productId,
+    productId: productId,
   });
 
   // Actualizar la cantidad total de inventario del producto
   const allInventoryItems = await Inventory.findAll({
     where: {
-      productIdInventory: productId,
+      productId: productId,
     },
   });
 

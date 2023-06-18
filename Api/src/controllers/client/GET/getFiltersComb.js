@@ -2,25 +2,25 @@ const { Op } = require("sequelize");
 const { Product } = require("../../../db");
 
 const getFiltersComb = async (idCategory, idBrand = [], minPrice, maxPrice) => {
-    const filters = {};
+  const filters = {};
 
-    if (idCategory) {
-        filters.categoryId = idCategory;
-    }
+  if (idCategory) {
+    filters.categoryId = idCategory;
+  }
 
-    if (idBrand) {
-        filters.brandId = idBrand;
-    }
+  if (idBrand) {
+    filters.brandId = idBrand;
+  }
 
-    if (minPrice && maxPrice) {
-        filters.price = {
-            [Op.between]: [minPrice, maxPrice],
-        };
-    }
+  if (minPrice && maxPrice) {
+    filters.price = {
+      [Op.between]: [minPrice, maxPrice],
+    };
+  }
 
-    const filtersProducts = await Product.findAll({ where: filters });
+  const filtersProducts = await Product.findAll({ where: filters });
 
-    return filtersProducts;
+  return filtersProducts;
 };
 
 module.exports = getFiltersComb;
