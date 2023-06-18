@@ -81,6 +81,23 @@ const postAddProductToCart = async (
   });
 
   if (existingCartItem) {
+    // Verificar si el producto y color del producto existen en el inventario
+    const inventory = await Inventory.findOne({
+      where: { id: inventoryId, productId: productId },
+    });
+
+    // Verificar si hay suficiente disponibilidad en el inventario del producto seleccionado
+    if (
+      parseFloat(existingCartItem.quantity_unit_product) +
+        parseFloat(quantity) >
+      parseFloat(inventory.quantity_inventory)
+    ) {
+      return {
+        message:
+          "No hay suficiente disponibilidad en inventario del producto seleccionado",
+      };
+    }
+
     // Actualizar el quantity_unit_product y amount_unit_product del color existente
     existingCartItem.quantity_unit_product =
       parseFloat(existingCartItem.quantity_unit_product) + parseFloat(quantity);
