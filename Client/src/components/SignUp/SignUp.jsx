@@ -67,6 +67,13 @@ const SignUp = () => {
               required: true,
               message: "Please input your password!",
             },
+            {
+              min: 7, max: 20,
+              message: 'Password must be between 7 and 20 characters'
+            },
+            { pattern: /^[a-zA-Z0-9]+$/,
+             message: 'Password can only contain letters and numbers'
+            }
           ]}
           hasFeedback
         >
