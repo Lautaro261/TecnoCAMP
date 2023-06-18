@@ -173,6 +173,7 @@ const clientProductsSlice = createSlice({
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.allProducts = action.payload;
+        state.error = null;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.status = "rejected";
