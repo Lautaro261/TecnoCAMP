@@ -24,7 +24,7 @@ export const getAllProducts = createAsyncThunk(
       const response = await axios.get("/client/allproducts");
       return response.data;
     } catch (error) {
-      console.error(error.message);
+      console.error('ERRORRRRRRRRRRRRRRRRRRRRRR en getAllProduct', error);
       throw error;
     }
   }
@@ -46,10 +46,10 @@ export const getFilteredProducts = createAsyncThunk(
 export const getProductsByCategory = createAsyncThunk(
   "clientProducts/getProductsByCategory",
   async (idProduct) => {
-    //console.log('id filtro por categoria', idProduct )
+    console.log('id filtro por categoria', idProduct )
     try {
       const response = await axios.get(`/client/filterCategory/${idProduct}`);
-      //console.log('getproductByCategory OKKKK', response.data)
+      console.log('getproductByCategory OKKKK', response.data)
 
       return response.data;
     } catch (error) {
