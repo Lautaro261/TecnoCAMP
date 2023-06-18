@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty, Space } from 'antd';
-import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Features/productsClient/productsClientSlice';
+import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Features/products/clientProductsSlice';
 import ProductCard from '../ProductCard/ProductCard';
 // import { useParams } from 'react-router-dom';
 
 const ConteinerProductsByCategory = () => {
 
     const dispatch = useDispatch()
-    const productsByCategory = useSelector( state => state.productsClient.productsByCategory)
+    const productsByCategory = useSelector( state => state.clientProducts.productsByCategory)
     const idProduct = window.localStorage.getItem('category_id')
 
-    console.log('idparams en productcategori componente', idProduct)
-    console.log('estoy en conteinerProductByCategory', productsByCategory)
+    //console.log('idparams en productcategori componente', idProduct)
+    //console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
         dispatch(getProductsByCategory(idProduct))
@@ -23,6 +23,7 @@ const ConteinerProductsByCategory = () => {
 
     return (
         <div>
+            
             <Space
                 direction="vertical"
                 size="middle"    

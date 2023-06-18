@@ -21,7 +21,7 @@ const handlerGetAllAdmmins = async (req, res) => {
     if (AllAdmins) {
       res.status(200).json(AllAdmins);
     } else {
-      res.status(404).json({ message: "¡Credenciales incorrectas!" });
+      res.status(202).json({ message: "¡Credenciales incorrectas!" });
     }
   } catch (error) {
     res.status(400).json({ message: error.message });

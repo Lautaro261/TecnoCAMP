@@ -17,11 +17,11 @@ const handlerDeleteProduct = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { productId, isAvailable } = req.body;
+  const { productId } = req.body;
 
   try {
     // Crear el producto
-    const modifiedProduct = await deleteProduct(productId, isAvailable);
+    const modifiedProduct = await deleteProduct(productId);
 
     res.status(200).json(modifiedProduct);
   } catch (error) {

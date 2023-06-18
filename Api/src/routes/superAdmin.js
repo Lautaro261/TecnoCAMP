@@ -13,6 +13,7 @@ const handlerCreateAdmin = require("../handlers/superAdmin/POST/handlerCreateAdm
 //MOSTRAR ADMINS
 const handlerGetAllAdmmins = require("../handlers/superAdmin/GET/handlerGetAllAdmins.js");
 const handlerGetAdminById = require("../handlers/superAdmin/GET/handlerGetAdminById.js");
+
 /////////// ROUTES ////////////
 
 // CREAR ADMIN
