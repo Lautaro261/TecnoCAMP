@@ -14,4 +14,4 @@ const BannerSmartPhones = () => {
     )
 }
 
-export default BannerSmartPhones
+export default BannerSmartPhones;
