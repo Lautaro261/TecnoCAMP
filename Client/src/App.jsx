@@ -17,6 +17,7 @@ import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView
 import ErrorView from "./Views/Error/ErrorView";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
+import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
 
 axios.defaults.baseURL = "http://localhost:3001";
@@ -49,6 +50,7 @@ function App() {
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
+        <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
         <Route path="/developers" element={< div/>} />
         <Route path="/about" element={<AboutUs/>} />
 

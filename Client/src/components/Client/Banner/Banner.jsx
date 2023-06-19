@@ -82,6 +82,8 @@ const Banner = () => {
     let storedCategoryName = window.localStorage.getItem('category_name');
     let storedIdProduct = window.localStorage.getItem('category_id');
 
+    console.log('categoria en banner', storedCategoryName)
+
     useEffect(() => {
         setCategoryName(storedCategoryName);
         setIdProduct(storedIdProduct);

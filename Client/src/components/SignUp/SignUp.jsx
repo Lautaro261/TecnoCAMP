@@ -44,15 +44,15 @@ const SignUp = () => {
 
         <Form.Item
           name="email"
-          label="E-mail"
+          label="Correo Electrónico"
           rules={[
-            {
-              type: "email",
-              message: "The input is not valid E-mail!",
-            },
-            {
-              required: true,
-              message: "Please input your E-mail!",
+            { 
+              type: "email", 
+              message: "¡El correo electrónico ingresado no es válido!", 
+            }, 
+            { 
+              required: true, 
+              message: "¡Por favor ingresa tu correo electrónico!", 
             },
           ]}
         >
@@ -61,12 +61,19 @@ const SignUp = () => {
 
         <Form.Item
           name="password"
-          label="Password"
+          label="Contraseña"
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: "¡Por favor ingresa tu contraseña!",
             },
+            {
+              min: 7, max: 20,
+              message: 'La contraseña debe tener entre 7 y 20 caracteres'
+            },
+            { pattern: /^[a-zA-Z0-9]+$/,
+             message: 'La contraseña solo puede contener letras y números'
+            }
           ]}
           hasFeedback
         >
@@ -75,13 +82,13 @@ const SignUp = () => {
 
         <Form.Item
           name="confirm"
-          label="Confirm Password"
+          label="Confirmar Contraseña"
           dependencies={["password"]}
           hasFeedback
           rules={[
             {
               required: true,
-              message: "Please confirm your password!",
+              message: "¡Por favor, confirma tu contraseña!",
             },
             ({ getFieldValue }) => ({
               validator(_, value) {
@@ -89,7 +96,7 @@ const SignUp = () => {
                   return Promise.resolve();
                 }
                 return Promise.reject(
-                  new Error("The new password that you entered do not match!")
+                  new Error("¡La nueva contraseña que ingresaste no coincide!")
                 );
               },
             }),
@@ -100,7 +107,7 @@ const SignUp = () => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Register
+            Registrarse
           </Button>
         </Form.Item>
       </Form>

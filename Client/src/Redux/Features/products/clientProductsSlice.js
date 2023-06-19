@@ -8,6 +8,7 @@ const initialState = {
   currentPage: 1,
   productsByCategory: [],
   productDetails: {},
+  searchedResult:[],
   category:"",
   idCategory: "",
   idBrand: "",
@@ -23,9 +24,10 @@ export const getAllProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get("/client/allproducts");
+      console.log('TODO OK EN GETALLPRODUCTS', response.data)
       return response.data;
     } catch (error) {
-      console.error(error.message);
+      console.error('ERRORRRRRRRRRRRRRRRRRRRRRR en getAllProduct', error);
       throw error;
     }
   }
@@ -38,7 +40,7 @@ export const getFilteredProducts = createAsyncThunk(
       const response = await axios.post("/client/filtersComb", dataBody);
       return response.data;
     } catch (error) {
-      console.error(error.message);
+      console.log('error filtros ', error.message);
       throw error;
     }
   }
@@ -47,10 +49,10 @@ export const getFilteredProducts = createAsyncThunk(
 export const getProductsByCategory = createAsyncThunk(
   "clientProducts/getProductsByCategory",
   async (idProduct) => {
-    //console.log('id filtro por categoria', idProduct )
+    console.log('id filtro por categoria', idProduct )
     try {
       const response = await axios.get(`/client/filterCategory/${idProduct}`);
-      //console.log('getproductByCategory OKKKK', response.data)
+      console.log('getproductByCategory OKKKK', response.data)
 
       return response.data;
     } catch (error) {
@@ -182,11 +184,13 @@ const clientProductsSlice = createSlice({
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.allProducts = action.payload;
+        state.error = null;
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.status = "rejected";
         state.error = action.error.message;
       })
+
 
       .addCase(getFilteredProducts.pending, (state) => {
         state.status = "loading";
@@ -217,6 +221,7 @@ const clientProductsSlice = createSlice({
         state.error = action.error.message;
       })
 
+
       .addCase(getProductsByCategory.pending, (state) => {
         state.status = "loading";
       })
@@ -229,6 +234,8 @@ const clientProductsSlice = createSlice({
         state.status = "rejected";
         state.error = action.error.message;
       })
+
+
       .addCase(getProductDetails.pending, (state) => {
         state.status = "loading";
       })
@@ -243,6 +250,19 @@ const clientProductsSlice = createSlice({
         state.error = action.error.message;
       })
 
+
+      .addCase(getProductsSearched.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getProductsSearched.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.searchedResult = action.payload;
+        state.error = null;
+      })
+      .addCase(getProductsSearched.rejected, (state, action) => {
+        state.status = "rejected";
+        state.error = action.error.message;
+      })
 
   },
 });
