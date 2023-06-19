@@ -62,22 +62,22 @@ const Login = ({ setToken, setRol }) => {
         autoComplete="off"
       >
         <Form.Item
-          label="Email"
           name="email"
+          label="Correo Electrónico"
           rules={[
-            { required: true, message: 'Please input your email!' },
-            {type:'email', message: 'Por favor ingrese un email valido.'}
+            { required: true, message: '¡Por favor ingrese su correo electrónico!' },
+            {type:'email', message: 'Por favor ingrese un correo electrónico válido.'}
           ]}
         >
           <Input />
         </Form.Item>
 
         <Form.Item
-          label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' },
-          { min: 7, max: 20, message: 'Password must be between 7 and 20 characters' },
-          { pattern: /^[a-zA-Z0-9]+$/, message: 'Password can only contain letters and numbers' }]}
+          label="Contraseña"
+          rules={[{ required: true, message: '¡Por favor ingrese su contraseña!' },
+          { min: 7, max: 20, message: 'La contraseña debe tener entre 7 y 20 caracteres' },
+          { pattern: /^[a-zA-Z0-9]+$/, message: 'La contraseña solo puede contener letras y números' }]}
         >
           <Input.Password />
         </Form.Item>
@@ -88,7 +88,7 @@ const Login = ({ setToken, setRol }) => {
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
-            Submit
+            Ingresar
           </Button>
         </Form.Item>
       </Form>

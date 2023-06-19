@@ -8,7 +8,7 @@ const IconLogin = () => {
         <Row align='top'>
             <Col span={24}>
                 <Link to='/login'>
-                    <LoginOutlined style={{ fontSize: '28px'}} />
+                    <LoginOutlined style={{ fontSize: '28px', color: '#6699FF'}} />
                 </Link>
             </Col>
         </Row>
