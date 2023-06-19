@@ -13,7 +13,6 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductsFullScreen from "./components/Client/ProductsFullScreen/ProductsFullScreen";
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
@@ -50,8 +49,8 @@ function App() {
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
-        <Route path="/categories/Celulares" element={<ProductsFullScreen />} />
         <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
+      
 
 
 
@@ -59,7 +58,6 @@ function App() {
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
           <Route path="/cart" element={<CartView />} />
         </Route>
-
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'admin'} redirect={rolA === "client" ? redirect.client : redirect.superAdmin} />}>
@@ -72,7 +70,6 @@ function App() {
          <Route path="*" element={<ErrorView/>} /> 
 
       </Routes>
-
 
     </div>
   )

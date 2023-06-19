@@ -10,6 +10,7 @@ import {
 import ProductsSliderFilter from "../ProductsSliderFilter/ProductsSliderFilter";
 import ProductsByBrandFilter from "../ProductsByBrandFilter/ProductsByBrandFilter";
 import ProductsSorting from "../ProductsSorting/ProductsSorting";
+import ProductsPagination from "../ProductsPagination/ProductsPagination";
 import ProductsDisplay from '../ProductsDisplay/ProductsDisplay';
 
 const ProductsFullScreen = () => {
@@ -56,6 +57,7 @@ const ProductsFullScreen = () => {
             </Col>
             <Col><ProductsByBrandFilter /></Col>
             <Col><ProductsSorting /></Col>
+            <Col><ProductsPagination /></Col>
             <Col><ProductsDisplay /></Col>
         </Row>
     );

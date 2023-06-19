@@ -4,6 +4,8 @@ import axios from "axios";
 const initialState = {
   allProducts: [],
   filteredProducts: [],
+  currentFilteredProducts: [],
+  currentPage: 1,
   productsByCategory: [],
   productDetails: {},
   searchedResult:[],
@@ -95,6 +97,8 @@ export const getProductDetails = createAsyncThunk(
   );
 
 export const setFilteredProducts = createAction("clientProducts/setFilteredProducts");
+export const setCurrentFilteredProducts = createAction('clientProducts/setCurrentFilteredProducts');
+export const setCurrentPage = createAction('clientProducts/setCurrentPage');
 export const setIdCategory = createAction("clientProducts/setIdCategory");
 export const setIdBrand = createAction("clientProducts/setIdBrand");
 export const setMinPrice = createAction("clientProducts/setMinPrice");
@@ -120,7 +124,13 @@ const clientProductsSlice = createSlice({
     },
     setFilteredProducts: (state, action) => {
       state.filteredProducts = action.payload;
-  },
+    },
+    setCurrentFilteredProducts: (state, action) => {
+      state.currentFilteredProducts = action.payload;
+    },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
     setIdCategory: (state, action) => {
       state.idCategory = action.payload;
     },
