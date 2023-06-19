@@ -15,6 +15,7 @@ import {
   getFilteredProducts, 
   setCurrentPage 
 } from '../../../Redux/Features/products/clientProductsSlice';
+import FooterUser from '../../../components/Client/Footer/FooterUser';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -39,7 +40,8 @@ const contentStyle = {
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#7dbcea',
+  margin:"0px",
+  padding:"0px"
 };
 
 const CategoriesView = () => {
@@ -121,7 +123,7 @@ const CategoriesView = () => {
         </Row>
 
     </Content>
-    <Footer style={footerStyle}>Footer</Footer>
+    <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
   )
 
