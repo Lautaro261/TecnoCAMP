@@ -7,7 +7,7 @@ import Nav from "./Nav/Nav";
 const DashboardUser = () => {
     return (
  
-        <Row>
+        <Row >
             <Col span={24}><Contacticons/></Col>
             <Col span={24}><MenuDash/></Col>
             <Col span={24}><Nav/></Col>

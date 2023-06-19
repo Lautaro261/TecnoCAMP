@@ -3,6 +3,7 @@ import DashboardUser from '../../../components/Client/DashboardUser/DashboardUse
 import Banner from '../../../components/Client/Banner/Banner';
 import Brands from '../../../components/Client/Brands/Brands';
 import ContainerAllProducts from '../../../components/Client/ContainerAllProducts/ContainerAllProducts';
+import FooterUser from '../../../components/Client/Footer/FooterUser';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -27,7 +28,8 @@ const contentStyle = {
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#7dbcea',
+  margin:"0px",
+  padding:"0px"
 };
 const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
 let  current = window.localStorage.getItem('current');
@@ -46,7 +48,7 @@ const AllCategoriesView = () => (
 
 
     </Content>
-    <Footer style={footerStyle}>Footer</Footer>
+    <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
 
 
