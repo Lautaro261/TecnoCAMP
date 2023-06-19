@@ -19,7 +19,6 @@ const Icons = () => {
           <Col span={4}><IconFavorite /></Col>
           <Col span={4}><IconProfile /></Col>
           <Col span={4}><IconLogout /></Col>
-          <Col span={4}><IconLogout /></Col>
         </Row>
         : <Row justify='end' align="top">
           <Col span={6}><IconLogin /></Col>

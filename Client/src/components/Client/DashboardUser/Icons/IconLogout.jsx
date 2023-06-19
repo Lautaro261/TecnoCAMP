@@ -1,13 +1,14 @@
 import React from "react";
 import { LogoutOutlined } from '@ant-design/icons'
 import { Row, Col} from 'antd'
-// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const IconLogout = () =>{
-
+     const navigate = useNavigate()
     const handleLogout = () => {
         window.localStorage.removeItem('token')
         window.localStorage.removeItem('rol')
+        navigate('/home')
     }
 
     return(
