@@ -22,6 +22,7 @@ export const getAllProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get("/client/allproducts");
+      console.log('TODO OK EN GETALLPRODUCTS', response.data)
       return response.data;
     } catch (error) {
       console.error('ERRORRRRRRRRRRRRRRRRRRRRRR en getAllProduct', error);
@@ -37,7 +38,7 @@ export const getFilteredProducts = createAsyncThunk(
       const response = await axios.post("/client/filtersComb", dataBody);
       return response.data;
     } catch (error) {
-      console.error(error.message);
+      console.log('error filtros ', error.message);
       throw error;
     }
   }
@@ -180,6 +181,7 @@ const clientProductsSlice = createSlice({
         state.error = action.error.message;
       })
 
+
       .addCase(getFilteredProducts.pending, (state) => {
         state.status = "loading";
       })
@@ -209,6 +211,7 @@ const clientProductsSlice = createSlice({
         state.error = action.error.message;
       })
 
+
       .addCase(getProductsByCategory.pending, (state) => {
         state.status = "loading";
       })
@@ -221,6 +224,8 @@ const clientProductsSlice = createSlice({
         state.status = "rejected";
         state.error = action.error.message;
       })
+
+
       .addCase(getProductDetails.pending, (state) => {
         state.status = "loading";
       })
