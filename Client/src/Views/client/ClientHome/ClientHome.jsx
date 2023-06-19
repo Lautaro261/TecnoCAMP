@@ -24,9 +24,10 @@ const contentStyle = {
   minHeight: 200,
   lineHeight: '8',
   color: '#fff',
-  backgroundColor: '#108ee9',
+  backgroundColor: '#ffff',
   width: "100vw",
 
+  marginTop:"1.4%"
 };
 
 const footerStyle = {

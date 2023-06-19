@@ -1,4 +1,4 @@
-import { Col, Button, Checkbox } from "antd";
+import { Row, Col, Space, Button, Checkbox } from "antd";
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllBrands } from '../../../Redux/Features/brands/clientBrandsSlice';
@@ -36,10 +36,20 @@ const ProductsByBrandFilter = () => {
     };
 
     return (
-        <Col>
-            <Checkbox.Group options={ plainOptions } value={ checkedValues } onChange={ onChange }  />
-            <Button type='primary' danger onClick={ resetFilter }>Remover filtro de marcas</Button>
-        </Col>
+        <Row justify="center">
+            <Col>
+                <Row justify="center">
+                    <Col span={ 6 }>
+                        <Checkbox.Group options={ plainOptions } value={ checkedValues } onChange={ onChange }  />
+                    </Col>
+                </Row>
+                <Row justify="center">
+                    <Button type='primary' danger onClick={ resetFilter }>
+                        Remover filtro de marcas
+                    </Button>
+                </Row>
+            </Col>
+        </Row>
     );
 };
 
