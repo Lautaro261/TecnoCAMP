@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
-import AboutUsData from '../../../components/Client/AboutUsData/AboutusData';
+import AboutUsData from '../../../components/Client/AboutUsData/AboutUsData';
 
 
 const { Header, Footer, Content } = Layout;
