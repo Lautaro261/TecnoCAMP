@@ -20,7 +20,8 @@ import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
 
-axios.defaults.baseURL = "http://localhost:3001";
+//axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://tecnocamp-back-production.up.railway.app";
 
 
 function App() {
