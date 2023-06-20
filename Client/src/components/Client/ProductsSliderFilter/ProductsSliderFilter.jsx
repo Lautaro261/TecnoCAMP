@@ -1,6 +1,6 @@
 import { Row, Col, Slider, Button } from 'antd';
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     setMinPrice,
     setMaxPrice,
@@ -13,28 +13,19 @@ const marks = {
 };
 
 const ProductsSliderFilter = () => {
-    const [minValue, setMinValue] = useState(1);
-    const [maxValue, setMaxValue] = useState(8000000);
-
     const dispatch = useDispatch();
+    const minPrice = useSelector(state => state.clientProducts.minPrice);
+    const maxPrice = useSelector(state => state.clientProducts.maxPrice);
 
     const handleChange = (e) => {
-        setMinValue(e[0]);
-        setMaxValue(e[1]);
+        dispatch(setMinPrice(e[0]));
+        dispatch(setMaxPrice(e[1]));
     };
 
     const removePriceFilter = () => {
-        setMinValue(1);
-        setMaxValue(8000000);
+        dispatch(setMinPrice(1));
+        dispatch(setMaxPrice(8000000));
     };
-
-    useEffect(() => {
-        dispatch(setMinPrice(minValue));
-    }, [minValue, dispatch]);
-
-    useEffect(() => {
-        dispatch(setMaxPrice(maxValue));
-    }, [maxValue, dispatch]);
 
     return (
         <Row justify="center">
@@ -44,7 +35,7 @@ const ProductsSliderFilter = () => {
                     range
                     marks={ marks }
                     max={ 8000000 }
-                    value={ [minValue, maxValue] }
+                    value={ [minPrice, maxPrice] }
                     tooltip={{ open: true }}
                     onChange={ handleChange }
                 />

@@ -12,9 +12,11 @@ const initialState = {
   category:"",
   idCategory: "",
   idBrand: "",
+  checkedBrands: [],
   minPrice: 1,
   maxPrice: 8000000,
   selectedValueToFilter: "",
+  photos: [],
   status: "idle",
   error: null,
 };
@@ -69,7 +71,7 @@ export const getProductDetails = createAsyncThunk(
         const response1 = await axios.get(`/client/product/${id}`);
         //const catid = response1.data.categoryId;
         const response2 = await axios.get(`/client/category/${catid}`);
-  
+
         console.log(id);
         //console.log('getProductDetails OK', response1.data)
         //console.log("categoriaaaa", response2.data)
@@ -101,16 +103,19 @@ export const setCurrentFilteredProducts = createAction('clientProducts/setCurren
 export const setCurrentPage = createAction('clientProducts/setCurrentPage');
 export const setIdCategory = createAction("clientProducts/setIdCategory");
 export const setIdBrand = createAction("clientProducts/setIdBrand");
+export const setCheckedBrands = createAction("clientProducts/setCheckedBrands");
 export const setMinPrice = createAction("clientProducts/setMinPrice");
 export const setMaxPrice = createAction("clientProducts/setMaxPrice");
 export const setCurrentAllProducts = createAction("clientProducts/setCurrentAllProducts");
 export const sortAlphabetically = createAction("clientProducts/sortAlphabetically");
 export const sortByPrice = createAction("clientProducts/sortByPrice");
 export const setSelectedValueToFilter = createAction("clientProducts/setSelectedValueToFilter");
+export const setPhotos = createAction("clientProducts/setPhotos");
 export const clearDetails = createAction("clientProducts/clearDetails");
 export const clearProductsByCategory = createAction(
   "clientProducts/clearProductsByCategory"
 );
+
 const clientProductsSlice = createSlice({
   name: "clientProducts",
   initialState,
@@ -137,6 +142,9 @@ const clientProductsSlice = createSlice({
     },
     setIdBrand: (state, action) => {
       state.idBrand = action.payload;
+    },
+    setCheckedBrands: (state, action) => {
+        state.checkedBrands = action.payload;
     },
     setMinPrice: (state, action) => {
       state.minPrice = action.payload;
@@ -174,6 +182,9 @@ const clientProductsSlice = createSlice({
     },
     setSelectedValueToFilter: (state, action) => {
       state.selectedValueToFilter = action.payload
+    },
+    setPhotos: (state, action) => {
+      state.photos = [...state.photos, action.payload];
     }
   },
   extraReducers: (builder) => {
