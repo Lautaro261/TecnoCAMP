@@ -3,7 +3,15 @@ import { Menu } from 'antd';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 //import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
-import { clearProductsByCategory } from '../../../../Redux/Features/products/clientProductsSlice';
+import { 
+  clearProductsByCategory, 
+  setIdBrand,
+  setCheckedBrands,
+  setMinPrice,
+  setMaxPrice,
+  setSelectedValueToFilter,
+  setCurrentPage
+} from '../../../../Redux/Features/products/clientProductsSlice';
 import { getAllCategories } from '../../../../Redux/Features/categories/clientCategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -56,7 +64,13 @@ const Nav = () => {
   ];
 
   const onClick = (e)=>{  
-    dispatch(clearProductsByCategory())
+    dispatch(clearProductsByCategory());
+    dispatch(setIdBrand(''));
+    dispatch(setCheckedBrands([]));
+    dispatch(setMinPrice(1));
+    dispatch(setMaxPrice(8000000));
+    dispatch(setSelectedValueToFilter(''));
+    dispatch(setCurrentPage(1));
 
     if(e.key === 'home'|| e.key === 'all-categories'){
       window.localStorage.removeItem('category_id');
