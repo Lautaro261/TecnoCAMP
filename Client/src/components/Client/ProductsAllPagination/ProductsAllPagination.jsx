@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Pagination } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
-  setCurrentFilteredProducts, 
+  setCurrentAllProducts, 
   setCurrentPage 
 } from '../../../Redux/Features/products/clientProductsSlice';
 // Se paso el currentPage de estado local a estado global con Redux
@@ -19,11 +19,11 @@ const itemRender = (_, type, originalElement) => {
 
 const ProductsPagination = () => {
     const dispatch = useDispatch();
-    const filteredProducts = useSelector(state => state.clientProducts.filteredProducts);
+    const allProducts = useSelector(state => state.clientProducts.allProducts);
     const currentPage = useSelector(state => state.clientProducts.currentPage);
 
-    const totalItems = filteredProducts.length;
-    const itemsPerPage = 12;
+    const totalItems = allProducts.length;
+    const itemsPerPage = 5;
 
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -33,14 +33,14 @@ const ProductsPagination = () => {
     }, []);
     
     useEffect(() => {
-      if (filteredProducts.length > 0) {
-        const currentFilteredProducts = filteredProducts.slice(startIndex, endIndex);
-        dispatch(setCurrentFilteredProducts(currentFilteredProducts));
+      if (allProducts.length > 0) {
+        const currentAllProducts = allProducts.slice(startIndex, endIndex);
+        dispatch(setCurrentAllProducts(currentAllProducts));
       } else {
         dispatch(setCurrentPage(1));
-        dispatch(setCurrentFilteredProducts([]));
+        dispatch(setCurrentAllProducts([]));
       }
-    }, [filteredProducts, currentPage, dispatch, startIndex, endIndex]);
+    }, [allProducts, currentPage, dispatch, startIndex, endIndex]);
 
     const handlePageChange = (pageNumber) => {
       dispatch(setCurrentPage(pageNumber));

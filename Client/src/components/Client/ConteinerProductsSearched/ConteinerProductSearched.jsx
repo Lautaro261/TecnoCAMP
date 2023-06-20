@@ -14,11 +14,11 @@ const ConteinerProductsSearched = () => {
                 direction="vertical"
                 size="middle"
             >
-                <Pagination defaultCurrent={1} total={50} />
 
                 <Row gutter={[16, 16]}>
                     {searchedResult.length ? searchedResult.map(product => {
                         return (
+                         
                             <Col span={6} key={product.id}>
                                 <ProductCard
                                     e_product_type={product.e_product_type}
@@ -28,6 +28,7 @@ const ConteinerProductsSearched = () => {
                                     photo={product.photo}
                                 />
                             </Col>
+                    
                         )
                     })
                         :
@@ -36,7 +37,6 @@ const ConteinerProductsSearched = () => {
                         </Col>}
                 </Row>
 
-                <Pagination defaultCurrent={1} total={50} style={{ marginBottom: '20px' }} />
 
             </Space>
         </div>

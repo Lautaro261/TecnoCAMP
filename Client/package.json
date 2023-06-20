@@ -20,8 +20,7 @@
     "react-redux": "^8.0.7",
     "react-router-dom": "^6.12.1",
     "react-spring": "^9.7.1",
-    "react-transition-group": "^4.4.5",
-    "redux-persist": "^6.0.0"
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
