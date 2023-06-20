@@ -1,15 +1,21 @@
+
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { UserOutlined } from '@ant-design/icons';
 import axios from "axios";
+import { notification } from "antd";
+
+
+
 
 const SignUp = () => {
+
   const signupBack = async (values) => {
     const response = await axios.post("http://localhost:3001/signup", values);
     console.log(response.data);
   };
 
-  const onFinish = (values) => {
+  let onFinish = (values) => {
     values.sub = values.email;
     console.log("Success:", "Enviandooo...", values); //{name, email, password } {sub, name, email, password}
     signupBack(values);
@@ -18,6 +24,20 @@ const SignUp = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  const notificationSuccess = (values) => {
+    
+      notification.open({
+          message: 'Usuario Registrado',
+           description: "Usuario creado correctamente",
+           placement:"top"
+
+          })
+    
+
+        
+  
+  }
 
   return (
     <div>
@@ -31,18 +51,9 @@ const SignUp = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        {/* <Form.Item
-          name="username"
-          label="Name"
-          rules={[{ required: true, message: "Please input your Username!" }]}
-        >
-          <Input
-            prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
-          />
-        </Form.Item> */}
+      
 
-        <Form.Item
+       <Form.Item
           name="email"
           label="Correo Electrónico"
           rules={[
@@ -106,7 +117,7 @@ const SignUp = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" onClick={notificationSuccess} >
             Registrarse
           </Button>
         </Form.Item>
@@ -116,3 +127,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+
