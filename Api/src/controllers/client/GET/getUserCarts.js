@@ -13,6 +13,7 @@ const getUserCarts = async (userId) => {
   const carts = await Cart.findAll({
     where: {
       userSub: user.sub,
+      cart_status: "Por pagar",
     },
     attributes: [
       "idCart",
@@ -22,6 +23,10 @@ const getUserCarts = async (userId) => {
       "amount_unit_product",
       "id",
       "cart_status",
+    ],
+    order: [
+      // Ordenar los productos del carrito por fecha de creación descendente
+      ["createdAt", "ASC"],
     ],
     // raw: true,
     include: [
