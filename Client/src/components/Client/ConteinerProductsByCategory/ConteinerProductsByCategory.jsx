@@ -43,10 +43,10 @@ const ConteinerProductsByCategory = () => {
 
     return (
         <div>
-            
+
             <Space
                 direction="vertical"
-                size="middle"    
+                size="middle"
             >
                 <ProductsPagination />
 
@@ -54,11 +54,11 @@ const ConteinerProductsByCategory = () => {
                     {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
                             <Col span={6} key={product.id}>
-                                <ProductCard 
-                                e_product_type={product.e_product_type} 
-                                name={product.name} 
-                                price={product.price} 
-                                id={product.id} 
+                                <ProductCard
+                                e_product_type={product.e_product_type}
+                                name={product.name}
+                                price={product.price}
+                                id={product.id}
                                 photo={product.photo}
                                 />
                             </Col>
@@ -69,7 +69,7 @@ const ConteinerProductsByCategory = () => {
                             <Empty description={false} />
                         </Col>}
                 </Row>
-                
+
             </Space>
         </div>
     )

@@ -1,6 +1,6 @@
 import { Select } from 'antd';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
     sortAlphabetically,
     sortByPrice,
@@ -8,12 +8,11 @@ import {
  } from '../../../Redux/Features/products/clientProductsSlice';
 
 const ProductsSorting = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
-
   const dispatch = useDispatch();
+  const selectedValueToFilter = useSelector(state => state.clientProducts.selectedValueToFilter);
 
   const handleSelectChange = (value) => {
-    setSelectedValue(value);
+    dispatch(setSelectedValueToFilter(value));
   };
 
   useEffect(() => {
@@ -21,21 +20,21 @@ const ProductsSorting = () => {
   }, []);
 
   useEffect(() => {
-      if (selectedValue === 'ascendent' || selectedValue === 'descendent') {
-          dispatch(sortAlphabetically(selectedValue));
-          dispatch(setSelectedValueToFilter(selectedValue));
+      if (selectedValueToFilter === 'ascendent' || selectedValueToFilter === 'descendent') {
+          dispatch(sortAlphabetically(selectedValueToFilter));
+          dispatch(setSelectedValueToFilter(selectedValueToFilter));
       }
-      if (selectedValue === 'moreExpensive' || selectedValue === 'cheapest') {
-          dispatch(sortByPrice(selectedValue));
-          dispatch(setSelectedValueToFilter(selectedValue));
+      if (selectedValueToFilter === 'moreExpensive' || selectedValueToFilter === 'cheapest') {
+          dispatch(sortByPrice(selectedValueToFilter));
+          dispatch(setSelectedValueToFilter(selectedValueToFilter));
       }
-  }, [selectedValue]);
+  }, [selectedValueToFilter]);
 
   return (
     <Select
         placeholder="Seleccionar ordenamiento"
         onChange={ handleSelectChange }
-        value={ selectedValue }
+        value={ selectedValueToFilter }
         style={{
         width: 200,
         }}
