@@ -13,11 +13,12 @@ import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
 import ViewClients from "./Views/admin/ViewClients/ViewClients";
-import ProductsFilters from "./components/Client/ProductsFilters/ProductsFilters";
 import ProductDetailsView from "./Views/client/ProductDetails/ProductDetailsView";
 import ErrorView from "./Views/Error/ErrorView";
 import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
+import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
+import AboutUs from "./Views/client/AboutUs/AboutUs";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -49,16 +50,15 @@ function App() {
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
-        <Route path="/categories/Celulares" element={<ProductsFilters />} />
-
-
+        <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
+       {/*  <Route path="/developers" element={< div/>} /> */}
+        <Route path="/about" element={<AboutUs/>} />
 
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
-          <Route path="/cart" element={<CartView />} />
+          {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
-
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'admin'} redirect={rolA === "client" ? redirect.client : redirect.superAdmin} />}>
@@ -71,7 +71,6 @@ function App() {
          <Route path="*" element={<ErrorView/>} /> 
 
       </Routes>
-
 
     </div>
   )

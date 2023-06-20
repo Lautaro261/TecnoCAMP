@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Row, Col } from 'antd';
 import SearchBar from '../SearchBar/SearchBar'
 import Icons from "../Icons/Icons";
@@ -8,10 +9,10 @@ import styles from "./MenuDash.module.css"
 
 const MenuDash = () => {
     return(
-    <Row>
-        <Col span={5}><img className={styles.logo} src={Logo} /> </Col>
-        <Col span={11}><SearchBar /></Col>
-        <Col span={5}><Icons /></Col> 
+    <Row justify="space-around" align="middle">
+        <Col span={5}><Link to='/home'><img className={styles.logo} src={Logo} /></Link></Col>
+        <Col span={13}><SearchBar /></Col>
+        <Col span={6}><Icons /></Col> 
     </Row>
 
     )

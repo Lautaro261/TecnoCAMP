@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "2269c185-50fc-4da9-9f67-ba895c234b36",
+		"_postman_id": "b8a33cb7-88ec-4a23-b6b2-8b705c45546d",
 		"name": "TecnoCAMP Routes",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25188452"
+		"_exporter_id": "26229662"
 	},
 	"item": [
 		{
@@ -101,18 +101,18 @@
 					"response": []
 				},
 				{
-					"name": "Traer Admins por sub",
+					"name": "Traer Admin Por Sub",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NjY5Mjg5NiwiZXhwIjoxNjg2Nzc5Mjk2fQ.lfCVo4LQgb1q4jjhp8h0-RrGZt3lX5qmYpOnrGFPRkY",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NzAyOTQ3NiwiZXhwIjoxNjg4OTMwMjc2fQ.HOQlAiGYiTPz5Zn5mvy2uprOcHK732aSgwuz1HrB0BQ",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/superadmin/idAdmin/andres@gmail.com",
+							"raw": "http://localhost:3001/superadmin/idAdmin/andy@gmail.com",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -121,7 +121,7 @@
 							"path": [
 								"superadmin",
 								"idAdmin",
-								"andres@gmail.com"
+								"andy@gmail.com"
 							]
 						}
 					},
@@ -134,7 +134,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NjY5Mjg5NiwiZXhwIjoxNjg2Nzc5Mjk2fQ.lfCVo4LQgb1q4jjhp8h0-RrGZt3lX5qmYpOnrGFPRkY",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwiZW1haWwiOiJhcm1hbmRvQWRtaW5AZ21haWwuY29tIiwicm9sIjoic3VwZXJBZG1pbiIsImlhdCI6MTY4NzAyOTQ3NiwiZXhwIjoxNjg4OTMwMjc2fQ.HOQlAiGYiTPz5Zn5mvy2uprOcHK732aSgwuz1HrB0BQ",
 								"type": "text"
 							}
 						],
@@ -165,7 +165,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -191,7 +191,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -218,12 +218,12 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/admin/allproducts",
+							"raw": "http://localhost:3001/admin/allproducts?name=realme",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -232,6 +232,12 @@
 							"path": [
 								"admin",
 								"allproducts"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "realme"
+								}
 							]
 						}
 					},
@@ -247,13 +253,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}",
+							"raw": "{\n\t\"id\":\"3d86ffe8-c945-4f6e-9965-8b2fbf9ba35b\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -282,7 +288,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4Njk3Njk1MCwiZXhwIjoxNjg4ODc3NzUwfQ.fYVKWnrc2KJVlUAv9rk6mQGje3PQaOFhm8uA3nHa_1U",
 								"type": "text"
 							}
 						],
@@ -311,13 +317,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"f671c2da-d18b-4934-a98e-c1e7cc840b88\"\n}",
+							"raw": "{\n\t\"id\":\"50fff7ab-96fe-4794-835d-54b642e3dab4\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -346,7 +352,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -375,13 +381,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"10bb4f6a-3d07-4768-ab21-e760e4140237\"\n}",
+							"raw": "{\n\t\"id\":\"d4296511-229c-48f1-ab88-9247e247ace6\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -438,7 +444,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -473,7 +479,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -508,13 +514,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjY5ODg2OCwiZXhwIjoxNjg2Nzg1MjY4fQ.G7nVqXnCyPIcquTuQyyi4Br9lP1VXMYBexRxqQ0qJX0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Realme Pro\",\n  \"price\": 800000,\n  \"price_promotion\": 700000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"categoryId\": \"bd2cf3fb-153b-4f44-9de1-01d733280d50\",\n  \"brandId\": \"5037419c-9db6-4f81-9ad3-91bd4be97bd9\",\n  \"colors\": [\"Negro\", \"Blanco\"],\n  \"quantities\": [22, 13]\n}",
+							"raw": "{\n  \"name\": \"Realme Pro\",\n  \"price\": 800000,\n  \"price_promotion\": 700000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"categoryId\": \"877869a0-1807-48e1-9cce-823faac22191\",\n  \"brandId\": \"10ddb6e1-cce9-48ad-b1fb-9043448dd15a\",\n  \"colors\": [\"Negro\", \"Blanco\"],\n  \"quantities\": [22, 13]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -543,13 +549,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"id\": \"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\",\n    \"color\": \"Dorado\",\n    \"quantity\": 7\n}",
+							"raw": "{\n    \"id\": \"56c1a24a-4e81-4d58-915b-1a776c967f89\",\n    \"color\": \"Dorado\",\n    \"quantity\": 7\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -578,13 +584,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0NjM2MiwiZXhwIjoxNjg2NTMyNzYyfQ.e6ADew7p5JIbvHM2B8q91mvLxckmsIzWa5CAoq7HEfM",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Realme Pro Plus\",\n  \"price\": 850000,\n  \"price_promotion\": 750000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia. Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"is_available\": true,\n  \"product_favorite\": false,\n  \"categoryId\": \"f671c2da-d18b-4934-a98e-c1e7cc840b88\",\n  \"brandId\": \"10bb4f6a-3d07-4768-ab21-e760e4140237\",\n  \"inventoryItems\": [\n    {\n      \"id\": \"4cb152d8-2f15-4d2e-bf63-d873e0625c18\",\n      \"color\": \"Azul\",\n      \"quantity\": 77,\n      \"is_available\": true\n    },\n    {\n      \"id\": \"9e72da48-923f-4014-bcb8-c2bcce3109c7\",\n      \"color\": \"Rosado\",\n      \"quantity\": 123,\n      \"is_available\": true\n    }\n  ]\n}",
+							"raw": "{\n  \"name\": \"Realme Pro Modificado\",\n  \"price\": 850000,\n  \"price_promotion\": 750000,\n  \"photo\": [\"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\", \"https://image.jimcdn.com/app/cms/image/transf/none/path/s1dc00df17487637e/image/i359b0313de8b9858/version/1610125718/image.jpg\"],\n  \"product_description\": \"Realme 9i, Un nuevo nivel de potencia. Pantalla IPS LCD de 6.6 | Tasa de refresco de 90Hz | Triple cámara principal de 50MP | Carga Dart de 33W\",\n  \"e_product_type\": \"Celular Smartphone\",\n  \"is_available\": true,\n  \"product_favorite\": false,\n  \"categoryId\": \"ca4fb9a2-597f-4d36-bf27-892625e658c5\",\n  \"brandId\": \"079ef385-722d-4192-a9fc-deeb2872098f\",\n  \"inventoryItems\": [\n    {\n      \"id\": \"8683c23b-ea21-47a8-a181-3e6628fa44ac\",\n      \"color\": \"Azul\",\n      \"quantity\": 31,\n      \"is_available\": true\n    },\n    {\n      \"id\": \"d2edc5ff-20de-4abb-94fa-e88dd0122681\",\n      \"color\": \"Rosado\",\n      \"quantity\": 77,\n      \"is_available\": true\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -592,7 +598,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/admin/update/d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa",
+							"raw": "http://localhost:3001/admin/update/56c1a24a-4e81-4d58-915b-1a776c967f89",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -601,7 +607,7 @@
 							"path": [
 								"admin",
 								"update",
-								"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa"
+								"56c1a24a-4e81-4d58-915b-1a776c967f89"
 							]
 						}
 					},
@@ -614,13 +620,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjQ0ODI5OSwiZXhwIjoxNjg2NTM0Njk5fQ.aZxj3W1qkPnWwR27EI9RYmia5XEBgOpUeCcSrsKbOa8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"productId\": \"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}\n",
+							"raw": "{\n  \"productId\": \"94d3aa8e-e513-43c1-9c40-9b50fa8397fd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -676,7 +682,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -711,7 +717,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -746,7 +752,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -781,7 +787,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjIzNDI2NCwiZXhwIjoxNjg2ODM5MDY0fQ.l3_cfMdbJdx9qT-CPw3mNfKH8edNm2cS8hsn8i5MKH0",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -816,7 +822,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NjE3Mjk2NSwiZXhwIjoxNjg2MTc0NzY1fQ.LjSwGbCFi9nDuTBQkCGeFxBtNqShzCn0JaHa90jTJ9U",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhbmR5QGdtYWlsLmNvbSIsImVtYWlsIjoiYW5keUBnbWFpbC5jb20iLCJyb2wiOiJhZG1pbiIsImlhdCI6MTY4NzAyMTA1NywiZXhwIjoxNjg4OTIxODU3fQ.si_6A9bBPFk3PzBV4RL1C3cW2OPVnQil7GNFiZGDhaY",
 								"type": "text"
 							}
 						],
@@ -857,7 +863,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjY5OTAxOSwiZXhwIjoxNjg2Nzg1NDE5fQ.WRAt8KFw7xYilxUfAePVKt9BFys5u7-yy8kJvplTjl8",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							},
 							{
@@ -867,7 +873,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3001/client/allproducts",
+							"raw": "http://localhost:3001/client/allproducts?name=realme",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -876,6 +882,12 @@
 							"path": [
 								"client",
 								"allproducts"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "realme"
+								}
 							]
 						}
 					},
@@ -891,13 +903,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"d3f9535a-2d85-4ae0-ab46-796ea0ffa9fa\"\n}",
+							"raw": "{\n\t\"id\":\"94d3aa8e-e513-43c1-9c40-9b50fa8397fd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -920,13 +932,67 @@
 					"response": []
 				},
 				{
+					"name": "Traer Carrito Por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/cart/f4947f09-9aea-4912-af9d-c9b63db187ae",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"cart",
+								"f4947f09-9aea-4912-af9d-c9b63db187ae"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Traer Carrito De Usuario Por Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/cartuser/jorge@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"cartuser",
+								"jorge@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Traer Todas Las Categorias",
 					"request": {
 						"method": "GET",
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							}
 						],
@@ -955,13 +1021,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"f671c2da-d18b-4934-a98e-c1e7cc840b88\"\n}",
+							"raw": "{\n\t\"id\":\"50fff7ab-96fe-4794-835d-54b642e3dab4\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -990,7 +1056,7 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							}
 						],
@@ -1019,13 +1085,13 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4NjQ0OTE5MCwiZXhwIjoxNjg2NTM1NTkwfQ._x0BQ3n5yfW48oaOFA2Gvd6B4px1TbVHM_U8vHQ9ouA",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
 								"type": "text"
 							}
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"id\":\"10bb4f6a-3d07-4768-ab21-e760e4140237\"\n}",
+							"raw": "{\n\t\"id\":\"d4296511-229c-48f1-ab88-9247e247ace6\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1112,6 +1178,138 @@
 					"response": []
 				},
 				{
+					"name": "Filtro De Productos Por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njc1Mzg4OCwiZXhwIjoxNjg2ODQwMjg4fQ.1PfnPT6Ql4RCiEKfeagLmu1JP2j7204H-1o1Hb0_kwE",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3001/client/filterCategory/877869a0-1807-48e1-9cce-823faac22191",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"filterCategory",
+								"877869a0-1807-48e1-9cce-823faac22191"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro De Productos Por Marca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njc1Mzg4OCwiZXhwIjoxNjg2ODQwMjg4fQ.1PfnPT6Ql4RCiEKfeagLmu1JP2j7204H-1o1Hb0_kwE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"id\":\"10ddb6e1-cce9-48ad-b1fb-9043448dd15a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/filterBrand",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"filterBrand"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro De Productos Por Precio",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njc1Mzg4OCwiZXhwIjoxNjg2ODQwMjg4fQ.1PfnPT6Ql4RCiEKfeagLmu1JP2j7204H-1o1Hb0_kwE",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"minPrice\": 500000,\r\n    \"maxPrice\": 700000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/filterPrice",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"filterPrice"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtros Combinados",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCategory\":\"877869a0-1807-48e1-9cce-823faac22191\",\r\n    \"idBrand\":[\"10ddb6e1-cce9-48ad-b1fb-9043448dd15a\",\"0dca2051-066a-4975-be24-4a28e3c29eb4\"],\r\n    \"minPrice\": 600000,\r\n    \"maxPrice\": 700000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/filtersComb",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"filtersComb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Crear Cliente",
 					"request": {
 						"method": "POST",
@@ -1162,6 +1360,111 @@
 							"port": "3001",
 							"path": [
 								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Carrito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userSub\": \"jorge@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/createcart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"createcart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Productos Al Carrito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"userSub\": \"jorge@gmail.com\",\n\t\"productId\": \"456f7e43-68b2-46d2-854b-c4dbcf4213ec\",\n\t\"inventoryId\": \"9fff5560-5b01-474c-bf27-90ceee8a0bfc\",\n\t\"quantity\": \"13\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/addproductcart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"addproductcart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Productos Del Carrito",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJqb3JnZUBnbWFpbC5jb20iLCJlbWFpbCI6ImpvcmdlQGdtYWlsLmNvbSIsInJvbCI6ImNsaWVudCIsImlhdCI6MTY4Njg2NDk5NiwiZXhwIjoxNjg4NzY1Nzk2fQ.Lu0ZA34n6u86dC-d0_fgD3Scg1RHEkyaPwGVtqDxPMw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idCart\": \"f4947f09-9aea-4912-af9d-c9b63db187ae\",\n\t\"productId\": \"a916726a-771f-4971-8865-88de0c6f66f7\",\n\t\"inventoryId\": \"c4afbd96-dd23-4018-9767-f1d3cc0a5349\",\n\t\"quantity\": \"5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/client/updatecart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"client",
+								"updatecart"
 							]
 						}
 					},

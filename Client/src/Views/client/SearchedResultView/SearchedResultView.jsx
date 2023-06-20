@@ -1,9 +1,7 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
-import Banner from '../../../components/Client/Banner/Banner';
 import Brands from '../../../components/Client/Brands/Brands';
-import ContainerAllProducts from '../../../components/Client/ContainerAllProducts/ContainerAllProducts';
-import FooterUser from '../../../components/Client/Footer/FooterUser';
+import ConteinerProductsSearched from '../../../components/Client/ConteinerProductsSearched/ConteinerProductSearched';
 
 const { Header, Footer, Content } = Layout;
 const trendingBrands=[];
@@ -28,29 +26,25 @@ const contentStyle = {
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  margin:"0px",
-  padding:"0px"
+  backgroundColor: '#7dbcea',
 };
 const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
-let  current = window.localStorage.getItem('current');
 
-const AllCategoriesView = () => (
+const SearchedResultsView = () => (
 
   <Layout >
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
-        
-        <Banner categoria={current} /> 
+    
         <Brands brands={brands}/>
    
-        <ContainerAllProducts  />
-
+        <ConteinerProductsSearched /> 
 
 
     </Content>
-    <Footer style={footerStyle}><FooterUser/></Footer>
+    <Footer style={footerStyle}>Footer</Footer>
   </Layout>
 
 
 );
-export default AllCategoriesView;
+export default SearchedResultsView;

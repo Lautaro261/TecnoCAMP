@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Pagination, Row, Col, Empty, Space } from 'antd';
-import { getAllProducts } from '../../../Redux/Features/products/clientProductsSlice';
+import { Row, Col, Empty, Space } from 'antd';
+import { 
+    getAllProducts, 
+    setFilteredProducts 
+} from '../../../Redux/Features/products/clientProductsSlice';
 import ProductCard from '../ProductCard/ProductCard';
+import ProductsPagination from '../ProductsPagination/ProductsPagination';
 
 const ContainerAllProducts = () => {
 
@@ -11,19 +15,29 @@ const ContainerAllProducts = () => {
     const categoryName = window.localStorage.getItem('category_name');
     //console.log('estoy en conteinerProduct', allProducts)
 
+    const currentFilteredProducts = useSelector(state => state.clientProducts.currentFilteredProducts);
+
     useEffect(() => {
         dispatch(getAllProducts())
     }, [dispatch, categoryName])
+
+    useEffect(() => {
+        if (allProducts.length > 0) {
+            dispatch(setFilteredProducts(allProducts));
+        }
+    }, [allProducts, dispatch]);
+
     return (
         <div>
             <Space
                 direction="vertical"
                 size="middle"    
             >
-                <Pagination defaultCurrent={1} total={50} />
+               {/*  <Pagination defaultCurrent={1} total={50} /> */}
+               <ProductsPagination/>
 
                 <Row gutter={[16, 16]}>
-                    {allProducts.length ? allProducts.map(product => {
+                    {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
                             <Col span={6} key={product.id}>
                                 <ProductCard 
@@ -42,7 +56,7 @@ const ContainerAllProducts = () => {
                         </Col>}
                 </Row>
 
-                <Pagination defaultCurrent={1} total={50}  style={{ marginBottom: '20px' }}/>
+                {/* <Pagination defaultCurrent={1} total={50}  style={{ marginBottom: '20px' }}/> */}
                 
             </Space>
         </div>

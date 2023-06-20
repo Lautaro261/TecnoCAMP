@@ -2,6 +2,7 @@ import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import style from "./ClientHome.module.css"
 import Slider from '../../../components/Client/Slider/Slider';
+import FooterUser from '../../../components/Client/Footer/FooterUser';
 
 
 //import Categories from '../../../components/Client/Categories/Categories';
@@ -14,7 +15,7 @@ const headerStyle = {
   // color: '#fff',
   height: 220,
   // display:"flex",
-  // width: "100vw",
+   width: "100vw",
   // lineHeight: '60px',
   // backgroundColor: '#7dbcea',
 };
@@ -23,13 +24,17 @@ const contentStyle = {
   minHeight: 200,
   lineHeight: '8',
   color: '#fff',
-  backgroundColor: '#108ee9',
+  backgroundColor: '#ffff',
+  width: "100vw",
+
+  marginTop:"1.4%"
 };
 
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#7dbcea',
+  margin:"0px",
+  padding:"0px"
 };
 const ClientHome = () => (
 
@@ -38,9 +43,8 @@ const ClientHome = () => (
     <Content style={contentStyle}>
       <Slider/>
       <Holder/>
-
     </Content>
-    <Footer style={footerStyle}>Footer</Footer>
+    <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
 
 

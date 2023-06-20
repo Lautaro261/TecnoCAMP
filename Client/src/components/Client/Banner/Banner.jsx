@@ -78,14 +78,13 @@ import BannerAllProducts from "./BannerAllProducts/BannerAllProducts";
 
 const Banner = () => {
     const [categoryName, setCategoryName] = useState('');
-    const [idProduct, setIdProduct] = useState('');
     let storedCategoryName = window.localStorage.getItem('category_name');
-    let storedIdProduct = window.localStorage.getItem('category_id');
+
+    // console.log('categoria en banner', storedCategoryName)
 
     useEffect(() => {
         setCategoryName(storedCategoryName);
-        setIdProduct(storedIdProduct);
-    }, [categoryName, storedCategoryName, idProduct, storedIdProduct]);
+    }, [  storedCategoryName ]);
 
     if (categoryName === 'Smartphone') {
         return <BannerSmartPhones />;

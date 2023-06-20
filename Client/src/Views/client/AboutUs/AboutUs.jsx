@@ -1,7 +1,8 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
-import ProductDetails from '../../../components/Client/ProductDetails/ProductDetails';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
+import AboutUsData from '../../../components/Client/AboutUsData/AboutusData';
+
 
 const { Header, Footer, Content } = Layout;
 
@@ -13,6 +14,7 @@ const headerStyle = {
   // display:"flex",
   // width: "100vw",
   lineHeight: '60px',
+  width:"100vw"
   // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
@@ -28,17 +30,17 @@ const footerStyle = {
   padding:"0px"
 };
 
-const ProductDetailsView = () => (
+const AboutUs = () => (
     
 
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-      <ProductDetails style={{width:"100vw", alignItems:"center"}}/>
+     <AboutUsData/>
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
 
 
 );
-export default ProductDetailsView;
+export default AboutUs;
