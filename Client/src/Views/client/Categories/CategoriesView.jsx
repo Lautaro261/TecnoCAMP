@@ -91,10 +91,9 @@ const CategoriesView = () => {
           minPrice,
           maxPrice
       };
-      console.log(data);
       dispatch(getFilteredProducts(data));
       dispatch(setCurrentPage(1));
-      dispatch(setSelectedValueToFilter(''));
+      dispatch(setSelectedValueToFilter(null));
   };
 
   return(

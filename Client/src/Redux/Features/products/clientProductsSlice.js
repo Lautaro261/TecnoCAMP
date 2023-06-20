@@ -17,7 +17,7 @@ const initialState = {
   checkedBrands: [],
   minPrice: 1,
   maxPrice: 8000000,
-  selectedValueToFilter: "",
+  selectedValueToFilter: null,
   photos: [],
   status: "idle",
   error: null,

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { Pagination, Row, Col, Empty, Space } from 'antd';
+import { Row, Col, Empty, Space } from 'antd';
 import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Features/products/clientProductsSlice';
 import ProductCard from '../ProductCard/ProductCard';
 import {
@@ -39,7 +39,7 @@ const ConteinerProductsByCategory = () => {
             const filteredProductsByCategoryId = allProducts.filter(product => product.categoryId === idCategory);
             dispatch(setFilteredProducts(filteredProductsByCategoryId));
         }
-    }, [/* allProducts */, idCategory]);
+    }, [allProducts, idCategory]);
 
     return (
         <div>
