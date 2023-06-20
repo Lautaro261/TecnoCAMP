@@ -5,11 +5,13 @@ const initialState = {
   allProducts: [],
   filteredProducts: [],
   currentFilteredProducts: [],
+  currentAllProducts: [],
   currentPage: 1,
   productsByCategory: [],
   productDetails: {},
-  searchedResult:[],
-  category:"",
+  searchedResult: [],
+  errorSearch: null,
+  category: "",
   idCategory: "",
   idBrand: "",
   minPrice: 1,
@@ -63,38 +65,38 @@ export const getProductsByCategory = createAsyncThunk(
 );
 
 export const getProductDetails = createAsyncThunk(
-    "clientProducts/getProductDetails",
-    async (id) => {
-      try {
-        const response1 = await axios.get(`/client/product/${id}`);
-        //const catid = response1.data.categoryId;
-        const response2 = await axios.get(`/client/category/${catid}`);
-  
-        console.log(id);
-        //console.log('getProductDetails OK', response1.data)
-        //console.log("categoriaaaa", response2.data)
-        return [response1.data, response2.data.name];
-      } catch (error) {
-        console.log("ERRORR GETPRODUCTDETAILS REDUX", error);
-        throw error;
-      }
-    }
-  );
+  "clientProducts/getProductDetails",
+  async (id) => {
+    try {
+      const response1 = await axios.get(`/client/product/${id}`);
+      const catid = response1.data.categoryId;
+      const response2 = await axios.get(`/client/category/${catid}`);
 
-  export const getProductsSearched = createAsyncThunk(
-    "clientProducts/getProductsSearched",
-    async (name) => {
-      try {
-        const response = await axios.get(`/client/allproducts?name=${name}`);
-        //console.log("RESPUESTA DEL SEARCH", response.data);
-  
-        return response.data;
-      } catch (error) {
-        console.log("ERRORR GETALLPRODUCTS REDUX", error);
-        throw error;
-      }
+      console.log(id);
+      //console.log('getProductDetails OK', response1.data)
+      //console.log("categoriaaaa", response2.data)
+      return [response1.data, response2.data.name];
+    } catch (error) {
+      console.log("ERRORR GETPRODUCTDETAILS REDUX", error);
+      throw error;
     }
-  );
+  }
+);
+
+export const getProductsSearched = createAsyncThunk(
+  "clientProducts/getProductsSearched",
+  async (name) => {
+    try {
+      const response = await axios.get(`/client/allproducts?name=${name}`);
+      //console.log("RESPUESTA DEL SEARCH", response.data);
+
+      return response.data;
+    } catch (error) {
+      console.log("ERRORR GETALLPRODUCTS REDUX", error);
+      throw error;
+    }
+  }
+);
 
 export const setFilteredProducts = createAction("clientProducts/setFilteredProducts");
 export const setCurrentFilteredProducts = createAction('clientProducts/setCurrentFilteredProducts');
@@ -111,10 +113,14 @@ export const clearDetails = createAction("clientProducts/clearDetails");
 export const clearProductsByCategory = createAction(
   "clientProducts/clearProductsByCategory"
 );
+
 const clientProductsSlice = createSlice({
   name: "clientProducts",
   initialState,
   reducers: {
+    setCurrentAllProducts: (state, action) => {
+      state.currentAllProducts = action.payload;
+    },
     clearProductsByCategory: (state) => {
       state.productsByCategory = {};
       state.category = "";
@@ -214,7 +220,7 @@ const clientProductsSlice = createSlice({
           }
           state.filteredProducts = sortedFilteredProducts;
         } else {
-            state.filteredProducts = action.payload;
+          state.filteredProducts = action.payload;
         }
       })
       .addCase(getFilteredProducts.rejected, (state, action) => {
@@ -258,11 +264,11 @@ const clientProductsSlice = createSlice({
       .addCase(getProductsSearched.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.searchedResult = action.payload;
-        state.error = null;
+        state.errorSearch = null;
       })
       .addCase(getProductsSearched.rejected, (state, action) => {
         state.status = "rejected";
-        state.error = action.error.message;
+        state.errorSearch = action.error;
       })
 
   },
