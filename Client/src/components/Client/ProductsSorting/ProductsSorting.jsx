@@ -16,7 +16,7 @@ const ProductsSorting = () => {
   };
 
   useEffect(() => {
-      dispatch(setSelectedValueToFilter(''));
+      dispatch(setSelectedValueToFilter(null));
   }, []);
 
   useEffect(() => {

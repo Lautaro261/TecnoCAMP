@@ -69,7 +69,7 @@ const Nav = () => {
     dispatch(setCheckedBrands([]));
     dispatch(setMinPrice(1));
     dispatch(setMaxPrice(8000000));
-    dispatch(setSelectedValueToFilter(''));
+    dispatch(setSelectedValueToFilter(null));
     dispatch(setCurrentPage(1));
 
     if(e.key === 'home'|| e.key === 'all-categories'){
