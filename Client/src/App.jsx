@@ -44,8 +44,8 @@ function App() {
       <Routes >
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/" element={<Landing/>} />
-        <Route path="login" element={<LoginView setToken={setToken} setRol={setRol} />}/>
-        {/* <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} /> */}
+        {/* <Route path="login" element={<LoginView setToken={setToken} setRol={setRol} />}/> */}
+        <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} /> 
         <Route path="/home" element={<ClientHome />} />
         {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
         <Route path="/all-categories" element={<AllCategoriesView />} />
