@@ -1,10 +1,9 @@
-
-
 import { Route, Routes } from "react-router";
 import axios from "axios";
 import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
 //import LoginView from "./Views/Login/LoginView";
+import LoginView from "./Views/Login2/LoginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
@@ -45,6 +44,7 @@ function App() {
       <Routes >
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/" element={<Landing/>} />
+        <Route path="login" element={<LoginView setToken={setToken} setRol={setRol} />}/>
         {/* <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} /> */}
         <Route path="/home" element={<ClientHome />} />
         {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
