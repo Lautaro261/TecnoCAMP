@@ -12,8 +12,9 @@ import ProductsSorting from '../../../components/Client/ProductsSorting/Products
 import { getAllCategories } from '../../../Redux/Features/categories/clientCategoriesSlice';
 import {
   setIdCategory,
-  getFilteredProducts, 
-  setCurrentPage 
+  getFilteredProducts,
+  setCurrentPage,
+  setSelectedValueToFilter
 } from '../../../Redux/Features/products/clientProductsSlice';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
 
@@ -46,15 +47,15 @@ const footerStyle = {
 
 const CategoriesView = () => {
   let nameCategory = window.localStorage.getItem('category_name');
-  
+
   // useEffect(()=>{
 
   // },[nameCategory])
-  
+
   const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
   let  current = window.localStorage.getItem('current');
 
-/* 
+/*
   useEffect(()=>{
     console.log("HOLA! CATEGORIA ", idCategory);
   },[idCategory]) */
@@ -90,8 +91,10 @@ const CategoriesView = () => {
           minPrice,
           maxPrice
       };
+      console.log(data);
       dispatch(getFilteredProducts(data));
       dispatch(setCurrentPage(1));
+      dispatch(setSelectedValueToFilter(''));
   };
 
   return(
@@ -102,7 +105,7 @@ const CategoriesView = () => {
         
         <Banner /> 
         <Brands brands={brands}/>
-        
+
         <Row justify="end">
           <ProductsSorting />
         </Row>
@@ -110,7 +113,7 @@ const CategoriesView = () => {
           <Col span={6}>
             <ProductsSliderFilter />
             <ProductsByBrandFilter />
-            <Button 
+            <Button
               type="primary"
               onClick={ filterCards }
             >
