@@ -1,11 +1,9 @@
 import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutlined, ShopOutlined} from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 //import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
-import { 
-  clearProductsByCategory, 
-} from '../../../../Redux/Features/products/clientProductsSlice';
+import { clearProductsByCategory } from '../../../../Redux/Features/products/clientProductsSlice';
 import { getAllCategories } from '../../../../Redux/Features/categories/clientCategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -52,13 +50,13 @@ const Nav = () => {
       children:[ {
         type: 'group',
         label: '',
-        children: childrenSource, 
+        children: childrenSource,
       }]
     }
-  ];  
+  ];
 
   const onClick = (e)=>{  
-    dispatch(clearProductsByCategory());
+    dispatch(clearProductsByCategory())
 
     if(e.key === 'home'|| e.key === 'all-categories'){
       window.localStorage.removeItem('category_id');
@@ -73,7 +71,7 @@ const Nav = () => {
         for (let x = 0; x < chil.length; x++) {
           if (e.key === chil[x].label) {
             let id = chil[x].id;
-            let name = chil[x].label; 
+            let name = chil[x].label;
             //console.log('Encontré el id', chil[x].id);
             //console.log("Es el let id", id)
             window.localStorage.setItem('category_id', id)
@@ -81,7 +79,7 @@ const Nav = () => {
             break; // Salir del bucle interno si se encuentra una coincidencia
           }
         }
-      } 
+      }
       //console.log('ID ',items[2].children[0].children);
       navigate(`/categories/${e.key}`);
     }
@@ -93,7 +91,3 @@ const Nav = () => {
 };
 
 export default Nav;
-
-
- 
-

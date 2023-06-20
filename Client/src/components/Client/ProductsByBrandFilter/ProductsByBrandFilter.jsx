@@ -1,13 +1,15 @@
 import { Row, Col, Space, Button, Checkbox } from "antd";
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllBrands } from '../../../Redux/Features/brands/clientBrandsSlice';
-import { setIdBrand } from '../../../Redux/Features/products/clientProductsSlice';
+import {
+    setIdBrand,
+    setCheckedBrands
+} from '../../../Redux/Features/products/clientProductsSlice';
 
 const ProductsByBrandFilter = () => {
-    const [checkedValues, setCheckedValues] = useState([]);
-
     const dispatch = useDispatch();
+    const checkedBrands = useSelector(state => state.clientProducts.checkedBrands);
     const allBrands = useSelector(state => state.clientBrands.allBrands);
 
     const plainOptions = allBrands.map(brand => brand.name);
@@ -15,10 +17,11 @@ const ProductsByBrandFilter = () => {
     useEffect(() => {
         dispatch(getAllBrands());
         dispatch(setIdBrand(''));
+        dispatch(setCheckedBrands([]));
     }, []);
 
     const onChange = (checkedValues) => {
-        setCheckedValues(checkedValues);
+        dispatch(setCheckedBrands(checkedValues));
         if (checkedValues.length === 0) {
             dispatch(setIdBrand(''));
         } else {
@@ -31,8 +34,8 @@ const ProductsByBrandFilter = () => {
     };
 
     const resetFilter = () => {
-        setCheckedValues([]);
         dispatch(setIdBrand(''));
+        dispatch(setCheckedBrands([]));
     };
 
     return (
@@ -40,7 +43,7 @@ const ProductsByBrandFilter = () => {
             <Col>
                 <Row justify="center">
                     <Col span={ 6 }>
-                        <Checkbox.Group options={ plainOptions } value={ checkedValues } onChange={ onChange }  />
+                        <Checkbox.Group options={ plainOptions } value={ checkedBrands } onChange={ onChange }  />
                     </Col>
                 </Row>
                 <Row justify="center">
