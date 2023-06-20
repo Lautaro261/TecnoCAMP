@@ -11,7 +11,7 @@ import { notification } from "antd";
 const SignUp = () => {
 
   const signupBack = async (values) => {
-    const response = await axios.post("http://localhost:3001/signup", values);
+    const response = await axios.post("/signup", values);
     console.log(response.data);
   };
 
