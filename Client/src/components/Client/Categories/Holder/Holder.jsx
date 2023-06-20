@@ -19,18 +19,20 @@ const Holder = () => (
   <Row gutter={16}>
     
     <Col span={8}>
-      <Link to='/categories/smartphones'>
+      <Link to='/categories/Smartphone'>
        <img alt="SmartPhones" src={SmartPhones} style={styles}/>
       </Link>
     </Col>
     <Col span={8}>
-      <Link to='/categories/smartwatches'>
+      <Link to='/categories/Smartwatche'>
         <img alt="SmartWatches" src={SmartWatches} style={styles}/>
       </Link>
     </Col>
+    <Link to='/categories/Earphone'>
     <Col span={8}>
-    <img alt="SmartPhones" src={Earphones} style={styles}/>
+    <img alt="EarPhones" src={Earphones} style={styles}/>
     </Col>
+    </Link>
   </Row>
   </div>
 );

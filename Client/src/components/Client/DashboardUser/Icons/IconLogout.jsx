@@ -39,8 +39,8 @@ const IconLogout = () => {
         <Row >
             <Col span={24}>
                 <Popconfirm
-                    title="Title"
-                    description="Open Popconfirm with async logic"
+                    title=""
+                    description="¿Desea cerrar sesión?"
                     open={open}
                     onConfirm={handleOk}
                     okButtonProps={{

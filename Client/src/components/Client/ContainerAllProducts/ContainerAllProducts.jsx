@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty, Space } from 'antd';
 import { getAllProducts } from '../../../Redux/Features/products/clientProductsSlice';
 import ProductCard from '../ProductCard/ProductCard';
+import ProductsPagination from '../ProductsAllPagination/ProductsAllPagination';
 
 const ContainerAllProducts = () => {
 
@@ -20,7 +21,8 @@ const ContainerAllProducts = () => {
                 direction="vertical"
                 size="middle"    
             >
-                <Pagination defaultCurrent={1} total={50} />
+               {/*  <Pagination defaultCurrent={1} total={50} /> */}
+               <ProductsPagination/>
 
                 <Row gutter={[16, 16]}>
                     {allProducts.length ? allProducts.map(product => {
@@ -42,7 +44,7 @@ const ContainerAllProducts = () => {
                         </Col>}
                 </Row>
 
-                <Pagination defaultCurrent={1} total={50}  style={{ marginBottom: '20px' }}/>
+                {/* <Pagination defaultCurrent={1} total={50}  style={{ marginBottom: '20px' }}/> */}
                 
             </Space>
         </div>

@@ -75,7 +75,7 @@ const CategoriesView = () => {
 
   useEffect(() => {
       dispatch(getAllCategories());
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
       if (currentCategoryId) {
@@ -100,7 +100,7 @@ const CategoriesView = () => {
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
         
-        <Banner categoryName={nameCategory}/> 
+        <Banner /> 
         <Brands brands={brands}/>
         
         <Row justify="end">

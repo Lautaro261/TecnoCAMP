@@ -51,13 +51,13 @@ function App() {
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
         <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
-        <Route path="/developers" element={< div/>} />
+       {/*  <Route path="/developers" element={< div/>} /> */}
         <Route path="/about" element={<AboutUs/>} />
 
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
-          <Route path="/cart" element={<CartView />} />
+          {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
 
         {/* RUTAS PROTEGIDAS ADMIN*/}

@@ -24,7 +24,7 @@ export const getAllProducts = createAsyncThunk(
   async () => {
     try {
       const response = await axios.get("/client/allproducts");
-      console.log('TODO OK EN GETALLPRODUCTS', response.data)
+      //console.log('TODO OK EN GETALLPRODUCTS', response.data)
       return response.data;
     } catch (error) {
       console.error('ERRORRRRRRRRRRRRRRRRRRRRRR en getAllProduct', error);
@@ -49,10 +49,10 @@ export const getFilteredProducts = createAsyncThunk(
 export const getProductsByCategory = createAsyncThunk(
   "clientProducts/getProductsByCategory",
   async (idProduct) => {
-    console.log('id filtro por categoria', idProduct )
+    //console.log('id filtro por categoria', idProduct )
     try {
       const response = await axios.get(`/client/filterCategory/${idProduct}`);
-      console.log('getproductByCategory OKKKK', response.data)
+      //console.log('getproductByCategory OKKKK', response.data)
 
       return response.data;
     } catch (error) {
@@ -67,7 +67,7 @@ export const getProductDetails = createAsyncThunk(
     async (id) => {
       try {
         const response1 = await axios.get(`/client/product/${id}`);
-        const catid = response1.data.categoryId;
+        //const catid = response1.data.categoryId;
         const response2 = await axios.get(`/client/category/${catid}`);
   
         console.log(id);
@@ -86,7 +86,7 @@ export const getProductDetails = createAsyncThunk(
     async (name) => {
       try {
         const response = await axios.get(`/client/allproducts?name=${name}`);
-        console.log("RESPUESTA DEL SEARCH", response.data);
+        //console.log("RESPUESTA DEL SEARCH", response.data);
   
         return response.data;
       } catch (error) {
@@ -103,6 +103,7 @@ export const setIdCategory = createAction("clientProducts/setIdCategory");
 export const setIdBrand = createAction("clientProducts/setIdBrand");
 export const setMinPrice = createAction("clientProducts/setMinPrice");
 export const setMaxPrice = createAction("clientProducts/setMaxPrice");
+export const setCurrentAllProducts = createAction("clientProducts/setCurrentAllProducts");
 export const sortAlphabetically = createAction("clientProducts/sortAlphabetically");
 export const sortByPrice = createAction("clientProducts/sortByPrice");
 export const setSelectedValueToFilter = createAction("clientProducts/setSelectedValueToFilter");

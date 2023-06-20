@@ -5,7 +5,7 @@ import { getProductsByCategory, clearProductsByCategory} from '../../../Redux/Fe
 import ProductCard from '../ProductCard/ProductCard';
 import {
     getAllProducts,
-    setFilteredProducts
+    setFilteredProducts, 
 } from '../../../Redux/Features/products/clientProductsSlice';
 import ProductsPagination from '../ProductsPagination/ProductsPagination';
 // import { useParams } from 'react-router-dom';
@@ -16,15 +16,15 @@ const ConteinerProductsByCategory = () => {
     const productsByCategory = useSelector( state => state.clientProducts.productsByCategory)
     const idProduct = window.localStorage.getItem('category_id')
 
-    console.log('idparams en productcategori componente', idProduct)
-    console.log('estoy en conteinerProductByCategory', productsByCategory)
+   // console.log('idparams en productcategori componente', idProduct)
+   // console.log('estoy en conteinerProductByCategory', productsByCategory)
 
     useEffect(() => {
         dispatch(getProductsByCategory(idProduct))
         // return function clean(){
         //     dispatch(clearProductsByCategory())
         // }
-    }, [idProduct, dispatch])
+    }, [idProduct])
 
     const allProducts = useSelector(state => state.clientProducts.allProducts);
     const idCategory = useSelector(state => state.clientProducts.idCategory);
@@ -39,7 +39,7 @@ const ConteinerProductsByCategory = () => {
             const filteredProductsByCategoryId = allProducts.filter(product => product.categoryId === idCategory);
             dispatch(setFilteredProducts(filteredProductsByCategoryId));
         }
-    }, [allProducts, idCategory]);
+    }, [/* allProducts */, idCategory]);
 
     return (
         <div>
