@@ -113,6 +113,7 @@ export const sortAlphabetically = createAction("clientProducts/sortAlphabeticall
 export const sortByPrice = createAction("clientProducts/sortByPrice");
 export const setSelectedValueToFilter = createAction("clientProducts/setSelectedValueToFilter");
 export const setPhotos = createAction("clientProducts/setPhotos");
+export const removePhoto = createAction("clientProducts/removePhoto");
 export const clearDetails = createAction("clientProducts/clearDetails");
 export const clearProductsByCategory = createAction(
   "clientProducts/clearProductsByCategory"
@@ -190,6 +191,10 @@ const clientProductsSlice = createSlice({
     },
     setPhotos: (state, action) => {
       state.photos = [...state.photos, action.payload];
+    },
+    removePhoto: (state, action) => {
+      const filteredPhotos = state.photos.filter(photo => photo !== action.payload);
+      state.photos = filteredPhotos;
     }
   },
   extraReducers: (builder) => {
