@@ -14,6 +14,10 @@ const getCartById = async (cartId) => {
       "amount_unit_product",
       "id",
     ],
+    order: [
+      // Ordenar los productos del carrito por fecha de creación descendente
+      ["createdAt", "ASC"],
+    ],
     // raw: true,
     include: [
       {

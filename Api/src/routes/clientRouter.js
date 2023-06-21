@@ -25,6 +25,7 @@ const handlerGetUserCarts = require("../handlers/client/GET/handlerGetUserCarts.
 const handlerCreateCart = require("../handlers/client/POST/handlerCreateCart.js");
 const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProductToCart.js");
 const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
+const handlerDeleteProductFromCart = require("../handlers/client/PUT/handlerDeleteProductFromCart.js");
 
 // FILTROS
 const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
@@ -58,6 +59,11 @@ clientRouter.get("/cartuser/:sub", verifyToken, handlerGetUserCarts);
 clientRouter.post("/createcart", verifyToken, handlerCreateCart);
 clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
 clientRouter.put("/updatecart", verifyToken, handlerPutProductQuantityCart);
+clientRouter.put(
+  "/deleteproductcart",
+  verifyToken,
+  handlerDeleteProductFromCart
+);
 
 // FILTROS
 clientRouter.get("/filterCategory/:id", handlerFilterCategory);
