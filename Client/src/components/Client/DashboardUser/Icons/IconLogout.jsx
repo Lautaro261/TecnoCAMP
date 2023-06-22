@@ -22,11 +22,11 @@ const IconLogout = () => {
 
     const handleOk = () => {
         setConfirmLoading(true);
-        handleLogout();
         setTimeout(() => {
             setOpen(false);
             setConfirmLoading(false);
         }, 2000);
+        handleLogout(); 
     };
 
     const handleCancel = () => {
