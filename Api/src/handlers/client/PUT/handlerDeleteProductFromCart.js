@@ -17,12 +17,12 @@ const handlerDeleteProductFromCart = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { userSub, productId, inventoryId } = req.body;
+  const { productId, inventoryId } = req.body;
 
   try {
     // Crear el producto
     const cartWithProduct = await deleteProductFromCart(
-      userSub,
+      decoToken.sub,
       productId,
       inventoryId
     );
