@@ -7,7 +7,7 @@ const Login = ({ setToken, setRol }) => {
   const navigate = useNavigate();
 
   const LoginBack = async (values) => {
-    const response = await axios.post('http://localhost:3001/login', values)
+    const response = await axios.post('/login', values)
     console.log(response.data)
     if (response.data.token && response.data.rol) {
       if (response.data.erased) { console.log("BANEADISIMOOOOO") }

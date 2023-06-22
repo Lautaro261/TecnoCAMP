@@ -34,7 +34,7 @@ const footerStyle = {
 const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
 let  current = window.localStorage.getItem('current');
 
-const AllCategoriesView = () => (
+const AllCategoriesView = () => {
 
   <Layout >
     <Header style={headerStyle}> <DashboardUser /></Header>
@@ -52,5 +52,5 @@ const AllCategoriesView = () => (
   </Layout>
 
 
-);
+};
 export default AllCategoriesView;

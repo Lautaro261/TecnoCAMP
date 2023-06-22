@@ -16,17 +16,16 @@ const postCreateUser = async (sub, email, password) => {
     email,
   };
 
-  if (password !== undefined || password !== null) {
-    newObjUser.password = password;
+  if (password !== undefined) {
+    newObjUser.password = password;                 
+
+    console.log('SOY PASSWORD', password);
+    if (newObjUser.email === EMAIL_ADMIN && newObjUser.password === PASS_ADMIN) {
+      newObjUser.rol = "superAdmin";
+    }
+    const hashPassword = await bcrypt.hash(newObjUser.password, hashNum);
+     newObjUser.password = hashPassword;
   }
-
-  if (newObjUser.email === EMAIL_ADMIN && newObjUser.password === PASS_ADMIN) {
-    newObjUser.rol = "superAdmin";
-  }
-
-  const hashPassword = await bcrypt.hash(newObjUser.password, hashNum);
-
-  newObjUser.password = hashPassword;
 
   const newUser = await User.create(newObjUser);
   const findProfile = await Profile.findOne({ where: { userSub: sub } });
