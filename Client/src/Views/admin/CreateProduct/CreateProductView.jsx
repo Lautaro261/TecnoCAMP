@@ -1,4 +1,5 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
+import FormProductos from '../../../components/Admin/FormProductos/FormProductos';
 import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
 
 import { Layout, Space, Divider } from 'antd';
@@ -48,7 +49,7 @@ const CreateProductVew = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
         <Content style={contentStyle}>
-        <ProductForm/>
+        <FormProductos/> 
         </Content>
       </Layout>
     </Layout>
