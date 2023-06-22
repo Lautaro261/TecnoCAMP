@@ -40,13 +40,13 @@ const footerStyle = {
 const ClientHome = () => {
   const dispatch = useDispatch();
 
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
   const userSub = user?.sub;
   const emailAuth = user?.email;
 
   useEffect(()=>{
-    if (user) {
+    if (user&& isAuthenticated) {
       dispatch(
         createUser({
           sub: userSub,
@@ -55,7 +55,7 @@ const ClientHome = () => {
       );
     };  
     
-  },[user]);
+  },[user, isAuthenticated]);
 
   if(user){
     window.localStorage.setItem('sub', userSub);

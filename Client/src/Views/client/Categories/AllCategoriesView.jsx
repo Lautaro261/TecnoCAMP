@@ -36,6 +36,7 @@ let  current = window.localStorage.getItem('current');
 
 const AllCategoriesView = () => {
 
+  return (
   <Layout >
     <Header style={headerStyle}> <DashboardUser /></Header>
     <Content style={contentStyle}>
@@ -51,6 +52,8 @@ const AllCategoriesView = () => {
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
 
-
+  )
 };
+
+
 export default AllCategoriesView;
