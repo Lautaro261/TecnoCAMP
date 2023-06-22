@@ -21,7 +21,7 @@ const UploadButton = () => {
                     <button 
                         key={ index } 
                         onClick={ (e) => handleClick(e, photo) } 
-                        style={{ margin: '5px' }}
+                        style={{ margin: '5px', background:"transparent",  }}
                     >
                         <Col>
                             <Row justify='end'>
