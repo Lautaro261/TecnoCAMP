@@ -20,6 +20,7 @@ const handlerLogin = async (req, res) => {
 
     if (sub === user.sub && email === user.email && validatePassword) {
       const rol = user.rol;
+      const erased = user.erased;
 
       // Configurar opciones para la firma del token
       const options = {
@@ -31,6 +32,7 @@ const handlerLogin = async (req, res) => {
           message: "¡Has ingresado correctamente!",
           token,
           rol,
+          erased,
         });
       });
     } else {
