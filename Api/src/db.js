@@ -93,9 +93,9 @@ Cart.belongsTo(Product, { foreignKey: "productId" });
 Inventory.hasMany(Cart);
 Cart.belongsTo(Inventory, { foreignKey: "inventoryId" });
 
-// Carrito con Order
-Cart.hasOne(Order);
-Order.belongsTo(Cart);
+// // Carrito con Order
+// Cart.hasOne(Order);
+// Order.belongsTo(Cart);
 
 ////////////////////////////////////
 

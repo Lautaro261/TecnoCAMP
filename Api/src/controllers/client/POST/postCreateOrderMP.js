@@ -13,8 +13,11 @@ const { Op } = require("sequelize");
 
 const mercadoPago = require("mercadopago");
 require("dotenv").config();
+
+// VARIABLES DE ENTORNO URLS
 const { URL_SUCCESS, URL_PENDING, URL_FAILURE } = process.env;
 
+// VARIABLE DE ENTORNO TOKEN MP
 mercadoPago.configure({ access_token: process.env.MERCADOPAGO_KEY });
 
 // Controller para crear reservaciones
@@ -39,14 +42,13 @@ const postCreateOrderMP = async (
       userSub: user.sub,
       cart_status: "Por pagar",
     },
-    order: [
-      // Ordenar los productos del carrito por fecha de creación descendente
-      ["createdAt", "DESC"],
-    ],
-    include: {
-      model: Product,
-      attributes: ["id", "name", "price"],
-    },
+    // order: [
+    //   // Ordenar los productos del carrito por fecha de creación descendente
+    //   ["createdAt", "DESC"],
+    // ],
+    // include: {
+    //   model: Product,
+    // },
   });
 
   if (!cart) {
@@ -83,57 +85,129 @@ const postCreateOrderMP = async (
     return { message: "El municipio seleccionado no existe" };
   }
 
-  //// Asignar datos a la preferencia de pago en Mercado Pago ////
-  const preference = {
-    items: [
-      {
-        id: `${user.id}-${cart.id}`,
-        title: `Compra de un total de ${totalUnitsProductsInCart} productos`,
-        description: `Compra de un total de ${cart.quantity_all_products} productos de diferentes cantidades unitarias para un total a pagar de ${cart.cart_total_amount} `,
-        quantity: 1,
-        currency_id: "COP",
-        unit_price: cart.cart_total_amount,
-      },
-    ],
-    payer: {
-      name: String(user.name) ?? null,
-      email: String(user.email) ?? null,
-      //   phone: contact_cellphone,
-      //   address: address,
-      //   country_name: departmentId,
-      //   city_name: municipalityId,
-    },
-    back_urls: {
-      success: URL_SUCCESS,
-      pending: URL_PENDING,
-      failure: URL_FAILURE,
-    },
-    auto_return: "approved",
-    binary_mode: true,
-    // notification_url: "http://localhost:3001/reservation/notification",
-  };
-
-  //// Crear la preferencia de pago en Mercado Pago ////
-
-  const response = await mercadoPago.preferences.create(preference);
-
-  // Crear la reservación
-  const newOrder = await Order.create({
+  // Verificar si ya existe una orden asociada al carrito
+  let order = await Order.findOne({
     userSub,
-    total_quantity_all_products: totalUnitsProductsInCart,
-    total_amount_all_products: cart.cart_total_amount,
-    payment_link: response.body.sandbox_init_point,
-    preference_id: response.body.id,
-    contact_name,
-    contact_cellphone,
-    departmentId,
-    municipalityId,
-    address,
-    neighborhood,
-    cartId: cart.idCart,
+    payment_status: {
+      [Op.or]: ["pending", "failure"],
+    },
   });
 
-  return newOrder;
+  if (order) {
+    // Si ya existe una orden, actualizar los campos
+    order.total_quantity_all_products = totalUnitsProductsInCart;
+    order.total_amount_all_products = cart.cart_total_amount;
+    order.contact_name = contact_name;
+    order.contact_cellphone = contact_cellphone;
+    order.departmentId = departmentId;
+    order.municipalityId = municipalityId;
+    order.address = address;
+    order.neighborhood = neighborhood;
+
+    await order.save();
+
+    // // Obtener orden actualizada
+    // let order = await Order.findOne({
+    //   userSub,
+    //   payment_status: {
+    //     [Op.or]: ["pending", "failure"],
+    //   },
+    // });
+
+    //// Asignar datos a la preferencia de pago en Mercado Pago en base a las actualizaciones de la orden que ya existe ////
+    const preference = {
+      items: [
+        {
+          id: `${user.id}-${cart.id}`,
+          title: `Compra de un total de ${order.total_quantity_all_products} productos`,
+          description: `Compra de un total de ${cart.quantity_all_products} productos de diferentes cantidades unitarias para un total a pagar de ${cart.cart_total_amount} `,
+          quantity: 1,
+          currency_id: "COP",
+          unit_price: order.total_amount_all_products,
+        },
+      ],
+      payer: {
+        name: String(user.name) ?? null,
+        email: String(user.email) ?? null,
+        //   phone: contact_cellphone,
+        //   address: address,
+        //   country_name: departmentId,
+        //   city_name: municipalityId,
+      },
+      back_urls: {
+        success: URL_SUCCESS,
+        pending: URL_PENDING,
+        failure: URL_FAILURE,
+      },
+      auto_return: "approved",
+      binary_mode: true,
+      // notification_url: "http://localhost:3001/reservation/notification",
+    };
+
+    //// Crear la preferencia de pago en Mercado Pago ////
+
+    const responseUpdate = await mercadoPago.preferences.create(preference);
+
+    // Actualizar TODOS los campos
+    order.payment_link = responseUpdate.body.sandbox_init_point;
+    order.preference_id = responseUpdate.body.id;
+
+    await order.save();
+  } else {
+    //// Asignar datos a la preferencia de pago en Mercado Pago ////
+    const preference = {
+      items: [
+        {
+          id: `${user.id}-${cart.id}`,
+          title: `Compra de un total de ${totalUnitsProductsInCart} productos`,
+          description: `Compra de un total de ${cart.quantity_all_products} productos de diferentes cantidades unitarias para un total a pagar de ${cart.cart_total_amount} `,
+          quantity: 1,
+          currency_id: "COP",
+          unit_price: cart.cart_total_amount,
+        },
+      ],
+      payer: {
+        name: String(user.name) ?? null,
+        email: String(user.email) ?? null,
+        //   phone: contact_cellphone,
+        //   address: address,
+        //   country_name: departmentId,
+        //   city_name: municipalityId,
+      },
+      back_urls: {
+        success: URL_SUCCESS,
+        pending: URL_PENDING,
+        failure: URL_FAILURE,
+      },
+      auto_return: "approved",
+      binary_mode: true,
+      // notification_url: "http://localhost:3001/reservation/notification",
+    };
+
+    //// Crear la preferencia de pago en Mercado Pago ////
+
+    const response = await mercadoPago.preferences.create(preference);
+
+    // Crear la reservación
+    const newOrder = await Order.create({
+      userSub,
+      total_quantity_all_products: totalUnitsProductsInCart,
+      total_amount_all_products: cart.cart_total_amount,
+      payment_link: response.body.sandbox_init_point,
+      preference_id: response.body.id,
+      contact_name,
+      contact_cellphone,
+      departmentId,
+      municipalityId,
+      address,
+      neighborhood,
+      // cartId: cart.idCart,
+    });
+
+    return newOrder;
+  }
+
+  return order;
 
   //   return response.body.sandbox_init_point;
 };
