@@ -33,6 +33,9 @@ const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js
 const handlerFilterPrice = require("../handlers/client/GET/handlerFilterPrice.js");
 const handlerFiltersComb = require("../handlers/client/GET/handlerFiltersComb.js");
 
+// Reviews
+const handlerCreateReview = require("../handlers/client/POST/handlerCreateReview.js");
+
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
   handlerGetAllDepartments,
@@ -70,6 +73,9 @@ clientRouter.get("/filterCategory/:id", handlerFilterCategory);
 clientRouter.get("/filterBrand", handlerFilterBrand);
 clientRouter.get("/filterPrice", handlerFilterPrice);
 clientRouter.post("/filtersComb", handlerFiltersComb);
+
+//Reviews
+clientRouter.post("/reviews", verifyToken, handlerCreateReview);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);
