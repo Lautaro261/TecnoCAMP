@@ -58,7 +58,7 @@ clientRouter.get("/brand", handlerGetBrandById);
 
 // CARRITO DE COMPRAS
 clientRouter.get("/cart/:id", verifyToken, handlerGetCartById);
-clientRouter.get("/cartuser/:sub", verifyToken, handlerGetUserCarts);
+clientRouter.get("/cartuser", verifyToken, handlerGetUserCarts);
 clientRouter.post("/createcart", verifyToken, handlerCreateCart);
 clientRouter.post("/addproductcart", verifyToken, handlerAddProductToCart);
 clientRouter.put("/updatecart", verifyToken, handlerPutProductQuantityCart);
