@@ -6,6 +6,8 @@ const getUserCarts = require("../../../controllers/client/GET/getUserCarts");
 
 const handlerGetUserCarts = async (req, res) => {
   //1) Decodificar token con jwt
+  //const { token } = req.params
+
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
   //2) Traer usuario y verificar si tiene rol Admin
@@ -17,11 +19,11 @@ const handlerGetUserCarts = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { sub } = req.params;
+ // const { sub } = req.params;
 
   try {
     // Obtener carrito(s) del usuario por su ID
-    const cartOfUser = await getUserCarts(sub);
+    const cartOfUser = await getUserCarts(decoToken.sub);
 
     res.status(200).json(cartOfUser);
   } catch (error) {

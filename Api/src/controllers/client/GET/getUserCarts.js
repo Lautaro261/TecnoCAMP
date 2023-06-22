@@ -49,8 +49,12 @@ const getUserCarts = async (userId) => {
     // raw: true,
   });
 
+  if (!carts) {
+    return { message: "El carrito no existe" };
+  }
+
   if (carts.length === 0) {
-    return { message: "El usuario no tiene carritos activos" };
+    return { message: "El carrito no tiene productos agregados" };
   }
 
   return carts;
