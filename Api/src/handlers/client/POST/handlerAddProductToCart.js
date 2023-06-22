@@ -17,12 +17,12 @@ const handlerAddProductToCart = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { userSub, productId, inventoryId, quantity } = req.body;
+  const { productId, inventoryId, quantity } = req.body;
 
   try {
     // Crear el producto
     const cartWithProduct = await postAddProductToCart(
-      userSub,
+      decoToken.sub,
       productId,
       inventoryId,
       quantity

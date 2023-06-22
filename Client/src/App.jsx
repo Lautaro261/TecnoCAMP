@@ -8,7 +8,7 @@ import LoginView from "./Views/login/loginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
-import CartView from "./Views/client/Cart/CartView";
+import CartView from "./Views/client/CartView/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
@@ -19,6 +19,7 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
+
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -57,6 +58,8 @@ function App() {
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+        <Route path="/cart" element={ <CartView/> } />
+         
           {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
 
