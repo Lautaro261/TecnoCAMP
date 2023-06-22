@@ -27,7 +27,8 @@ const handlerCreateUser = async (req, res) => {
       res.status(404).json({ message: "¡Credenciales Incorrectas!" });
     }
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    console.log(error)
+    res.status(400).json({ message: error.message  });
   }
 };
 

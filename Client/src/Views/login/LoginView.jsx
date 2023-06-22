@@ -2,6 +2,9 @@ import Login from '../../components/Login/Login';
 import SignUp from '../../components/SignUp/SignUp';
 import { Divider } from 'antd';
 import LoginAuth from '../../components/LoginAuth/LoginAuth';
+import { SearchOutlined, GoogleOutlined } from '@ant-design/icons';
+import { Button, Space, Tooltip } from 'antd';
+
 
 const LoginView =({setToken, setRol})=>{
     return(
@@ -11,15 +14,28 @@ const LoginView =({setToken, setRol})=>{
 
         <div style={{ position:"fixed",left:"25vw", top:"15vh", width:"50vw", backgroundColor:"white", borderRadius: "30px", boxShadow: "-43px 30px 49px -4px rgba(0,0,0,0.59)"}}>
             <Divider orientation='left' style={{color:"black",}}>Iniciar sesion: </Divider>
-            {/* <Login setToken={setToken} setRol={setRol}/> */}
+            <Login setToken={setToken} setRol={setRol}/>
             <LoginAuth />
+
+            <Space direction="vertical">
+    <Space wrap> 
+      
+      
+      
+{/*       <Tooltip title="Google">
+        <Button type="primary"  danger >Google 
+        </Button>
+      </Tooltip> */}
+      
+    </Space>
+    
+  </Space>
+
             <Divider orientation="left"style={{color:"black",}}>Registrarse: </Divider> 
             <SignUp/>
         </div>
         </div>
-        <div>
-             <LoginAuth />
-        </div>
+        
 
         </>
     )
