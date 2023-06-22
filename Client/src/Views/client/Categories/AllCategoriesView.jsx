@@ -54,4 +54,6 @@ const AllCategoriesView = () => {
 
   )
 };
+
+
 export default AllCategoriesView;
