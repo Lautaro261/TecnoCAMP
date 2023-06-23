@@ -54,6 +54,39 @@ export const Delete = createAsyncThunk(
     'carts/Delete',
     async (data) => {
         try {
+            const response= await axios.put("/client/deleteproductcart", {
+                "productId":data[1], "inventoryId":data[2],
+            }, {
+                headers: {
+                    Authorization: `Bearer ${data[0]}`
+                }
+
+            });
+
+            console.log(response.data, "Delete desde el Slice")
+
+            const Crear= await axios.post("/client/createcart", {}, {
+                headers: {
+                    Authorization: `Bearer ${data[0]}`
+                }
+
+            });
+            if(Crear.data.message==="No se puede crear un nuevo carrito, el usuario ya tiene un carrito activo"){
+                console.log("carrito ya creado")
+            }else{
+                console.log(Crear.data)
+            }
+
+            const dataset= await axios.get("/client/cartuser/", {
+                headers: {
+                    Authorization: `Bearer ${data[0]}`
+                }
+            })
+    
+            console.log(dataset.data, "refill")
+            if(dataset.data.message==="El carrito no tiene productos agregados"){
+                return []
+            }else{return dataset.data} 
 
         } catch (error) {
             console.log(error)
@@ -85,7 +118,7 @@ export const cartSlice = createSlice({
             })
             .addCase(Delete.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.total=action.payload
+                state.cartFill=action.payload
                 
             })
             .addCase(Delete.rejected, (state, action) => {
