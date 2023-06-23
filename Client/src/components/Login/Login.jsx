@@ -59,7 +59,7 @@ const Login = ({ setToken, setRol }) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-        {error && <Text type="danger">{error}</Text>}
+
         <Form.Item
           name="email"
           label="Correo Electrónico"
@@ -79,6 +79,10 @@ const Login = ({ setToken, setRol }) => {
           { pattern: /^[a-zA-Z0-9]+$/, message: 'La contraseña solo puede contener letras y números' }]}
         >
           <Input.Password />
+        </Form.Item>
+
+        <Form.Item style={{ textAlign: "center" }}>
+          {error && <Text type="danger">{error}</Text>}
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
