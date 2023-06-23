@@ -1,80 +1,113 @@
-import { Avatar, Button, List, Skeleton } from 'antd';
+import { Avatar, Button, List, Skeleton, Popconfirm } from 'antd';
 import { useEffect, useState } from 'react';
-const count = 3;
-const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat,picture&noinfo`;
+import { CreateCart, Fill } from '../../../Redux/Features/cart/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 const CartUser = () => {
+    const cart=useSelector(state=>state.cart.cart)
+    const dispatch= useDispatch()
+    const token=window.localStorage.getItem("token")
+//funciones para usar
+const refresh=()=>{
+    console.log(token)
+    dispatch(Fill(token))
+    console.log(cart)
+}
+const sumar=(arr)=>{
+    var tot=0
+    for(var i=0;i<arr.length;i++)
+    {
+        tot+=(arr[i].quantity_inventory);
+    }
+    return tot
+}
+
+const DeleteHandler=(ids)=>{
+    console.log("Estoy borando loco")
+    const data=[token, ids[0]]
+    ids[1].map(e=>{
+        const data2=[token, ids[0], e.id]
+        console.log("aaaaa", data2 )
+        //despachar data2 para borrar, 1 token, 2 product id, 3 inventory id
+    })
+
+}
+
+
+
+// creacion
+useEffect(()=>{
+    if (token){
+        dispatch(CreateCart(token))
+        refresh()
+    }
+
+},[token])
+
+
+
+
+//cosas de la tabla
   const [initLoading, setInitLoading] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
-  const [list, setList] = useState([]);
+
   useEffect(() => {
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
+        if(!cart){
         setInitLoading(false);
-        setData(res.results);
-        setList(res.results);
-      });
-  }, []);
-  const onLoadMore = () => {
-    setLoading(true);
-    setList(
-      data.concat(
-        [...new Array(count)].map(() => ({
-          loading: true,
-          name: {},
-          picture: {},
-        })),
-      ),
-    );
-    fetch(fakeDataUrl)
-      .then((res) => res.json())
-      .then((res) => {
-        const newData = data.concat(res.results);
-        setData(newData);
-        setList(newData);
-        setLoading(false);
-        // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-        // In real scene, you can using public method of react-virtualized:
-        // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
-        window.dispatchEvent(new Event('resize'));
-      });
-  };
+        };}, []);
+
+  const onConsole = () => {
+    console.log(cart)
+   };
+
+   // boton para consologear
   const loadMore =
     !initLoading && !loading ? (
       <div
         style={{
           textAlign: 'center',
-          marginTop: 12,
-          height: 32,
-          lineHeight: '32px',
+          marginTop: "2vh",
+          height: "10vh",
+          lineHeight: '30px',
         }}
       >
-        <Button onClick={onLoadMore}>loading more</Button>
+        <Button onClick={onConsole}> {cart?`Total cart: ${cart[0].cart_total_amount}`:null} </Button>
       </div>
     ) : null;
   return (
+    <div>
     <List
       className="demo-loadmore-list"
       loading={initLoading}
       itemLayout="horizontal"
       loadMore={loadMore}
-      dataSource={list}
+      dataSource={cart}
+      style={{width:"50vw", marginLeft:"25vw"}}
       renderItem={(item) => (
         <List.Item
-          actions={[<a key="list-loadmore-edit">edit</a>, <a key="list-loadmore-more">more</a>]}
+          actions={[<Popconfirm title="¿eliminar?" onConfirm={() => DeleteHandler([item.product.id,item.product.inventories])}>
+          <Button type="primary">Eliminar</Button>
+      </Popconfirm>, <a key="list-loadmore-more">more</a>]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
-              avatar={<Avatar src={item.picture.large} />}
-              title={<a href="https://ant.design">{item.name?.last}</a>}
-              description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+              avatar={<Avatar src={item.product.photo[0]} />}
+              title={<p>{item.product.name}</p>}
+              description={item.product.product_description}
             />
-            <div>content</div>
+            <div style={{display:"flex", gap:"15px"}}>
+
+            <div>cantidad: {sumar(item.product.inventories)}</div>
+
+            <div>precio unitario: {item.product.price_promotion}</div>
+            </div>
           </Skeleton>
         </List.Item>
+        
       )}
     />
+
+    </div>
   );
 };
 export default CartUser;

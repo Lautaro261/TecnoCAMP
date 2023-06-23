@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../../Redux/Features/login/logInAndSignUpSlice";
 import Holder from "../../../components/Client/Categories/Holder/Holder";
+import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
 
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
@@ -44,6 +45,7 @@ const ClientHome = () => {
 
   const userSub = user?.sub;
   const emailAuth = user?.email;
+  const token=window.localStorage.getItem("token")
 
   useEffect(()=>{
     if (user&& isAuthenticated) {
@@ -52,10 +54,17 @@ const ClientHome = () => {
           sub: userSub,
           email: emailAuth,
         })
-      );
+      )
     };  
     
   },[user, isAuthenticated]);
+
+  useEffect(()=>{
+    if(token){
+      dispatch(CreateCart(token));
+    }
+  }, [token])
+
 
   if(user){
     window.localStorage.setItem('sub', userSub);
