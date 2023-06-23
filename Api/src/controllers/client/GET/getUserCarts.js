@@ -23,6 +23,8 @@ const getUserCarts = async (userId) => {
       "amount_unit_product",
       "id",
       "cart_status",
+      "productId",
+      "inventoryId",
     ],
     order: [
       // Ordenar los productos del carrito por fecha de creación descendente
