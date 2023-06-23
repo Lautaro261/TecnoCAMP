@@ -1,56 +1,54 @@
-import React from 'react';
-import { Button, Form, Input, Checkbox } from 'antd';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { Button, Form, Input, Checkbox, message, Typography } from 'antd';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
+
+const { Text } = Typography;
 
 const Login = ({ setToken, setRol }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { userSession, error } = useSelector((state) => state.logInAndSignUp);
+  const [messageApi, contextHolder] = message.useMessage();
 
-  const LoginBack = async (values) => {
-    const response = await axios.post('/login', values)
-    console.log(response.data)
-    if (response.data.token && response.data.rol) {
-      if (response.data.erased) { console.log("BANEADISIMOOOOO") }
-      else {
-        const token = response.data.token;
-        console
-        const rol = response.data.rol;
-        console.log("logeado en el front como: ", rol, "token: ", token)
-        setToken(token)
-        setRol(rol)
-        window.localStorage.setItem("rol", rol)
-        window.localStorage.setItem("token", token)
-        if (rol === "client") {
-          navigate("/home");
-        }
-        if (rol === "admin") {
-          console.log(window.localStorage.getItem("rol"), 'desde login')
-          navigate("/admin/home");
-        }
-        if (rol === "superAdmin") {
-          navigate("/super/admins");
-        }
-        //
-      }
-    } else {
-      alert(response.data.message) //{message}
-    }
-
-  }
-
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     values.sub = values.email;
     console.log('Success:', values); //{email, password, remember } {sub, email, password}
-    LoginBack(values)
-
+    dispatch(loginUser(values));
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
+  useEffect(() => {
+    if (userSession.token && userSession.rol) {
+      const token = userSession.token;
+      const rol = userSession.rol;
+      console.log('logueado en el fron como: ', rol, 'token: ', token);
+      setToken(token);
+      setRol(rol);
+      window.localStorage.setItem('rol', rol);
+      window.localStorage.setItem('token', token);
+
+      if (rol === 'client') {
+        navigate('/home');
+      } else if (rol === 'admin') {
+        navigate('/admin/home');
+      } else if (rol === 'superAdmin') {
+        navigate('/super/admins');
+      }
+    }
+
+    if (userSession.message === '¡Credenciales Incorrectas!') {
+      messageApi.error('Credenciales incorrectas');
+    }
+  }, [userSession, setToken, setRol, navigate, messageApi])
+
   return (
     <div>
+      {contextHolder}
       <Form
         name="basic"
         labelCol={{ span: 8 }}
@@ -61,12 +59,13 @@ const Login = ({ setToken, setRol }) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+        {error && <Text type="danger">{error}</Text>}
         <Form.Item
           name="email"
           label="Correo Electrónico"
           rules={[
             { required: true, message: '¡Por favor ingrese su correo electrónico!' },
-            {type:'email', message: 'Por favor ingrese un correo electrónico válido.'}
+            { type: 'email', message: 'Por favor ingrese un correo electrónico válido.' }
           ]}
         >
           <Input />

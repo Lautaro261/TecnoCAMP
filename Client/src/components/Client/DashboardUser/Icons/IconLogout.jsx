@@ -9,13 +9,13 @@ const IconLogout = () => {
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     const handleLogout = () => {
-        window.localStorage.removeItem('token')
-        window.localStorage.removeItem('rol')
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('rol');
 
         console.log('te deslogueaste')
-        navigate('/home')
+        navigate('/home');
     }
-
+    
     const showPopconfirm = () => {
         setOpen(true);
     };
@@ -25,8 +25,9 @@ const IconLogout = () => {
         setTimeout(() => {
             setOpen(false);
             setConfirmLoading(false);
-        }, 2000);
+        }, 1000);
         handleLogout(); 
+        navigate('/home');
     };
 
     const handleCancel = () => {
