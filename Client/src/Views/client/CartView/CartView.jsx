@@ -21,6 +21,7 @@ const headerStyle = {
 const contentStyle = {
   width:"100vw",
   color: '#0000',
+  minHeight:"60vh"
   
 };
 
