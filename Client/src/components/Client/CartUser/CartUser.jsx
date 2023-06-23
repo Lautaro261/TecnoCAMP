@@ -1,6 +1,6 @@
 import { Avatar, Button, List, Skeleton, Popconfirm } from 'antd';
 import { useEffect, useState } from 'react';
-import { CreateCart, Fill } from '../../../Redux/Features/cart/cartSlice';
+import { CreateCart, Fill, Delete } from '../../../Redux/Features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CartUser = () => {
@@ -13,24 +13,14 @@ const refresh=()=>{
     dispatch(Fill(token))
     console.log(cart)
 }
-const sumar=(arr)=>{
-    var tot=0
-    for(var i=0;i<arr.length;i++)
-    {
-        tot+=(arr[i].quantity_inventory);
-    }
-    return tot
-}
+
 
 const DeleteHandler=(ids)=>{
-    console.log("Estoy borando loco")
-    const data=[token, ids[0]]
-    ids[1].map(e=>{
-        const data2=[token, ids[0], e.id]
-        console.log("aaaaa", data2 )
-        //despachar data2 para borrar, 1 token, 2 product id, 3 inventory id
-    })
-
+  const data=[token, ids[0], ids[1]]
+  dispatch(Delete(data))
+  console.log("Estoy borando loco", data)
+  dispatch(CreateCart(token))
+  refresh()
 }
 
 
@@ -62,7 +52,7 @@ useEffect(()=>{
 
    // boton para consologear
   const loadMore =
-    !initLoading && !loading ? (
+    cart && cart.rt_total_amount ? (
       <div
         style={{
           textAlign: 'center',
@@ -85,7 +75,7 @@ useEffect(()=>{
       style={{width:"50vw", marginLeft:"25vw"}}
       renderItem={(item) => (
         <List.Item
-          actions={[<Popconfirm title="¿eliminar?" onConfirm={() => DeleteHandler([item.product.id,item.product.inventories])}>
+          actions={[<Popconfirm title="¿eliminar?" onConfirm={() => DeleteHandler([item.productId,item.inventoryId])}>
           <Button type="primary">Eliminar</Button>
       </Popconfirm>, <a key="list-loadmore-more">more</a>]}
         >
@@ -97,7 +87,7 @@ useEffect(()=>{
             />
             <div style={{display:"flex", gap:"15px"}}>
 
-            <div>cantidad: {sumar(item.product.inventories)}</div>
+            <div>cantidad: {item.quantity_unit_product}</div>
 
             <div>precio unitario: {item.product.price_promotion}</div>
             </div>
