@@ -1,5 +1,6 @@
 import { configureStore  } from "@reduxjs/toolkit";
-import adminReducer from './Features/admin/adminSlice';
+import adminCategoriesReducer from './Features/admin/categories/adminCategoriesSlice';
+import adminProductsReducer from './Features/admin/products/adminProductsSlice';
 import clientBrandsReducer from './Features/brands/clientBrandsSlice';
 import clientCategoriesReducer from './Features/categories/clientCategoriesSlice';
 import clientProductsReducer from './Features/products/clientProductsSlice';
@@ -8,7 +9,8 @@ import cartReducer from "./Features/cart/cartSlice";
 
 const store = configureStore({
     reducer: {
-        admin: adminReducer,
+        adminCategories: adminCategoriesReducer,
+        adminProducts: adminProductsReducer,
         clientBrands: clientBrandsReducer,
         clientCategories: clientCategoriesReducer,
         clientProducts: clientProductsReducer,

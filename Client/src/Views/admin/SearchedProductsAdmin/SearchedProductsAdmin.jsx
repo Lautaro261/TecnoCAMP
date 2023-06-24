@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Table, Button, Row, Col, Empty, Space } from 'antd';
-import { getProductsSearched } from '../../../Redux/Features/admin/adminSlice';
 
 
 
 function SearchedProductsAdmin() {
 
-    const searchedResult = useSelector((state) => state.admin.searchedResult);
-    console.log("soy searchedResult", searchedResult);
+    const searchedResult = useSelector((state) => state.adminProducts.searchedResult);
+    //console.log("soy searchedResult", searchedResult);
 
     const columns=[
         {
@@ -54,7 +53,7 @@ function SearchedProductsAdmin() {
         )
     })
 
-    console.log("soy data", data); 
+    //console.log("soy data", data); 
 
     return (
         <div>
