@@ -2,7 +2,7 @@
 const { Order, Cart, Product, Inventory } = require("../../../db");
 const postCreateCart = require("../../client/POST/postCreateCart"); // importar la función createCart
 const { Op } = require("sequelize");
-// const sendPaymentStatusEmail = require("../notificationEmail");
+const { sendPaymentStatusEmail } = require("../../notificationEmail");
 
 // Controlador handlerNotification
 const postNotificationMP = async (
@@ -10,6 +10,7 @@ const postNotificationMP = async (
   collection_id,
   collection_status
 ) => {
+
   // Buscar todas las reserva correspondientes en la base de datos
   const order = await Order.findOne({
     where: {
@@ -30,15 +31,18 @@ const postNotificationMP = async (
 
   if (order.payment_status === "approved") {
     order.shipping_status = "Por revisar";
-    // await sendPaymentStatusEmail(order);
+
   } else {
     order.shipping_status = "En proceso de pago";
     order.payment_status = "rejected";
-    // await sendPaymentStatusEmail(order);
+
   }
 
   // Guardar cambios en el modelo Orden
   await order.save();
+
+  // Envío del correo electrónico de actualización de estado de pago
+  await sendPaymentStatusEmail(order);
 
   // Verificamos que el estado del pago este aprobado
   if (
@@ -100,6 +104,8 @@ const postNotificationMP = async (
         }
       }
     }
+
+    // await sendPaymentStatusEmail(order);
 
     return order;
   }
