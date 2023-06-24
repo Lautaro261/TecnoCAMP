@@ -2,11 +2,55 @@ import { createAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 const initialState = {
+  allProducts: [],
+  currentAllProducts: [],
+  searchedResult: [],
+  filteredProducts: [],
+  currentFilteredProducts: [],
   status: 'idle',
   clients: [],
   bannedClients: [],
   error: null,
 };
+
+export const getAllProducts = createAsyncThunk(
+  "admin/getAllProducts",
+  async (token) => {
+    try {
+      const response = await axios.get("/admin/allproducts", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+      //console.log('TODO OK EN GETALLPRODUCTS', response.data)
+      return response.data;
+    } catch (error) {
+      console.error('ERRORRRRRRRRRRRRRRRRRRRRRR en getAllProduct', error);
+      throw error;
+    }
+  }
+);
+
+export const getProductsSearched = createAsyncThunk(
+  "admin/getProductsSearched",
+  async ({value, token}) => {
+    try {
+      console.log('REDUX',value);
+      //console.log('REDUX',token);
+      const response = await axios.get(`/admin/allproducts?name=${value}`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+      }
+      });
+      console.log("RESPUESTA DEL SEARCH", response.data);
+
+      return response.data;
+    } catch (error) {
+      console.log("ERRORR GETALLPRODUCTS REDUX", error);
+      throw error;
+    }
+  }
+);
 
 export const banUser = createAsyncThunk(
   'admin/banUser',
@@ -49,9 +93,30 @@ export const getClientsback = createAsyncThunk(
 const adminSlice = createSlice({
   name: 'admin',
   initialState,
-  reducers: {},
+  reducers: {
+    setCurrentAllProducts: (state, action) => {
+      state.currentAllProducts = action.payload;
+    },
+  },
+
+
   extraReducers: (builder) => {
     builder
+
+    .addCase(getAllProducts.pending, (state) => {
+      state.status = "loading";
+    })
+    .addCase(getAllProducts.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.allProducts = action.payload;
+      state.error = null;
+    })
+    .addCase(getAllProducts.rejected, (state, action) => {
+      state.status = "rejected";
+      state.error = action.error.message;
+    })
+
+
       .addCase(getClientsback.pending, (state) => {
         state.status = 'loading';
       })
@@ -84,6 +149,19 @@ const adminSlice = createSlice({
       .addCase(banUser.rejected, (state, action) => {
         state.status = 'rejected';
         state.error = action.error.message;
+      })
+
+      .addCase(getProductsSearched.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getProductsSearched.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.searchedResult = action.payload;
+        state.errorSearch = null;
+      })
+      .addCase(getProductsSearched.rejected, (state, action) => {
+        state.status = "rejected";
+        state.errorSearch = action.error;
       })
       
       
