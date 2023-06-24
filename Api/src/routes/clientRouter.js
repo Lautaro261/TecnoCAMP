@@ -27,6 +27,10 @@ const handlerAddProductToCart = require("../handlers/client/POST/handlerAddProdu
 const handlerPutProductQuantityCart = require("../handlers/client/PUT/handlerPutProductQuantityCart.js");
 const handlerDeleteProductFromCart = require("../handlers/client/PUT/handlerDeleteProductFromCart.js");
 
+// ORDEN DE PEDIDO Y MERCADO PAGO
+const handlerCreateOrderMP = require("../handlers/client/POST/handlerCreateOrderMP.js");
+const postNotificationMP = require("../handlers/client/POST/handlerPostNotificationMP.js");
+
 // FILTROS
 const handlerFilterCategory = require("../handlers/client/GET/handlerFilterCategory.js");
 const handlerFilterBrand = require("../handlers/client/GET/handlerFilterBrand.js");
@@ -67,6 +71,10 @@ clientRouter.put(
   verifyToken,
   handlerDeleteProductFromCart
 );
+
+// ORDEN DE PEDIDO Y MERCADO PAGO
+clientRouter.post("/createorder", verifyToken, handlerCreateOrderMP);
+clientRouter.post("/postnotification", verifyToken, postNotificationMP);
 
 // FILTROS
 clientRouter.get("/filterCategory/:id", handlerFilterCategory);
