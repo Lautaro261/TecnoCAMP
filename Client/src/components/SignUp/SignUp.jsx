@@ -1,43 +1,47 @@
 
-import React from "react";
-import { Form, Input, Button } from "antd";
-import { UserOutlined } from '@ant-design/icons';
-import axios from "axios";
-import { notification } from "antd";
+import React, { useEffect } from "react";
+import { Form, Input, Button, message, Typography } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from "../../Redux/Features/login/logInAndSignUpSlice";
 
-
+const { Text } = Typography;
 
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const errorCreate = useSelector((state) => state.logInAndSignUp.errorCreate);
+  const userCreated = useSelector((state) => state.logInAndSignUp.userCreated);
 
-  const signupBack = async (values) => {
-    const response = await axios.post("/signup", values);
-    console.log(response.data);
+  useEffect(()=> {
+    if(userCreated && userCreated.message === "¡Usuario creado correctamente!"){
+      showSuccessMessage();
+    }
+  },[userCreated])
+
+  const showSuccessMessage = () => {
+    message.success(userCreated.message)
   };
 
   let onFinish = (values) => {
     values.sub = values.email;
     console.log("Success:", "Enviandooo...", values); //{name, email, password } {sub, name, email, password}
-    signupBack(values);
+    dispatch(signUpUser(values));
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
-  const notificationSuccess = (values) => {
-    
-      notification.open({
-          message: 'Usuario Registrado',
-           description: "Usuario creado correctamente",
-           placement:"top"
+  // const notificationSuccess = (values) => {
 
-          })
-    
+  //     notification.open({
+  //         message: 'Usuario Registrado',
+  //          description: "Usuario creado correctamente",
+  //          placement:"top"
 
-        
-  
-  }
+  //         }) 
+
+  // }
 
   return (
     <div>
@@ -51,19 +55,19 @@ const SignUp = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-      
 
-       <Form.Item
+
+        <Form.Item
           name="email"
           label="Correo Electrónico"
           rules={[
-            { 
-              type: "email", 
-              message: "¡El correo electrónico ingresado no es válido!", 
-            }, 
-            { 
-              required: true, 
-              message: "¡Por favor ingresa tu correo electrónico!", 
+            {
+              type: "email",
+              message: "¡El correo electrónico ingresado no es válido!",
+            },
+            {
+              required: true,
+              message: "¡Por favor ingresa tu correo electrónico!",
             },
           ]}
         >
@@ -82,8 +86,9 @@ const SignUp = () => {
               min: 7, max: 20,
               message: 'La contraseña debe tener entre 7 y 20 caracteres'
             },
-            { pattern: /^[a-zA-Z0-9]+$/,
-             message: 'La contraseña solo puede contener letras y números'
+            {
+              pattern: /^[a-zA-Z0-9]+$/,
+              message: 'La contraseña solo puede contener letras y números'
             }
           ]}
           hasFeedback
@@ -116,8 +121,12 @@ const SignUp = () => {
           <Input.Password />
         </Form.Item>
 
+        <Form.Item>
+          {errorCreate && <Text type="danger">{errorCreate}</Text>}
+        </Form.Item>
+
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit" onClick={notificationSuccess} >
+          <Button type="primary" htmlType="submit" >
             Registrarse
           </Button>
         </Form.Item>

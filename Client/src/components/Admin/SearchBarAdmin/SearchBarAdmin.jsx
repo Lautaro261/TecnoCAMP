@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'antd';
-import { getProductsSearched } from "../../../Redux/Features/admin/adminSlice";
+import { getProductsSearched } from '../../../Redux/Features/admin/products/adminProductsSlice';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';

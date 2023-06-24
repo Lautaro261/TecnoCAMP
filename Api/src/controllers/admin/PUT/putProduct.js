@@ -4,7 +4,6 @@ const updateProduct = async (
   id,
   name,
   price,
-  price_promotion,
   photo,
   product_description,
   e_product_type,
@@ -36,10 +35,10 @@ const updateProduct = async (
     return { message: "No se permiten ID de colores duplicados" };
   }
 
-  // Validar valores numéricos de precio y precio de promoción
-  if (price <= 0 || price_promotion <= 0) {
-    return { message: "Los precios deben ser mayores que cero" };
-  }
+  // // Validar valores numéricos de precio y precio de promoción
+  // if (price <= 0 || price_promotion <= 0) {
+  //   return { message: "Los precios deben ser mayores que cero" };
+  // }
 
   for (const item of inventoryItems) {
     if (item.quantity <= 0) {
@@ -74,7 +73,6 @@ const updateProduct = async (
   // Actualizar los datos principales del producto
   product.name = name;
   product.price = price;
-  product.price_promotion = price_promotion;
   product.photo = photo;
   product.product_description = product_description;
   product.e_product_type = e_product_type;

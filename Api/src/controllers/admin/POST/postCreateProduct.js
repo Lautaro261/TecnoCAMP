@@ -4,7 +4,6 @@ const { Op } = require("sequelize");
 const postCreateProduct = async (
   name,
   price,
-  price_promotion,
   photo,
   product_description,
   colors,
@@ -30,16 +29,16 @@ const postCreateProduct = async (
     return { message: "Nombre de producto ya creado" };
   }
 
-  if (price <= 0 || price_promotion <= 0) {
+  if (price <= 0) {
     return { message: "Los precios deben ser mayores que cero" };
   }
 
-  if (price_promotion >= price) {
-    return {
-      message:
-        "El precio de promoción debe ser menor que el precio regular del producto",
-    };
-  }
+  // if (price_promotion >= price) {
+  //   return {
+  //     message:
+  //       "El precio de promoción debe ser menor que el precio regular del producto",
+  //   };
+  // }
 
   const brand = await Brand.findByPk(brandId);
   const category = await Category.findByPk(categoryId);
@@ -55,7 +54,6 @@ const postCreateProduct = async (
   const newProduct = await Product.create({
     name,
     price,
-    price_promotion,
     photo,
     product_description,
     e_product_type,

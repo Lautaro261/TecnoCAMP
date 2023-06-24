@@ -18,10 +18,10 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      price_promotion: {
-        type: DataTypes.FLOAT,
-        // allowNull: false,
-      },
+      // price_promotion: {
+      //   type: DataTypes.FLOAT,
+      //   // allowNull: false,
+      // },
       photo: {
         type: DataTypes.ARRAY(DataTypes.TEXT), // Utilizar ARRAY para almacenar varias fotos
         allowNull: true,

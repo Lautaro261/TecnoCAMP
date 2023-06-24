@@ -1,7 +1,16 @@
 const { Product, Inventory } = require("../../../db");
+const { Op } = require("sequelize");
 
 const getAllProducts = async () => {
   const allProducts = await Product.findAll({
+    where: {
+      categoryId: {
+        [Op.not]: null,
+      },
+      brandId: {
+        [Op.not]: null,
+      },
+    },
     include: [
       {
         model: Inventory,
