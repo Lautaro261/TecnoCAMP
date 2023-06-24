@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const postCreateOrderMP = require("../../../controllers/client/POST/postCreateOrderMP");
+const postNotificationMP = require("../../../controllers/client/POST/postNotificationMP");
 
 const handlerCreateOrderMP = async (req, res) => {
   //1) Decodificar token con jwt
@@ -17,30 +17,23 @@ const handlerCreateOrderMP = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  //const { sub } = req.params;
-
-  const {
-    contact_name,
-    contact_cellphone,
-    departmentId,
-    municipalityId,
-    address,
-    neighborhood,
-  } = req.body;
+  const { preference_id, collection_id, collection_status } = req.query;
 
   try {
     // Crear el producto
-    const orderData = await postCreateOrderMP(
-      decoToken.sub,
-      contact_name,
-      contact_cellphone,
-      departmentId,
-      municipalityId,
-      address,
-      neighborhood
+    const updateStatusAndStock = await postNotificationMP(
+      preference_id,
+      collection_id,
+      collection_status
     );
 
-    res.status(200).json(orderData);
+    if (updateStatusAndStock) {
+      res.status(200).json(updateStatusAndStock);
+    } else {
+      res.status(200).send({
+        message: "¡Los estados y el stock ya se actualizaron correctamente!",
+      });
+    }
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

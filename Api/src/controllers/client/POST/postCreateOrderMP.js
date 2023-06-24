@@ -61,9 +61,7 @@ const postCreateOrderMP = async (
   const allProductsItems = await Cart.findAll({
     where: {
       userSub,
-      cart_status: {
-        [Op.or]: ["Por pagar"],
-      },
+      cart_status: "Por pagar",
     },
   });
 
@@ -87,9 +85,9 @@ const postCreateOrderMP = async (
 
   // Verificar si ya existe una orden asociada al carrito
   let order = await Order.findOne({
-    userSub,
-    payment_status: {
-      [Op.or]: ["pending", "failure"],
+    where: {
+      userSub: user.sub,
+      payment_status: { [Op.or]: ["pending", "rejected"] },
     },
   });
 
@@ -105,14 +103,6 @@ const postCreateOrderMP = async (
     order.neighborhood = neighborhood;
 
     await order.save();
-
-    // // Obtener orden actualizada
-    // let order = await Order.findOne({
-    //   userSub,
-    //   payment_status: {
-    //     [Op.or]: ["pending", "failure"],
-    //   },
-    // });
 
     //// Asignar datos a la preferencia de pago en Mercado Pago en base a las actualizaciones de la orden que ya existe ////
     const preference = {
@@ -201,7 +191,7 @@ const postCreateOrderMP = async (
       municipalityId,
       address,
       neighborhood,
-      // cartId: cart.idCart,
+      cartId: cart.idCart,
     });
 
     return newOrder;
