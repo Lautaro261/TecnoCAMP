@@ -1,6 +1,6 @@
+import React from 'react'
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import FormProductos from '../../../components/Admin/FormProductos/FormProductos';
-import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
+import SearchedProductsAdmin from '../../../Views/admin/SearchedProductsAdmin/SearchedProductsAdmin';
 
 import { Layout, Space, Divider } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
@@ -20,6 +20,7 @@ const contentStyle = {
   backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
   color: '#fff',
@@ -32,11 +33,9 @@ const footerStyle = {
   backgroundColor: '#7dbcea',
 };
 
-
-const CreateProductVew = ()=>{
-
-    return(
-        <div>
+function SearchedResultViewAdmin() {
+  return (
+    <div>
              <Space
     direction="vertical"
     style={{
@@ -47,15 +46,17 @@ const CreateProductVew = ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Resultadp de busqueda admin </Divider></Header>
         <Content style={contentStyle}>
-        <FormProductos/> 
+            <Divider>que onda</Divider>
+        <SearchedProductsAdmin/>
+
         </Content>
       </Layout>
     </Layout>
   </Space>
         </div>
-    )
+  )
 }
 
-export default CreateProductVew;
+export default SearchedResultViewAdmin

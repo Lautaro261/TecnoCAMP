@@ -6,7 +6,7 @@ const postCreateCart = require("../../../controllers/client/POST/postCreateCart"
 
 const handlerCreateCart = async (req, res) => {
   //1) Decodificar token con jwt
-  const decoToken = await jwt.verify(req.token, KEY_SECRET);
+  const decoToken = await jwt.verify(req.token, KEY_SECRET); // {sub, email, rol}
 
   //2) Traer usuario y verificar si tiene rol Admin
   const user = await getUser(decoToken.sub);
@@ -17,11 +17,11 @@ const handlerCreateCart = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { userSub } = req.body;
+  //const { userSub } = req.body;
 
   try {
     // Crear el producto
-    const newCart = await postCreateCart(userSub);
+    const newCart = await postCreateCart(decoToken.sub);
 
     if (newCart) {
       res.status(200).json(newCart);

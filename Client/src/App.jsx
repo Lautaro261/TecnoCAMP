@@ -8,7 +8,7 @@ import LoginView from "./Views/login/loginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
-import CartView from "./Views/client/Cart/CartView";
+import CartView from "./Views/client/CartView/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
@@ -19,6 +19,9 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
+import Inventary from './Views/admin/Inventary/Inventary'
+import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
+
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -57,6 +60,8 @@ function App() {
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+        <Route path="/cart" element={ <CartView/> } />
+         
           {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
 
@@ -65,6 +70,8 @@ function App() {
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/createproduct" element={<CreateProductVew />} />
           <Route path="/admin/clients" element={<ViewClients />} />
+          <Route path="/admin/inventary" element={<Inventary/>} />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}

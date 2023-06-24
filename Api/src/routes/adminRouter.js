@@ -11,6 +11,7 @@ const adminRouter = Router();
 const handlerGetAllClients = require("../handlers/admin/GET/handlerGetAllClients.js");
 const handlerGetClientById = require("../handlers/admin/GET/handlerGetClientById.js");
 const handlerDeleteUser = require("../handlers/admin/PUT/handlerDeleteUser.js");
+const handlerGetNumberClients = require("../handlers/admin/GET/handlerGetNumberClients.js");
 
 // CATEGORIAS
 const handlerCreateCategory = require("../handlers/admin/POST/handlerCreateCategory.js");
@@ -38,8 +39,15 @@ const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductBy
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
 
+//Visualizar REVIEWS
+const handlerGetAllReview = require("../handlers/admin/GET/handlerGetAllReview.js");
+
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
+
+//  INVENTARIOS 
+
+const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
 
 /////////// ROUTES ////////////
 
@@ -47,6 +55,7 @@ const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMu
 adminRouter.get("/allclients", verifyToken, handlerGetAllClients);
 adminRouter.get("/client/:sub", verifyToken, handlerGetClientById);
 adminRouter.put("/client/delete", verifyToken, handlerDeleteUser);
+adminRouter.get("/clients/number",verifyToken, handlerGetNumberClients);
 
 // CATEGORIAS
 adminRouter.get("/allcategories", verifyToken, handlerGetAllCategories);
@@ -69,6 +78,12 @@ adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
 adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
+
+//INVENNTARIOS
+adminRouter.get("/inventories/number", verifyToken, handlerGetNumberInventories);
+
+//REVIEWS
+adminRouter.get("/allReviews", verifyToken, handlerGetAllReview);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 adminRouter.post("/loadcities", handlerCreateDepMunCo);

@@ -11,8 +11,13 @@ import Hola from './Hola';
 import { PlusSquareOutlined } from '@ant-design/icons';
 import { useState } from "react";
 const { TextArea } = Input;
+import {useSelector} from"react-redux"
+import UploadButton from "../../Client/Cloudinary/UploadButton";
 
 function ProductForm() {
+  const photos = useSelector(state => state.clientProducts.photos);
+  console.log(photos)
+  
 
     const [loadings, setLoadings] = useState([]);
     const [colorHex, setColorHex] = useState('#1677ff');
@@ -174,7 +179,15 @@ function ProductForm() {
 
          <Form.Item label='Cantidad' name="quantities">
           <Input placeholder="Unidades" />
+        </Form.Item >
+
+        <Form.Item label='Agregar fotos' name="photos">
+            <UploadButton/>
         </Form.Item>
+
+
+
+
       <Form.Item >
         <Button type="primary" htmlType="submit">Submit</Button>
       </Form.Item>
