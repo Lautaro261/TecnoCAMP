@@ -39,14 +39,20 @@ const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductBy
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
 
-//Visualizar REVIEWS
+// REVIEWS
 const handlerGetAllReview = require("../handlers/admin/GET/handlerGetAllReview.js");
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
 
-//  INVENTARIOS
+// ORDENES DE PEDIDOS PAGADAS
+const {
+  handlerGetAllApprovedOrders,
+  handlerGetDataOfOrders,
+} = require("../handlers/admin/GET/handlerGetAllApprovedOrders.js");
+const handlerGetFilterOrderByUser = require("../handlers/admin/GET/handlerGetFilterOrderByUser.js");
 
+// INVENTARIOS
 const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
 
 /////////// ROUTES ////////////
@@ -79,14 +85,19 @@ adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
 
-//INVENNTARIOS
+// ORDENES DE PEDIDOS PAGADAS
+adminRouter.get("/allorders", verifyToken, handlerGetAllApprovedOrders);
+adminRouter.get("/dataorders", verifyToken, handlerGetDataOfOrders);
+adminRouter.get("/ordersbyuser", verifyToken, handlerGetFilterOrderByUser);
+
+// INVENTARIOS
 adminRouter.get(
   "/inventories/number",
   verifyToken,
   handlerGetNumberInventories
 );
 
-//REVIEWS
+// REVIEWS
 adminRouter.get("/allReviews", verifyToken, handlerGetAllReview);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
