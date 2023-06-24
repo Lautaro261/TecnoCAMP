@@ -38,7 +38,7 @@ useEffect(()=>{
 
 
 //cosas de la tabla
-  const [initLoading, setInitLoading] = useState(true);
+  const [initLoading, setInitLoading] = useState(false);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
