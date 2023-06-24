@@ -33,10 +33,16 @@ export const getAllProducts = createAsyncThunk(
 
 export const getProductsSearched = createAsyncThunk(
   "admin/getProductsSearched",
-  async (name) => {
+  async ({value, token}) => {
     try {
-      const response = await axios.get(`/client/allproducts?name=${name}`);
-      //console.log("RESPUESTA DEL SEARCH", response.data);
+      console.log('REDUX',value);
+      //console.log('REDUX',token);
+      const response = await axios.get(`/admin/allproducts?name=${value}`,{
+        headers: {
+          Authorization: `Bearer ${token}`
+      }
+      });
+      console.log("RESPUESTA DEL SEARCH", response.data);
 
       return response.data;
     } catch (error) {
