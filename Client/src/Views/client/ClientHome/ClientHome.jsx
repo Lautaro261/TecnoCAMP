@@ -1,15 +1,15 @@
-import React, {useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Layout } from "antd";
 import DashboardUser from "../../../components/Client/DashboardUser/DashboardUser";
 import style from "./ClientHome.module.css";
 import Slider from "../../../components/Client/Slider/Slider";
 import FooterUser from "../../../components/Client/Footer/FooterUser";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useDispatch } from "react-redux";
-import { createUser } from "../../../Redux/Features/login/logInAndSignUpSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser, signUpUser } from "../../../Redux/Features/login/logInAndSignUpSlice";
 import Holder from "../../../components/Client/Categories/Holder/Holder";
 import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
-
+import { useNavigate } from 'react-router-dom';
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: "center",
@@ -41,37 +41,47 @@ const footerStyle = {
 const ClientHome = () => {
   const dispatch = useDispatch();
 
-  const { user, isAuthenticated } = useAuth0();
+  const navigate= useNavigate();
+  const { isAuthenticated, user } = useAuth0();
+  const userSession = useSelector((state) => state.logInAndSignUp.userSession)
+  const errorCreated = useSelector(state => state.logInAndSignUp.errorCreated) 
 
-  const userSub = user?.sub;
-  const emailAuth = user?.email;
-  const token=window.localStorage.getItem("token")
+  const userValues = {
+    sub: user?.sub,
+    email: user?.email
+  }
 
-  useEffect(()=>{
-    if (user&& isAuthenticated) {
-      dispatch(
-        createUser({
-          sub: userSub,
-          email: emailAuth,
-        })
-      )
-    };  
-    
-  },[user, isAuthenticated]);
+  useEffect(() => {
+    if(user && isAuthenticated){
+      if( !userSession.token && !userSession.rol){
+        dispatch(signUpUser(userValues))
+        console.log('user authththth', userValues);
+      }
+      if(typeof errorCreated === 'string'){
+        dispatch(loginUser(userValues));
+        console.log('ya esta registrado, intento loguearme', userValues);
+      }
+      if(userSession.token && userSession.rol){
+        console.log('usuario de auth ya esta en base de datos, token :', userSession.token, 'rol: ',userSession.rol)
+        const token = userSession.token
+        const rol = userSession.rol
+        window.localStorage.setItem('token', token);
+        window.localStorage.setItem('rol', rol); 
+      }
+    }
+  },[userSession, userValues,user, isAuthenticated,navigate, errorCreated])
 
-  useEffect(()=>{
-    if(token){
+
+  const token = window.localStorage.getItem("token")
+
+  useEffect(() => {
+    if (token) {
       dispatch(CreateCart(token));
     }
   }, [token])
 
 
-  if(user){
-    window.localStorage.setItem('sub', userSub);
-    window.localStorage.setItem('email', emailAuth)
-  }
-  
-  console.log(user);
+  // console.log(user);
 
   return (
     <Layout className={style.layout}>
