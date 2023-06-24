@@ -46,9 +46,9 @@ function SearchedResultViewAdmin() {
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Resultadp de busqueda admin </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Resultado de busqueda admin </Divider></Header>
         <Content style={contentStyle}>
-            <Divider>que onda</Divider>
+            
         <SearchedProductsAdmin/>
 
         </Content>
