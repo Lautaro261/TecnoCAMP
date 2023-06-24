@@ -100,7 +100,15 @@ const postNotificationMP = async (
         const product = await Product.findByPk(item.productId);
         if (product) {
           product.total_quantity_inventory -= item.quantity_unit_product;
-          await product.save();
+
+          if (inventory.quantity_inventory === 0) {
+            inventory.is_available = false;
+          }
+          if (product.total_quantity_inventory === 0) {
+            product.is_available = false;
+          }
+
+          await Promise.all([product.save(), inventory.save()]);
         }
       }
     }

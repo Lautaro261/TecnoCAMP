@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const getBrandById = require("../../../controllers/admin/GET/getBrandById");
+const getFilterOrderByUser = require("../../../controllers/admin/GET/getFilterOrderByUser");
 
-const handlerGetBrandById = async (req, res) => {
+const handlerGetFilterOrderByUser = async (req, res) => {
   //1) Decodificar token con jwt
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
@@ -16,17 +16,13 @@ const handlerGetBrandById = async (req, res) => {
       .status(404)
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
-
-  const id = req.params.id;
-
   try {
-    // Obtener el producto por su ID
-    const brand = await getBrandById(id);
+    const ordersByUser = await getFilterOrderByUser();
 
-    res.status(200).json(brand);
+    res.status(200).json(ordersByUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = handlerGetBrandById;
+module.exports = handlerGetFilterOrderByUser;

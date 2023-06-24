@@ -1,7 +1,7 @@
 const getBrandById = require("../../../controllers/client/GET/getBrandById");
 
 const handlerGetBrandById = async (req, res) => {
-  const { id } = req.body;
+  const id = req.params.id;
 
   try {
     // Obtener el producto por su ID

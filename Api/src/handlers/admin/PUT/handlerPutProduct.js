@@ -22,7 +22,6 @@ const handlerUpdateProduct = async (req, res) => {
   const {
     name,
     price,
-    price_promotion,
     photo,
     product_description,
     e_product_type,
@@ -39,7 +38,6 @@ const handlerUpdateProduct = async (req, res) => {
       id,
       name,
       price,
-      price_promotion,
       photo,
       product_description,
       e_product_type,

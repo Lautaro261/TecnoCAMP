@@ -17,7 +17,7 @@ const handlerGetProductById = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  const { id } = req.body;
+  const id = req.params.id;
 
   try {
     // Obtener el producto por su ID
