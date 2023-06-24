@@ -2,7 +2,7 @@ import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdm
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider, } from 'antd';
 import { useEffect } from 'react';
-import { getClientsback } from '../../../Redux/Features/admin/adminSlice';
+import { getAllClients } from '../../../Redux/Features/admin/clients/adminClientsSlice';
 import TableClients from '../../../components/Admin/TableClients/TableClients';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -32,9 +32,9 @@ const siderStyle = {
 const ViewClients = ()=>{
   const token =window.localStorage.getItem("token")
   const dispach= useDispatch()
-  const clientes = useSelector(state=>state.admin.clients)
+  const clientes = useSelector(state=>state.adminClients.allClients)
   useEffect(()=>{
-    dispach(getClientsback({token}))
+    dispach(getAllClients({token}))
     console.log(clientes)
   },[])
   
