@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { Form, Input, Button, message, Typography } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../Redux/Features/login/logInAndSignUpSlice";
+import { signUpUser } from "../../Redux/Features/login/logInAndSignUpSlice";
 
 const { Text } = Typography;
 
@@ -25,7 +25,7 @@ const SignUp = () => {
   let onFinish = (values) => {
     values.sub = values.email;
     console.log("Success:", "Enviandooo...", values); //{name, email, password } {sub, name, email, password}
-    dispatch(createUser(values));
+    dispatch(signUpUser(values));
   };
 
   const onFinishFailed = (errorInfo) => {

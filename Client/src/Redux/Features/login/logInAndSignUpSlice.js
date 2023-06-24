@@ -29,8 +29,8 @@ export const loginUser = createAsyncThunk(
     }
 )
 
-export const createUser = createAsyncThunk(
-    'logInAndSignUp/createUser',
+export const signUpUser = createAsyncThunk(
+    'logInAndSignUp/signUpUser',
     async (userData) => {
         try {
 
@@ -46,11 +46,17 @@ export const createUser = createAsyncThunk(
         }
     }
 )
+export const logoutOwn = createAction('logInAndSignUp/logoutOwn')
 
 const logInAndSignUpSlice = createSlice({
     name: 'logInAndSignUp',
     initialState,
-    reducers: {},
+    reducers: {
+        logoutOwn:(state)=>{
+            state.userCreated={},
+            state.userSession={}
+        }
+    },
 
     extraReducers: (builder) => {
         builder
@@ -68,15 +74,16 @@ const logInAndSignUpSlice = createSlice({
             })
 
 
-            .addCase(createUser.pending, (state) => {
+            .addCase(signUpUser.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(createUser.fulfilled, (state, action) => {
+            .addCase(signUpUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
+                state.userSession = action.payload;
                 state.userCreated = action.payload;
                 state.errorCreate = null;
             })
-            .addCase(createUser.rejected, (state, action) => {
+            .addCase(signUpUser.rejected, (state, action) => {
                 state.status = 'rejected';
                 state.errorCreate = action.error.message;
             })

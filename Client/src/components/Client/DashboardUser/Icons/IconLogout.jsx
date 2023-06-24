@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import { LogoutOutlined } from '@ant-design/icons';
 import { Row, Col, Popconfirm } from 'antd';
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logoutOwn } from "../../../../Redux/Features/login/logInAndSignUpSlice";
 
 const IconLogout = () => {
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
     const handleLogout = () => {
+        dispatch(logoutOwn())
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('rol');
-
         console.log('te deslogueaste')
         navigate('/home');
     }

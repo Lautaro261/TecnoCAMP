@@ -4,19 +4,22 @@ import { LogoutOutlined } from '@ant-design/icons';
 import {Popconfirm , Row, Col} from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { logoutOwn } from '../../Redux/Features/login/logInAndSignUpSlice';
 
 const LogoutAuth = () => {
 
-    const navigate = useNavigate()
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
 
-
     const { logout }  = useAuth0()
+
     const handleLogoutAuth = () => {
         logout()
+        dispatch(logoutOwn())    
         localStorage.clear()
-
         navigate('/home')
     }
 
