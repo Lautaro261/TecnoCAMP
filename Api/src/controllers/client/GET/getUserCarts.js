@@ -34,14 +34,7 @@ const getUserCarts = async (userId) => {
     include: [
       {
         model: Product,
-        attributes: [
-          "id",
-          "name",
-          "price",
-          "price_promotion",
-          "photo",
-          "product_description",
-        ],
+        attributes: ["id", "name", "price", "photo", "product_description"],
         include: {
           model: Inventory,
           attributes: ["id", "color", "quantity_inventory"],
