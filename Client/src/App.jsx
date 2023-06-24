@@ -19,6 +19,8 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
+import Inventary from './Views/admin/Inventary/Inventary'
+import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
 
 
 axios.defaults.baseURL = "http://localhost:3001";
@@ -68,6 +70,8 @@ function App() {
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/createproduct" element={<CreateProductVew />} />
           <Route path="/admin/clients" element={<ViewClients />} />
+          <Route path="/admin/inventary" element={<Inventary/>} />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}
