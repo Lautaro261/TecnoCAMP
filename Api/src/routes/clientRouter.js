@@ -58,7 +58,7 @@ clientRouter.get("/category/:id", handlerGetCategoryById);
 
 // MARCAS
 clientRouter.get("/allbrands", handlerGetAllBrands);
-clientRouter.get("/brand", handlerGetBrandById);
+clientRouter.get("/brand/:id", handlerGetBrandById);
 
 // CARRITO DE COMPRAS
 clientRouter.get("/cart/:id", verifyToken, handlerGetCartById);
