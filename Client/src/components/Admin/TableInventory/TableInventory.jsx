@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 
 import { Table, Button } from 'antd'
-import { getAllProducts } from '../../../Redux/Features/admin/adminSlice';
+import { getAllProducts } from '../../../Redux/Features/admin/products/adminProductsSlice';
+// import { getAllProducts } from '../../../Redux/Features/admin/adminSlice';
 
 function TableInventory() {
     const dispatch = useDispatch()
     const token = window.localStorage.getItem("token");
-    const allProducts = useSelector((state) => state.admin.allProducts)
+    const allProducts = useSelector((state) => state.adminProducts.allProducts)
 
     useEffect(()=>{
         dispatch(getAllProducts(token))
