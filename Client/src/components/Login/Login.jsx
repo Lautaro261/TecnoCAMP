@@ -26,7 +26,7 @@ const Login = ({ setToken, setRol }) => {
     if (userSession.token && userSession.rol) {
       const token = userSession.token;
       const rol = userSession.rol;
-      console.log('logueado en el fron como: ', rol, 'token: ', token);
+      console.log('logueado en el front como: ', rol, 'token: ', token);
       setToken(token);
       setRol(rol);
       window.localStorage.setItem('rol', rol);
@@ -42,7 +42,7 @@ const Login = ({ setToken, setRol }) => {
     }
 
     if (userSession.message === '¡Credenciales Incorrectas!') {
-      messageApi.error('Credenciales incorrectas');
+      messageApi.error(userSession.message);
     }
   }, [userSession, setToken, setRol, navigate, messageApi])
 
