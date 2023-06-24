@@ -98,6 +98,13 @@ const postNotificationMP = async (
           product.total_quantity_inventory -= item.quantity_unit_product;
           await product.save();
         }
+        if (inventory.quantity_inventory === 0) {
+          inventory.is_available = false;
+        }
+        if (product.total_quantity_inventory === 0) {
+          product.is_available = false;
+        }
+        await product.save();
       }
     }
 
