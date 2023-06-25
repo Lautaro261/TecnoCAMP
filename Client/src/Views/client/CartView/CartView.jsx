@@ -3,7 +3,7 @@ import DashboardUser from '../../../components/Client/DashboardUser/DashboardUse
 import FooterUser from '../../../components/Client/Footer/FooterUser';
 import CartUser from '../../../components/Client/CartUser/CartUser';
 import { useDispatch, useSelector } from 'react-redux';
-
+import DispatchButtons from '../../../components/Client/Dispatch/DispatchButtons';
 
 
 const { Header, Footer, Content } = Layout;
@@ -44,6 +44,7 @@ return (
     <Content style={contentStyle}>
     <CartUser/>  
     {cart.length>0 ? <Divider>Subtotal: {cart[0].cart_total_amount}</Divider>:null}
+    <DispatchButtons />  
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>

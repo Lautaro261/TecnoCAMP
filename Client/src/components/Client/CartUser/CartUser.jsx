@@ -2,6 +2,7 @@ import { Avatar, Button, List, Skeleton, Popconfirm, InputNumber } from 'antd';
 import { useEffect, useState } from 'react';
 import { CreateCart, Fill, Delete } from '../../../Redux/Features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCartForAUser } from '../../../Redux/Features/payment/paymentSlice';
 
 const CartUser = () => {
     const cart=useSelector(state=>state.cart.cartFill)
@@ -21,7 +22,9 @@ const DeleteHandler=(ids)=>{
   refresh()
 }
 
-
+useEffect(() => {
+  dispatch(getCartForAUser());
+}, []);
 
 // creacion
 useEffect(()=>{

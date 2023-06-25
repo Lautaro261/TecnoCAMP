@@ -6,6 +6,7 @@ import clientCategoriesReducer from './Features/categories/clientCategoriesSlice
 import clientProductsReducer from './Features/products/clientProductsSlice';
 import logInAndSignUpReducer from './Features/login/logInAndSignUpSlice';
 import cartReducer from "./Features/cart/cartSlice";
+import paymentReducer from "./Features/payment/paymentSlice";
 
 const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ const store = configureStore({
         clientCategories: clientCategoriesReducer,
         clientProducts: clientProductsReducer,
         logInAndSignUp: logInAndSignUpReducer,
-        cart: cartReducer
+        cart: cartReducer,
+        payment: paymentReducer
     }
 });
 

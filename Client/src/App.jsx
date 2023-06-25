@@ -21,7 +21,8 @@ import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResul
 import AboutUs from "./Views/client/AboutUs/AboutUs";
 import Inventary from './Views/admin/Inventary/Inventary'
 import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
-
+import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
+import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -56,6 +57,8 @@ function App() {
         <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
        {/*  <Route path="/developers" element={< div/>} /> */}
         <Route path="/about" element={<AboutUs/>} />
+        <Route path='/success-payment' element={<SuccessPaymentView />} />
+        <Route path='/failure-payment' element={<FailurePaymentView />} />
 
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
