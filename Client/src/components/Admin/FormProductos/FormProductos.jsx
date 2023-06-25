@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadButton from '../../Client/Cloudinary/UploadButton';
 import ColorPicker from '../ColorPicker/ColorPicker.jsx';
-import { getAllCategories } from '../../../Redux/Features/categories/clientCategoriesSlice';
-import { getAllBrands } from '../../../Redux/Features/brands/clientBrandsSlice';
+import { getAllCategories } from '../../../Redux/Features/admin/categories/adminCategoriesSlice';
+import { getAllBrands } from '../../../Redux/Features/admin/brands/adminBrandsSlice';
 const { TextArea } = Input;
 
 
@@ -13,9 +13,9 @@ const { TextArea } = Input;
 
 const FormProductos = () => {
     const dispatch = useDispatch();
-    const photos = useSelector(state => state.clientProducts.photos);
-    const allCategories = useSelector(state => state.clientCategories.allCategories);
-    const allBrands = useSelector(state => state.clientBrands.allBrands);
+    const photos = useSelector(state => state.photos.photos);
+    const allCategories = useSelector(state => state.adminCategories.allCategories);
+    const allBrands = useSelector(state => state.adminBrands.allBrands);
     const token = localStorage.getItem('token');
     const[FormColors, SetFormColors]=useState([])
     const[cantidad,setCantidad]=useState([])
