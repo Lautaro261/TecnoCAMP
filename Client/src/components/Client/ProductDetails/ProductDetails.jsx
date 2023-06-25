@@ -43,8 +43,7 @@ const ProductDetails = () => {
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
               <Col span={24} style={{color: '#000000', textAlign: 'left', fontSize: '1vw', fontWeight: 'bold'}}>
-              <p style={{textDecoration:"line-through", color: 'grey'}} >${productDetails.price}</p>
-              <p>${productDetails.price_promotion}</p>
+              <p>${productDetails.price}</p>
               <p  style={{color: 'grey', fontSize: '0.7vw'}}>Disponibles: {productDetails.total_quantity_inventory}</p>
 
               </Col>
