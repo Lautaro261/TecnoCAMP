@@ -1,5 +1,6 @@
 import styles from "./IconAdmin.module.css";
 import Logo from '../../../../img/LogoTienda.png';
+import Logout from "../../../Logout/Logout";
 import { Row, Col } from 'antd';
 
 const IconAdmin = () => {
@@ -28,6 +29,9 @@ const IconAdmin = () => {
             </button>
             <div>Jorge</div>
         </div>
+        </Col>
+        <Col span={24}>
+            <Logout/>
         </Col>
     
        </Row>
