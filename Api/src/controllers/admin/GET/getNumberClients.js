@@ -1,17 +1,15 @@
-const { User } = require ("../../../db");
+const { User } = require("../../../db");
 
-const getNumberClients = async()=>{
-    const rolName = "client";
+const getNumberClients = async () => {
+  const rolName = "client";
 
-    const count = await User.count({
-        where: {
-          rol: rolName
-        }
-      });
-      
-    return count; 
-}
+  const totalNumberOfActiveClients = await User.count({
+    where: {
+      rol: rolName,
+    },
+  });
 
+  return { totalNumberOfActiveClients };
+};
 
-
-module.exports = getNumberClients; 
+module.exports = getNumberClients;
