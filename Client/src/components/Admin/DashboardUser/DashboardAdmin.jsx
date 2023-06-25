@@ -18,11 +18,11 @@ function DashboardAdmin() {
         <Col span={24} >
           <ContacticonsAdmin />
         </Col>
-        <Col span={24} style={{ marginBottom: '20vh' }}>
+        <Col span={24} style={{ marginBottom: '10vh' }}>
           <IconsAdmin />
         </Col>
         <Col span={24}>
-          <Nav />
+          <Nav style={{ bottom: 0, width: '100%'}} />
         </Col>
       </Row>
     </Space>

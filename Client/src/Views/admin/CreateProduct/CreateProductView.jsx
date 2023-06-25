@@ -1,9 +1,7 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import FormProductos from '../../../components/Admin/FormProductos/FormProductos';
-import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
-
 import { Layout, Space, Divider } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
   color: '#fff',
@@ -24,12 +22,7 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  height: "100vh",
-};
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
+  minHeight: 120,
 };
 
 
@@ -37,13 +30,6 @@ const CreateProductVew = () => {
 
   return (
 
-    <Space
-      direction="vertical"
-      style={{
-        width: '100%',
-      }}
-      size={[0, 48]}
-    >
       <Layout>
         <Sider style={siderStyle}><DashboardAdmin /></Sider>
         <Layout>
@@ -53,7 +39,6 @@ const CreateProductVew = () => {
           </Content>
         </Layout>
       </Layout>
-    </Space>
 
   )
 }

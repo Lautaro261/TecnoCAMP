@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const IconsAdmin = () => {
     return (
         <Row>
-            <Col span={24}><Link to='/admin/home'><img src={Logo} alt="Logo" className={styles.icon__image} /></Link></Col>
+            <Col span={24} style={{ marginBottom: '10vh'}} ><Link to='/admin/home'><img src={Logo} alt="Logo" style={{height: 'auto', width:'25vh'}}/></Link></Col>
             <Col span={24}>
                 <IconAdminProfile />
                 <div>Jorge</div>
