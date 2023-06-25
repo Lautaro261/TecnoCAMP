@@ -1,4 +1,4 @@
-const { Order } = require("../../../db");
+const { Order, Department, Municipality } = require("../../../db");
 const { Op } = require("sequelize");
 
 const getAllApprovedOrders = async () => {
@@ -21,8 +21,16 @@ const getAllApprovedOrders = async () => {
       "contact_cellphone",
       "address",
       "neighborhood",
-      "departmentId",
-      "municipalityId",
+    ],
+    include: [
+      {
+        model: Department,
+        attributes: ["name"],
+      },
+      {
+        model: Municipality,
+        attributes: ["name"],
+      },
     ],
   });
 
@@ -30,16 +38,6 @@ const getAllApprovedOrders = async () => {
 };
 
 const getDataOfOrders = async () => {
-  // Obtener todas las órdenes pagadas con estado "approved"
-  const allOrders = await Order.findAll({
-    where: {
-      payment_status: "approved",
-      payment_transaction_id: {
-        [Op.not]: null,
-      },
-    },
-  });
-
   // Obtener el número total de registros de órdenes pagadas
   const totalNumberOrders = await Order.count({
     where: {
