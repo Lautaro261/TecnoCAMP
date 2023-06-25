@@ -17,16 +17,19 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#fff',
+  color: '#0000',
+  backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
   height:"100vh",
 };
+
+
 
 
 const ViewClients = ()=>{
@@ -53,7 +56,7 @@ const ViewClients = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Clientes</Divider></Header>
         <Content style={contentStyle}>
-        <div><TableClients clients={clientes}/></div>
+       <TableClients/>
         </Content>
       </Layout>
     </Layout>

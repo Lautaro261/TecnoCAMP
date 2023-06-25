@@ -18,11 +18,12 @@ const contentStyle = {
   backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  minHeight: 120,
+  height:"100vh",
 };
 
 
@@ -33,7 +34,7 @@ const CreateProductVew = () => {
       <Layout>
         <Sider style={siderStyle}><DashboardAdmin /></Sider>
         <Layout>
-          <Header style={headerStyle}><Divider style={{ color: "black", }}>Crear un Producto </Divider></Header>
+          <Header style={headerStyle}><Divider style={{ color: "black", }}>Crear producto </Divider></Header>
           <Content style={contentStyle}>
             <FormProductos />
           </Content>
