@@ -2,11 +2,11 @@ import { Row, Col } from 'antd';
 import { CloseSquareFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import UploadWidget from './UploadWidget';
-import { removePhoto } from '../../../Redux/Features/products/clientProductsSlice';
+import { removePhoto } from '../../../Redux/Features/photos/photosSlice';
 
 const UploadButton = () => {
     const dispatch = useDispatch();
-    const photos = useSelector(state => state.clientProducts.photos);
+    const photos = useSelector(state => state.photos.photos);
 
     const handleClick = (e, photo) => {
         dispatch(removePhoto(photo));

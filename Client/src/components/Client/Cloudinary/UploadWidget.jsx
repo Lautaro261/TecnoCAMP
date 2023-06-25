@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { setPhotos } from '../../../Redux/Features/products/clientProductsSlice';
+import { setPhotos } from '../../../Redux/Features/photos/photosSlice';
 
 const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 

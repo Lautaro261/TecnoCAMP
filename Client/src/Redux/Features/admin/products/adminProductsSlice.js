@@ -1,9 +1,13 @@
 import { createAsyncThunk, createAction, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
+const rol = localStorage.getItem('rol');
+const token = rol === 'client' && localStorage.getItem('token');
+
 const initialState = {
     allProducts: [],
     searchedResult: [],
+    photos: [],
     status: 'idle',
     error: null,
   };
