@@ -24,7 +24,7 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  height:"100vh",
+  height: "100vh",
 };
 const footerStyle = {
   textAlign: 'center',
@@ -33,29 +33,29 @@ const footerStyle = {
 };
 
 
-const CreateProductVew = ()=>{
+const CreateProductVew = () => {
 
-    return(
-        <div>
-             <Space
-    direction="vertical"
-    style={{
-      width: '100%',
-    }}
-    size={[0, 48]}
-  >
-    <Layout>
-      <Sider style={siderStyle}><DashboardAdmin/></Sider>
+  return (
+
+    <Space
+      direction="vertical"
+      style={{
+        width: '100%',
+      }}
+      size={[0, 48]}
+    >
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
-        <Content style={contentStyle}>
-        <FormProductos/> 
-        </Content>
+        <Sider style={siderStyle}><DashboardAdmin /></Sider>
+        <Layout>
+          <Header style={headerStyle}><Divider style={{ color: "black", }}>Crear un Producto </Divider></Header>
+          <Content style={contentStyle}>
+            <FormProductos />
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
-  </Space>
-        </div>
-    )
+    </Space>
+
+  )
 }
 
 export default CreateProductVew;

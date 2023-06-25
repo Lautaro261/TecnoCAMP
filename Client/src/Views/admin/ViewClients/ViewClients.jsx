@@ -31,10 +31,10 @@ const siderStyle = {
 
 const ViewClients = ()=>{
   const token =window.localStorage.getItem("token")
-  const dispach= useDispatch()
+  const dispatch= useDispatch()
   const clientes = useSelector(state=>state.adminClients.allClients)
   useEffect(()=>{
-    dispach(getAllClients({token}))
+    dispatch(getAllClients({token}))
     console.log(clientes)
   },[])
   
