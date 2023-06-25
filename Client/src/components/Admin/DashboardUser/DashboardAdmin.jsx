@@ -1,8 +1,7 @@
 import React from 'react'
 import ContacticonsAdmin from './Contacticons/ContacticonsAdmin'
 import Nav from './Nav/Nav'
-import ProductForm from '../ProductForm/ProductForm'
-import IconAdmin from './IconAdmin/IconAdmin'
+import IconsAdmin from './IconsAdmin/IconsAdmin'
 import { Row, Col } from 'antd';
 
 function DashboardAdmin() {
@@ -13,7 +12,7 @@ function DashboardAdmin() {
     <ContacticonsAdmin/>
       </Col>
       <Col span={24}>
-    <IconAdmin/>
+    <IconsAdmin/>
       </Col>
       <Col span={24}>
     <Nav/>
