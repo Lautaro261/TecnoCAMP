@@ -51,26 +51,6 @@ export const CreateCart = createAsyncThunk(
     }
 )
 
-export const AddCart = createAsyncThunk(
-    'cart/AddCart',
-    async ({order, token}) => {
-        try {
-            console.log('LLEGUE', order)
-            const response= await axios.post("/client/addproductcart", order , {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-
-            });
-            console.log(response.data)
-            return response.data
-
-        } catch (error) {
-            console.log(error)
-        }
-    }
-)
-
 export const Delete = createAsyncThunk(
     'cart/Delete',
     async (data) => {
@@ -146,18 +126,6 @@ export const cartSlice = createSlice({
                 state.cartFill = action.payload
             })
             .addCase(Fill.rejected, (state, action) => {
-                state.status = 'rejected',
-                state.error = action.error.message 
-            })
-            .addCase(AddCart.pending, (state) => {
-                state.status = 'loading'
-                
-            })
-            .addCase(AddCart.fulfilled, (state, action) => {
-                state.status = 'succeeded',
-                state.lastProduct = action.payload
-            })
-            .addCase(AddCart.rejected, (state, action) => {
                 state.status = 'rejected',
                 state.error = action.error.message 
             })
