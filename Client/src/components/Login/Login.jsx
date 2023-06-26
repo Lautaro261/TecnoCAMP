@@ -12,7 +12,7 @@ const Login = ({ setToken, setRol }) => {
   const { userSession, error } = useSelector((state) => state.logInAndSignUp);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = (values) => {
+  const onFinish = async (values) => {
     values.sub = values.email;
     console.log('Success:', values); //{email, password, remember } {sub, email, password}
     dispatch(loginUser(values));
@@ -80,8 +80,6 @@ const Login = ({ setToken, setRol }) => {
         >
           <Input.Password />
         </Form.Item>
-
-
 
         <Form.Item style={{ textAlign: "center" }}>
           {error && <Text type="danger">{error}</Text>}
