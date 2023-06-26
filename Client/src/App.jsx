@@ -76,7 +76,7 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary/>} />
           <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
-          <Route path="/admin/editinventary" element={< EditInventary/> } />
+          {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}

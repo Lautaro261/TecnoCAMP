@@ -291,9 +291,9 @@ function TableInventory() {
         }}
         extra={
           <Space>
-            <Button onClick={onClose}>Cancel</Button>
+            <Button onClick={onClose}>Cancelar</Button>
             <Button onClick={() => form.submit()} type="primary">
-              Submit
+              Enviar
             </Button>
           </Space>
         }
@@ -311,7 +311,7 @@ function TableInventory() {
                 label="Nombre"
                 rules={[
                   {
-                    required: false,
+                    required: true,
                     message: "Ingrese un nombre nuevo",
                   },
                 ]}
@@ -326,7 +326,7 @@ function TableInventory() {
                 label="Precio"
                 rules={[
                   {
-                    required: false,
+                    required: true,
                     message: "Por favor ingrese el precio",
                   },
                 ]}
@@ -406,7 +406,7 @@ function TableInventory() {
                 label="Description"
                 rules={[
                   {
-                    required: false,
+                    required: true,
                     message: "Por favor ingrese una descripcion",
                   },
                 ]}
