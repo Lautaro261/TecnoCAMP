@@ -6,6 +6,7 @@ import UploadButton from '../../Client/Cloudinary/UploadButton';
 import ColorPicker from '../ColorPicker/ColorPicker.jsx';
 import { getAllCategories } from '../../../Redux/Features/admin/categories/adminCategoriesSlice';
 import { getAllBrands } from '../../../Redux/Features/admin/brands/adminBrandsSlice';
+import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
 
 
@@ -23,8 +24,9 @@ const FormProductos = () => {
 
 
   useEffect(() => {
-    dispatch(getAllCategories());
-    dispatch(getAllBrands());
+    dispatch(resetPhotos([]));
+    dispatch(getAllCategories(token));
+    dispatch(getAllBrands(token));
   }, []);
 
   const post = async (values) => {

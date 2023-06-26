@@ -1,9 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const rol = localStorage.getItem('rol');
-const token = rol === 'admin' && localStorage.getItem('token');
-
 const initialState = {
     allBrands: [],
     status: 'idle',
@@ -12,11 +9,11 @@ const initialState = {
 
 export const getAllBrands = createAsyncThunk(
     'adminBrands/getAllBrands',
-    async () => {
+    async (adminToken) => {
         try {
             const response = await axios.get('/admin/allbrands', {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ adminToken }`
                 }
             });
             return response.data;
