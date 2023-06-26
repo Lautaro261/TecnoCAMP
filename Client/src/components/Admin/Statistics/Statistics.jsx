@@ -48,7 +48,7 @@ const  Statistics = () => {
                 backgroundColor: "rgba(5, 127, 241, 0.384)",
                 padding:8
             }} />
-                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }}>Inventario Total</Typography.Text>} value={clientsStatistic.totalNumberOfActiveClients}/>
+                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }}>Clientes</Typography.Text>} value={clientsStatistic.totalNumberOfActiveClients}/>
             </Link>
             </Card>
 
@@ -63,7 +63,7 @@ const  Statistics = () => {
                 padding:8
                 
                 }}/>
-                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }}>Inventario Total</Typography.Text>} value={inventoriesStatistic.totalProductReferenceNumber}/>
+                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }}>Productos</Typography.Text>} value={inventoriesStatistic.totalProductReferenceNumber}/>
                 </Link>
             </Card>
 
