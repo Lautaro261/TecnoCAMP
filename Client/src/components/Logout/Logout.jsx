@@ -3,9 +3,9 @@ import { LogoutOutlined } from '@ant-design/icons';
 import { Row, Col, Popconfirm } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logoutOwn } from "../../../../Redux/Features/login/logInAndSignUpSlice";
+import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
 
-const IconLogout = () => {
+const Logout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
@@ -61,4 +61,4 @@ const IconLogout = () => {
     )
 }
 
-export default IconLogout;
+export default Logout;

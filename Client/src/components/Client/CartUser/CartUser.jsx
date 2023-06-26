@@ -1,17 +1,16 @@
-import { Avatar, Button, List, Skeleton, Popconfirm } from 'antd';
+import { Avatar, Button, List, Skeleton, Popconfirm, InputNumber } from 'antd';
 import { useEffect, useState } from 'react';
 import { CreateCart, Fill, Delete } from '../../../Redux/Features/cart/cartSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getCartForAUser } from '../../../Redux/Features/payment/paymentSlice';
 
 const CartUser = () => {
-    const cart=useSelector(state=>state.cart.cart)
+    const cart=useSelector(state=>state.cart.cartFill)
     const dispatch= useDispatch()
     const token=window.localStorage.getItem("token")
 //funciones para usar
 const refresh=()=>{
-    console.log(token)
     dispatch(Fill(token))
-    console.log(cart)
 }
 
 
@@ -23,7 +22,9 @@ const DeleteHandler=(ids)=>{
   refresh()
 }
 
-
+useEffect(() => {
+  dispatch(getCartForAUser());
+}, []);
 
 // creacion
 useEffect(()=>{
@@ -77,7 +78,7 @@ useEffect(()=>{
         <List.Item
           actions={[<Popconfirm title="¿eliminar?" onConfirm={() => DeleteHandler([item.productId,item.inventoryId])}>
           <Button type="primary">Eliminar</Button>
-      </Popconfirm>, <a key="list-loadmore-more">more</a>]}
+      </Popconfirm>,           <InputNumber min={1} max={10} value={1}/>]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta
@@ -89,7 +90,7 @@ useEffect(()=>{
 
             <div>cantidad: {item.quantity_unit_product}</div>
 
-            <div>precio unitario: {item.product.price_promotion}</div>
+            <div>precio unitario: {item.product.price}</div>
             </div>
           </Skeleton>
         </List.Item>

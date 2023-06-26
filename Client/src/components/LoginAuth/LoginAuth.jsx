@@ -9,7 +9,7 @@ const LoginAuth = () => {
   return (
 
     <Tooltip title="Google">
-      <Button type="primary" danger onClick={() => loginWithRedirect()} > Ingresar con Google</Button>
+      <Button type="primary" danger onClick={() => loginWithRedirect()} >Google</Button>
     </Tooltip>
 
   )

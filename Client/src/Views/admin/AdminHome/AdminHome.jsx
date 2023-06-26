@@ -26,11 +26,7 @@ const siderStyle = {
   backgroundColor: '#001529',
   height:"100vh",
 };
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
-};
+
 
 
 const AdminHome = ()=>{

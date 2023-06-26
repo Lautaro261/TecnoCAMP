@@ -8,7 +8,7 @@ const initialState={
 
 
 export const Fill = createAsyncThunk(
-    'carts/Fill',
+    'cart/Fill',
     async (token) => {
         try {
         const response= await axios.get("/client/cartuser/", {
@@ -18,8 +18,9 @@ export const Fill = createAsyncThunk(
         })
 
         console.log(response.data)
-        if(response.data.message==="El carrito no tiene productos agregados"){
-            return []
+        if(response.data.message){
+            
+            return ([])
         }else{return response.data} 
 
         } catch (error) {
@@ -29,7 +30,7 @@ export const Fill = createAsyncThunk(
 )
 
 export const CreateCart = createAsyncThunk(
-    'carts/CreateCart',
+    'cart/CreateCart',
     async (token) => {
         try {
             const response= await axios.post("/client/createcart", {}, {
@@ -51,7 +52,7 @@ export const CreateCart = createAsyncThunk(
 )
 
 export const Delete = createAsyncThunk(
-    'carts/Delete',
+    'cart/Delete',
     async (data) => {
         try {
             const response= await axios.put("/client/deleteproductcart", {
@@ -85,7 +86,7 @@ export const Delete = createAsyncThunk(
     
             console.log(dataset.data, "refill")
             if(dataset.data.message==="El carrito no tiene productos agregados"){
-                return []
+                return ([])
             }else{return dataset.data} 
 
         } catch (error) {
@@ -106,7 +107,7 @@ export const cartSlice = createSlice({
             })
             .addCase(Fill.fulfilled, (state, action) => {
                 state.status = 'succeeded',
-                state.cart = action.payload
+                state.cartFill = action.payload
             })
             .addCase(Fill.rejected, (state, action) => {
                 state.status = 'rejected',
