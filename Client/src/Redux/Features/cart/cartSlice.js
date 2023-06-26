@@ -115,6 +115,22 @@ export const Delete = createAsyncThunk(
     }
 )
 
+export const AddtoCart = createAsyncThunk(
+    'cart/AddtoCart',
+    async (data) => {
+        try {
+            const response= await axios.post("/client/addproductcart", {productId:data[0], inventoryId:data[1], quantity:data[2]}, {
+                headers: {
+                    Authorization: `Bearer ${data[3]}`
+                }
+            });
+            console.log(response.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 
 export const cartSlice = createSlice({
     name:"cart" ,
