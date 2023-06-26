@@ -1,4 +1,4 @@
-const { Product, Inventory } = require("../../../db");
+const { Product, Inventory, Category, Brand } = require("../../../db");
 
 const getAllProducts = async () => {
   const allProducts = await Product.findAll({
@@ -7,6 +7,14 @@ const getAllProducts = async () => {
         model: Inventory,
         attributes: ["id", "color", "quantity_inventory", "is_available"],
       },
+      {
+        model: Category,
+        attributes: ["name"]
+      },
+      {
+        model: Brand,
+        attributes: ["name"]
+      }
     ],
   });
 

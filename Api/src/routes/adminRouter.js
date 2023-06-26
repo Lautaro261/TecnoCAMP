@@ -11,6 +11,7 @@ const adminRouter = Router();
 const handlerGetAllClients = require("../handlers/admin/GET/handlerGetAllClients.js");
 const handlerGetClientById = require("../handlers/admin/GET/handlerGetClientById.js");
 const handlerDeleteUser = require("../handlers/admin/PUT/handlerDeleteUser.js");
+const handlerGetNumberClients = require("../handlers/admin/GET/handlerGetNumberClients.js");
 
 // CATEGORIAS
 const handlerCreateCategory = require("../handlers/admin/POST/handlerCreateCategory.js");
@@ -38,8 +39,21 @@ const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductBy
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
 
+// REVIEWS
+const handlerGetAllReview = require("../handlers/admin/GET/handlerGetAllReview.js");
+
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMunCo.js");
+
+// ORDENES DE PEDIDOS PAGADAS
+const {
+  handlerGetAllApprovedOrders,
+  handlerGetDataOfOrders,
+} = require("../handlers/admin/GET/handlerGetAllApprovedOrders.js");
+const handlerGetFilterOrderByUser = require("../handlers/admin/GET/handlerGetFilterOrderByUser.js");
+
+// INVENTARIOS
+const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
 
 /////////// ROUTES ////////////
 
@@ -47,28 +61,44 @@ const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMu
 adminRouter.get("/allclients", verifyToken, handlerGetAllClients);
 adminRouter.get("/client/:sub", verifyToken, handlerGetClientById);
 adminRouter.put("/client/delete", verifyToken, handlerDeleteUser);
+adminRouter.get("/clients/number", verifyToken, handlerGetNumberClients);
 
 // CATEGORIAS
 adminRouter.get("/allcategories", verifyToken, handlerGetAllCategories);
-adminRouter.get("/category", verifyToken, handlerGetCategoryById);
+adminRouter.get("/category/:id", verifyToken, handlerGetCategoryById);
 adminRouter.post("/createcategory", verifyToken, handlerCreateCategory);
 adminRouter.put("/updatecategory", verifyToken, handlerUpdateCategory);
 adminRouter.put("/deletecategory", verifyToken, handlerDeleteCategory);
 
 // MARCAS
 adminRouter.get("/allbrands", verifyToken, handlerGetAllBrands);
-adminRouter.get("/brand", verifyToken, handlerGetBrandById);
+adminRouter.get("/brand/:id", verifyToken, handlerGetBrandById);
 adminRouter.post("/createbrand", verifyToken, handlerCreateBrand);
 adminRouter.put("/updatebrand", verifyToken, handlerUpdateBrand);
 adminRouter.put("/deletebrand", verifyToken, handlerDeleteBrand);
 
 // PRODUCTOS
 adminRouter.get("/allproducts", verifyToken, handlerGetAllProducts);
-adminRouter.get("/product", verifyToken, handlerGetProductById);
+adminRouter.get("/product/:id", verifyToken, handlerGetProductById);
 adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
 adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
+
+// ORDENES DE PEDIDOS PAGADAS
+adminRouter.get("/allorders", verifyToken, handlerGetAllApprovedOrders);
+adminRouter.get("/dataorders", verifyToken, handlerGetDataOfOrders);
+adminRouter.get("/ordersbyuser", verifyToken, handlerGetFilterOrderByUser);
+
+// INVENTARIOS
+adminRouter.get(
+  "/inventories/number",
+  verifyToken,
+  handlerGetNumberInventories
+);
+
+// REVIEWS
+adminRouter.get("/allReviews", verifyToken, handlerGetAllReview);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 adminRouter.post("/loadcities", handlerCreateDepMunCo);

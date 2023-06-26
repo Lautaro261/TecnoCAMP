@@ -1,5 +1,5 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
+import Statistics from '../../../components/Admin/Statistics/Statistics';
 
 import { Layout, Space, Divider } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
@@ -26,11 +26,7 @@ const siderStyle = {
   backgroundColor: '#001529',
   height:"100vh",
 };
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
-};
+
 
 
 const AdminHome = ()=>{
@@ -49,7 +45,7 @@ const AdminHome = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
         <Content style={contentStyle}>
-        
+        <Statistics/>
         </Content>
       </Layout>
     </Layout>

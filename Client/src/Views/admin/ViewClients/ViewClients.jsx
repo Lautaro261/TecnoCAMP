@@ -2,7 +2,7 @@ import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdm
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider, } from 'antd';
 import { useEffect } from 'react';
-import { getClientsback } from '../../../Redux/Features/admin/adminSlice';
+import { getAllClients } from '../../../Redux/Features/admin/clients/adminClientsSlice';
 import TableClients from '../../../components/Admin/TableClients/TableClients';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -17,10 +17,11 @@ const contentStyle = {
   textAlign: 'center',
   minHeight: 120,
   lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#fff',
+  color: '#0000',
+  backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
   color: '#fff',
@@ -29,12 +30,14 @@ const siderStyle = {
 };
 
 
+
+
 const ViewClients = ()=>{
   const token =window.localStorage.getItem("token")
-  const dispach= useDispatch()
-  const clientes = useSelector(state=>state.admin.clients)
+  const dispatch= useDispatch()
+  const clientes = useSelector(state=>state.adminClients.allClients)
   useEffect(()=>{
-    dispach(getClientsback({token}))
+    dispatch(getAllClients({token}))
     console.log(clientes)
   },[])
   
@@ -53,7 +56,7 @@ const ViewClients = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Clientes</Divider></Header>
         <Content style={contentStyle}>
-        <div><TableClients clients={clientes}/></div>
+       <TableClients/>
         </Content>
       </Layout>
     </Layout>

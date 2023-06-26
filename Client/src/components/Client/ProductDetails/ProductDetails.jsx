@@ -2,10 +2,10 @@ import React,{ useEffect } from "react";
 import { Row, Col, Space } from "antd";
 import { useDispatch, useSelector} from 'react-redux';
 import { getProductDetails, clearDetails} from "../../../Redux/Features/products/clientProductsSlice";
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
-
+import { AddtoCart } from "../../../Redux/Features/cart/cartSlice";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -13,16 +13,34 @@ const ProductDetails = () => {
   const { id } = useParams();
   const category=  useSelector( state => state.clientProducts.category) 
   const [value, setValue] = useState('1');
+  const [selected, setSelected]=useState([])
+  
+  const token = window.localStorage.getItem("token")
+  console.log(productDetails)
 
+  const selector=(e)=>{
+    console.log(e.target.id)
+    const array=e.target.id.split(",")
+    console.log(array)
+    setSelected(array)
+  }
+
+  const AddToCart=()=>{
+ const id=productDetails.id
+ const invId=selected[0]
+ const val = value
+ 
+ console.log([id, invId,val, token])
+ dispatch(AddtoCart([id, invId,val, token]))
+  }
 
   useEffect(()=> {
     dispatch(getProductDetails(id))
+    console.log(productDetails)
     return function clean(){
       dispatch(clearDetails())
     }
   }, [])
-
-
  
     return(
         <div style={{width: "100vw"}}>
@@ -42,18 +60,24 @@ const ProductDetails = () => {
             </Col>
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
-              <Col span={24} style={{color: '#000000', textAlign: 'left', fontSize: '1vw', fontWeight: 'bold'}}>
-              <p style={{textDecoration:"line-through", color: 'grey'}} >${productDetails.price}</p>
-              <p>${productDetails.price_promotion}</p>
-              <p  style={{color: 'grey', fontSize: '0.7vw'}}>Disponibles: {productDetails.total_quantity_inventory}</p>
-
+              <Col span={24} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
+              <p>${productDetails.price}</p>
+              <p  style={{color: 'grey', fontSize: '1vw'}}>Disponibles: {productDetails.total_quantity_inventory}</p>
+              </Col>
+              <Col>
+              Colores Disponibles:  
+              {productDetails.inventories ? productDetails.inventories.map((item)=>{
+                return (<Button onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
+              }): "??"} 
               </Col>
             </Col>
+
           </Row>
           <Row>
           <Col span={24} style={{width:"15vw", marginLeft:"40%"}}>
-          <InputNumber min={1} max={productDetails.total_quantity_inventory} value={value} onChange={setValue} />
-            <Button type="primary" onClick={() => {setValue(1);}}> AGREGAR AL CARRITO</Button>
+            {selected[0]?null:<p style={{color:"grey"}}>seleccione un color para continuar</p>}
+          <InputNumber disabled={selected[0]? false : true} min={1} max={selected[1]} value={value} onChange={setValue} />
+            <Button type="primary" onClick={AddToCart} disabled={selected[0] && value<= selected[1]?false:true}> AGREGAR AL CARRITO</Button>
             </Col>
           </Row>
           <Row>

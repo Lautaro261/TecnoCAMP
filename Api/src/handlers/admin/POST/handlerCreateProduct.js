@@ -20,7 +20,6 @@ const handlerCreateProduct = async (req, res) => {
   const {
     name,
     price,
-    price_promotion,
     photo,
     product_description,
     colors,
@@ -38,7 +37,6 @@ const handlerCreateProduct = async (req, res) => {
     const newProduct = await postCreateProduct(
       name,
       price,
-      price_promotion,
       photo,
       product_description,
       colors,

@@ -50,6 +50,7 @@ const ProductsPagination = () => {
             total={ totalItems }
             current={ currentPage }
             defaultPageSize={ itemsPerPage }
+            pageSizeOptions={ [5, 10, 12, 15, 20] }
             onChange={ handlePageChange }
             itemRender={ itemRender }
         />

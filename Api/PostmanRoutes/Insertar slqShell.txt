@@ -1,3 +1,11 @@
+1) 
+INSERT INTO categories VALUES ('bd2cf3fb-153b-4f44-9de1-01d733280d50', 'Smartphone', true);
+INSERT INTO categories VALUES ('2c401f63-5295-4180-a91f-63f2327c6e29', 'Smartwatch', true);
+INSERT INTO categories VALUES ('9043b1a0-61f5-439e-b426-5665e48f496b', 'Earphone', true);
+INSERT INTO brands VALUES ('45a7a1f2-bc56-4fe5-83dc-151c5a9eaa7c', 'Apple', true);
+INSERT INTO brands VALUES ('96215a38-0253-4361-878b-50797f12925c', 'Huawei', true);
+
+2)
 INSERT INTO products VALUES ('b668b573-99a1-4ef9-bec0-8e3c7b9e8e16', 'Huawei Watch GT3', 900000, 850000, '{"https://m.media-amazon.com/images/I/61ez4hcV+eL._AC_SX425_.jpg"}', 'Elegante smartwatch con pantalla AMOLED, seguimiento de actividad y monitorización de frecuencia cardíaca.', 'SmartWatch con bluetooth', 18, true, false, NULL, 'bd2cf3fb-153b-4f44-9de1-01d733280d50', '96215a38-0253-4361-878b-50797f12925c');
 INSERT INTO products VALUES ('2065df4d-ee44-4123-9c5b-3a3f1442e63a', 'Huawei Mate 30 Pro', 1400000, 1300000, '{"https://m.media-amazon.com/images/I/51KFFgQKXvL._AC_.jpg"}', 'Potente smartphone con cámara Leica Quad de 40 MP, pantalla OLED de 6.53" y batería de larga duración.', 'Celular Smartphone', 30, true, false, NULL, 'bd2cf3fb-153b-4f44-9de1-01d733280d50', '96215a38-0253-4361-878b-50797f12925c');
 INSERT INTO products VALUES ('8b1317e1-6c74-478f-8377-79144228f22e', 'Huawei FreeBuds Pro', 800000, 750000, '{"https://m.media-amazon.com/images/I/51OgMUGpbSL._AC_SX425_.jpg"}', 'Auriculares inalámbricos con cancelación de ruido activa y sonido de alta calidad.', 'Audífonos bluetooth', 18, true, false, NULL, 'bd2cf3fb-153b-4f44-9de1-01d733280d50', '96215a38-0253-4361-878b-50797f12925c');

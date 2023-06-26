@@ -35,9 +35,7 @@ const postAddProductToCart = async (
 
   // // Si el usuario no tiene un carrito activo, crear uno nuevo
   // if (!cart) {
-  //   cart = await Cart.create({
-  //     userSub,
-  //   });
+  //   return { message: "El usuario no tiene carrito creado aún" };
   // }
 
   // Verificar si la cantidad de productos ingresado para agregar al carrito es correcta
@@ -77,10 +75,30 @@ const postAddProductToCart = async (
       userSub,
       productId,
       inventoryId,
+      cart_status: {
+        [Op.or]: ["Vacio", "Por pagar"],
+      },
     },
   });
 
   if (existingCartItem) {
+    // Verificar si el producto y color del producto existen en el inventario
+    const inventory = await Inventory.findOne({
+      where: { id: inventoryId, productId: productId },
+    });
+
+    // Verificar si hay suficiente disponibilidad en el inventario del producto seleccionado
+    if (
+      parseFloat(existingCartItem.quantity_unit_product) +
+        parseFloat(quantity) >
+      parseFloat(inventory.quantity_inventory)
+    ) {
+      return {
+        message:
+          "Ahora que quieres añadir mas productos, no hay suficiente disponibilidad en inventario del producto seleccionado",
+      };
+    }
+
     // Actualizar el quantity_unit_product y amount_unit_product del color existente
     existingCartItem.quantity_unit_product =
       parseFloat(existingCartItem.quantity_unit_product) + parseFloat(quantity);
@@ -94,9 +112,7 @@ const postAddProductToCart = async (
     const idCart = await Cart.findOne({
       where: {
         userSub,
-        cart_status: {
-          [Op.or]: ["Vacio"],
-        },
+        cart_status: "Vacio",
       },
     });
     console.log(idCart.dataValues.id);
@@ -117,6 +133,9 @@ const postAddProductToCart = async (
     const uniqueProductCount = await Cart.count({
       where: {
         userSub,
+        cart_status: {
+          [Op.or]: ["Vacio", "Por pagar"],
+        },
       },
       distinct: true,
       col: "inventoryId", // Contar la cantidad de productos únicos basado en la columna inventoryId
@@ -133,9 +152,7 @@ const postAddProductToCart = async (
       {
         where: {
           userSub,
-          cart_status: {
-            [Op.or]: ["Por pagar"],
-          },
+          cart_status: "Por pagar",
         },
       }
     );
@@ -153,9 +170,7 @@ const postAddProductToCart = async (
   const allProductsItems = await Cart.findAll({
     where: {
       userSub,
-      cart_status: {
-        [Op.or]: ["Por pagar"],
-      },
+      cart_status: "Por pagar",
     },
   });
 
@@ -172,9 +187,7 @@ const postAddProductToCart = async (
     {
       where: {
         userSub,
-        cart_status: {
-          [Op.or]: ["Por pagar"],
-        },
+        cart_status: "Por pagar",
       },
     }
   );

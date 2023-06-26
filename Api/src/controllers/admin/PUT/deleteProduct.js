@@ -27,6 +27,8 @@ const deleteProduct = async (productId) => {
   // Verificar si se deshabilita la disponibilidad del producto
   if (!product.isAvailable) {
     product.total_quantity_inventory = 0; // Establecer el stock total a 0
+    product.categoryId = null;
+    product.brandId = null;
   }
 
   await product.save();

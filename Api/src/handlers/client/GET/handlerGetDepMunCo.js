@@ -44,7 +44,7 @@ const handlerGetMunicipalitiesByDepartment = async (req, res) => {
   }
 
   // Pedir id del departamento por body
-  const { departmentId } = req.body;
+  const { departmentId } = req.query;
 
   try {
     // Obtener todos los municipios del departamento sleccionado

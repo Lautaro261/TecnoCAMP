@@ -1,6 +1,7 @@
 import { Button, Form, Input, Popconfirm, Table } from 'antd';
 import React, { useContext, useEffect, useRef, useState} from 'react';
-import { banUser } from '../../../Redux/Features/admin/adminSlice';
+import { banUser } from '../../../Redux/Features/admin/clients/adminClientsSlice';
+// import { banUser } from '../../../Redux/Features/admin/adminSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import {  notification } from 'antd';
 const EditableContext = React.createContext(null);
@@ -81,7 +82,9 @@ const EditableCell = ({
     return <td {...restProps}>{childNode}</td>;
 };
 const TableClients = () => {
-    const clientss=useSelector(state=>state.admin.clients)
+    const clientss=useSelector(state=>state.adminClients.allClients)
+
+    
     const data = clientss && clientss.map(c => {
         return (
             {
@@ -176,6 +179,7 @@ const TableClients = () => {
                 bordered
                 dataSource={data}
                 columns={columns}
+                style={{marginTop:'8vh'}}
             />
         </div>
     );

@@ -7,7 +7,7 @@ import LoginView from "./Views/Login2/LoginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
-import CartView from "./Views/client/Cart/CartView";
+import CartView from "./Views/client/CartView/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
 import { useState } from "react";
 import AllCategoriesView from "./Views/client/Categories/AllCategoriesView";
@@ -18,6 +18,12 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
+import Inventary from './Views/admin/Inventary/Inventary'
+import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
+import EditInventary from "./Views/admin/EditInventary/EditInventary";
+import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
+import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
+
 
 //axios.defaults.baseURL = "http://localhost:3001";
 axios.defaults.baseURL = "https://tecnocamp-back-production.up.railway.app";
@@ -47,17 +53,20 @@ function App() {
         {/* <Route path="login" element={<LoginView setToken={setToken} setRol={setRol} />}/> */}
         <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} /> 
         <Route path="/home" element={<ClientHome />} />
-        {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
         <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
        {/*  <Route path="/developers" element={< div/>} /> */}
         <Route path="/about" element={<AboutUs/>} />
+        <Route path='/success-payment' element={<SuccessPaymentView />} />
+        <Route path='/failure-payment' element={<FailurePaymentView />} />
 
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+        <Route path="/cart" element={ <CartView/> } />
+         
           {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
 
@@ -66,6 +75,9 @@ function App() {
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/createproduct" element={<CreateProductVew />} />
           <Route path="/admin/clients" element={<ViewClients />} />
+          <Route path="/admin/inventary" element={<Inventary/>} />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
+          {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}

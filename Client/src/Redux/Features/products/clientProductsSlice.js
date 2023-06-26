@@ -18,7 +18,6 @@ const initialState = {
   minPrice: 1,
   maxPrice: 8000000,
   selectedValueToFilter: null,
-  photos: [],
   status: "idle",
   error: null,
 };
@@ -112,7 +111,6 @@ export const setCurrentAllProducts = createAction("clientProducts/setCurrentAllP
 export const sortAlphabetically = createAction("clientProducts/sortAlphabetically");
 export const sortByPrice = createAction("clientProducts/sortByPrice");
 export const setSelectedValueToFilter = createAction("clientProducts/setSelectedValueToFilter");
-export const setPhotos = createAction("clientProducts/setPhotos");
 export const clearDetails = createAction("clientProducts/clearDetails");
 export const clearProductsByCategory = createAction(
   "clientProducts/clearProductsByCategory"
@@ -187,9 +185,6 @@ const clientProductsSlice = createSlice({
     },
     setSelectedValueToFilter: (state, action) => {
       state.selectedValueToFilter = action.payload
-    },
-    setPhotos: (state, action) => {
-      state.photos = [...state.photos, action.payload];
     }
   },
   extraReducers: (builder) => {

@@ -1,8 +1,7 @@
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import ProductForm from '../../../components/Admin/ProductForm/ProductForm';
-
+import FormProductos from '../../../components/Admin/FormProductos/FormProductos';
 import { Layout, Space, Divider } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const headerStyle = {
   textAlign: 'center',
   color: '#fff',
@@ -19,42 +18,30 @@ const contentStyle = {
   backgroundColor: '#ffff',
 };
 const siderStyle = {
+  width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
   height:"100vh",
 };
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
-};
 
 
-const CreateProductVew = ()=>{
+const CreateProductVew = () => {
 
-    return(
-        <div>
-             <Space
-    direction="vertical"
-    style={{
-      width: '100%',
-    }}
-    size={[0, 48]}
-  >
-    <Layout>
-      <Sider style={siderStyle}><DashboardAdmin/></Sider>
+  return (
+
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Crear un Producto </Divider></Header>
-        <Content style={contentStyle}>
-        <ProductForm/>
-        </Content>
+        <Sider style={siderStyle}><DashboardAdmin /></Sider>
+        <Layout>
+          <Header style={headerStyle}><Divider style={{ color: "black", }}>Crear producto </Divider></Header>
+          <Content style={contentStyle}>
+            <FormProductos />
+          </Content>
+        </Layout>
       </Layout>
-    </Layout>
-  </Space>
-        </div>
-    )
+
+  )
 }
 
 export default CreateProductVew;

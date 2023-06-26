@@ -22,14 +22,13 @@ const handlerUpdateProduct = async (req, res) => {
   const {
     name,
     price,
-    price_promotion,
     photo,
     product_description,
     e_product_type,
     is_available,
     product_favorite,
-    categoryId,
-    brandId,
+   /*  categoryId,
+    brandId, */
     inventoryItems,
   } = req.body;
 
@@ -39,14 +38,13 @@ const handlerUpdateProduct = async (req, res) => {
       id,
       name,
       price,
-      price_promotion,
       photo,
       product_description,
       e_product_type,
       is_available,
       product_favorite,
-      categoryId,
-      brandId,
+    /*   categoryId,
+      brandId, */
       inventoryItems
     );
 
