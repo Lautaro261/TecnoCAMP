@@ -9,9 +9,11 @@ import logInAndSignUpReducer from './Features/login/logInAndSignUpSlice';
 import cartReducer from "./Features/cart/cartSlice";
 import paymentReducer from "./Features/payment/paymentSlice";
 import photosReducer from "./Features/photos/photosSlice";
+import adminClientsReducer from './Features/admin/clients/adminClientsSlice'
 
 const store = configureStore({
     reducer: {
+        adminClients: adminClientsReducer,
         adminCategories: adminCategoriesReducer,
         adminBrands: adminBrandsReducer,
         adminProducts: adminProductsReducer,
