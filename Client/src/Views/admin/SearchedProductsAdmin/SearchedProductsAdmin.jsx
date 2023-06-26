@@ -58,7 +58,7 @@ function SearchedProductsAdmin() {
     return (
         <div>
              <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }}/> 
-        
+
     </div>
 )
  }

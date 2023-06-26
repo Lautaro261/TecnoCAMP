@@ -83,6 +83,8 @@ const EditableCell = ({
 };
 const TableClients = () => {
     const clientss=useSelector(state=>state.adminClients.allClients)
+
+    
     const data = clientss && clientss.map(c => {
         return (
             {
@@ -177,6 +179,7 @@ const TableClients = () => {
                 bordered
                 dataSource={data}
                 columns={columns}
+                style={{marginTop:'8vh'}}
             />
         </div>
     );
