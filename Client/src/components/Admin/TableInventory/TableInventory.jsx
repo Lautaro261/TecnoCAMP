@@ -157,14 +157,15 @@ function TableInventory() {
       title: "Stock",
       dataIndex: "total_quantity_inventory",
       key: "key",
-      ...getColumnSearchProps("total_quantity_inventory"),
+      
+      
     },
     {
       title: "Category",
       dataIndex: "category",
       key: "key",
       width: "20%",
-      ...getColumnSearchProps("category"),
+      /* ...getColumnSearchProps("category"), */
     },
     {
       title: "Brand",
@@ -184,17 +185,13 @@ function TableInventory() {
             <Button type="primary">Editar</Button>
           </a>{" "}
           {"  "}{" "}
-          <Button type="primary" danger>
+          {/* <Button type="primary" danger>
             Eliminar
-          </Button>{" "}
+          </Button>{" "} */}
         </>
       ),
     },
-    {
-      title: "Stock",
-      dataIndex: "total_quantity_inventory",
-      key: "key",
-    },
+  
   ];
 
   const data =
@@ -216,8 +213,8 @@ function TableInventory() {
       };
     });
 
-  console.log("SOY TODO PA", allProducts);
-  console.log("soy mapeo", data);
+ // console.log("SOY TODO PA", allProducts);
+// console.log("soy mapeo", data);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
@@ -232,15 +229,13 @@ function TableInventory() {
 
   return (
     <>
-    <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
-    <Button type="primary" onClick={showModal}>
+    <Table columns={columns} dataSource={data} pagination={{ pageSize: 5 }} style={{marginTop:'8vh'}} />
+    {/* <Button type="primary" onClick={showModal}>
         Open Modal
       </Button>
       <Modal title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-      </Modal>
+        <label></label>
+      </Modal> */}
     </>
   );
 }
