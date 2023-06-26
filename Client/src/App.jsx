@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import axios from "axios";
 import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
-import LoginView from "./Views/login/loginView";
+import LoginView from "./Views/Login/LoginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
