@@ -1,16 +1,39 @@
 import { createAsyncThunk, createAction, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const rol = localStorage.getItem('rol');
-const token = rol === 'client' && localStorage.getItem('token');
+// const rol = localStorage.getItem('rol');
+// const token = localStorage.getItem('token');
 
 const initialState = {
+    productPut: [],
     allProducts: [],
     searchedResult: [],
     photos: [],
     status: 'idle',
     error: null,
   };
+
+
+  export const putProduct = createAsyncThunk(
+    'adminProducts/putProduct',
+    async([token,idProduct, values]) => {
+      console.log('idProuct', idProduct, 'values', values, 'token', token)
+      try {
+          response  = await axios.put(`admin/update/${idProduct}`,{values},{
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
+
+        console.log('okokok put product', response.data)
+        return  response.data;
+      } catch (error) {
+        console.log('putttproduct,errorr', error.response.data)
+        throw error.response.data
+      }
+    }
+  )
+
 
   export const getAllProducts = createAsyncThunk(
     "adminProducts/getAllProducts",
@@ -80,6 +103,20 @@ const adminProductsSlice = createSlice({
           .addCase(getProductsSearched.rejected, (state, action) => {
             state.status = "rejected";
             state.errorSearch = action.error;
+          })
+
+
+          .addCase(putProduct.pending, (state) => {
+            state.status = "loading";
+          })
+          .addCase(putProduct.fulfilled, (state, action) => {
+            state.status = "succeeded";
+            state.productPut = action.payload;
+            state.error = null;
+          })
+          .addCase(putProduct.rejected, (state, action) => {
+            state.status = "rejected";
+            state.error = action.error.message;
           })
     }
 })
