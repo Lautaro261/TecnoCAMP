@@ -52,7 +52,6 @@ function App() {
         <Route path="/" element={<Landing/>} />
         <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} />
         <Route path="/home" element={<ClientHome />} />
-        {/* <Route path="/admin/createproduct" element={<CreateProductVew />} /> */}
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
@@ -77,7 +76,7 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary/>} />
           <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
-          <Route path="/admin/editinventary" element={< EditInventary/> } />
+          {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}

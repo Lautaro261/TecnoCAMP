@@ -10,9 +10,11 @@ import cartReducer from "./Features/cart/cartSlice";
 import paymentReducer from "./Features/payment/paymentSlice";
 import photosReducer from "./Features/photos/photosSlice";
 import adminClientsReducer from './Features/admin/clients/adminClientsSlice'
+import adminStatisticsReducer from "./Features/admin/Statistics/adminStatistics";
 
 const store = configureStore({
     reducer: {
+        adminStatistics: adminStatisticsReducer,
         adminClients: adminClientsReducer,
         adminCategories: adminCategoriesReducer,
         adminBrands: adminBrandsReducer,

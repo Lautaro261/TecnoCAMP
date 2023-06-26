@@ -19,11 +19,18 @@ const DispatchForm = () => {
 
     const handleChange = (value) => {
         form.setFieldsValue({ municipalityId: '' })
-        dispatch(getAllMunicipalities(parseInt(value)));
+        dispatch(getAllMunicipalities((value)));
     };
 
     const onFinish = async (values) => {
-        dispatch(createPaymentOrder(values));
+
+    dispatch(createPaymentOrder(values)); 
+        
+       /*  const updatedValues = {
+            ...values,
+            departmentId: values.departmentId.toString() // Convertir a cadena de texto
+          };
+          dispatch(createPaymentOrder(updatedValues)); */
     };
     
     const onFinishFailed = (errorInfo) => {
@@ -46,7 +53,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input a contact name!',
+                            message: 'Ingrese un nombre',
                         }
                     ]}
                 >
@@ -59,7 +66,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input a cellphone!',
+                            message: 'Ingrese un número de contacto',
                         }
                     ]}
                 >
@@ -72,7 +79,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please choose a department',
+                            message: 'Ingrese un departamento',
                         }
                     ]}
                 >
@@ -94,7 +101,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please choose a municipality',
+                            message: 'Ingrese un municipio',
                         }
                     ]}
                 >
@@ -116,7 +123,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input an address!',
+                            message: 'Ingrese una dirección',
                         }
                     ]}
                 >
@@ -129,7 +136,7 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input a neighborhood!',
+                            message: 'Ingrese un vecindario',
                         }
                     ]}
                 >
