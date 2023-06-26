@@ -2,7 +2,6 @@ import React,{ useEffect } from "react";
 import { Row, Col, Space } from "antd";
 import { useDispatch, useSelector} from 'react-redux';
 import { getProductDetails, clearDetails} from "../../../Redux/Features/products/clientProductsSlice";
-import { AddCart } from "../../../Redux/Features/cart/cartSlice";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
@@ -61,14 +60,14 @@ const ProductDetails = () => {
             </Col>
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
-              <Col span={24} style={{color: '#000000', textAlign: 'left', fontSize: '1vw', fontWeight: 'bold'}}>
+              <Col span={24} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
               <p>${productDetails.price}</p>
-              <p  style={{color: 'grey', fontSize: '0.7vw'}}>Disponibles: {productDetails.total_quantity_inventory}</p>
+              <p  style={{color: 'grey', fontSize: '1vw'}}>Disponibles: {productDetails.total_quantity_inventory}</p>
               </Col>
               <Col>
               Colores Disponibles:  
               {productDetails.inventories ? productDetails.inventories.map((item)=>{
-                return (<button onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</button>)
+                return (<Button onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
               }): "??"} 
               </Col>
             </Col>
