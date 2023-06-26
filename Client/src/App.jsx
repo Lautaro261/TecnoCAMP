@@ -21,7 +21,7 @@ import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResul
 import AboutUs from "./Views/client/AboutUs/AboutUs";
 import Inventary from './Views/admin/Inventary/Inventary'
 import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
-
+import EditInventary from "./Views/admin/EditInventary/EditInventary";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -72,6 +72,7 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary/>} />
           <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
+          <Route path="/admin/editinventary" element={< EditInventary/> } />
 
         </Route>
        {/* RUTA DE CONSTRUCCION*/}
