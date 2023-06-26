@@ -9,8 +9,8 @@ const updateProduct = async (
   e_product_type,
   is_available,
   product_favorite,
-  categoryId,
-  brandId,
+  /* categoryId,
+  brandId, */
   inventoryItems
 ) => {
   // Validar que el producto, la categoría y la marca existen
@@ -20,12 +20,12 @@ const updateProduct = async (
     return { message: "Producto no encontrado" };
   }
 
-  const brand = await Brand.findByPk(brandId);
-  const category = await Category.findByPk(categoryId);
+ /*  const brand = await Brand.findByPk(brandId);
+  const category = await Category.findByPk(categoryId); */
 
-  if (!brand || !category) {
-    return { message: "Marca o categoría no válida" };
-  }
+  // if (!brand || !category) {
+  //   return { message: "Marca o categoría no válida" };
+  // }
 
   // Validar que los ID de colores no se repitan
   const inventoryIds = inventoryItems.map((item) => item.id);
@@ -78,8 +78,8 @@ const updateProduct = async (
   product.e_product_type = e_product_type;
   product.is_available = is_available;
   product.product_favorite = product_favorite;
-  product.categoryId = categoryId;
-  product.brandId = brandId;
+ /*  product.categoryId = categoryId;
+  product.brandId = brandId; */
 
   // Actualizar los elementos de inventario asociados
   if (inventoryItems && inventoryItems.length > 0) {
