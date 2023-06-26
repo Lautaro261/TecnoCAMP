@@ -78,7 +78,7 @@ useEffect(()=>{
         <List.Item
           actions={[<Popconfirm title="¿eliminar?" onConfirm={() => DeleteHandler([item.productId,item.inventoryId])}>
           <Button type="primary">Eliminar</Button>
-      </Popconfirm>,           <InputNumber min={1} max={10} value={1}/>]}
+      </Popconfirm>/* ,           <InputNumber min={1} max={10} value={1}/> */]}
         >
           <Skeleton avatar title={false} loading={item.loading} active>
             <List.Item.Meta

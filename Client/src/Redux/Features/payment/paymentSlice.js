@@ -68,6 +68,7 @@ export const getAllMunicipalities = createAsyncThunk(
 export const createPaymentOrder = createAsyncThunk(
     'payment/createPaymentOrder',
     async (data) => {
+        console.log('ESTO ENVIO AL BACK',data)
         try {
             const response = await axios.post('/client/createorder', data, {
                 headers: {

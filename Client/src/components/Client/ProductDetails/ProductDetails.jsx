@@ -2,7 +2,8 @@ import React,{ useEffect } from "react";
 import { Row, Col, Space } from "antd";
 import { useDispatch, useSelector} from 'react-redux';
 import { getProductDetails, clearDetails} from "../../../Redux/Features/products/clientProductsSlice";
-import { Link, useParams } from 'react-router-dom';
+import { AddCart } from "../../../Redux/Features/cart/cartSlice";
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
 
@@ -12,11 +13,27 @@ const ProductDetails = () => {
   const productDetails = useSelector( state => state.clientProducts.productDetails) 
   const { id } = useParams();
   const category=  useSelector( state => state.clientProducts.category) 
-  const [value, setValue] = useState('1');
+  const [value, setValue] = useState(1);
+  const token = window.localStorage.getItem('token');
+  const navigate = useNavigate();
+
+  const onClick = (value)=>{
+    const order = {
+      productId : productDetails.id,
+      inventoryId : productDetails.inventories[0].id,
+      quantity : value.toString()
+    }
+    dispatch(AddCart({order, token}))
+    //console.log(order)
+     setValue(1);
+     navigate('/cart')
+
+  }
 
 
   useEffect(()=> {
     dispatch(getProductDetails(id))
+    console.log(productDetails)
     return function clean(){
       dispatch(clearDetails())
     }
@@ -52,7 +69,7 @@ const ProductDetails = () => {
           <Row>
           <Col span={24} style={{width:"15vw", marginLeft:"40%"}}>
           <InputNumber min={1} max={productDetails.total_quantity_inventory} value={value} onChange={setValue} />
-            <Button type="primary" onClick={() => {setValue(1);}}> AGREGAR AL CARRITO</Button>
+            <Button type="primary" onClick={() => {onClick(value)}}> AGREGAR AL CARRITO</Button>
             </Col>
           </Row>
           <Row>
