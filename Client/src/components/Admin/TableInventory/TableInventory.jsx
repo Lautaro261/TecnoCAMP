@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useForm } from 'antd/lib/form/Form';
+import { useForm } from "antd/lib/form/Form";
 import { SearchOutlined } from "@ant-design/icons";
 import {
   Button,
   Input,
+  InputNumber,
   Space,
   Table,
   Modal,
@@ -15,11 +16,16 @@ import {
   Select,
 } from "antd";
 import { useRef, useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom"
 import Highlighter from "react-highlight-words";
-import { getAllProducts,putProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
+import {
+  getAllProducts,
+  putProduct,
+} from "../../../Redux/Features/admin/products/adminProductsSlice";
 const { Option } = Select;
 
 function TableInventory() {
+  const navigate = useNavigate()
   const [form] = useForm();
   const dispatch = useDispatch();
   const token = window.localStorage.getItem("token");
@@ -151,7 +157,7 @@ function TableInventory() {
 
   const columns = [
     {
-      title: "Photo",
+      title: "Foto",
       dataIndex: "photo",
       render: (photo) => (
         <>
@@ -164,17 +170,17 @@ function TableInventory() {
       ),
     },
     {
-      title: "Name",
+      title: "Nombre",
       dataIndex: "name",
       key: "key",
       width: "30%",
       ...getColumnSearchProps("name"),
       sorter: (c, d) => c.name.length - d.name.length,
       sortDirections: ["descend", "ascend"],
-     // render:()=>(<><button onClick={console.log("hola soy key", columns.title)} >id</button></>)
+      // render:()=>(<><button onClick={console.log("hola soy key", columns.title)} >id</button></>)
     },
     {
-      title: "Stock",
+      title: "Existencia",
       dataIndex: "total_quantity_inventory",
       key: "key",
     },
@@ -184,14 +190,14 @@ function TableInventory() {
       key: "key",
     },
     {
-      title: "Category",
+      title: "Categoria",
       dataIndex: "category",
       key: "key",
       width: "20%",
       /* ...getColumnSearchProps("category"), */
     },
     {
-      title: "Brand",
+      title: "Marca",
       dataIndex: "brand",
       key: "key",
       ...getColumnSearchProps("brand"),
@@ -204,20 +210,24 @@ function TableInventory() {
       render: (fila, key) => (
         <>
           {" "}
-          <Button type="primary" onClick={()=>showDrawer(key.key)}>
+          <Button type="primary" onClick={() => showDrawer(key.key)}>
             Editar
           </Button>{" "}
           {"  "}{" "}
-          <Button type="primary" danger onClick={()=> console.log("soy all", key.key)} >
+          {/* <Button
+            type="primary"
+            danger
+            onClick={() => console.log("soy all", key.key)}
+          >
             Eliminar
-          </Button>{" "} 
+          </Button>{" "} */}
         </>
       ),
     },
   ];
 
   const [selectedProductId, setSelectedProductId] = useState(null);
-  
+
   const data =
     allProducts &&
     allProducts.map((c) => {
@@ -238,8 +248,8 @@ function TableInventory() {
       };
     });
 
- // console.log("SOY TODO PA", allProducts);
-   //console.log("soy data.id", data.id);
+  // console.log("SOY TODO PA", allProducts);
+  //console.log("soy data.id", data.id);
 
   const [open, setOpen] = useState(false);
   const showDrawer = (idProduct) => {
@@ -251,10 +261,16 @@ function TableInventory() {
   };
 
   const onFinish = (values) => {
-    console.log('valores', values)
-    console.log(selectedProductId)
-    dispatch(putProduct([token,selectedProductId, values]))
-  }
+    console.log("valores", values);
+    console.log(selectedProductId);
+    const valueEdit = { ...values, inventoryItems: [] };
+
+    console.log("ESTO ENVIO AL BACK", valueEdit);
+
+    dispatch(putProduct([token, selectedProductId, valueEdit]));
+    // navigate('/admin/inventary')
+    location.reload()
+  };
 
   return (
     <>
@@ -282,7 +298,12 @@ function TableInventory() {
           </Space>
         }
       >
-        <Form layout="vertical" hideRequiredMark form={form} onFinish={onFinish} >
+        <Form
+          layout="vertical"
+          hideRequiredMark
+          form={form}
+          onFinish={onFinish}
+        >
           <Row gutter={16}>
             <Col span={12}>
               <Form.Item
@@ -291,14 +312,33 @@ function TableInventory() {
                 rules={[
                   {
                     required: false,
-                    message: "Please enter user name",
+                    message: "Ingrese un nombre nuevo",
                   },
                 ]}
               >
-                <Input  defaultValue={data.key} />
+                <Input defaultValue={data.key} />
               </Form.Item>
             </Col>
 
+            <Col span={12}>
+              <Form.Item
+                name="price"
+                label="Precio"
+                rules={[
+                  {
+                    required: false,
+                    message: "Por favor ingrese el precio",
+                  },
+                ]}
+              >
+                <InputNumber
+                  min={1}
+                  max={100000000000000000}
+                
+                />
+              </Form.Item>
+            </Col>
+            {/* 
             <Col span={12}>
               <Form.Item
                 name="price"
@@ -310,11 +350,11 @@ function TableInventory() {
                   },
                 ]}
               >
-                <Input placeholder="Please enter user name" />
+                <InputNumber min={1} max={100000000000000000}  defaultValue={1}/>;
               </Form.Item>
-            </Col>
+            </Col> */}
           </Row>
-          <Row gutter={16}>
+          {/* <Row gutter={16}>
             <Col span={12}>
               <Form.Item
                 name="category"
@@ -348,7 +388,7 @@ function TableInventory() {
                 ]}
               >
                 <Select placeholder="Please choose the type">
-                {allBrands &&
+                  {allBrands &&
                     allBrands.map((category) => {
                       return (
                         <Option value={category.id}>{category.name}</Option>
@@ -357,29 +397,27 @@ function TableInventory() {
                 </Select>
               </Form.Item>
             </Col>
-          </Row>
-       
+          </Row> */}
+
           <Row gutter={16}>
             <Col span={24}>
               <Form.Item
-                name="description"
+                name="product_description"
                 label="Description"
                 rules={[
                   {
                     required: false,
-                    message: "please enter url description",
+                    message: "Por favor ingrese una descripcion",
                   },
                 ]}
               >
                 <Input.TextArea
                   rows={4}
-                  placeholder="please enter url description"
+                  placeholder="Ingrese su descripción aquí"
                 />
               </Form.Item>
             </Col>
           </Row>
-       
-
         </Form>
       </Drawer>
     </>

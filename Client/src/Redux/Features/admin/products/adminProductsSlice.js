@@ -16,15 +16,14 @@ const initialState = {
 
   export const putProduct = createAsyncThunk(
     'adminProducts/putProduct',
-    async([token,idProduct, values]) => {
-      console.log('idProuct', idProduct, 'values', values, 'token', token)
+    async([token,idProduct, valueEdit]) => {
+      console.log('idProuct', idProduct, 'values', valueEdit, 'token', token)
       try {
-          response  = await axios.put(`admin/update/${idProduct}`,{values},{
+          response  = await axios.put(`admin/update/${idProduct}`,valueEdit,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
         })
-
         console.log('okokok put product', response.data)
         return  response.data;
       } catch (error) {
