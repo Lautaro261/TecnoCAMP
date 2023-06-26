@@ -8,15 +8,15 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-        allowNull: false,
+        allowNull: true,
       },
       color: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       quantity_inventory: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       is_available: {
         type: DataTypes.BOOLEAN,

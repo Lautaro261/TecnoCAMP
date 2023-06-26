@@ -92,7 +92,7 @@ const FormProductos = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Por Favor colocar un precio',
+                  message: 'Por favor colocar un precio',
                 },
               ]}
             >
@@ -129,7 +129,7 @@ const FormProductos = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please choose a category',
+                  message: 'Por favor elija una categoría',
                 }
               ]}
             >
@@ -146,7 +146,7 @@ const FormProductos = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please choose a brand',
+                  message: 'Por favor elija una marca',
                 }
               ]}
             >
@@ -163,7 +163,7 @@ const FormProductos = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Por Favor brinda una descripción del producto',
+                  message: 'Por favor brinda una descripción del producto',
                 },
               ]}
             >
@@ -176,7 +176,7 @@ const FormProductos = () => {
               rules={[
                 {
                   required: true,
-                  message: 'Please choose a product type',
+                  message: 'Por favor elija el tipo de producto',
                 }
               ]}
             >

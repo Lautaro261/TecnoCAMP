@@ -12,11 +12,11 @@ module.exports = (sequelize) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       price: {
         type: DataTypes.FLOAT,
-        allowNull: false,
+        allowNull: true,
       },
       // price_promotion: {
       //   type: DataTypes.FLOAT,
@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
       },
       product_description: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        allowNull: true,
       },
       e_product_type: {
         type: DataTypes.ENUM(
@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
           "SmartWatch con bluetooth",
           "SmartWatch sin bluetooth"
         ),
-        allowNull: false,
+        allowNull: true,
       },
       total_quantity_inventory: {
         type: DataTypes.INTEGER,
