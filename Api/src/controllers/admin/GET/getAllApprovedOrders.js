@@ -9,8 +9,10 @@ const getAllApprovedOrders = async () => {
       payment_transaction_id: {
         [Op.not]: null,
       },
+      shipping_status: { [Op.or]: ["Por revisar", "Despachado", "En camino"] },
     },
     attributes: [
+      "id",
       "userSub",
       "total_amount_all_products",
       "total_quantity_all_products",
@@ -34,7 +36,53 @@ const getAllApprovedOrders = async () => {
     ],
   });
 
+  if (allOrders.length === 0) {
+    return { message: "No hay ordenes activas" };
+  }
+
   return allOrders;
+};
+
+const getHistoryOfOrders = async () => {
+  // Obtener todas las órdenes pagadas con estado "approved"
+  const ordersDelivered = await Order.findAll({
+    where: {
+      payment_status: "approved",
+      payment_transaction_id: {
+        [Op.not]: null,
+      },
+      shipping_status: "Entregado",
+    },
+    attributes: [
+      "id",
+      "userSub",
+      "total_amount_all_products",
+      "total_quantity_all_products",
+      "shipping_status",
+      "payment_date",
+      "payment_transaction_id",
+      "contact_name",
+      "contact_cellphone",
+      "address",
+      "neighborhood",
+    ],
+    include: [
+      {
+        model: Department,
+        attributes: ["name"],
+      },
+      {
+        model: Municipality,
+        attributes: ["name"],
+      },
+    ],
+  });
+
+  if (ordersDelivered.length === 0) {
+    return { message: "Aún no hay ordenes entregadas" };
+  }
+
+  return ordersDelivered;
 };
 
 const getDataOfOrders = async () => {
@@ -75,4 +123,4 @@ const getDataOfOrders = async () => {
   };
 };
 
-module.exports = { getAllApprovedOrders, getDataOfOrders };
+module.exports = { getAllApprovedOrders, getDataOfOrders, getHistoryOfOrders };
