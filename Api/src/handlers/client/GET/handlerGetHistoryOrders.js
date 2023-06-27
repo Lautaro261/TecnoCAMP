@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const getUserCarts = require("../../../controllers/client/GET/getUserCarts");
+const getHistoryOrders = require("../../../controllers/client/GET/getHistoryOrders");
 
-const handlerGetUserCarts = async (req, res) => {
+const handlerGetHistoryOrders = async (req, res) => {
   //1) Decodificar token con jwt
   //const { token } = req.params
 
@@ -19,16 +19,14 @@ const handlerGetUserCarts = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
-  // const { sub } = req.params;
-
   try {
-    // Obtener carrito(s) del usuario por su ID
-    const cartOfUser = await getUserCarts(decoToken.sub);
+    // Obtener ordenes pagadas por su ID
+    const historyOrders = await getHistoryOrders(decoToken.sub);
 
-    res.status(200).json(cartOfUser);
+    res.status(200).json(historyOrders);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = handlerGetUserCarts;
+module.exports = handlerGetHistoryOrders;
