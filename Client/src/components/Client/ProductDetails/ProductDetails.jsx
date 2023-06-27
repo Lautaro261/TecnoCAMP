@@ -56,7 +56,7 @@ const ProductDetails = () => {
           </Row>
           <Row justify="space-between" gutter={16}>
             <Col span={12} >
-                <img style={{width:"20vw", marginLeft:"40%"}}src={productDetails.photo}/>
+                <img style={{width:"20vw", marginLeft:"40%"}}src={productDetails.photo && productDetails.photo[0]}/>
             </Col>
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
@@ -67,7 +67,7 @@ const ProductDetails = () => {
               <Col>
               Colores Disponibles:  
               {productDetails.inventories ? productDetails.inventories.map((item)=>{
-                return (<Button onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
+                return (<Button key={ item.id } onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
               }): "??"} 
               </Col>
             </Col>
