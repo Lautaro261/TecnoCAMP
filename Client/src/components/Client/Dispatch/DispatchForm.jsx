@@ -12,25 +12,25 @@ const DispatchForm = () => {
     const dispatch = useDispatch();
     const allDepartments = useSelector(state => state.payment.allDepartments);
     const allMunicipalities = useSelector(state => state.payment.allMunicipalities);
+    const paymentOrderResponse = useSelector(state => state.payment.paymentOrderResponse);
 
     useEffect(() => {
         dispatch(getAllDepartments());
     }, []);
 
+    useEffect(() => {
+        if (paymentOrderResponse.payment_link) {
+            window.open(paymentOrderResponse.payment_link);
+        }
+    }, [paymentOrderResponse.payment_link]);
+
     const handleChange = (value) => {
         form.setFieldsValue({ municipalityId: '' })
-        dispatch(getAllMunicipalities((value)));
+        dispatch(getAllMunicipalities(parseInt(value)));
     };
 
-    const onFinish = async (values) => {
-
-    dispatch(createPaymentOrder(values)); 
-        
-       /*  const updatedValues = {
-            ...values,
-            departmentId: values.departmentId.toString() // Convertir a cadena de texto
-          };
-          dispatch(createPaymentOrder(updatedValues)); */
+    const onFinish = (values) => {
+        dispatch(createPaymentOrder(values));
     };
     
     const onFinishFailed = (errorInfo) => {
@@ -145,7 +145,7 @@ const DispatchForm = () => {
             
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
-                        Crear link de pago
+                        Proceder a pagar
                     </Button>
                 </Form.Item>
             </Form>

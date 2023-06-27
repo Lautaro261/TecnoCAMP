@@ -23,7 +23,7 @@ const DeleteHandler=(ids)=>{
 }
 
 useEffect(() => {
-  dispatch(getCartForAUser());
+  dispatch(getCartForAUser(token));
 }, []);
 
 // creacion
