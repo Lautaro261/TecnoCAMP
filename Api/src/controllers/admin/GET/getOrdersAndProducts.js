@@ -45,6 +45,10 @@ const getOrdersAndProducts = async () => {
     ordersAndProducts.push({ order, products });
   }
 
+  if (ordersAndProducts.length === 0) {
+    return { message: "No hay ordenes pagadas" };
+  }
+
   return ordersAndProducts;
 };
 
