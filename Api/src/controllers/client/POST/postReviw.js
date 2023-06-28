@@ -1,7 +1,7 @@
-const { Review, Product, User } = require("../../../db");
+const { Review, Product, User} = require("../../../db");
 
-const postReview = async ( rating, comment, userSub, productId ) =>{
-    
+const postReview = async (rating, comment, userSub, productId) => {
+
     //Verificar si el producto existe
     const product = await Product.findByPk(productId);
     if (!product) {
@@ -10,8 +10,9 @@ const postReview = async ( rating, comment, userSub, productId ) =>{
 
     //Verificar si el usuario existe
     const user = await User.findOne({
-        where: { sub: userSub},
+        where: { sub: userSub },
     });
+
     if (!user) {
         return { message: "El usuario no existe" };
     }
@@ -24,7 +25,7 @@ const postReview = async ( rating, comment, userSub, productId ) =>{
     });
 
     return review;
-    
-} 
+
+}
 
 module.exports = postReview;

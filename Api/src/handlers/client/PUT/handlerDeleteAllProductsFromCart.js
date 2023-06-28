@@ -2,11 +2,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const postReview = require("../../../controllers/client/POST/postReviw");
+const deleteAllProductsFromCart = require("../../../controllers/client/PUT/deleteAllProductsFromCart");
 
-const handlerCreateReview = async (req, res) => {
-    const { rating, comment, productId } = req.body;
-
+const handlerDeleteAllProductsFromCart = async (req, res) => {
     //1) Decodificar token con jwt
     const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
@@ -20,17 +18,11 @@ const handlerCreateReview = async (req, res) => {
     }
 
     try {
-        const newReview = await postReview(
-            rating,
-            comment,
-            decoToken.sub,
-            productId
-        );
-
-        res.status(200).json(newReview);
+        const deleteAll = await deleteAllProductsFromCart(decoToken.sub);
+        res.status(200).json(deleteAll);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 }
 
-module.exports = handlerCreateReview;
+module.exports = handlerDeleteAllProductsFromCart;
