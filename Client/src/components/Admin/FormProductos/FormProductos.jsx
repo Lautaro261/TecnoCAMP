@@ -42,7 +42,7 @@ const FormProductos = () => {
 
   const onFinish = (values) => {
     console.log(FormColors, "todododoo")
-    console.log('Success:');
+    console.log('Success:' ,values);
     post(values)
   };
   const onFinishFailed = (errorInfo) => {
