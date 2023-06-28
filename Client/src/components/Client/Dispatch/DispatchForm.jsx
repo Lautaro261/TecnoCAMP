@@ -1,10 +1,10 @@
 import { Col, Button, Form, Input, Select } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { 
-    createPaymentOrder, 
-    getAllDepartments, 
-    getAllMunicipalities, 
+import {
+    createPaymentOrder,
+    getAllDepartments,
+    getAllMunicipalities,
 } from '../../../Redux/Features/payment/paymentSlice';
 
 const DispatchForm = () => {
@@ -32,19 +32,20 @@ const DispatchForm = () => {
     const onFinish = (values) => {
         dispatch(createPaymentOrder(values));
     };
-    
+
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
 
+
     return (
         <Col align='middle'>
             <Form
-                form={ form }
+                form={form}
                 name="dispatchForm"
                 style={{ maxInlineSize: 400 }}
-                onFinish={ onFinish }
-                onFinishFailed={ onFinishFailed }
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
                 autoComplete="off"
             >
                 <Form.Item
@@ -54,12 +55,16 @@ const DispatchForm = () => {
                         {
                             required: true,
                             message: 'Ingrese un nombre',
+                        },
+                        {
+                            pattern: /^[A-Za-z\s]+$/,
+                            message: 'Solo puede ingresar letras'
                         }
                     ]}
                 >
-                    <Input />
+                    <Input placeholder="Ej. Juan Pérez" />
                 </Form.Item>
-            
+
                 <Form.Item
                     label="Número de celular:"
                     name="contact_cellphone"
@@ -67,10 +72,18 @@ const DispatchForm = () => {
                         {
                             required: true,
                             message: 'Ingrese un número de contacto',
-                        }
+                        },
+                        {
+                            pattern: new RegExp(/^[0-9\b]+$/),
+                            message: 'Ingrese un número válido',
+                        },
+                        {
+                            max: 10,
+                            message: 'El número de celular debe tener máximo 10 dígitos',
+                        },
                     ]}
                 >
-                    <Input type='tel' />
+                    <Input type='tel' placeholder='Ej. 1234567890' />
                 </Form.Item>
 
                 <Form.Item
@@ -83,15 +96,15 @@ const DispatchForm = () => {
                         }
                     ]}
                 >
-                    <Select onChange={ handleChange }>
-                        { allDepartments.map(department => (
-                            <Select.Option 
-                                key={ department.id } 
-                                value={ department.id }
+                    <Select onChange={handleChange} placeholder="Seleccione un departamento">
+                        {allDepartments.map(department => (
+                            <Select.Option
+                                key={department.id}
+                                value={department.id}
                             >
-                                { department.name }
+                                {department.name}
                             </Select.Option>
-                        )) }
+                        ))}
                     </Select>
                 </Form.Item>
 
@@ -105,15 +118,15 @@ const DispatchForm = () => {
                         }
                     ]}
                 >
-                    <Select>
-                        { allMunicipalities.map(municipality => (
-                            <Select.Option 
-                                key={ municipality.id } 
-                                value={ municipality.id }
+                    <Select placeholder="Seleccione un municipio">
+                        {allMunicipalities.map(municipality => (
+                            <Select.Option
+                                key={municipality.id}
+                                value={municipality.id}
                             >
-                                { municipality.name }
+                                {municipality.name}
                             </Select.Option>
-                        )) }
+                        ))}
                     </Select>
                 </Form.Item>
 
@@ -123,11 +136,15 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Ingrese una dirección',
+                            message: 'Ingrese una dirección'
+                        },
+                        {
+                            pattern: /^[a-zA-Z0-9\s]+$/,
+                            message: 'La dirección solo puede contener letras y números',
                         }
                     ]}
                 >
-                    <Input />
+                    <Input placeholder="Ej. Calle 123 #45-67" />
                 </Form.Item>
 
                 <Form.Item
@@ -136,13 +153,17 @@ const DispatchForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Ingrese un vecindario',
+                            message: 'Ingrese un vecindario'
+                        },
+                        {
+                            pattern: /^[a-zA-Z0-9\s]+$/,
+                            message: 'El vecindario solo puede contener letras y números',
                         }
                     ]}
                 >
-                    <Input />
+                    <Input placeholder="Ej. 12 de Octubre" />
                 </Form.Item>
-            
+
                 <Form.Item>
                     <Button type="primary" htmlType="submit">
                         Proceder a pagar
