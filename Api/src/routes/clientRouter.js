@@ -29,6 +29,7 @@ const handlerDeleteProductFromCart = require("../handlers/client/PUT/handlerDele
 const handlerDeleteAllProductsFromCart = require("../handlers/client/PUT/handlerDeleteAllProductsFromCart.js")
 
 // ORDEN DE PEDIDO Y MERCADO PAGO
+const handlerGetHistoryOrders = require("../handlers/client/GET/handlerGetHistoryOrders.js");
 const handlerCreateOrderMP = require("../handlers/client/POST/handlerCreateOrderMP.js");
 const postNotificationMP = require("../handlers/client/POST/handlerPostNotificationMP.js");
 
@@ -75,6 +76,7 @@ clientRouter.put(
 clientRouter.put("/deleteall", verifyToken, handlerDeleteAllProductsFromCart);
 
 // ORDEN DE PEDIDO Y MERCADO PAGO
+clientRouter.get("/historyorders", verifyToken, handlerGetHistoryOrders);
 clientRouter.post("/createorder", verifyToken, handlerCreateOrderMP);
 clientRouter.post("/postnotification", verifyToken, postNotificationMP);
 

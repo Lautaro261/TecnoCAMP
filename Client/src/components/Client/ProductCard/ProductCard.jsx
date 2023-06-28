@@ -1,4 +1,4 @@
-import styles from './ProductCard.module.css';
+
 import { Row, Col, Space, Card } from 'antd';
 import {
 	HeartOutlined, 
@@ -18,10 +18,10 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
-		<Row justify='center' className={ styles.productCard__mainCardContainer }>
-		    <Col className={ styles.productCard__secondaryCardContainer }>
-		        <Row justify='end' className={ styles.productCard__heart }>
-		            <button onClick={ onClick } className={ styles.productCard__heartButton }>
+		<Row justify='center'>
+		    <Col >
+		        <Row justify='end' >
+		            <button onClick={ onClick } >
 		                {
 							isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
 		                }
@@ -30,8 +30,8 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				<Link to={`/categories/product/${id}`}>
 				<Card
 				    hoverable
-				    style={{ width: 240 }}
-				    cover={<img alt={ name } src={ photo } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
+				    style={{ width: 180, margin: 0 }}
+				    cover={<img alt={ name } src={ photo[0] } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
 					margin: '0 auto'} } />}
 				>
 				    <div>{ e_product_type }</div>

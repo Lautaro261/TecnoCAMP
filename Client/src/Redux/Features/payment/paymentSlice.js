@@ -16,11 +16,11 @@ const initialState = {
 
 export const getCartForAUser = createAsyncThunk(
     'payment/getCartForAUser',
-    async () => {
+    async (clientToken) => {
         try {
             const response = await axios.get('/client/cartuser', {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
             return response.data;

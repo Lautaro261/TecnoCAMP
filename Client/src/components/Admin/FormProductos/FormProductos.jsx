@@ -6,9 +6,8 @@ import UploadButton from '../../Client/Cloudinary/UploadButton';
 import ColorPicker from '../ColorPicker/ColorPicker.jsx';
 import { getAllCategories } from '../../../Redux/Features/admin/categories/adminCategoriesSlice';
 import { getAllBrands } from '../../../Redux/Features/admin/brands/adminBrandsSlice';
+import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
-
-
 
 
 const FormProductos = () => {
@@ -23,8 +22,9 @@ const FormProductos = () => {
 
 
   useEffect(() => {
-    dispatch(getAllCategories());
-    dispatch(getAllBrands());
+    dispatch(resetPhotos([]));
+    dispatch(getAllCategories(token));
+    dispatch(getAllBrands(token));
   }, []);
 
   const post = async (values) => {
@@ -72,7 +72,7 @@ const FormProductos = () => {
         autoComplete="off"
       >
         <Row gutter={[8, 8]}>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <Form.Item
               label="Nombre del producto:"
               name="name"
@@ -81,6 +81,10 @@ const FormProductos = () => {
                   required: true,
                   message: 'porfavor introduce el nombre del artículo',
                 },
+                {
+                  pattern: /^[a-zA-Z0-9]+$/,
+                  message: 'Solo se permiten letras y números',
+                }
               ]}
             >
               <Input />
@@ -94,22 +98,25 @@ const FormProductos = () => {
                   required: true,
                   message: 'Por favor colocar un precio',
                 },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: 'Solo puedes ingresar números',
+                }
               ]}
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Precio de oferta:"
               name="price_promotion"
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Colores:"
               name="inventories"
-
             >
               <ColorPicker SetFormColors={SetFormColors} />
             </Form.Item>
@@ -121,7 +128,7 @@ const FormProductos = () => {
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
 
             <Form.Item
               label="Categoría:"

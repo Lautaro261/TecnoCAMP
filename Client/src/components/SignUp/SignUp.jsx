@@ -12,11 +12,11 @@ const SignUp = () => {
   const errorCreate = useSelector((state) => state.logInAndSignUp.errorCreate);
   const userCreated = useSelector((state) => state.logInAndSignUp.userCreated);
 
-  useEffect(()=> {
-    if(userCreated && userCreated.message === "¡Usuario creado correctamente!"){
+  useEffect(() => {
+    if (userCreated && userCreated.message === "¡Usuario creado correctamente!") {
       showSuccessMessage();
     }
-  },[userCreated])
+  }, [userCreated])
 
   const showSuccessMessage = () => {
     message.success(userCreated.message)
@@ -83,12 +83,12 @@ const SignUp = () => {
               message: "¡Por favor ingresa tu contraseña!",
             },
             {
-              min: 7, max: 20,
-              message: 'La contraseña debe tener entre 7 y 20 caracteres'
+              pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,20}$/,
+              message: 'La contraseña debe tener al menos 1 número y 1 mayúscula'
             },
             {
-              pattern: /^[a-zA-Z0-9]+$/,
-              message: 'La contraseña solo puede contener letras y números'
+              min: 7, max: 20,
+              message: 'La contraseña debe tener entre 7 y 20 caracteres'
             }
           ]}
           hasFeedback

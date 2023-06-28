@@ -9,8 +9,20 @@ const getUserCarts = async (userId) => {
     };
   }
 
-  // Obtener todos los carritos asociados al usuario
+  // Buscar si el usuario tiene carritos activos
   const carts = await Cart.findAll({
+    where: {
+      userSub: user.sub,
+      cart_status: "Vacio",
+    },
+  });
+
+  if (carts.length === 0) {
+    return { message: "El usuario no tiene carritos activos" };
+  }
+
+  // Obtener todos los carritos asociados al usuario
+  const cartsWithProducts = await Cart.findAll({
     where: {
       userSub: user.sub,
       cart_status: "Por pagar",
@@ -44,15 +56,11 @@ const getUserCarts = async (userId) => {
     // raw: true,
   });
 
-  if (!carts) {
-    return { message: "El carrito no existe" };
+  if (cartsWithProducts.length === 0) {
+    return { message: "El usuario no tiene productos agregados en el carrito" };
   }
 
-  if (carts.length === 0) {
-    return { message: "El carrito no tiene productos agregados" };
-  }
-
-  return carts;
+  return cartsWithProducts;
 };
 
 module.exports = getUserCarts;
