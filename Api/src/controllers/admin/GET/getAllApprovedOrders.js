@@ -1,4 +1,11 @@
-const { Order, Department, Municipality } = require("../../../db");
+const {
+  Product,
+  Inventory,
+  Order,
+  Cart,
+  Department,
+  Municipality,
+} = require("../../../db");
 const { Op } = require("sequelize");
 
 const getAllApprovedOrders = async () => {
@@ -67,7 +74,9 @@ const getHistoryOfOrders = async () => {
       "contact_cellphone",
       "address",
       "neighborhood",
+      "cartId",
     ],
+    order: [["payment_date", "DESC"]],
     include: [
       {
         model: Department,
@@ -80,11 +89,36 @@ const getHistoryOfOrders = async () => {
     ],
   });
 
-  if (ordersDelivered.length === 0) {
-    return { message: "Aún no hay ordenes entregadas" };
+  const ordersAndProducts = [];
+
+  for (const order of ordersDelivered) {
+    const cartId = order.cartId;
+
+    const products = await Cart.findAll({
+      where: {
+        idCart: cartId,
+      },
+      attributes: ["quantity_unit_product"],
+      include: [
+        {
+          model: Product,
+          attributes: ["id", "name", "price", "photo", "product_description"],
+        },
+        {
+          model: Inventory,
+          attributes: ["id", "color"],
+        },
+      ],
+    });
+
+    ordersAndProducts.push({ order, products });
   }
 
-  return ordersDelivered;
+  if (ordersAndProducts.length === 0) {
+    return { message: "No hay ordenes entregadas" };
+  }
+
+  return ordersAndProducts;
 };
 
 const getDataOfOrders = async () => {
