@@ -1,4 +1,11 @@
-const { Order, Department, Municipality } = require("../../../db");
+const {
+  Product,
+  Inventory,
+  Order,
+  Cart,
+  Department,
+  Municipality,
+} = require("../../../db");
 const { Op } = require("sequelize");
 
 const getAllApprovedOrders = async () => {
@@ -9,8 +16,12 @@ const getAllApprovedOrders = async () => {
       payment_transaction_id: {
         [Op.not]: null,
       },
+      shipping_status: {
+        [Op.or]: ["En preparacion", "Despachado"],
+      },
     },
     attributes: [
+      "id",
       "userSub",
       "total_amount_all_products",
       "total_quantity_all_products",
@@ -34,7 +45,80 @@ const getAllApprovedOrders = async () => {
     ],
   });
 
+  if (allOrders.length === 0) {
+    return { message: "No hay ordenes activas" };
+  }
+
   return allOrders;
+};
+
+const getHistoryOfOrders = async () => {
+  // Obtener todas las órdenes pagadas con estado "approved"
+  const ordersDelivered = await Order.findAll({
+    where: {
+      payment_status: "approved",
+      payment_transaction_id: {
+        [Op.not]: null,
+      },
+      shipping_status: "Entregado",
+    },
+    attributes: [
+      "id",
+      "userSub",
+      "total_amount_all_products",
+      "total_quantity_all_products",
+      "shipping_status",
+      "payment_date",
+      "payment_transaction_id",
+      "contact_name",
+      "contact_cellphone",
+      "address",
+      "neighborhood",
+      "cartId",
+    ],
+    order: [["payment_date", "DESC"]],
+    include: [
+      {
+        model: Department,
+        attributes: ["name"],
+      },
+      {
+        model: Municipality,
+        attributes: ["name"],
+      },
+    ],
+  });
+
+  const ordersAndProducts = [];
+
+  for (const order of ordersDelivered) {
+    const cartId = order.cartId;
+
+    const products = await Cart.findAll({
+      where: {
+        idCart: cartId,
+      },
+      attributes: ["quantity_unit_product"],
+      include: [
+        {
+          model: Product,
+          attributes: ["id", "name", "price", "photo", "product_description"],
+        },
+        {
+          model: Inventory,
+          attributes: ["id", "color"],
+        },
+      ],
+    });
+
+    ordersAndProducts.push({ order, products });
+  }
+
+  if (ordersAndProducts.length === 0) {
+    return { message: "No hay ordenes entregadas" };
+  }
+
+  return ordersAndProducts;
 };
 
 const getDataOfOrders = async () => {
@@ -75,4 +159,4 @@ const getDataOfOrders = async () => {
   };
 };
 
-module.exports = { getAllApprovedOrders, getDataOfOrders };
+module.exports = { getAllApprovedOrders, getDataOfOrders, getHistoryOfOrders };

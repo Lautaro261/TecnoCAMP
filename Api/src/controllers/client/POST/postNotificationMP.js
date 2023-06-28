@@ -10,7 +10,6 @@ const postNotificationMP = async (
   collection_id,
   collection_status
 ) => {
-
   // Buscar todas las reserva correspondientes en la base de datos
   const order = await Order.findOne({
     where: {
@@ -30,12 +29,10 @@ const postNotificationMP = async (
   order.payment_transaction_id = collection_id;
 
   if (order.payment_status === "approved") {
-    order.shipping_status = "Por revisar";
-
+    order.shipping_status = "En preparacion";
   } else {
     order.shipping_status = "En proceso de pago";
     order.payment_status = "rejected";
-
   }
 
   // Guardar cambios en el modelo Orden
