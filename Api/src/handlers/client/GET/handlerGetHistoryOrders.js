@@ -2,12 +2,12 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const { KEY_SECRET } = process.env;
 const getUser = require("../../../controllers/admin/GET/getUser");
-const postReview = require("../../../controllers/client/POST/postReview");
+const getHistoryOrders = require("../../../controllers/client/GET/getHistoryOrders");
 
-const handlerCreateReview = async (req, res) => {
-  const { rating, comment, userSub, productId } = req.body;
-
+const handlerGetHistoryOrders = async (req, res) => {
   //1) Decodificar token con jwt
+  //const { token } = req.params
+
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
 
   //2) Traer usuario y verificar si tiene rol Admin
@@ -20,12 +20,13 @@ const handlerCreateReview = async (req, res) => {
   }
 
   try {
-    const newReview = await postReview(rating, comment, userSub, productId);
+    // Obtener ordenes pagadas por su ID
+    const historyOrders = await getHistoryOrders(decoToken.sub);
 
-    res.status(200).json(newReview);
+    res.status(200).json(historyOrders);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-module.exports = handlerCreateReview;
+module.exports = handlerGetHistoryOrders;
