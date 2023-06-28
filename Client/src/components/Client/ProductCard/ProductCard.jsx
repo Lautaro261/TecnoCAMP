@@ -30,7 +30,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 				<Link to={`/categories/product/${id}`}>
 				<Card
 				    hoverable
-				    style={{ width: 240 }}
+				    style={{ width: 180, margin: 0 }}
 				    cover={<img alt={ name } src={ photo[0] } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
 					margin: '0 auto'} } />}
 				>

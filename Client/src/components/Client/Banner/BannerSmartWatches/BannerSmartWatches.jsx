@@ -7,7 +7,7 @@ const BannerSmartWatches = () => {
 
     return (
         <Row style={{ backgroundImage: `url(${image})`, backgroundSize: 'contain', backgroundPosition: 'center' }}>
-            <Col span={24} style={{ color: '#fff', textAlign: 'center', fontSize: '20px', fontWeight: 'bold'}}>
+            <Col span={24} style={{ color: '#fff', textAlign: 'center', fontSize: '1rem', fontWeight: 'bold'}}>
                 Tecnología en tu muñeca | Descubre la última colección de smartwatches.
             </Col>
         </Row>
