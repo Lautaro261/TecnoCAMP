@@ -1,4 +1,4 @@
-import styles from './ProductCard.module.css';
+
 import { Row, Col, Space, Card } from 'antd';
 import {
 	HeartOutlined, 
@@ -18,10 +18,10 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
-		<Row justify='center' className={ styles.productCard__mainCardContainer }>
-		    <Col className={ styles.productCard__secondaryCardContainer }>
-		        <Row justify='end' className={ styles.productCard__heart }>
-		            <button onClick={ onClick } className={ styles.productCard__heartButton }>
+		<Row justify='center'>
+		    <Col >
+		        <Row justify='end' >
+		            <button onClick={ onClick } >
 		                {
 							isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
 		                }

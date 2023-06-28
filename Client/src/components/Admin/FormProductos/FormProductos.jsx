@@ -10,8 +10,6 @@ import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
 
 
-
-
 const FormProductos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.photos.photos);
@@ -96,22 +94,25 @@ const FormProductos = () => {
                   required: true,
                   message: 'Por favor colocar un precio',
                 },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: 'Solo puedes ingresar números',
+                }
               ]}
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Precio de oferta:"
               name="price_promotion"
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Colores:"
               name="inventories"
-
             >
               <ColorPicker SetFormColors={SetFormColors} />
             </Form.Item>

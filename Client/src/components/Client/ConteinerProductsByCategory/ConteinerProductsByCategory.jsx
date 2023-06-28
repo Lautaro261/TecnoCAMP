@@ -53,7 +53,7 @@ const ConteinerProductsByCategory = () => {
                 <Row justify='center' gutter={[16, 16]}>
                     {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
-                            <Col span={6} key={product.id}>
+                            <Col  xs={24} sm={12} md={8} lg={6} key={product.id}>
                                 <ProductCard
                                 e_product_type={product.e_product_type}
                                 name={product.name}

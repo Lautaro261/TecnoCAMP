@@ -16,7 +16,7 @@ const headerStyle = {
   // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
-  width:"100vw",
+  width:"100%",
   color: '#0000',
   
 };
@@ -34,7 +34,7 @@ const ProductDetailsView = () => (
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-      <ProductDetails style={{width:"100vw", alignItems:"center"}}/>
+      <ProductDetails />
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>

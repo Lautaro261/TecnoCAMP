@@ -71,7 +71,6 @@ const ProductDetails = () => {
   }, [])
  
     return(
-        <div style={{width: "100vw"}}>
         <Space
             direction="vertical"
             size="middle"
@@ -102,7 +101,7 @@ const ProductDetails = () => {
 
           </Row>
           <Row>
-          <Col span={24} style={{width:"15vw", marginLeft:"40%"}}>
+          <Col span={24} style={{width:"15vw", paddingLeft: '40%'}}>
             {selected[0]?null:<p style={{color:"grey"}}>seleccione un color para continuar</p>}
           <InputNumber disabled={selected[0]? false : true} min={1} max={selected[1]} value={value} onChange={setValue} />
             <Button type="primary" onClick={AddToCart} disabled={selected[0] && value<= selected[1]?false:true}> AGREGAR AL CARRITO</Button>
@@ -118,7 +117,6 @@ const ProductDetails = () => {
 
 
         </Space>
-    </div>
 
     )
 

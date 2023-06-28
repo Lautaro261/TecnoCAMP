@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Form, Input, Checkbox, message, Typography, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
@@ -69,7 +69,7 @@ const Login = ({ setToken, setRol }) => {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
+        initialValues={{ remember: false }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -90,8 +90,9 @@ const Login = ({ setToken, setRol }) => {
           name="password"
           label="Contraseña"
           rules={[{ required: true, message: '¡Por favor ingrese su contraseña!' },
-          { min: 7, max: 20, message: 'La contraseña debe tener entre 7 y 20 caracteres' },
-          { pattern: /^[a-zA-Z0-9]+$/, message: 'La contraseña solo puede contener letras y números' }]}
+          { pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,20}$/, message: 'La contraseña debe tener al menos 1 número y 1 mayúscula' },
+          { min: 7, max: 20, message: 'La contraseña debe tener entre 7 y 20 caracteres' }
+        ]}
         >
           <Input.Password />
         </Form.Item>
@@ -100,9 +101,9 @@ const Login = ({ setToken, setRol }) => {
           {error && <Text type="danger">{error}</Text>}
         </Form.Item>
 
-        <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
+        {/* <Form.Item name="remember" valuePropName="checked" wrapperCol={{ offset: 8, span: 16 }}>
           <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
           <Button type="primary" htmlType="submit">
