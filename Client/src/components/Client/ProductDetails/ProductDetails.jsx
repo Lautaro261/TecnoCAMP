@@ -84,7 +84,7 @@ const ProductDetails = () => {
           </Row>
           <Row justify="space-between" gutter={16}>
             <Col span={12} >
-                <img style={{width:"20vw", marginLeft:"40%"}}src={productDetails.photo && productDetails.photo[0]}/>
+                <img style={{ maxHeight:"40vh", width:"auto", marginLeft:"40%"}}src={productDetails.photo && productDetails.photo[0]}/>
             </Col>
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
