@@ -26,9 +26,8 @@ module.exports = (sequelize) => {
       shipping_status: {
         type: DataTypes.ENUM(
           "En proceso de pago",
-          "Por revisar",
+          "En preparacion",
           "Despachado",
-          "En camino",
           "Entregado"
         ),
         defaultValue: "En proceso de pago",

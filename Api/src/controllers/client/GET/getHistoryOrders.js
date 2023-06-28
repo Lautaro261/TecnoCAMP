@@ -34,11 +34,11 @@ const getHistoryOrders = async (userId) => {
       include: [
         {
           model: Product,
-          attributes: ["name", "price", "photo", "product_description"],
+          attributes: ["id", "name", "price", "photo", "product_description"],
         },
         {
           model: Inventory,
-          attributes: ["color"],
+          attributes: ["id", "color"],
         },
       ],
     });

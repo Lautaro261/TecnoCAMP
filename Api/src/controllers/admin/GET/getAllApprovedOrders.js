@@ -9,7 +9,9 @@ const getAllApprovedOrders = async () => {
       payment_transaction_id: {
         [Op.not]: null,
       },
-      shipping_status: { [Op.or]: ["Por revisar", "Despachado", "En camino"] },
+      shipping_status: {
+        [Op.or]: ["En preparacion", "Despachado"],
+      },
     },
     attributes: [
       "id",
