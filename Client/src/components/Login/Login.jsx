@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { Button, Form, Input, Checkbox, message, Typography } from 'antd';
+import { Button, Form, Input, Checkbox, message, Typography, Modal } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
@@ -21,12 +22,26 @@ const Login = ({ setToken, setRol }) => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+  const openmodal=()=>{
+    Modal.warning({
+      title: 'Lo sentimos mucho😕',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
+      okText: 'Aceptar',
+    })
+  }
 
   useEffect(() => {
     if (userSession.token && userSession.rol) {
       const token = userSession.token;
       const rol = userSession.rol;
-      console.log('logueado en el front como: ', rol, 'token: ', token);
+      const banned=userSession.erased;
+      if (banned){
+        openmodal()
+        console.log("te banearon puto")
+      }else{
+
+      console.log('logueado en el front como: ', rol, 'token: ', banned);
       setToken(token);
       setRol(rol);
       window.localStorage.setItem('rol', rol);
@@ -40,7 +55,7 @@ const Login = ({ setToken, setRol }) => {
         navigate('/super/admins');
       }
     }
-
+  }
     if (userSession.message === '¡Credenciales Incorrectas!') {
       messageApi.error(userSession.message);
     }
