@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Button, Input, Space, Table, Row, Col, Popconfirm } from 'antd';
+import { Button, Input, Space, Table, Row, Col, Popconfirm, Empty } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { banUser } from '../../../Redux/Features/admin/clients/adminClientsSlice';
@@ -190,10 +190,16 @@ const CustomerTable = () => {
         },
     ];
     return (
-        <Row>
+        <Row>{
+            !clients.length ?
+            <Col span={24} style={{ marginTop: "10vh" }}>
+            <Empty /> 
+            </Col>
+            :
             <Col span={24}>
                 <Table columns={columns} dataSource={dataClients} style={{ marginTop: "10vh" }} />
             </Col>
+            }
         </Row>
     );
 };
