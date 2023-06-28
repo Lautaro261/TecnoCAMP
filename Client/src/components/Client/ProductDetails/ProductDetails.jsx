@@ -1,13 +1,17 @@
 import React,{ useEffect } from "react";
-import { Row, Col, Space } from "antd";
+import { Row, Col, Space, Modal, notification } from "antd";
 import { useDispatch, useSelector} from 'react-redux';
 import { getProductDetails, clearDetails} from "../../../Redux/Features/products/clientProductsSlice";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { AddtoCart } from "../../../Redux/Features/cart/cartSlice";
 
+
+
 const ProductDetails = () => {
+  const navigate=useNavigate()
   const dispatch = useDispatch();
   const productDetails = useSelector( state => state.clientProducts.productDetails) 
   const { id } = useParams();
@@ -16,7 +20,25 @@ const ProductDetails = () => {
   const [selected, setSelected]=useState([])
   
   const token = window.localStorage.getItem("token")
-  console.log(productDetails)
+  const openmodal=()=>{
+    Modal.confirm({
+      title: 'Debes Iniciar sesión',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Para agregar un producto a tu carrito debes de iniciar sesión en Tecnocamp',
+      okText: 'Iniciar Sesión',
+      cancelText: 'Entendido',
+      onOk:(()=>navigate("/login"))
+  
+    })
+  }
+
+  const notificationRed=(quantity)=>{
+    notification.open({
+        message: 'Agregado al carrito',
+        description: quantity>1? `se han agregado ${quantity} productos al carrito`: `se ha agregado ${quantity} producto al carrito`,
+        placement:"top"
+      });
+}
 
   const selector=(e)=>{
     console.log(e.target.id)
@@ -26,12 +48,18 @@ const ProductDetails = () => {
   }
 
   const AddToCart=()=>{
- const id=productDetails.id
- const invId=selected[0]
- const val = value
- 
- console.log([id, invId,val, token])
- dispatch(AddtoCart([id, invId,val, token]))
+    if(token){
+      const id=productDetails.id
+      const invId=selected[0]
+      const val = value
+      
+      console.log([id, invId,val, token])
+      notificationRed(val)
+      dispatch(AddtoCart([id, invId,val, token]))
+    }
+    else{
+      openmodal()
+    }
   }
 
   useEffect(()=> {
@@ -56,7 +84,7 @@ const ProductDetails = () => {
           </Row>
           <Row justify="space-between" gutter={16}>
             <Col span={12} >
-                <img style={{width:"20vw", marginLeft:"40%"}}src={productDetails.photo && productDetails.photo[0]}/>
+                <img style={{ maxHeight:"40vh", width:"auto", marginLeft:"40%"}}src={productDetails.photo && productDetails.photo[0]}/>
             </Col>
             <Col span={12} style={{color: '#000000', textAlign: 'left', fontSize: '2vw', fontWeight: 'bold'}}>
             <p>{productDetails.name}</p>
