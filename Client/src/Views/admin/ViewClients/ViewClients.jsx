@@ -6,6 +6,7 @@ import { getAllClients } from '../../../Redux/Features/admin/clients/adminClient
 import TableClients from '../../../components/Admin/TableClients/TableClients';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,

@@ -77,7 +77,7 @@ const  Statistics = () => {
                 padding:8
                 
                 }}/>
-                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Agregar</Typography.Text>} valueRender={() => null}/>
+                <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Agregar producto</Typography.Text>} valueRender={() => '+'}/>
                 </Link>
             </Card>
 

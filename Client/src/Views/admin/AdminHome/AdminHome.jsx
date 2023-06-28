@@ -4,6 +4,7 @@ import Statistics from '../../../components/Admin/Statistics/Statistics';
 import { Layout, Space, Divider } from 'antd';
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,

@@ -72,7 +72,7 @@ const FormProductos = () => {
         autoComplete="off"
       >
         <Row gutter={[8, 8]}>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <Form.Item
               label="Nombre del producto:"
               name="name"
@@ -81,6 +81,10 @@ const FormProductos = () => {
                   required: true,
                   message: 'porfavor introduce el nombre del artículo',
                 },
+                {
+                  pattern: /^[a-zA-Z0-9]+$/,
+                  message: 'Solo se permiten letras y números',
+                }
               ]}
             >
               <Input />
@@ -124,7 +128,7 @@ const FormProductos = () => {
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
 
             <Form.Item
               label="Categoría:"

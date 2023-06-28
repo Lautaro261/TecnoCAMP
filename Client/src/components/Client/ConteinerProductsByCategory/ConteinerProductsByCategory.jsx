@@ -42,15 +42,14 @@ const ConteinerProductsByCategory = () => {
     }, [allProducts, idCategory]);
 
     return (
-        <div>
-
+      
             <Space
                 direction="vertical"
                 size="middle"
             >
                 <ProductsPagination />
 
-                <Row justify='center' gutter={[16, 16]}>
+                <Row justify='center' gutter={[8, 8]}>
                     {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
                             <Col  xs={24} sm={12} md={8} lg={6} key={product.id}>
@@ -71,7 +70,7 @@ const ConteinerProductsByCategory = () => {
                 </Row>
 
             </Space>
-        </div>
+      
     )
 }
 
