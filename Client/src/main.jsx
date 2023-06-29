@@ -14,8 +14,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Auth0Provider
    /*  domain = {VITE_DOMAIN}
     clientId= {VITE_CLIENTID} */
-    domain="dev-63fntm00jadd2yyb.us.auth0.com" 
-    clientId="nwkBhPmGn2XBp77V3X16a9m0eqgnriW8"
+    domain="dev-csn8fa2s8p4j2ruw.us.auth0.com" 
+    clientId="wYH19RfYMwKAsc5oFYDFP5dfLlCK7PaW"
 
     authorizationParams={{
       redirect_uri: window.location.origin
