@@ -24,7 +24,7 @@ const FooterUser= ()=>{
     
 
     return(
-        <div style={{backgroundColor:"#2D2D2D", width:"100vw", height:"20vh"}}>
+        <div style={{backgroundColor:"#2D2D2D", height:"20vh"}}>
             <Row gutter={[8,1]}>
                 <Col span={8} >
                     <Link to="https://web.whatsapp.com"><p>Contactanos</p></Link>

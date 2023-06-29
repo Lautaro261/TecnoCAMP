@@ -10,8 +10,6 @@ import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
 
 
-
-
 const FormProductos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.photos.photos);
@@ -44,7 +42,7 @@ const FormProductos = () => {
 
   const onFinish = (values) => {
     console.log(FormColors, "todododoo")
-    console.log('Success:');
+    console.log('Success:' ,values);
     post(values)
   };
   const onFinishFailed = (errorInfo) => {
@@ -74,7 +72,7 @@ const FormProductos = () => {
         autoComplete="off"
       >
         <Row gutter={[8, 8]}>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
             <Form.Item
               label="Nombre del producto:"
               name="name"
@@ -83,6 +81,10 @@ const FormProductos = () => {
                   required: true,
                   message: 'porfavor introduce el nombre del artículo',
                 },
+                {
+                  pattern: /^[a-zA-Z0-9]+$/,
+                  message: 'Solo se permiten letras y números',
+                }
               ]}
             >
               <Input />
@@ -96,22 +98,25 @@ const FormProductos = () => {
                   required: true,
                   message: 'Por favor colocar un precio',
                 },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: 'Solo puedes ingresar números',
+                }
               ]}
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Precio de oferta:"
               name="price_promotion"
             >
-              <Input />
+              <Input type='number'/>
             </Form.Item>
 
             <Form.Item
               label="Colores:"
               name="inventories"
-
             >
               <ColorPicker SetFormColors={SetFormColors} />
             </Form.Item>
@@ -123,7 +128,7 @@ const FormProductos = () => {
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12}>
 
             <Form.Item
               label="Categoría:"
