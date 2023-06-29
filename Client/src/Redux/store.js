@@ -11,6 +11,7 @@ import paymentReducer from "./Features/payment/paymentSlice";
 import photosReducer from "./Features/photos/photosSlice";
 import adminClientsReducer from './Features/admin/clients/adminClientsSlice'
 import adminStatisticsReducer from "./Features/admin/Statistics/adminStatistics";
+import historyReducer from "./Features/history/historySlice";
 
 const store = configureStore({
     reducer: {
@@ -25,7 +26,8 @@ const store = configureStore({
         logInAndSignUp: logInAndSignUpReducer,
         cart: cartReducer,
         payment: paymentReducer,
-        photos: photosReducer
+        photos: photosReducer,
+        history: historyReducer
     }
 });
 
