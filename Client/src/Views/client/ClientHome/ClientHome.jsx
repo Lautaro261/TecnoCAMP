@@ -55,14 +55,14 @@ const ClientHome = () => {
     if(user && isAuthenticated){
       if( !userSession.token && !userSession.rol){
         dispatch(signUpUser(userValues))
-        console.log('user authththth', userValues);
+        console.log('if 1', userValues);
       }
       if(typeof errorCreated === 'string'){
         dispatch(loginUser(userValues));
-        console.log('ya esta registrado, intento loguearme', userValues);
+        console.log('if 2, intento loguearme', userValues);
       }
       if(userSession.token && userSession.rol){
-        console.log('usuario de auth ya esta en base de datos, token :', userSession.token, 'rol: ',userSession.rol)
+        console.log('if 3, token :', userSession.token, 'rol: ',userSession.rol)
         const token = userSession.token
         const rol = userSession.rol
         window.localStorage.setItem('token', token);
@@ -81,7 +81,7 @@ const ClientHome = () => {
   }, [token])
 
 
-  // console.log(user);
+   console.log(user);
 
   return (
     <Layout className={style.layout}>
