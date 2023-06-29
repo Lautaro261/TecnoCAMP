@@ -57,6 +57,9 @@ const handlerGetFilterOrderByUser = require("../handlers/admin/GET/handlerGetFil
 // INVENTARIOS
 const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
 
+//MODIFICAR ORDER
+const handlerPutOrder = require("../handlers/admin/PUT/handlerPutOrder.js");
+
 /////////// ROUTES ////////////
 
 // USUARIOS
@@ -93,6 +96,9 @@ adminRouter.get("/orderhistory", verifyToken, handlerGetHistoryOfOrders);
 adminRouter.get("/ordersandproducts", verifyToken, handlerGetOrdersAndProducts);
 adminRouter.get("/dataorders", verifyToken, handlerGetDataOfOrders);
 adminRouter.get("/ordersbyuser", verifyToken, handlerGetFilterOrderByUser);
+
+//MODIFICAR ORDER
+adminRouter.put("/orderput/:orderId", verifyToken, handlerPutOrder);
 
 // INVENTARIOS
 adminRouter.get(

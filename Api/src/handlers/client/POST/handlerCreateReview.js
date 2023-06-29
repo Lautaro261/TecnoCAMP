@@ -5,7 +5,7 @@ const getUser = require("../../../controllers/admin/GET/getUser");
 const postReview = require("../../../controllers/client/POST/postReview");
 
 const handlerCreateReview = async (req, res) => {
-  const { rating, comment, userSub, productId } = req.body;
+  const { rating, comment, productId } = req.body;
 
   //1) Decodificar token con jwt
   const decoToken = await jwt.verify(req.token, KEY_SECRET);
@@ -20,7 +20,12 @@ const handlerCreateReview = async (req, res) => {
   }
 
   try {
-    const newReview = await postReview(rating, comment, userSub, productId);
+    const newReview = await postReview(
+      rating,
+      comment,
+      decoToken.sub,
+      productId
+    );
 
     res.status(200).json(newReview);
   } catch (error) {
