@@ -41,7 +41,7 @@ const handlerFiltersComb = require("../handlers/client/GET/handlerFiltersComb.js
 
 // Reviews
 const handlerCreateReview = require("../handlers/client/POST/handlerCreateReview.js");
-
+const handlerGetReviewId = require("../handlers/client/GET/handlerGetReviewId.js");
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 const {
   handlerGetAllDepartments,
@@ -87,7 +87,8 @@ clientRouter.get("/filterPrice", handlerFilterPrice);
 clientRouter.post("/filtersComb", handlerFiltersComb);
 
 //Reviews
-clientRouter.post("/reviews", verifyToken, handlerCreateReview);
+clientRouter.post("/review", verifyToken, handlerCreateReview);
+clientRouter.get("/reviews", verifyToken, handlerGetReviewId);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);
