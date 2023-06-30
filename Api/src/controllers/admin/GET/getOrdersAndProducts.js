@@ -6,6 +6,9 @@ const getOrdersAndProducts = async () => {
     where: {
       payment_status: "approved",
       payment_transaction_id: { [Op.not]: null },
+      shipping_status: {
+        [Op.or]: ["En preparacion", "Despachado"],
+      },
     },
     attributes: [
       "id",
