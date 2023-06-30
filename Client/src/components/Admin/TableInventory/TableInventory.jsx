@@ -234,7 +234,7 @@ function TableInventory() {
       return {
         key: c.id,
         price: c.price,
-        photo: c.photo[0],
+        photo: c.photo? c.photo[0]: 'no hay foto',
         name: c.name,
         total_quantity_inventory: c.total_quantity_inventory,
         category: c.category.name,
