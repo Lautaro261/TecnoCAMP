@@ -11,7 +11,7 @@ const handlerCreateUser = async (req, res) => {
 
     if (!newUser) {
       return res
-        .status(404)
+        .status(202)
         .json({ message: `El usuario con el email ${email}, ya existe` });
     }
 

@@ -38,13 +38,23 @@ export const signUpUser = createAsyncThunk(
 
             console.log('soy response en createUser', response.data)
 
+            if(response.data.message.includes('ya existe')){
+                console.log('SI EXISTE ENTRE!')
+                const response2 = await axios.post('/login', userData)
+                console.log('SEGUNDA PETICION', response2.data)
+                return response2.data  
+            }
+
             return response.data;
 
         } catch (error) {
-            console.log('error en createUser', error.response.data.message)
-            throw error.response.data.message
+                console.log('error en createUser', error.response.data.message)
+                throw error.response.data.message
+            }
+            /* console.log('error en createUser', error.response.data.message)
+            throw error.response.data.message */
         }
-    }
+    
 )
 export const logoutOwn = createAction('logInAndSignUp/logoutOwn')
 
@@ -80,7 +90,7 @@ const logInAndSignUpSlice = createSlice({
             .addCase(signUpUser.fulfilled, (state, action) => {
                 state.status = 'succeeded';
                 state.userSession = action.payload;
-                state.userCreated = action.payload;
+               state.userCreated = action.payload;
                 state.errorCreate = null;
             })
             .addCase(signUpUser.rejected, (state, action) => {

@@ -4,6 +4,7 @@ import { Row, Col, Popconfirm } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Logout = () => {
@@ -11,14 +12,17 @@ const Logout = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
+    const { logout }  = useAuth0()
 
     const handleLogout = () => {
+        window.localStorage.clear();
         dispatch(logoutOwn())
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('rol');
+       // window.localStorage.removeItem('token');
+       // window.localStorage.removeItem('rol');
+        logout()
         
         console.log('te deslogueaste')
-        navigate('/home');
+        navigate('/');
     }
     
     const showPopconfirm = () => {
@@ -32,7 +36,7 @@ const Logout = () => {
             setConfirmLoading(false);
         }, 1000);
         handleLogout(); 
-        navigate('/home');
+        navigate('/');
     };
 
     const handleCancel = () => {

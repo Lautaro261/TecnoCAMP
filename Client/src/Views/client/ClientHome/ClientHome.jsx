@@ -41,18 +41,18 @@ const footerStyle = {
 const ClientHome = () => {
   const dispatch = useDispatch();
 
-  const navigate= useNavigate();
+  // const navigate= useNavigate();
   const { isAuthenticated, user } = useAuth0();
   const userSession = useSelector((state) => state.logInAndSignUp.userSession)
   const errorCreated = useSelector(state => state.logInAndSignUp.errorCreated) 
-
+  
   const userValues = {
     sub: user?.sub,
     email: user?.email
   }
 
   useEffect(() => {
-    if(user && isAuthenticated){
+     if(user){
       if( !userSession.token && !userSession.rol){
         dispatch(signUpUser(userValues))
         console.log('if 1', userValues);
@@ -68,20 +68,24 @@ const ClientHome = () => {
         window.localStorage.setItem('token', token);
         window.localStorage.setItem('rol', rol); 
       }
-    }
-  },[userSession, userValues,user, isAuthenticated,navigate, errorCreated])
-
-
-  const token = window.localStorage.getItem("token")
-
-  useEffect(() => {
+      // if(!userSession.token && !userSession.rol){
+      //   window.localStorage.removeItem('token');
+      //   window.localStorage.removeItem('rol');
+      // }
+     }
+    },[/* userSession, userValues/* ,user, */ /* isAuthenticated , errorCreated */])
+    
+    
+    const token = window.localStorage.getItem("token")
+    
+    // useEffect(() => {
     if (token) {
       dispatch(CreateCart(token));
     }
-  }, [token])
+  // }, [token])
 
 
-   console.log(user);
+   // console.log(user);
 
   return (
     <Layout className={style.layout}>
