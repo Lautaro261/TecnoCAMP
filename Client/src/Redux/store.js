@@ -11,6 +11,9 @@ import paymentReducer from "./Features/payment/paymentSlice";
 import photosReducer from "./Features/photos/photosSlice";
 import adminClientsReducer from './Features/admin/clients/adminClientsSlice'
 import adminStatisticsReducer from "./Features/admin/Statistics/adminStatistics";
+import historyReducer from "./Features/history/historySlice";
+import clientReviewsReducer from './Features/reviews/clientReviewsSlice';
+import adminReviewsReducer from './Features/reviews/adminReviewSlice';
 
 const store = configureStore({
     reducer: {
@@ -18,14 +21,17 @@ const store = configureStore({
         adminClients: adminClientsReducer,
         adminCategories: adminCategoriesReducer,
         adminBrands: adminBrandsReducer,
-        adminProducts: adminProductsReducer,
+        adminProducts: adminProductsReducer, 
+        adminReviews: adminReviewsReducer, 
         clientBrands: clientBrandsReducer,
         clientCategories: clientCategoriesReducer,
-        clientProducts: clientProductsReducer,
+        clientProducts: clientProductsReducer, 
+        clientReviews: clientReviewsReducer,
         logInAndSignUp: logInAndSignUpReducer,
         cart: cartReducer,
         payment: paymentReducer,
-        photos: photosReducer
+        photos: photosReducer,
+        history: historyReducer
     }
 });
 

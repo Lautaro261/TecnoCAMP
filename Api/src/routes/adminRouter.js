@@ -49,11 +49,16 @@ const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMu
 const {
   handlerGetAllApprovedOrders,
   handlerGetDataOfOrders,
+  handlerGetHistoryOfOrders,
 } = require("../handlers/admin/GET/handlerGetAllApprovedOrders.js");
+const handlerGetOrdersAndProducts = require("../handlers/admin/GET/handlerGetOrdersAndProducts.js");
 const handlerGetFilterOrderByUser = require("../handlers/admin/GET/handlerGetFilterOrderByUser.js");
 
 // INVENTARIOS
 const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
+
+//MODIFICAR ORDER
+const handlerPutOrder = require("../handlers/admin/PUT/handlerPutOrder.js");
 
 /////////// ROUTES ////////////
 
@@ -87,8 +92,13 @@ adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
 
 // ORDENES DE PEDIDOS PAGADAS
 adminRouter.get("/allorders", verifyToken, handlerGetAllApprovedOrders);
+adminRouter.get("/orderhistory", verifyToken, handlerGetHistoryOfOrders);
+adminRouter.get("/ordersandproducts", verifyToken, handlerGetOrdersAndProducts);
 adminRouter.get("/dataorders", verifyToken, handlerGetDataOfOrders);
 adminRouter.get("/ordersbyuser", verifyToken, handlerGetFilterOrderByUser);
+
+//MODIFICAR ORDER
+adminRouter.put("/orderput/:orderId", verifyToken, handlerPutOrder);
 
 // INVENTARIOS
 adminRouter.get(

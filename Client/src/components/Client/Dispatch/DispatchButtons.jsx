@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const DispatchButtons = () => {
-    const paymentOrderResponse = useSelector(state => state.payment.paymentOrderResponse);
     const cart = useSelector(state => state.payment.cart);
 
     return (
@@ -12,13 +11,6 @@ const DispatchButtons = () => {
             { cart.length > 0 && 
                 <Col align='middle'>
                     <DispatchFormModal />
-                    <Row style={{ margin: '20px'}}>
-                        { paymentOrderResponse && paymentOrderResponse.payment_link && 
-                            <Link to={ paymentOrderResponse && paymentOrderResponse.payment_link }>
-                                <Button>Continuar con el Pago</Button>
-                            </Link> 
-                        }
-                    </Row>
                 </Col>
             }
         </Row>

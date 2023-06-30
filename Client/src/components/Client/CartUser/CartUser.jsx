@@ -22,8 +22,16 @@ const DeleteHandler=(ids)=>{
   refresh()
 }
 
+const DeleteAll=async ()=>{
+  await cart.map((item)=>{DeleteHandler([item.productId,item.inventoryId])})
+  console.log("okay")
+}
+
+
 useEffect(() => {
-  dispatch(getCartForAUser(token));
+  if (token) {
+    dispatch(getCartForAUser(token));
+  }
 }, []);
 
 // creacion
@@ -53,7 +61,7 @@ useEffect(()=>{
 
    // boton para consologear
   const loadMore =
-    cart && cart.rt_total_amount ? (
+  cart.length>=1?(
       <div
         style={{
           textAlign: 'center',
@@ -62,9 +70,9 @@ useEffect(()=>{
           lineHeight: '30px',
         }}
       >
-        <Button onClick={onConsole}> {cart?`Total cart: ${cart[0].cart_total_amount}`:null} </Button>
-      </div>
-    ) : null;
+        <Button onClick={DeleteAll}> vaciar todo el carrito </Button>
+      </div>): null
+    ;
   return (
     <div>
     <List

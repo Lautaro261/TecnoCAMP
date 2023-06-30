@@ -19,7 +19,7 @@ const handlerGetUserCarts = async (req, res) => {
       .json({ message: "No cuenta con permisos para realizar la peticion" });
   }
 
- // const { sub } = req.params;
+  // const { sub } = req.params;
 
   try {
     // Obtener carrito(s) del usuario por su ID

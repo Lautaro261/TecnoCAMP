@@ -24,7 +24,8 @@ import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/
 import EditInventary from "./Views/admin/EditInventary/EditInventary";
 import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
-
+import HistoryView from "./Views/client/HistoryView/HistoryView";
+import AdminReviewsView from './Views/admin/AdminReviewsView/AdminReviewsView';
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -65,6 +66,8 @@ function App() {
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/cart" element={ <CartView/> } />
+        <Route path="/shopping-history" element={ <HistoryView/> } />
+
          
           {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
@@ -76,6 +79,7 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary/>} />
           <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
+          <Route path="/admin/reviews" element={<AdminReviewsView />} />
           {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
 
         </Route>

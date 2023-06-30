@@ -5,6 +5,7 @@ import axios from 'axios';
 // const token = localStorage.getItem('token');
 
 const initialState = {
+    postProduct:{},
     productPut: [],
     allProducts: [],
     bannedProcuts: [],
@@ -13,7 +14,6 @@ const initialState = {
     status: 'idle',
     error: null,
   };
-
 
 
   export const banProduct = createAsyncThunk(
@@ -34,6 +34,7 @@ const initialState = {
       }
     }
   )
+
 
   export const putProduct = createAsyncThunk(
     'adminProducts/putProduct',
@@ -101,6 +102,7 @@ const adminProductsSlice = createSlice({
     extraReducers: (builder) => {
         builder
 
+
         .addCase(banProduct.pending, (state, action) => {
           state.status = 'loading';
         })
@@ -123,6 +125,7 @@ const adminProductsSlice = createSlice({
           state.error = action.error.message;
         })
 
+
         .addCase(getAllProducts.pending, (state) => {
             state.status = "loading";
           })
@@ -135,6 +138,8 @@ const adminProductsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message;
           })
+
+
           .addCase(getProductsSearched.pending, (state) => {
             state.status = "loading";
           })
@@ -161,6 +166,7 @@ const adminProductsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message;
           })
+
     }
 })
 

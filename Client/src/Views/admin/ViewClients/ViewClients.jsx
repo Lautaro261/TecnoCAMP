@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider, } from 'antd';
 import { useEffect } from 'react';
 import { getAllClients } from '../../../Redux/Features/admin/clients/adminClientsSlice';
-import TableClients from '../../../components/Admin/TableClients/TableClients';
+import CustomerTable from '../../../components/Admin/TableClients/CustomerTable';
+
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,
@@ -56,7 +58,7 @@ const ViewClients = ()=>{
       <Layout>
         <Header style={headerStyle}><Divider style={{color:"black",}}>Clientes</Divider></Header>
         <Content style={contentStyle}>
-       <TableClients/>
+       <CustomerTable/>
         </Content>
       </Layout>
     </Layout>

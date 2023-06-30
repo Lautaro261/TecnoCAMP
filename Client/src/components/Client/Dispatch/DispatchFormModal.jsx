@@ -19,7 +19,7 @@ const DispatchFormModal = () => {
                 Llenar formulario de entrega
             </Button>
             <Modal 
-                title='Forma para entrega' 
+                title='Formulario para entrega' 
                 open={ isModalOpen } 
                 footer={ null }
                 onCancel= { handleCancel } 
