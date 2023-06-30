@@ -15,14 +15,29 @@ const postReview = async (rating, comment, userSub, productId) => {
     return { message: "El usuario no existe" };
   }
 
-  const review = await Review.create({
-    rating,
-    comment,
-    userSub,
-    productId,
+  const productReview = await Review.findOne({
+    where: {
+      productId: productId,
+    }
   });
 
-  return review;
+  if (productReview) {
+    productReview.rating = rating;
+    productReview.comment = comment;
+    productReview.userSub = userSub;
+
+    const result = await productReview.save();
+
+    return result;
+  } else {
+    const review = await Review.create({
+      rating,
+      comment,
+      userSub,
+      productId,
+    });
+    return review;
+  }
 };
 
 module.exports = postReview;
