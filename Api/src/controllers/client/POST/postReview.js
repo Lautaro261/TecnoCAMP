@@ -1,43 +1,40 @@
 const { Review, Product, User } = require("../../../db");
 
 const postReview = async (rating, comment, userSub, productId) => {
-  //Verificar si el producto existe
   const product = await Product.findByPk(productId);
   if (!product) {
     return { message: "No se encuentra el producto" };
   }
 
-  //Verificar si el usuario existe
-  const user = await User.findOne({
-    where: { sub: userSub },
-  });
+  const user = await User.findOne({ where: { sub: userSub } });
   if (!user) {
     return { message: "El usuario no existe" };
   }
 
-  const productReview = await Review.findOne({
+  let review = await Review.findOne({
     where: {
-      productId: productId,
-    }
+      productId,
+      userSub,
+    },
   });
 
-  if (productReview) {
-    productReview.rating = rating;
-    productReview.comment = comment;
-    productReview.userSub = userSub;
-
-    const result = await productReview.save();
-
-    return result;
+  if (review) {
+    // El usuario ya ha dejado una reseña para este producto, se actualiza
+    await Review.update(
+      { rating, comment },
+      { where: { id: review.id } }
+    );
   } else {
-    const review = await Review.create({
+    // El usuario no ha dejado una reseña para este producto, se crea una nueva
+    review = await Review.create({
       rating,
       comment,
       userSub,
       productId,
     });
-    return review;
   }
+
+  return review;
 };
 
-module.exports = postReview;
+module.exports = postReview;

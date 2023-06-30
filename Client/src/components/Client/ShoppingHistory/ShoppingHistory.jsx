@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Fill } from "../../../Redux/Features/history/historySlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Card, Divider, Row, Col, Button} from 'antd';
+import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
 
 const ShoppingHistory=()=>{
     const dispatch=useDispatch()
@@ -14,11 +15,11 @@ const ShoppingHistory=()=>{
         console.log(history)
     }, [])
 
-    const valorate=(e)=>{
-        if(e.target.id){
-            console.log(e.target.id)
-        }
-    }
+    // const valorate=(e)=>{
+    //     if(e.target.id){
+    //         console.log(e.target.id)
+    //     }
+    // }
 
     return(
         <div>
@@ -41,11 +42,12 @@ const ShoppingHistory=()=>{
                     {order.products.map((item)=>{
                         return(
                             <div>
-                            <Row>
+                            <Row justify='center' align='middle'>
                                 <Col span={6}><img src={item.photo} style={{maxHeight:"10vh"}} /></Col>
                                 <Col span={6}><p>{item.name}</p></Col>
                                 <Col span={6}><p>Precio: ${item.price}</p></Col>
-                                <Col id={item.id} onClick={valorate} span={2}><button disabled={false}id={item.id}  style={{background: "white",fontFamily: "inherit",padding: "0.6em 1.3em",fontWeight: "20",fontSize: "15px",border:"1px solid black",borderRadius: "0.4em",}} onClick={valorate}>Puntuar</button></Col>
+                                {/* <Col id={item.id} onClick={valorate} span={2}><button disabled={false}id={item.id}  style={{background: "white",fontFamily: "inherit",padding: "0.6em 1.3em",fontWeight: "20",fontSize: "15px",border:"1px solid black",borderRadius: "0.4em",}} onClick={valorate}>Puntuar</button></Col> */}
+                                <Col><ReviewFormModal productId={item.id} /></Col>
 
                             </Row>
                             
