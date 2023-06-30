@@ -5,7 +5,7 @@ const getUser = require("../../../controllers/admin/GET/getUser");
 const getReviewId = require("../../../controllers/client/GET/getReviewsId");
 
 const handlerGetReviewId = async (req, res) => {
-    const { productId } = req.body
+    const { productId } = req.query
 
     const decoToken = await jwt.verify(req.token, KEY_SECRET);
 

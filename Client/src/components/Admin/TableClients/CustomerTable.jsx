@@ -145,7 +145,7 @@ const CustomerTable = () => {
         dispatch(banUser([key, token]))
         notification.open({
             message: 'ATENCIÓN',
-            description: erased ? `Se ha restaurado el acceso al  usuario con el mail ${key}` : `Se ha bloqueado al usuario con el mail ${key}`,
+            description: erased ? `Se ha restaurado el acceso al  usuario con el email ${key}` : `Se ha bloqueado al usuario con el mail ${key}`,
             placement: "top"
         });
         console.log("baneando", key)
