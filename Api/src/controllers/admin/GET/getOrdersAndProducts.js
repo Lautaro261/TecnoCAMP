@@ -1,4 +1,11 @@
-const { Product, Inventory, Cart, Order } = require("../../../db");
+const {
+  Product,
+  Inventory,
+  Cart,
+  Order,
+  Department,
+  Municipality,
+} = require("../../../db");
 const { Op } = require("sequelize");
 
 const getOrdersAndProducts = async () => {
@@ -19,8 +26,22 @@ const getOrdersAndProducts = async () => {
       "cartId",
       "total_quantity_all_products",
       "total_amount_all_products",
+      "contact_name",
+      "contact_cellphone",
+      "address",
+      "neighborhood",
     ],
     order: [["payment_date", "DESC"]],
+    include: [
+      {
+        model: Department,
+        attributes: ["name"],
+      },
+      {
+        model: Municipality,
+        attributes: ["name"],
+      },
+    ],
   });
 
   const ordersAndProducts = [];
@@ -37,6 +58,12 @@ const getOrdersAndProducts = async () => {
         {
           model: Product,
           attributes: ["id", "name", "price", "photo", "product_description"],
+          include: [
+            {
+              model: Inventory,
+              attributes: ["id", "color"],
+            },
+          ],
         },
         {
           model: Inventory,
@@ -45,7 +72,57 @@ const getOrdersAndProducts = async () => {
       ],
     });
 
-    ordersAndProducts.push({ order, products });
+    const groupedProducts = {};
+
+    for (const product of products) {
+      const productId = product.product.id;
+      const cartQuantity = product.quantity_unit_product;
+      const inventoryId = product.inventory.id;
+      const color = product.inventory.color;
+      console.log(inventoryId);
+      console.log(color);
+      console.log(cartQuantity);
+
+      if (productId) {
+        if (groupedProducts[productId]) {
+          if (inventoryId) {
+            const inventory = groupedProducts[productId].inventoryIds.find(
+              (inv) => inv.id === inventoryId
+            );
+            if (inventory) {
+              inventory.quantity_unit_product += cartQuantity; // Incrementar la cantidad de productos en la propiedad "quantity_unit_product"
+            } else {
+              groupedProducts[productId].inventoryIds.push({
+                id: inventoryId,
+                color: color,
+                quantity_unit_product: cartQuantity, // Agregar la propiedad "quantity_unit_product"
+              });
+            }
+          }
+        } else {
+          groupedProducts[productId] = {
+            id: product.product.id,
+            name: product.product.name,
+            price: product.product.price,
+            photo: product.product.photo,
+            product_description: product.product.product_description,
+            inventoryIds: [],
+          };
+
+          if (inventoryId) {
+            groupedProducts[productId].inventoryIds.push({
+              id: inventoryId,
+              color: color,
+              quantity_unit_product: cartQuantity, // Agregar la propiedad "quantity_unit_product"
+            });
+          }
+        }
+      }
+    }
+
+    const productsWithInventoryIds = Object.values(groupedProducts);
+
+    ordersAndProducts.push({ order, products: productsWithInventoryIds });
   }
 
   if (ordersAndProducts.length === 0) {
