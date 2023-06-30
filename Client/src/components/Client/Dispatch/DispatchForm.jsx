@@ -2,12 +2,14 @@ import { Col, Button, Form, Input, Select } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+    getCartForAUser, 
     createPaymentOrder,
     getAllDepartments,
     getAllMunicipalities,
 } from '../../../Redux/Features/payment/paymentSlice';
 
 const DispatchForm = () => {
+    const clientToken = localStorage.getItem('token');
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const allDepartments = useSelector(state => state.payment.allDepartments);
@@ -30,13 +32,12 @@ const DispatchForm = () => {
     };
 
     const onFinish = (values) => {
-        dispatch(createPaymentOrder(values));
+        dispatch(createPaymentOrder({ values, clientToken }));
     };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
 
     return (
         <Col align='middle'>

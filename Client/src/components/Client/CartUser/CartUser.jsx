@@ -29,7 +29,9 @@ const DeleteAll=async ()=>{
 
 
 useEffect(() => {
-  dispatch(getCartForAUser(token));
+  if (token) {
+    dispatch(getCartForAUser(token));
+  }
 }, []);
 
 // creacion
