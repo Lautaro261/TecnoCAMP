@@ -1,3 +1,5 @@
+
+
 import { Route, Routes } from "react-router";
 import axios from "axios";
 import "./App.css";
@@ -17,38 +19,38 @@ import CategoriesView from "./Views/client/Categories/CategoriesView";
 import Landing from "./Views/Landing/Landing";
 import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResultView";
 import AboutUs from "./Views/client/AboutUs/AboutUs";
-import Inventary from "./Views/admin/Inventary/Inventary";
+import Inventary from './Views/admin/Inventary/Inventary'
 import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
 import EditInventary from "./Views/admin/EditInventary/EditInventary";
 import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
-import HistoryView from "./Views/client/HistoryView/HistoryView";
-import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
+
 
 axios.defaults.baseURL = "http://localhost:3001";
 
+
 function App() {
   //NO TOCAR
-  const [token, setToken] = useState("");
-  const [rol, setRol] = useState("");
-  const rolA = rol ? rol : localStorage.getItem("rol");
-  const tokenA = token ? token : localStorage.getItem("token");
+  const [token, setToken] = useState("")
+  const [rol, setRol] = useState("")
+  const rolA = rol ? rol : localStorage.getItem("rol")
+  const tokenA = token ? token : localStorage.getItem("token")
   const redirect = {
     client: "/home",
     admin: "/admin/home",
     superAdmin: "/super/admins",
-  };
+  }
   // TOCAR
 
+
   return (
+
     <div>
-      <Routes>
+
+      <Routes >
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
-        <Route path="/" element={<Landing />} />
-        <Route
-          path="/login"
-          element={<LoginView setToken={setToken} setRol={setRol} />}
-        />
+        <Route path="/" element={<Landing/>} />
+        <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />} />
         <Route path="/home" element={<ClientHome />} />
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
@@ -58,65 +60,32 @@ function App() {
         <Route path="/about" element={<AboutUs/>} />
         <Route path='/success-payment' element={<SuccessPaymentView />} />
         <Route path='/failure-payment' element={<FailurePaymentView />} />
-        <Route path="/shopping-history" element={ <HistoryView/> } />
-        <Route path="/categories/:category" element={<CategoriesView />} />
-        <Route
-          path="/categories/product/:id"
-          element={<ProductDetailsView />}
-        />
-        <Route path="/searchedProducts" element={<SearchedResultsView />} />
-        {/*  <Route path="/developers" element={< div/>} /> */}
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/success-payment" element={<SuccessPaymentView />} />
-        <Route path="/failure-payment" element={<FailurePaymentView />} />
+
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/cart" element={ <CartView/> } />
-        <Route
-          element={
-            <ProtectedRoutes
-              logged={!!tokenA}
-              allowed={rolA === "client"}
-              redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin}
-            />
-          }
-        >
-          <Route path="/cart" element={<CartView />} />
-          <Route path="/shopping-history" element={<HistoryView />} />
-
-
+         
           {/* <Route path="/cart" element={<CartView />} /> */}
         </Route>
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
-        <Route
-          element={
-            <ProtectedRoutes
-              logged={!!tokenA}
-              allowed={rolA === "admin"}
-              redirect={
-                rolA === "client" ? redirect.client : redirect.superAdmin
-              }
-            />
-          }
-        >
+        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'admin'} redirect={rolA === "client" ? redirect.client : redirect.superAdmin} />}>
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/createproduct" element={<CreateProductVew />} />
           <Route path="/admin/clients" element={<ViewClients />} />
-          <Route path="/admin/inventary" element={<Inventary />} />
-          <Route
-            path="/searchedProductsAdmin"
-            element={<SearchedResultViewAdmin />}
-          />
-          <Route path="/admin/reviews" element={<AdminReviewsView />} />
+          <Route path="/admin/inventary" element={<Inventary/>} />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
           {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
+
         </Route>
-        {/* RUTA DE CONSTRUCCION*/}
-        <Route path="*" element={<ErrorView />} />
+       {/* RUTA DE CONSTRUCCION*/}
+         <Route path="*" element={<ErrorView/>} /> 
+
       </Routes>
+
     </div>
-  );
+  )
 }
 
 export default App;
