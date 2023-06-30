@@ -25,7 +25,7 @@ import EditInventary from "./Views/admin/EditInventary/EditInventary";
 import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 import HistoryView from "./Views/client/HistoryView/HistoryView";
-
+import AdminReviewsView from './Views/admin/AdminReviewsView/AdminReviewsView';
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -79,6 +79,7 @@ function App() {
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary/>} />
           <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin /> } />
+          <Route path="/admin/reviews" element={<AdminReviewsView />} />
           {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
 
         </Route>

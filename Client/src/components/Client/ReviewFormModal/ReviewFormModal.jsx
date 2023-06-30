@@ -1,8 +1,10 @@
 import { Col, Button, Modal } from 'antd';
 import { useState } from 'react';
-import DispatchForm from './DispatchForm';
+import ReviewForm from '../ReviewForm/ReviewForm';
 
-const DispatchFormModal = () => {
+const ReviewFormModal = (props) => {
+    const { productId } = props;
+
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const showModal = () => {
@@ -16,18 +18,18 @@ const DispatchFormModal = () => {
     return (
         <Col>
             <Button type='primary' onClick={ showModal }>
-                Llenar formulario de entrega
+                Dejar review
             </Button>
             <Modal 
-                title='Formulario para entrega' 
+                title='Formulario para calificación de producto' 
                 open={ isModalOpen } 
                 footer={ null }
                 onCancel= { handleCancel } 
             >
-                <DispatchForm />
+                <ReviewForm productId={ productId } closeModal={ handleCancel } />
             </Modal>
         </Col>
     );
 };
 
-export default DispatchFormModal;
+export default ReviewFormModal;
