@@ -7,7 +7,7 @@ import {
   InputNumber,
   Space,
   Table,
-  Modal,
+  Switch,
   Col,
   DatePicker,
   Drawer,
@@ -16,16 +16,17 @@ import {
   Select,
 } from "antd";
 import { useRef, useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom"
+
 import Highlighter from "react-highlight-words";
 import {
   getAllProducts,
   putProduct,
 } from "../../../Redux/Features/admin/products/adminProductsSlice";
-const { Option } = Select;
+import { getAllCategories } from "../../../Redux/Features/admin/categories/adminCategoriesSlice";
+import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSlice";
+import { banProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
 function TableInventory() {
-  const navigate = useNavigate()
   const [form] = useForm();
   const dispatch = useDispatch();
   const token = window.localStorage.getItem("token");
@@ -37,6 +38,8 @@ function TableInventory() {
 
   useEffect(() => {
     dispatch(getAllProducts(token));
+    dispatch(getAllCategories(token));
+    dispatch(getAllBrands(token));
   }, [dispatch]);
 
   const [searchText, setSearchText] = useState("");
@@ -197,6 +200,12 @@ function TableInventory() {
       /* ...getColumnSearchProps("category"), */
     },
     {
+      title: "Disponible",
+      dataIndex: "aviable",
+      key: "key",
+      width: "20%",
+    },
+    {
       title: "Marca",
       dataIndex: "brand",
       key: "key",
@@ -209,24 +218,17 @@ function TableInventory() {
       dataIndex: "acciones",
       render: (fila, key) => (
         <>
-          {" "}
-          <Button type="primary" onClick={() => showDrawer(key.key)}>
-            Editar
-          </Button>{" "}
-          {"  "}{" "}
-          {/* <Button
-            type="primary"
-            danger
-            onClick={() => console.log("soy all", key.key)}
-          >
-            Eliminar
-          </Button>{" "} */}
+        <Button type="primary" onClick={() => showDrawer(key.key)}>
+          Editar
+        </Button>
+        <Button> Eliminar</Button>
         </>
       ),
     },
   ];
 
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const data =
     allProducts &&
@@ -239,7 +241,9 @@ function TableInventory() {
         total_quantity_inventory: c.total_quantity_inventory,
         category: c.category.name,
         brand: c.brand.name,
-        color: c.inventories.map((d) => {
+        aviable: c.is_available ? "disponible" : "No disponible",
+        e_product_type: c.e_product_type,
+        inventories: c.inventories.map((d) => {
           return {
             color: d.color,
             quantity_inventory: d.quantity_inventory,
@@ -248,28 +252,37 @@ function TableInventory() {
       };
     });
 
-  // console.log("SOY TODO PA", allProducts);
-  //console.log("soy data.id", data.id);
+  //console.log("soy todo", allProducts);
+  //console.log("soy id",idProduct);
 
   const [open, setOpen] = useState(false);
-  const showDrawer = (idProduct) => {
-    setSelectedProductId(idProduct);
+  const showDrawer = (productId) => {
+    const product = allProducts.find((p) => p.id === productId);
+    setSelectedProduct(product);
+    setSelectedProductId(productId);
+    console.log("soy id", productId);
+    console.log("soy product", product);
     setOpen(true);
   };
+
   const onClose = () => {
     setOpen(false);
   };
 
   const onFinish = (values) => {
-    console.log("valores", values);
-    console.log(selectedProductId);
-    const valueEdit = { ...values, inventoryItems: [] };
-
-    console.log("ESTO ENVIO AL BACK", valueEdit);
+    const valueEdit = {
+      ...values,
+      inventoryItems: [],
+    };
 
     dispatch(putProduct([token, selectedProductId, valueEdit]));
-    // navigate('/admin/inventary')
-    location.reload()
+
+    //location.reload();
+  };
+ 
+  const onChange =( checked)=>{
+    
+    console.log(`cambio a ${checked}`, );
   };
 
   return (
@@ -286,6 +299,7 @@ function TableInventory() {
         width={720}
         onClose={onClose}
         open={open}
+        
         bodyStyle={{
           paddingBottom: 80,
         }}
@@ -303,6 +317,7 @@ function TableInventory() {
           hideRequiredMark
           form={form}
           onFinish={onFinish}
+          initialValues={selectedProduct}
         >
           <Row gutter={16}>
             <Col span={12}>
@@ -316,7 +331,7 @@ function TableInventory() {
                   },
                 ]}
               >
-                <Input defaultValue={data.key} />
+                <Input value={name} />
               </Form.Item>
             </Col>
 
@@ -326,38 +341,20 @@ function TableInventory() {
                 label="Precio"
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Por favor ingrese el precio",
                   },
                 ]}
               >
-                <InputNumber
-                  min={1}
-                  max={100000000000000000}
-                
-                />
+                <InputNumber min={1} max={100000000000000000} />
               </Form.Item>
             </Col>
-            {/* 
-            <Col span={12}>
-              <Form.Item
-                name="price"
-                label="Precio"
-                rules={[
-                  {
-                    required: false,
-                    message: "Please enter user name",
-                  },
-                ]}
-              >
-                <InputNumber min={1} max={100000000000000000}  defaultValue={1}/>;
-              </Form.Item>
-            </Col> */}
           </Row>
-          {/* <Row gutter={16}>
+
+          <Row gutter={16}>
             <Col span={12}>
               <Form.Item
-                name="category"
+                name="categoryId"
                 label="Categoría"
                 rules={[
                   {
@@ -366,19 +363,20 @@ function TableInventory() {
                   },
                 ]}
               >
-                <Select placeholder="Please select an owner">
+                <Select>
                   {allCategories &&
-                    allCategories.map((category) => {
-                      return (
-                        <Option value={category.id}>{category.name}</Option>
-                      );
-                    })}
+                    allCategories.map((category) => (
+                      <Select.Option key={category.id} value={category.id}>
+                        {category.name}
+                      </Select.Option>
+                    ))}
                 </Select>
               </Form.Item>
             </Col>
+
             <Col span={12}>
               <Form.Item
-                name="brand"
+                name="brandId"
                 label="Marca"
                 rules={[
                   {
@@ -389,15 +387,74 @@ function TableInventory() {
               >
                 <Select placeholder="Please choose the type">
                   {allBrands &&
-                    allBrands.map((category) => {
-                      return (
-                        <Option value={category.id}>{category.name}</Option>
-                      );
-                    })}
+                    allBrands.map((brand) => (
+                      <Select.Option key={brand.id} value={brand.id}>
+                        {brand.name}
+                      </Select.Option>
+                    ))}
                 </Select>
               </Form.Item>
             </Col>
-          </Row> */}
+          </Row>
+
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                name="e_product_type"
+                label="Tipo de producto"
+                rules={[
+                  {
+                    required: false,
+                    message: "Please select an owner",
+                  },
+                ]}
+              >
+                <Select>
+                  <Select.Option value="Celular Smartphone">
+                    Celular smartphone
+                  </Select.Option>
+                  <Select.Option value="Celular Convencional">
+                    Celular convencional
+                  </Select.Option>
+                  <Select.Option value="Audifonos alambricos">
+                    Audífonos alámbricos
+                  </Select.Option>
+                  <Select.Option value="Audífonos bluetooth">
+                    Audífonos bluetooth
+                  </Select.Option>
+                  <Select.Option value="Audifonos tipo diadema">
+                    Audífonos tipo diadema
+                  </Select.Option>
+                  <Select.Option value="SmartWatch con bluetooth">
+                    Smartwatch con bluetooth
+                  </Select.Option>
+                  <Select.Option value="SmartWatch sin bluetooth">
+                    Smartwatch sin bluetooth
+                  </Select.Option>
+                </Select>
+              </Form.Item>
+            </Col>
+
+            <Col>
+            <Form.Item
+            name="is_available"
+            label="Disponibilidad"
+            rules={[
+              {
+                required: false,
+                message: "Please select an owner",
+              },
+            ]}>
+
+
+                  
+              
+              
+                 <Input/>
+            <Switch checkedChildren="Disponible" unCheckedChildren="No disponible" defaultChecked onChange={onChange} />; 
+            </Form.Item>
+            </Col>
+          </Row>
 
           <Row gutter={16}>
             <Col span={24}>
@@ -406,7 +463,7 @@ function TableInventory() {
                 label="Description"
                 rules={[
                   {
-                    required: true,
+                    required: false,
                     message: "Por favor ingrese una descripcion",
                   },
                 ]}

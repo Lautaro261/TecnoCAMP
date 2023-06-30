@@ -7,6 +7,7 @@ import axios from 'axios';
 const initialState = {
     productPut: [],
     allProducts: [],
+    bannedProcuts: [],
     searchedResult: [],
     photos: [],
     status: 'idle',
@@ -14,12 +15,32 @@ const initialState = {
   };
 
 
+
+  export const banProduct = createAsyncThunk(
+    'adminProducts/banProduct',
+    async([idProduct,token]) => {
+      try {
+        console.log(idProduct, token, "AAAAAAAAAAA")
+        const response= await axios.put("/admin/delete", {"id": idProduct} ,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log('banUser ok', response.data)
+        return sub
+      } catch (error) {
+        console.log('error banUser', error.response.data)
+        throw error.response.data
+      }
+    }
+  )
+
   export const putProduct = createAsyncThunk(
     'adminProducts/putProduct',
-    async([token,idProduct, valueEdit]) => {
-      console.log('idProuct', idProduct, 'values', valueEdit, 'token', token)
+    async([token,selectedProductId, valueEdit]) => {
       try {
-          response  = await axios.put(`admin/update/${idProduct}`,valueEdit,{
+        console.log('REDUX idProuct', selectedProductId, 'values', valueEdit, 'token', token)
+          response  = await axios.put(`admin/update/${selectedProductId}`,valueEdit ,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -79,6 +100,29 @@ const adminProductsSlice = createSlice({
     reducers:{},
     extraReducers: (builder) => {
         builder
+
+        .addCase(banProduct.pending, (state, action) => {
+          state.status = 'loading';
+        })
+        .addCase(banProduct.fulfilled, (state, action) => {
+          state.status = 'succeeded';
+          const sub = action.payload;  // acá tenemos el sub
+          const prodcut = state.prodcut.find((prodcut)=> prodcut.id === id); //buscamos en el estado allUsers al usuario
+          if(prodcut){                                              // que corresponde a nuestro sub y verificamos si tenemos el user.
+              prodcut.is_available = !prodcut.is_available                      // acá cambiamos la propiedad de borrado, si era true ahora es false y viceversa
+              if(prodcut.is_available){                                   //si la propiedad borrado es true 
+                  state.bannedProcuts.push(prodcut);                   //agrega el usuario al array bannedUser
+              }else{
+                  state.bannedProcuts = state.bannedProcuts.filter((bannedProdcut)=> bannedProdcut.id !== id) // si borrado es false, filtra 
+              }                                                                 // y devuelve los usuarios baneados diferentes a ese sub
+          }                                                   
+          state.error= null;
+        })
+        .addCase(banProduct.rejected, (state, action) => {
+          state.status = 'rejected';
+          state.error = action.error.message;
+        })
+
         .addCase(getAllProducts.pending, (state) => {
             state.status = "loading";
           })
