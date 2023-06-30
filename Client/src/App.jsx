@@ -61,12 +61,12 @@ function App() {
         <Route path="/about" element={<AboutUs/>} />
         <Route path='/success-payment' element={<SuccessPaymentView />} />
         <Route path='/failure-payment' element={<FailurePaymentView />} />
+        <Route path="/shopping-history" element={ <HistoryView/> } />
 
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/cart" element={ <CartView/> } />
-        <Route path="/shopping-history" element={ <HistoryView/> } />
 
          
           {/* <Route path="/cart" element={<CartView />} /> */}
