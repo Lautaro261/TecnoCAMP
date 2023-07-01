@@ -19,7 +19,7 @@ const Logout = () => {
         dispatch(logoutOwn())
        // window.localStorage.removeItem('token');
        // window.localStorage.removeItem('rol');
-        logout()
+        // logout()
         
         console.log('te deslogueaste')
         navigate('/');

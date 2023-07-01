@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser, signUpUser } from "../../../Redux/Features/login/logInAndSignUpSlice";
 import Holder from "../../../components/Client/Categories/Holder/Holder";
 import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
-import { useNavigate } from 'react-router-dom';
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: "center",
@@ -41,51 +40,50 @@ const footerStyle = {
 const ClientHome = () => {
   const dispatch = useDispatch();
 
-  // const navigate= useNavigate();
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const userSession = useSelector((state) => state.logInAndSignUp.userSession)
-  const errorCreated = useSelector(state => state.logInAndSignUp.errorCreated) 
-  
-  const userValues = {
-    sub: user?.sub,
-    email: user?.email
-  }
+  const userCreated = useSelector((state) => state.logInAndSignUp.userCreated)
+
 
   useEffect(() => {
-     if(user){
-      if( !userSession.token && !userSession.rol){
-        dispatch(signUpUser(userValues))
-        console.log('if 1', userValues);
+    const userValues = {
+      sub: user?.sub,
+      email: user?.email
+    }
+
+    const signUpAndLogin = async () => {
+      if (user && !userSession.token) {
+        if (!userSession.token && !userSession.rol) {
+          dispatch(signUpUser(userValues))
+          console.log('if 1', userValues);
+        }
       }
-      if(typeof errorCreated === 'string'){
-        dispatch(loginUser(userValues));
-        console.log('if 2, intento loguearme', userValues);
-      }
-      if(userSession.token && userSession.rol){
-        console.log('if 3, token :', userSession.token, 'rol: ',userSession.rol)
-        const token = userSession.token
-        const rol = userSession.rol
-        window.localStorage.setItem('token', token);
-        window.localStorage.setItem('rol', rol); 
-      }
-      // if(!userSession.token && !userSession.rol){
-      //   window.localStorage.removeItem('token');
-      //   window.localStorage.removeItem('rol');
-      // }
-     }
-    },[/* userSession, userValues/* ,user, */ /* isAuthenticated , errorCreated */])
-    
-    
-    const token = window.localStorage.getItem("token")
-    
-    // useEffect(() => {
+    };
+    signUpAndLogin();
+
+  }, [user])
+
+  useEffect(() => {
+    const userValues = {
+      sub: user?.sub,
+      email: user?.email
+    };
+    if (user && userCreated.message === '¡Usuario creado correctamente!' || user && userCreated.message === `El usuario con el email ${userValues.email}, ya existe`) {
+      dispatch(loginUser(userValues));
+      console.log('if 2, intento loguearme', userValues);
+    }
+   
+  }, [userCreated])
+
+
+  const token = window.localStorage.getItem("token")
+
+  useEffect(() => {
     if (token) {
       dispatch(CreateCart(token));
     }
-  // }, [token])
+  }, [token])
 
-
-   // console.log(user);
 
   return (
     <Layout className={style.layout}>

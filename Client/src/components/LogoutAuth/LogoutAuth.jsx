@@ -37,7 +37,7 @@ const LogoutAuth = () => {
         },1000)
         handleLogoutAuth();
 
-        // navigate('/all-categories')
+        navigate('/home')
     }
 
     const handleCancel = () => {

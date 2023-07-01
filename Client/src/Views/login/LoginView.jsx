@@ -1,52 +1,46 @@
-import Login from '../../components/Login/Login';
-import SignUp from '../../components/SignUp/SignUp';
-import { Divider } from 'antd';
-import LoginAuth from '../../components/LoginAuth/LoginAuth';
-import { Row, Col, Button } from 'antd';
+import { Layout } from 'antd';
+import DashboardUser from '../../components/Client/DashboardUser/DashboardUser';
+import FooterUser from '../../components/Client/Footer/FooterUser';
+import LoginConteiner from './LoginConteiner';
 
 
-const LoginView =({setToken, setRol})=>{
-    const goToBack = () => {
-        window.history.back();
-    }
-    return(
-        <Row
-        justify="center"
-        align="middle"
-        style={{
-          background: "linear-gradient(0deg, rgba(20,34,103,1) 0%, rgba(88,181,194,1) 100%)",
-          minHeight: "100vh",
-          padding: '20px'
-        }}
-      >
-        <Col span={24}><Button type='primary' onClick={goToBack}>Volver</Button></Col>
-        <Col span={24} style={{ maxWidth: "50vw", background: "white", boxShadow: "-43px 30px 49px -4px rgba(0,0,0,0.59)", borderRadius: "30px"}}>
-          <Row justify="center">
-            <Col span={24}>
-              <Divider orientation='left' style={{ color: "black" }}>Iniciar sesión:</Divider>
-            </Col>
-            <Col span={24}>
-              <Login setToken={setToken} setRol={setRol} />
-            </Col>
-            <Col span={24}>
-              <Divider orientation="left" style={{ color: "black" }}>Ingresar ó registrarse con Google</Divider>
-            </Col>
-            <Col span={24}  align="middle">
-              <LoginAuth />
-            </Col>
-            <Col span={24}>
-              <Divider orientation="left" style={{ color: "black" }}>Registrarse:</Divider>
-            </Col>
-            <Col span={24}>
-              <SignUp />
-            </Col>
-          </Row>
-        </Col>
-      </Row>
+const { Header, Footer, Content } = Layout;
 
-    )
-} 
+const headerStyle = {
+    textAlign: 'center',
+    paddingInline: "0px",
+    // color: '#fff',
+    height: 220,
+    // display:"flex",
+    // width: "100vw",
+    lineHeight: '60px',
+    width: "100vw"
+    // backgroundColor: '#7dbcea',
+};
+const contentStyle = {
+    width: "100vw",
+    color: '#0000',
+
+};
+
+const footerStyle = {
+    textAlign: 'center',
+    color: '#fff',
+    margin: "0px",
+    padding: "0px"
+};
+
+const LoginView = () => (
 
 
+    <Layout >
+        <Header style={headerStyle}><DashboardUser /></Header>
+        <Content style={contentStyle}>
+            <LoginConteiner />
+        </Content>
+        <Footer style={footerStyle}><FooterUser /></Footer>
+    </Layout>
 
+
+);
 export default LoginView;
