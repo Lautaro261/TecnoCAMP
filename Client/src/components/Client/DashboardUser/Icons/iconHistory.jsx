@@ -1,8 +1,10 @@
+import { Tooltip } from "antd";
 import React from "react";
 import { Link } from "react-router-dom";
 
 const IconHistory = () =>{
     return (
+      <Tooltip title='Ir a historial'>
         <Link to="/shoppinghistory">
         <div name="history  ">
         <svg width="37" height="37" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,6 +13,7 @@ const IconHistory = () =>{
 
         </div>
       </Link>
+      </Tooltip>
     )
 }
 

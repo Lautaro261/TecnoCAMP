@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LogoutOutlined } from '@ant-design/icons';
-import { Row, Col, Popconfirm } from 'antd';
+import { Row, Col, Popconfirm, Tooltip } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
@@ -12,19 +12,19 @@ const Logout = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const { logout }  = useAuth0()
+    const { logout } = useAuth0()
 
     const handleLogout = () => {
         window.localStorage.clear();
         dispatch(logoutOwn())
-       // window.localStorage.removeItem('token');
-       // window.localStorage.removeItem('rol');
+        // window.localStorage.removeItem('token');
+        // window.localStorage.removeItem('rol');
         // logout()
-        
+
         console.log('te deslogueaste')
         navigate('/');
     }
-    
+
     const showPopconfirm = () => {
         setOpen(true);
     };
@@ -35,7 +35,7 @@ const Logout = () => {
             setOpen(false);
             setConfirmLoading(false);
         }, 1000);
-        handleLogout(); 
+        handleLogout();
         navigate('/');
     };
 
@@ -58,9 +58,11 @@ const Logout = () => {
                     }}
                     onCancel={handleCancel}
                 >
-                    <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
-                        <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
-                    </button>
+                    <Tooltip title='Cerrar sesión'>
+                        <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+                            <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
+                        </button>
+                    </Tooltip>
                 </Popconfirm>
             </Col>
         </Row>

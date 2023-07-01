@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Tooltip } from "antd";
 
 const IconCart = () => {
     return (
         //Icono Carrito
+        <Tooltip title='Ir a carrito'>
         <Link to="/cart">
             <div name="cart">
                 <svg
@@ -29,6 +31,7 @@ const IconCart = () => {
                 </svg>
             </div>
         </Link>
+        </Tooltip>
     )
 }
 

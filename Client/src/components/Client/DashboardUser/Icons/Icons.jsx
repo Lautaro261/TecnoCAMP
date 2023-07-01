@@ -1,18 +1,17 @@
 import React,{useEffect} from "react";
-import { Modal } from 'antd';
+import { Row, Col, Modal} from "antd";
+import { useAuth0 } from "@auth0/auth0-react";
 import IconCart from "./IconCart";
 import IconFavorite from "./IconFavorite";
 import IconProfile from "./IconProfile";
-import { Row, Col } from "antd";
+import IconHistory from "./iconHistory";
 import IconLogin from "./IconLogin";
-import { useAuth0 } from "@auth0/auth0-react";
-import LogoutAuth from "../../../LogoutAuth/LogoutAuth";
 import Logout from "../../../Logout/Logout";
+import LogoutAuth from "../../../LogoutAuth/LogoutAuth";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 
-import IconHistory from "./iconHistory";
 const Icons = () => {
   const {isAuthenticated} = useAuth0()
   const navigate = useNavigate()

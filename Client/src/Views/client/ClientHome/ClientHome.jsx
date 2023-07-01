@@ -35,6 +35,7 @@ const footerStyle = {
   textAlign: "center",
   color: "#fff",
   margin: "0px",
+  width: "100vw",
   padding: "0px",
 };
 const ClientHome = () => {

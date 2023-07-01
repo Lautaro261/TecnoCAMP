@@ -27,7 +27,9 @@ const footerStyle = {
     textAlign: 'center',
     color: '#fff',
     margin: "0px",
-    padding: "0px"
+    padding: "0px",
+    width: "100vw"
+
 };
 
 const LoginView = () => (
