@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 
+import IconHistory from "./iconHistory";
 const Icons = () => {
   const {isAuthenticated} = useAuth0()
   const navigate = useNavigate()
@@ -63,9 +64,10 @@ const Icons = () => {
       {rol && rol === 'client' && token // cuando se corrija la ruta de login para usuarios auth0 esta consulta 'isAuthenticated' se borra de aqui.
         ? <Row justify="center" >
           <Col span={4} ><IconCart /></Col>
-          <Col span={4}><IconFavorite /></Col>
+          <Col span={4}><IconHistory/></Col>
           <Col span={4}><IconProfile /></Col>
-          {/* <Col span={4}><Logout /></Col> */}
+          <Col span={4}><IconFavorite /></Col>
+
           {isAuthenticated ? <Col span={4}><LogoutAuth /></Col> : <Col span={4}><Logout /></Col>}
         </Row>
         : <Row justify='end' align="top">

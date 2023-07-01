@@ -1,9 +1,6 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
-import ShoppingHistory from '../../../components/Client/ShoppingHistory/ShoppingHistory';
-
-
 
 const { Header, Footer, Content } = Layout;
 
@@ -31,17 +28,17 @@ const footerStyle = {
   padding:"0px"
 };
 
-const HistoryView = () => (
+const ProfileView = () => (
     
 
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-    <ShoppingHistory/>
+    
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
 
 
 );
-export default HistoryView ;
+export default ProfileView ;
