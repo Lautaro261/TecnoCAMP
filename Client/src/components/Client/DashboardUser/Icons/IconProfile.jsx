@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 const IconProfile = () =>{
     return (
+      <Tooltip title='Ir a perfil'>
         <Link to="/profile">
         <div name="profile">
           <svg
@@ -23,6 +24,7 @@ const IconProfile = () =>{
           </svg>
         </div>
       </Link>
+      </Tooltip>
     )
 }
 

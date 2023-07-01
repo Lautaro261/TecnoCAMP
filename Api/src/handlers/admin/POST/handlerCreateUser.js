@@ -7,11 +7,11 @@ const handlerCreateUser = async (req, res) => {
   const { sub, email, password } = req.body;
 
   try {
-    const newUser = await postCreateUser(sub, email, password);
+    const newUser = await postCreateUser(req.body);
 
     if (!newUser) {
       return res
-        .status(404)
+        .status(202)
         .json({ message: `El usuario con el email ${email}, ya existe` });
     }
 
@@ -19,8 +19,11 @@ const handlerCreateUser = async (req, res) => {
       jwt.sign({ sub, email }, KEY_SECRET, (err, token) => {
         res.status(200).json({
           message: "¡Usuario creado correctamente!",
-          rol: newUser.dataValues.rol,
           token: token,
+          rol: newUser.dataValues.rol,
+          erased: newUser.dataValues.erased,
+          photo: newUser.dataValues.photo,
+          name: newUser.dataValues.name
         });
       });
     } else {

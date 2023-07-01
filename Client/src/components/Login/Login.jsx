@@ -7,7 +7,7 @@ import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
 
 const { Text } = Typography;
 
-const Login = ({ setToken, setRol }) => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userSession, error } = useSelector((state) => state.logInAndSignUp);
@@ -22,44 +22,45 @@ const Login = ({ setToken, setRol }) => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  const openmodal=()=>{
-    Modal.warning({
-      title: 'Lo sentimos mucho😕',
-      icon: <ExclamationCircleOutlined />,
-      content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
-      okText: 'Aceptar',
-    })
-  }
+
+  // const openmodal=()=>{
+  //   Modal.warning({
+  //     title: 'Lo sentimos mucho😕',
+  //     icon: <ExclamationCircleOutlined />,
+  //     content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
+  //     okText: 'Aceptar',
+  //   })
+  // }
 
   useEffect(() => {
-    if (userSession.token && userSession.rol) {
-      const token = userSession.token;
-      const rol = userSession.rol;
-      const banned=userSession.erased;
-      if (banned){
-        openmodal()
-        console.log("te banearon puto")
-      }else{
+  //   if (userSession.token && userSession.rol) {
+  //     const token = userSession.token;
+  //     const rol = userSession.rol;
+  //     const banned=userSession.erased;
+  //     if (banned){
+  //       openmodal()
+  //       console.log("te banearon puto")
+  //     }else{
 
-      console.log('logueado en el front como: ', rol, 'token: ', banned);
-      setToken(token);
-      setRol(rol);
-      window.localStorage.setItem('rol', rol);
-      window.localStorage.setItem('token', token);
+  //     console.log('logueado en el front como: ', rol, 'token: ', banned);
+  //     setToken(token);
+  //     setRol(rol);
+  //     window.localStorage.setItem('rol', rol);
+  //     window.localStorage.setItem('token', token);
 
-      if (rol === 'client') {
-        navigate('/home');
-      } else if (rol === 'admin') {
-        navigate('/admin/home');
-      } else if (rol === 'superAdmin') {
-        navigate('/super/admins');
-      }
-    }
-  }
+  //     if (rol === 'client') {
+  //       navigate('/home');
+  //     } else if (rol === 'admin') {
+  //       navigate('/admin/home');
+  //     } else if (rol === 'superAdmin') {
+  //       navigate('/super/admins');
+  //     }
+  //   }
+  // }
     if (userSession.message === '¡Credenciales Incorrectas!') {
       messageApi.error(userSession.message);
     }
-  }, [userSession, setToken, setRol, navigate, messageApi])
+  }, [userSession, /*navigate*/ messageApi])
 
   return (
     <div>
@@ -96,6 +97,8 @@ const Login = ({ setToken, setRol }) => {
         >
           <Input.Password />
         </Form.Item>
+
+
 
         <Form.Item style={{ textAlign: "center" }}>
           {error && <Text type="danger">{error}</Text>}

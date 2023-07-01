@@ -9,7 +9,7 @@ const DashboardUser = () => {
  
         <Row >
             <Col span={24}><Contacticons/></Col>
-            <Col span={24}><MenuDash/></Col>
+            <Col span={24}><MenuDash /></Col>
             <Col span={24}><Nav/></Col>
         </Row>
  

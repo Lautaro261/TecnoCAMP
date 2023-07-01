@@ -7,7 +7,6 @@ const Landing = () => {
     const styles = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, config: { duration: 2000 } });
 
     const rol = window.localStorage.getItem('rol');
-    const token = window.localStorage.getItem('token');
 
     return (
         <animated.div style={styles}>
@@ -16,7 +15,7 @@ const Landing = () => {
 
                 <img src={logo} alt="logo Tecnocamp" className={style.imgs} />
                 <p className={style.linktext}>Tenemos lo que buscas.</p>
-                {token && rol === 'admin' ?
+                {/* token && */ rol && rol === 'admin' ?
                     <div className={style.Link}>
                         <Link to="/admin/home" className={style.linktext}>Ingresar</Link>
                     </div>

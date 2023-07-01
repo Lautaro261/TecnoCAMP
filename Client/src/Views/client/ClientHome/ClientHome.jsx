@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { loginUser, signUpUser } from "../../../Redux/Features/login/logInAndSignUpSlice";
 import Holder from "../../../components/Client/Categories/Holder/Holder";
 import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
-import { useNavigate } from 'react-router-dom';
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
   textAlign: "center",
@@ -36,40 +35,46 @@ const footerStyle = {
   textAlign: "center",
   color: "#fff",
   margin: "0px",
+  width: "100vw",
   padding: "0px",
 };
 const ClientHome = () => {
   const dispatch = useDispatch();
 
-  const navigate= useNavigate();
-  const { isAuthenticated, user } = useAuth0();
+  const { user } = useAuth0();
   const userSession = useSelector((state) => state.logInAndSignUp.userSession)
-  const errorCreated = useSelector(state => state.logInAndSignUp.errorCreated) 
+  const userCreated = useSelector((state) => state.logInAndSignUp.userCreated)
 
-  const userValues = {
-    sub: user?.sub,
-    email: user?.email
-  }
 
   useEffect(() => {
-    if(user && isAuthenticated){
-      if( !userSession.token && !userSession.rol){
-        dispatch(signUpUser(userValues))
-        console.log('user authththth', userValues);
-      }
-      if(typeof errorCreated === 'string'){
-        dispatch(loginUser(userValues));
-        console.log('ya esta registrado, intento loguearme', userValues);
-      }
-      if(userSession.token && userSession.rol){
-        console.log('usuario de auth ya esta en base de datos, token :', userSession.token, 'rol: ',userSession.rol)
-        const token = userSession.token
-        const rol = userSession.rol
-        window.localStorage.setItem('token', token);
-        window.localStorage.setItem('rol', rol); 
-      }
+    const userValues = {
+      sub: user?.sub,
+      email: user?.email
     }
-  },[userSession, userValues,user, isAuthenticated,navigate, errorCreated])
+
+    const signUpAndLogin = async () => {
+      if (user && !userSession.token) {
+        if (!userSession.token && !userSession.rol) {
+          dispatch(signUpUser(userValues))
+          console.log('if 1', userValues);
+        }
+      }
+    };
+    signUpAndLogin();
+
+  }, [user])
+
+  useEffect(() => {
+    const userValues = {
+      sub: user?.sub,
+      email: user?.email
+    };
+    if (user && userCreated.message === '¡Usuario creado correctamente!' || user && userCreated.message === `El usuario con el email ${userValues.email}, ya existe`) {
+      dispatch(loginUser(userValues));
+      console.log('if 2, intento loguearme', userValues);
+    }
+   
+  }, [userCreated])
 
 
   const token = window.localStorage.getItem("token")
@@ -80,8 +85,6 @@ const ClientHome = () => {
     }
   }, [token])
 
-
-  // console.log(user);
 
   return (
     <Layout className={style.layout}>
