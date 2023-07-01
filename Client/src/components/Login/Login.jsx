@@ -1,9 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, Checkbox, message, Typography, Modal } from 'antd';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from "react";
+import {
+  Button,
+  Form,
+  Input,
+  Checkbox,
+  message,
+  Typography,
+  Modal,
+} from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../Redux/Features/login/logInAndSignUpSlice";
 
 const { Text } = Typography;
 
@@ -15,51 +23,51 @@ const Login = ({ setToken, setRol }) => {
 
   const onFinish = async (values) => {
     values.sub = values.email;
-    console.log('Success:', values); //{email, password, remember } {sub, email, password}
+    console.log("Success:", values); //{email, password, remember } {sub, email, password}
     dispatch(loginUser(values));
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+    console.log("Failed:", errorInfo);
   };
-  const openmodal=()=>{
+  const openmodal = () => {
     Modal.warning({
-      title: 'Lo sentimos mucho😕',
+      title: "Lo sentimos mucho😕",
       icon: <ExclamationCircleOutlined />,
-      content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
-      okText: 'Aceptar',
-    })
-  }
+      content:
+        "Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros",
+      okText: "Aceptar",
+    });
+  };
 
   useEffect(() => {
     if (userSession.token && userSession.rol) {
       const token = userSession.token;
       const rol = userSession.rol;
-      const banned=userSession.erased;
-      if (banned){
-        openmodal()
-        console.log("te banearon puto")
-      }else{
+      const banned = userSession.erased;
+      if (banned) {
+        openmodal();
+        console.log("te banearon puto");
+      } else {
+        console.log("logueado en el front como: ", rol, "token: ", banned);
+        setToken(token);
+        setRol(rol);
+        window.localStorage.setItem("rol", rol);
+        window.localStorage.setItem("token", token);
 
-      console.log('logueado en el front como: ', rol, 'token: ', banned);
-      setToken(token);
-      setRol(rol);
-      window.localStorage.setItem('rol', rol);
-      window.localStorage.setItem('token', token);
-
-      if (rol === 'client') {
-        navigate('/home');
-      } else if (rol === 'admin') {
-        navigate('/admin/home');
-      } else if (rol === 'superAdmin') {
-        navigate('/super/admins');
+        if (rol === "client") {
+          navigate("/home");
+        } else if (rol === "admin") {
+          navigate("/admin/home");
+        } else if (rol === "superAdmin") {
+          navigate("/superadmin/admins");
+        }
       }
     }
-  }
-    if (userSession.message === '¡Credenciales Incorrectas!') {
+    if (userSession.message === "¡Credenciales Incorrectas!") {
       messageApi.error(userSession.message);
     }
-  }, [userSession, setToken, setRol, navigate, messageApi])
+  }, [userSession, setToken, setRol, navigate, messageApi]);
 
   return (
     <div>
@@ -74,13 +82,18 @@ const Login = ({ setToken, setRol }) => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
-
         <Form.Item
           name="email"
           label="Correo Electrónico"
           rules={[
-            { required: true, message: '¡Por favor ingrese su correo electrónico!' },
-            { type: 'email', message: 'Por favor ingrese un correo electrónico válido.' }
+            {
+              required: true,
+              message: "¡Por favor ingrese su correo electrónico!",
+            },
+            {
+              type: "email",
+              message: "Por favor ingrese un correo electrónico válido.",
+            },
           ]}
         >
           <Input />
@@ -89,10 +102,19 @@ const Login = ({ setToken, setRol }) => {
         <Form.Item
           name="password"
           label="Contraseña"
-          rules={[{ required: true, message: '¡Por favor ingrese su contraseña!' },
-          { pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,20}$/, message: 'La contraseña debe tener al menos 1 número y 1 mayúscula' },
-          { min: 7, max: 20, message: 'La contraseña debe tener entre 7 y 20 caracteres' }
-        ]}
+          rules={[
+            { required: true, message: "¡Por favor ingrese su contraseña!" },
+            {
+              pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,20}$/,
+              message:
+                "La contraseña debe tener al menos 1 número y 1 mayúscula",
+            },
+            {
+              min: 7,
+              max: 20,
+              message: "La contraseña debe tener entre 7 y 20 caracteres",
+            },
+          ]}
         >
           <Input.Password />
         </Form.Item>
@@ -112,7 +134,7 @@ const Login = ({ setToken, setRol }) => {
         </Form.Item>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

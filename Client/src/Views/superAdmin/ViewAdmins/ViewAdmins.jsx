@@ -1,8 +1,11 @@
 import DashBoardSuperAdmin from "../../../components/SuperAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
-import Statistics from "../../../components/Admin/Statistics/Statistics";
-
+import { useDispatch, useSelector } from "react-redux";
 import { Layout, Space, Divider } from "antd";
-const { Header, Sider, Content } = Layout;
+import { useEffect } from "react";
+import { getAllAdmins } from "../../../Redux/Features/superAdmin/admins/superAdminAdminsSlice";
+import AdminTable from "../../../components/SuperAdmin/TableAdmins/AdminTable";
+
+const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   // width:'100vh',
   textAlign: "center",
@@ -28,7 +31,16 @@ const siderStyle = {
   height: "100vh",
 };
 
-const SuperAdminHome = () => {
+const ViewAdmins = () => {
+  const token = window.localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const admins = useSelector((state) => state.superAdminAdmins.allAdmins);
+  useEffect(() => {
+    dispatch(getAllAdmins({ token }));
+    console.log("**");
+    console.log(admins);
+  }, []);
+
   return (
     <div>
       <Space
@@ -44,12 +56,10 @@ const SuperAdminHome = () => {
           </Sider>
           <Layout>
             <Header style={headerStyle}>
-              <Divider style={{ color: "black" }}>
-                Bienvenido Super Admin
-              </Divider>
+              <Divider style={{ color: "black" }}>Admins</Divider>
             </Header>
             <Content style={contentStyle}>
-              <Statistics />
+              <AdminTable />
             </Content>
           </Layout>
         </Layout>
@@ -58,4 +68,4 @@ const SuperAdminHome = () => {
   );
 };
 
-export default SuperAdminHome;
+export default ViewAdmins;

@@ -4,7 +4,6 @@ import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
 import LoginView from "./Views/login/loginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
 import CartView from "./Views/client/CartView/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
@@ -24,6 +23,8 @@ import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 import HistoryView from "./Views/client/HistoryView/HistoryView";
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
+import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
+import ViewAdmins from "./Views/superAdmin/ViewAdmins/ViewAdmins";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -36,7 +37,7 @@ function App() {
   const redirect = {
     client: "/home",
     admin: "/admin/home",
-    superAdmin: "/super/admins",
+    superAdmin: "/superadmin/admins",
   };
   // TOCAR
 
@@ -103,6 +104,20 @@ function App() {
         </Route>
         {/* RUTA DE CONSTRUCCION*/}
         <Route path="*" element={<ErrorView />} />
+
+        {/* RUTAS PROTEGIDAS SUPERADMIN*/}
+        <Route
+          element={
+            <ProtectedRoutes
+              logged={!!tokenA}
+              allowed={rolA === "superAdmin"}
+              redirect={rolA === "client" ? redirect.client : redirect.admin}
+            />
+          }
+        >
+          {/* <Route path="/superadmin/admins" element={<SuperAdminHome />} /> */}
+          <Route path="/superadmin/admins" element={<ViewAdmins />} />
+        </Route>
       </Routes>
     </div>
   );

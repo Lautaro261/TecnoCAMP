@@ -2,7 +2,7 @@ const { User, Profile } = require("../../../db");
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 const { EMAIL_ADMIN, PASS_ADMIN } = process.env;
-const {sendRegisterEmail} = require("../../notificationEmail");
+const { sendRegisterEmail } = require("../../notificationEmail");
 
 const postCreateUser = async (sub, email, password) => {
   const user = await User.findOne({ where: { sub: sub } });
@@ -20,12 +20,24 @@ const postCreateUser = async (sub, email, password) => {
   if (password !== undefined) {
     newObjUser.password = password;
 
-    console.log('SOY PASSWORD', password);
-    if (newObjUser.email === EMAIL_ADMIN && newObjUser.password === PASS_ADMIN) {
+    console.log("SOY PASSWORD", password);
+    if (
+      newObjUser.email === EMAIL_ADMIN &&
+      newObjUser.password === PASS_ADMIN
+    ) {
       newObjUser.rol = "superAdmin";
     }
-    const hashPassword = await bcrypt.hash(newObjUser.password, hashNum);
-    newObjUser.password = hashPassword;
+    // Verificar si la contraseña contiene letras mayúsculas
+    const regexUpper = /[A-Z]/;
+    if (regexUpper.test(newObjUser.password)) {
+      const hashPassword = await bcrypt.hash(newObjUser.password, hashNum);
+      newObjUser.password = hashPassword;
+    } else {
+      // La contraseña no cumple con los requisitos
+      throw new Error(
+        "La contraseña debe contener letras mayúsculas y espacios"
+      );
+    }
   }
 
   const newUser = await User.create(newObjUser);

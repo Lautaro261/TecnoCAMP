@@ -1,10 +1,10 @@
 import React from "react";
-import ContacticonsAdmin from "./Contacticons/ContacticonsAdmin";
 import Nav from "./Nav/Nav";
-import IconsAdmin from "./IconsAdmin/IconsAdmin";
+import IconsSuperAdmin from "./IconsSuperAdmin/IconsSuperAdmin";
+import ContactIconsSuperAdmin from "./ContactIconsSuperAdmin/ContactIconsSuperAdmin";
 import { Row, Col, Space } from "antd";
 
-function DashboardAdmin() {
+function DashboardSuperAdmin() {
   return (
     <Space
       direction="vertical"
@@ -15,10 +15,10 @@ function DashboardAdmin() {
     >
       <Row>
         <Col span={24}>
-          <ContacticonsAdmin />
+          <ContactIconsSuperAdmin />
         </Col>
         <Col span={24} style={{ marginBottom: "10vh" }}>
-          <IconsAdmin />
+          <IconsSuperAdmin />
         </Col>
         <Col span={24}>
           <Nav style={{ bottom: 0, width: "100%" }} />
@@ -28,4 +28,4 @@ function DashboardAdmin() {
   );
 }
 
-export default DashboardAdmin;
+export default DashboardSuperAdmin;
