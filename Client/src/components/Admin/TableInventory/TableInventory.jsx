@@ -9,12 +9,13 @@ import {
   Table,
   Switch,
   Col,
-  DatePicker,
+  Popconfirm,
   Drawer,
   Form,
   Row,
   Select,
 } from "antd";
+import { notification } from 'antd';
 import { useRef, useState, useEffect } from "react";
 
 import Highlighter from "react-highlight-words";
@@ -35,11 +36,14 @@ function TableInventory() {
     (state) => state.adminCategories.allCategories
   );
   const allBrands = useSelector((state) => state.adminBrands.allBrands);
+  const banProducts = useSelector((state)=> state.adminProducts.bannedProcuts)
 
   useEffect(() => {
     dispatch(getAllProducts(token));
     dispatch(getAllCategories(token));
     dispatch(getAllBrands(token));
+    dispatch(banProduct(token))
+    
   }, [dispatch]);
 
   const [searchText, setSearchText] = useState("");
@@ -202,8 +206,7 @@ function TableInventory() {
     {
       title: "Disponible",
       dataIndex: "aviable",
-      key: "key",
-      width: "20%",
+      
     },
     {
       title: "Marca",
@@ -216,14 +219,19 @@ function TableInventory() {
     {
       title: "Acciones",
       dataIndex: "acciones",
-      render: (fila, key) => (
+      key: "acciones",
+      render: (_, record) => (
         <>
-        <Button type="primary" onClick={() => showDrawer(key.key)}>
-          Editar
-        </Button>
-        <Button> Eliminar</Button>
+          <Button type="primary" onClick={() => showDrawer(record.key)}>
+             Editar
+           </Button> 
+          
+          <Button onClick={()=> handleDelete(record.key, record.is_available)}>eliminar</Button>
         </>
-      ),
+      )
+        
+        
+      
     },
   ];
 
@@ -241,14 +249,15 @@ function TableInventory() {
         total_quantity_inventory: c.total_quantity_inventory,
         category: c.category.name,
         brand: c.brand.name,
-        aviable: c.is_available ? "disponible" : "No disponible",
+        aviable: c.is_available ? "disponible"  : "No disponible",
         e_product_type: c.e_product_type,
-        inventories: c.inventories.map((d) => {
-          return {
-            color: d.color,
-            quantity_inventory: d.quantity_inventory,
-          };
-        }),
+        inventories: c.inventories
+      //   .map((d) => {
+      //     return {
+      //       color: d.color,
+      //       quantity_inventory: d.quantity_inventory,
+      //     };
+      //   }),
       };
     });
 
@@ -260,8 +269,8 @@ function TableInventory() {
     const product = allProducts.find((p) => p.id === productId);
     setSelectedProduct(product);
     setSelectedProductId(productId);
-    console.log("soy id", productId);
-    console.log("soy product", product);
+    //console.log("soy id", productId);
+    //console.log("soy product", product);
     setOpen(true);
   };
 
@@ -277,16 +286,29 @@ function TableInventory() {
 
     dispatch(putProduct([token, selectedProductId, valueEdit]));
 
-    //location.reload();
+    location.reload();
   };
  
-  const onChange =( checked)=>{
+ 
+
+  const handleDelete = (key) => {
+    dispatch(banProduct([token, key]))
+    location.reload();
     
-    console.log(`cambio a ${checked}`, );
-  };
+};
 
   return (
     <>
+    <Col>
+              Colores Disponibles:  
+              <>
+                <a>hola</a>
+                {allProducts.inventories && allProducts.inventories.map((map)=>{
+                  <a>aqui itri{map.id}</a>
+                })}
+              </>
+              </Col>
+
       <Table
         columns={columns}
         dataSource={data}
@@ -309,7 +331,9 @@ function TableInventory() {
             <Button onClick={() => form.submit()} type="primary">
               Enviar
             </Button>
+            {/* <Switch checkedChildren="Disponible" unCheckedChildren="No disponible" defaultChecked onChange={onChange} />; */}
           </Space>
+          
         }
       >
         <Form
@@ -437,21 +461,19 @@ function TableInventory() {
 
             <Col>
             <Form.Item
-            name="is_available"
-            label="Disponibilidad"
+            
             rules={[
               {
                 required: false,
                 message: "Please select an owner",
               },
             ]}>
-
-
-                  
-              
-              
-                 <Input/>
-            <Switch checkedChildren="Disponible" unCheckedChildren="No disponible" defaultChecked onChange={onChange} />; 
+              <Col>
+              Colores Disponibles:  
+              {allProducts.inventories ? allProducts.inventories.map((item)=>{
+                return (<Button key={ item.id } onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
+              }): "??"} 
+              </Col>
             </Form.Item>
             </Col>
           </Row>

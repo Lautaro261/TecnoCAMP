@@ -18,10 +18,10 @@ const initialState = {
 
   export const banProduct = createAsyncThunk(
     'adminProducts/banProduct',
-    async([idProduct,token]) => {
+    async([token, selectedProductId]) => {
       try {
-        console.log(idProduct, token, "AAAAAAAAAAA")
-        const response= await axios.put("/admin/delete", {"id": idProduct} ,{
+        console.log("id", selectedProductId, "token", token)
+        const response= await axios.put("/admin/delete", {"productId": selectedProductId} ,{
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -107,18 +107,19 @@ const adminProductsSlice = createSlice({
           state.status = 'loading';
         })
         .addCase(banProduct.fulfilled, (state, action) => {
-          state.status = 'succeeded';
-          const sub = action.payload;  // acá tenemos el sub
-          const prodcut = state.prodcut.find((prodcut)=> prodcut.id === id); //buscamos en el estado allUsers al usuario
-          if(prodcut){                                              // que corresponde a nuestro sub y verificamos si tenemos el user.
-              prodcut.is_available = !prodcut.is_available                      // acá cambiamos la propiedad de borrado, si era true ahora es false y viceversa
-              if(prodcut.is_available){                                   //si la propiedad borrado es true 
-                  state.bannedProcuts.push(prodcut);                   //agrega el usuario al array bannedUser
-              }else{
-                  state.bannedProcuts = state.bannedProcuts.filter((bannedProdcut)=> bannedProdcut.id !== id) // si borrado es false, filtra 
-              }                                                                 // y devuelve los usuarios baneados diferentes a ese sub
-          }                                                   
-          state.error= null;
+          state.status = "succeeded";
+          // const id = action.payload;
+          // const product = state.allProducts.find((product)=> product.id === id)
+          // if (product){
+          //   product.is_available = !product.is_available
+          //   if(product.is_available){
+          //     state.bannedProcuts.push(product)
+          //   }else{
+          //     state.bannedProcuts = state.bannedProcuts.filter((bannedProduct)=> bannedProduct.id!==id)
+          //   }
+          // }
+          state.bannedProcuts = action.payload;
+          state.error = null;
         })
         .addCase(banProduct.rejected, (state, action) => {
           state.status = 'rejected';
