@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Row, Col } from 'antd';
+import { Button, Form, Input, Select, Row, Col, Alert } from 'antd';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import { getAllCategories } from '../../../Redux/Features/admin/categories/admin
 import { getAllBrands } from '../../../Redux/Features/admin/brands/adminBrandsSlice';
 import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
-
+import { useForm } from 'antd/lib/form/Form';
 
 const FormProductos = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,13 @@ const FormProductos = () => {
   const [FormColors, SetFormColors] = useState([])
   const [cantidad, setCantidad] = useState([])
   const [color, setcolor] = useState([])
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertWarning, setShowAlertWarning] = useState(false);
+  const [form] = useForm();
+  const [errors,setErrors]=useState()
+  const [errors1,setErrors1]=useState([])
+
+
 
 
   useEffect(() => {
@@ -27,32 +34,83 @@ const FormProductos = () => {
     dispatch(getAllBrands(token));
   }, []);
 
+  useEffect(() => {
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }
+
+    if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+  }, [FormColors, photos]);
+
+
   const post = async (values) => {
     const coloresA = FormColors.map(e => { return (e[0]) })
     const cantidadesA = FormColors.map(e => { return (e[1]) })
     const data = { ...values, photo: photos, colors: coloresA, quantities: cantidadesA }
-    console.log(data)
     const response = await axios.post('/admin/createproduct', data, {
       headers: {
+
         Authorization: `Bearer ${token}`
       }
     });
-    return response
+    console.log('response', response)
+
+    if (response.data && response.data.id) {
+      setShowAlert(true)
+    }
+    if (response.data.message && response.data.message === "Nombre de producto ya creado") {
+      setShowAlertWarning(true)
+    }
   }
 
   const onFinish = (values) => {
-    console.log(FormColors, "todododoo")
-    console.log('Success:' ,values);
-    post(values)
+
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+    
+    if (!errors&&!errors1){
+      console.log(FormColors,"aki")
+      post(values);
+    }
   };
+
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-
   return (
-    <div style={{  maxWidth: '100%', marginTop:'10vh' }}>
-
+    <div style={{ maxWidth: '100%', marginTop: '10vh' }}>
+      {showAlert && (
+        <Alert
+          message="¡Producto creado exitosamente!"
+          type="success"
+          showIcon
+          closable
+          onClose={() => setShowAlert(false)}/>
+      )}
+      {showAlertWarning && (
+        <Alert
+          message="Cuidado"
+          type="warning"
+          description="Verifique estar ingresando correctamente todos los datos.El nombre de producto no puede ser repetido."
+          closable
+          onClose={() => setShowAlertWarning(false)}
+        />
+      )}
       <Form
         name="basic"
         labelCol={{
@@ -65,7 +123,7 @@ const FormProductos = () => {
           maxWidth: '100%'
         }}
         initialValues={{
-          remember: true,
+         
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -82,8 +140,8 @@ const FormProductos = () => {
                   message: 'porfavor introduce el nombre del artículo',
                 },
                 {
-                  pattern: /^[a-zA-Z0-9]+$/,
-                  message: 'Solo se permiten letras y números',
+                  pattern: /^[a-zA-Z0-9\s]+$/,
+                  message: 'Solo se permiten letras, números y espacios',
                 }
               ]}
             >
@@ -104,14 +162,14 @@ const FormProductos = () => {
                 }
               ]}
             >
-              <Input type='number'/>
+              <Input type='number' min={1} />
             </Form.Item>
 
             <Form.Item
               label="Precio de oferta:"
               name="price_promotion"
             >
-              <Input type='number'/>
+              <Input type='number' min={1} />
             </Form.Item>
 
             <Form.Item
@@ -119,12 +177,14 @@ const FormProductos = () => {
               name="inventories"
             >
               <ColorPicker SetFormColors={SetFormColors} />
+              <span style={{color:"red"}}>{errors}</span>
             </Form.Item>
 
             <Form.Item
               label="Fotos:"
             >
               <UploadButton />
+              <span style={{color:"red"}}>{errors1}</span>
             </Form.Item>
           </Col>
 
