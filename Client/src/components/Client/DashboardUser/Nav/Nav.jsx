@@ -15,10 +15,11 @@ import {
 import { getAllCategories } from '../../../../Redux/Features/categories/clientCategoriesSlice';
 import { useNavigate } from 'react-router-dom';
 
-const Nav = () => {
+const Nav = ({tokenA}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allCategories = useSelector((state) => state.clientCategories.allCategories);
+
  // const [current, setCurrent] = useState('Inicio');
 
 

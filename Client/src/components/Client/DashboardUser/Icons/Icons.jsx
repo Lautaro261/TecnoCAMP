@@ -7,6 +7,7 @@ import IconLogin from "./IconLogin";
 import { useAuth0 } from "@auth0/auth0-react";
 import LogoutAuth from "../../../LogoutAuth/LogoutAuth";
 import Logout from "../../../Logout/Logout";
+import IconHistory from "./iconHistory";
 const Icons = () => {
   const rol = window.localStorage.getItem('rol');
   const token = window.localStorage.getItem('token');
@@ -17,8 +18,10 @@ const Icons = () => {
       {rol && rol === 'client' && token || isAuthenticated // cuando se corrija la ruta de login para usuarios auth0 esta consulta 'isAuthenticated' se borra de aqui.
         ? <Row justify="center" >
           <Col span={4} ><IconCart /></Col>
+          <Col span={4}><IconHistory/></Col>
           <Col span={4}><IconFavorite /></Col>
           <Col span={4}><IconProfile /></Col>
+
           {isAuthenticated ? <Col span={4}><LogoutAuth /></Col> : <Col span={4}><Logout /></Col>}
         </Row>
         : <Row justify='end' align="top">
