@@ -24,6 +24,7 @@ import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 import HistoryView from "./Views/client/HistoryView/HistoryView";
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
+import ProfileView from "./Views/client/Profile/Profile";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -71,22 +72,10 @@ function App() {
         <Route path="/failure-payment" element={<FailurePaymentView />} />
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
-        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}/>
-        <Route path="/cart" element={ <CartView/> } />
-        <Route
-          element={
-            <ProtectedRoutes
-              logged={!!tokenA}
-              allowed={rolA === "client"}
-              redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin}
-            />
-          }
-        >
-          <Route path="/cart" element={<CartView />} />
-          <Route path="/shopping-history" element={<HistoryView />} />
-
-
-          {/* <Route path="/cart" element={<CartView />} /> */}
+        <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+          <Route path="/shoppinghistory" element={<HistoryView />} />
+          <Route path="/profile" element={<ProfileView />} />
+          <Route path="/cart" element={ <CartView/> } />
         </Route>
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
