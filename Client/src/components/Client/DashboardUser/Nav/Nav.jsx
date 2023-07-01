@@ -1,5 +1,5 @@
-import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutlined, ShopOutlined, ClockCircleOutlined} from '@ant-design/icons';
-import { Menu, notification } from 'antd';
+import { ProfileFilled, HomeOutlined, DatabaseFilled , TagsOutlined, LoadingOutlined, ShopOutlined} from '@ant-design/icons';
+import { Menu } from 'antd';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 //import { getItems, clearProductsByCategory } from '../../../../Redux/Features/productsClient/productsClientSlice';
@@ -60,13 +60,6 @@ const Nav = () => {
         label: '',
         children: childrenSource,
       }]
-    },
-
-    {
-      label: 'Mis Compras',
-      key: 'shopping-history',
-      
-      icon: <ClockCircleOutlined style={{ fontSize: '22px' }}/>,
     }
   ];
 
@@ -79,7 +72,7 @@ const Nav = () => {
     dispatch(setSelectedValueToFilter(null));
     dispatch(setCurrentPage(1));
 
-    if(e.key === 'home'|| e.key === 'all-categories'||  e.key==="shopping-history"){
+    if(e.key === 'home'|| e.key === 'all-categories'){
       window.localStorage.removeItem('category_id');
       window.localStorage.removeItem('category_name');
       navigate(`/${e.key}`)
