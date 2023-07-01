@@ -59,6 +59,7 @@ const {
   Brand,
   Department,
   Municipality,
+  Favorite,
 } = sequelize.models;
 
 /////// ACA VIENEN LAS RELACIONES ///////
@@ -78,6 +79,9 @@ Order.belongsTo(User);
 // Usuario con Review
 User.hasMany(Review);
 Review.belongsTo(User);
+
+//Usuario con Favorite
+
 
 ////////////////////////////////////
 
