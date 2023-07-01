@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { logoutOwn } from '../../Redux/Features/login/logInAndSignUpSlice';
 
+
 const LogoutAuth = () => {
 
     const dispatch = useDispatch();

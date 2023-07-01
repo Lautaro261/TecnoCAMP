@@ -4,6 +4,7 @@ import { Divider } from 'antd';
 import LoginAuth from '../../components/LoginAuth/LoginAuth';
 import { Row, Col, Button } from 'antd';
 
+
 const LoginView =({setToken, setRol})=>{
     const goToBack = () => {
         window.history.back();

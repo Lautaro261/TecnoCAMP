@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
 
+
 const Logout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
