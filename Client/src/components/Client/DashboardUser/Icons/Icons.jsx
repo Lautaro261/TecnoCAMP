@@ -19,8 +19,8 @@ const Icons = () => {
         ? <Row justify="center" >
           <Col span={4} ><IconCart /></Col>
           <Col span={4}><IconHistory/></Col>
-          <Col span={4}><IconFavorite /></Col>
           <Col span={4}><IconProfile /></Col>
+          <Col span={4}><IconFavorite /></Col>
 
           {isAuthenticated ? <Col span={4}><LogoutAuth /></Col> : <Col span={4}><Logout /></Col>}
         </Row>
