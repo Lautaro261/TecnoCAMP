@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth0 }from '@auth0/auth0-react';
 import { LogoutOutlined } from '@ant-design/icons';
-import {Popconfirm , Row, Col} from 'antd';
+import {Popconfirm , Row, Col, Tooltip} from 'antd';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -18,10 +18,11 @@ const LogoutAuth = () => {
     const { logout }  = useAuth0()
 
     const handleLogoutAuth = () => {
-        logout()
         dispatch(logoutOwn())    
-        localStorage.clear()
-        navigate('/home')
+        window.localStorage.removeItem('token');
+        window.localStorage.removeItem('rol');
+        logout()
+       // navigate('/')
     }
 
     const showPopconfirm = () => {
@@ -35,6 +36,7 @@ const LogoutAuth = () => {
             setConfirmLoading(false);
         },1000)
         handleLogoutAuth();
+
         navigate('/home')
     }
 
@@ -56,9 +58,12 @@ const LogoutAuth = () => {
                 }}
                 onCancel={handleCancel}
             >
+                <Tooltip title='Cerrar sesión'>
                 <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
                     <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
+                    {/* <DeleteOutlined style={{ fontSize: '28px', color: '#6699FF' }}/> */}
                 </button>
+                </Tooltip>
             </Popconfirm>
         </Col>
     </Row>

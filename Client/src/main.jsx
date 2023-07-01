@@ -12,10 +12,10 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Auth0Provider
-    domain = {VITE_DOMAIN}
-    clientId= {VITE_CLIENTID}
-    //domain="dev-63fntm00jadd2yyb.us.auth0.com"
-    //clientId="nwkBhPmGn2XBp77V3X16a9m0eqgnriW8"
+   /*  domain = {VITE_DOMAIN}
+    clientId= {VITE_CLIENTID} */
+    domain="dev-63fntm00jadd2yyb.us.auth0.com"
+    clientId="nwkBhPmGn2XBp77V3X16a9m0eqgnriW8"
 
     authorizationParams={{
       redirect_uri: window.location.origin

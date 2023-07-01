@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router";
 import axios from "axios";
 import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
-import LoginView from "./Views/login/loginView";
+import LoginView from "./Views/login/LoginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
@@ -46,30 +46,16 @@ function App() {
       <Routes>
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/" element={<Landing />} />
-        <Route
-          path="/login"
-          element={<LoginView setToken={setToken} setRol={setRol} />}
-        />
+        <Route path="/login" element={<LoginView setToken={setToken} setRol={setRol} />}/>
         <Route path="/home" element={<ClientHome />} />
         <Route path="/all-categories" element={<AllCategoriesView />} />
         <Route path='/categories/:category' element={<CategoriesView />} />
         <Route path="/categories/product/:id" element={<ProductDetailsView />} />
         <Route path="/searchedProducts" element={ <SearchedResultsView /> } />
-       {/*  <Route path="/developers" element={< div/>} /> */}
         <Route path="/about" element={<AboutUs/>} />
-        <Route path='/success-payment' element={<SuccessPaymentView />} />
-        <Route path='/failure-payment' element={<FailurePaymentView />} />
-        <Route path="/shopping-history" element={ <HistoryView/> } />
-        <Route path="/categories/:category" element={<CategoriesView />} />
-        <Route
-          path="/categories/product/:id"
-          element={<ProductDetailsView />}
-        />
-        <Route path="/searchedProducts" element={<SearchedResultsView />} />
-        {/*  <Route path="/developers" element={< div/>} /> */}
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/success-payment" element={<SuccessPaymentView />} />
-        <Route path="/failure-payment" element={<FailurePaymentView />} />
+        <Route path='/success-payment' element={<SuccessPaymentView/>}/>
+        <Route path='/failure-payment' element={<FailurePaymentView/>}/>
+        <Route path="/shopping-history" element={ <HistoryView/> }/>
 
         {/* RUTAS PROTEGIDAS CLIENTE */}
         <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
@@ -79,25 +65,12 @@ function App() {
         </Route>
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
-        <Route
-          element={
-            <ProtectedRoutes
-              logged={!!tokenA}
-              allowed={rolA === "admin"}
-              redirect={
-                rolA === "client" ? redirect.client : redirect.superAdmin
-              }
-            />
-          }
-        >
+        <Route element={ <ProtectedRoutes logged={!!tokenA} allowed={rolA === "admin"} redirect={ rolA === "client" ? redirect.client : redirect.superAdmin } /> } >
           <Route path="/admin/home" element={<AdminHome />} />
           <Route path="/admin/createproduct" element={<CreateProductVew />} />
           <Route path="/admin/clients" element={<ViewClients />} />
           <Route path="/admin/inventary" element={<Inventary />} />
-          <Route
-            path="/searchedProductsAdmin"
-            element={<SearchedResultViewAdmin />}
-          />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin />} />
           <Route path="/admin/reviews" element={<AdminReviewsView />} />
           {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
         </Route>
