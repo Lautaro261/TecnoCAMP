@@ -22,6 +22,9 @@ const FormProductos = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [showAlertWarning, setShowAlertWarning] = useState(false);
   const [form] = useForm();
+  const [errors,setErrors]=useState()
+  const [errors1,setErrors1]=useState([])
+
 
 
 
@@ -31,12 +34,25 @@ const FormProductos = () => {
     dispatch(getAllBrands(token));
   }, []);
 
+  useEffect(() => {
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }
+
+    if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+  }, [FormColors, photos]);
+
 
   const post = async (values) => {
     const coloresA = FormColors.map(e => { return (e[0]) })
     const cantidadesA = FormColors.map(e => { return (e[1]) })
     const data = { ...values, photo: photos, colors: coloresA, quantities: cantidadesA }
-
     const response = await axios.post('/admin/createproduct', data, {
       headers: {
 
@@ -54,9 +70,21 @@ const FormProductos = () => {
   }
 
   const onFinish = (values) => {
-    console.log(FormColors, "todododoo");
-    console.log('Success:', values);
-    post(values);
+
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+    
+    if (!errors&&!errors1){
+      console.log(FormColors,"aki")
+      post(values);
+    }
   };
 
 
@@ -149,12 +177,14 @@ const FormProductos = () => {
               name="inventories"
             >
               <ColorPicker SetFormColors={SetFormColors} />
+              <span style={{color:"red"}}>{errors}</span>
             </Form.Item>
 
             <Form.Item
               label="Fotos:"
             >
               <UploadButton />
+              <span style={{color:"red"}}>{errors1}</span>
             </Form.Item>
           </Col>
 
