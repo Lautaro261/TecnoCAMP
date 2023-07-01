@@ -60,7 +60,7 @@ const Login = () => {
     if (userSession.message === '¡Credenciales Incorrectas!') {
       messageApi.error(userSession.message);
     }
-  }, [userSession, setToken, setRol, /*navigate*/ messageApi])
+  }, [userSession, /*navigate*/ messageApi])
 
   return (
     <div>
