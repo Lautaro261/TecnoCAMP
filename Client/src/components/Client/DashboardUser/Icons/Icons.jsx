@@ -12,49 +12,8 @@ import LogoutAuth from "../../../LogoutAuth/LogoutAuth";
 
 const Icons = () => {
   const {isAuthenticated} = useAuth0()
-  // const navigate = useNavigate()
-  // const userSession = useSelector(state  => state.logInAndSignUp.userSession)
-
-  // const openmodal=()=>{
-  //   Modal.warning({
-  //     title: 'Lo sentimos mucho😕',
-  //     icon: <ExclamationCircleOutlined />,
-  //     content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
-  //     okText: 'Aceptar',
-  //   })
-  // }
-
-//   useEffect(() => {
-//     if (userSession.token && userSession.rol) {
-//       const token = userSession.token;
-//       const rol = userSession.rol;
-//       const banned=userSession.erased;
-//       if (banned){
-//         openmodal()
-//         console.log("te banearon puto")
-//       }else{
-
-//       console.log('logueado en el front como: ', rol, 'token: ', token, 'banned: ',banned);
-//       // setToken(token);
-//       // setRol(rol);
-//       window.localStorage.setItem('rol', rol);
-//       window.localStorage.setItem('token', token);
-
-//       // if (rol === 'client') {
-//       //   navigate('/home');
-//       // } else if (rol === 'admin') {
-//       //   navigate('/admin/home');
-//       // } else if (rol === 'superAdmin') {
-//       //   navigate('/super/admins');
-//       // }
-//     }
-//   }
-// },[userSession.token])
-
-
   const rol = window.localStorage.getItem('rol');
   const token = window.localStorage.getItem('token');
-  // const { isAuthenticated } = useAuth0();
 
   return (
     <div>
