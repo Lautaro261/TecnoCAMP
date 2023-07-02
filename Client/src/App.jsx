@@ -40,8 +40,8 @@ function App() {
 
 
  // Ahora si NO tocar. real real  
-  const rolA = userSession?.rol
-  const tokenA = userSession?.token
+  const rol = window.localStorage.getItem('rol');
+  const token = window.localStorage.getItem('token');
 
   const redirect = {
     client: "/home",
@@ -87,14 +87,14 @@ function App() {
       <Route path="/shopping-history" element={<HistoryView />} />
 
       {/* RUTAS PROTEGIDAS CLIENTE */}
-      <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
+      <Route element={<ProtectedRoutes logged={!!token} allowed={rol === 'client'} redirect={rol === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/shoppinghistory" element={<HistoryView />} />
         <Route path="/profile" element={<ProfileView />} />
         <Route path="/cart" element={<CartView />} />
       </Route>
 
       {/* RUTAS PROTEGIDAS ADMIN*/}
-      <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === "admin"} redirect={rolA === "client" ? redirect.client : redirect.superAdmin} />} >
+      <Route element={<ProtectedRoutes logged={!!token} allowed={rol === "admin"} redirect={rol === "client" ? redirect.client : redirect.superAdmin} />} >
         <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/admin/createproduct" element={<CreateProductVew />} />
         <Route path="/admin/clients" element={<ViewClients />} />
