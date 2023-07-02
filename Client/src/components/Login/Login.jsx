@@ -50,6 +50,12 @@ const Login = () => {
               // setRol(rol);
               window.localStorage.setItem('rol', rol);
               window.localStorage.setItem('token', token);
+              // if(rol === 'client'){
+              //   navigate('/home')
+              // }
+              // if(rol === 'admin'){
+              //   navigate('/admin/home')
+              // }
             }
       }
   }
