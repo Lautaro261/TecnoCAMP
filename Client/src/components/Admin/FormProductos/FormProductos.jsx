@@ -176,15 +176,19 @@ const FormProductos = () => {
               label="Colores:"
               name="inventories"
             >
+              <div>
               <ColorPicker SetFormColors={SetFormColors} />
               <span style={{color:"red"}}>{errors}</span>
+              </div>
             </Form.Item>
 
             <Form.Item
               label="Fotos:"
             >
+              <div>
               <UploadButton />
               <span style={{color:"red"}}>{errors1}</span>
+              </div>
             </Form.Item>
           </Col>
 

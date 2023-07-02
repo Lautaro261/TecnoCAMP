@@ -7,11 +7,11 @@ const IconLogin = () => {
     return (
         <Row align='top'>
             <Col span={24}>
-                <Tooltip title='Iniciar sesion'>
                 <Link to='/login'>
+                <Tooltip title='Iniciar sesion'>
                     <LoginOutlined style={{ fontSize: '28px', color: '#6699FF'}} />
-                </Link>
                 </Tooltip>
+                </Link>
             </Col>
         </Row>
     )

@@ -28,12 +28,13 @@ const footerStyle = {
   textAlign: 'center',
   color: '#fff',
   margin:"0px",
-  padding:"0px"
+  padding:"0px",
+  width:"100vw"
 };
 
-const HistoryView = () => (
-    
-
+const HistoryView = () => {
+  
+  return (
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
@@ -41,7 +42,6 @@ const HistoryView = () => (
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
-
-
-);
+  )
+};
 export default HistoryView ;

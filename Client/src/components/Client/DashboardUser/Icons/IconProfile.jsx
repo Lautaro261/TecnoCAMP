@@ -1,11 +1,12 @@
 import { Tooltip } from 'antd';
 import React from "react";
 import { Link } from "react-router-dom";
+import { Tooltip } from "antd";
 
 const IconProfile = () =>{
     return (
-      <Tooltip title='Ir a perfil'>
-        <Link to="/profile">
+      <Link to="/profile">
+          <Tooltip title='Ir a perfil'>
         <div name="profile">
           <svg
             width="20"
@@ -24,8 +25,8 @@ const IconProfile = () =>{
             />
           </svg>
         </div>
-      </Link>
       </Tooltip>
+      </Link>
     )
 }
 
