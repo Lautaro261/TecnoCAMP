@@ -183,9 +183,9 @@ const CustomerTable = () => {
             render: (_, record) =>
                 (dataClients.length >= 1) && record.erased ?
                     <Popconfirm title="¿Desea restaurar a este usuario?" onConfirm={() => handleDelete(record.key, record.erased)}>
-                        <Button type="primary">Restaurar</Button>
+                    <Button type="primary">Restaurar</Button>
                     </Popconfirm> : <Popconfirm title="¿Desea restringir a este usuario?" onConfirm={() => handleDelete(record.key)}>
-                        <Button danger >Restringir</Button>
+                    <Button danger >Restringir</Button>
                     </Popconfirm>
         },
     ];

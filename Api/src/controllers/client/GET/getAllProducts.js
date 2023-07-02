@@ -10,6 +10,9 @@ const getAllProducts = async () => {
       brandId: {
         [Op.not]: null,
       },
+      is_available:{
+        [Op.not]: false,
+      }
     },
     include: [
       {

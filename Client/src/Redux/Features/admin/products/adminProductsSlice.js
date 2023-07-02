@@ -8,18 +8,40 @@ const initialState = {
     postProduct:{},
     productPut: [],
     allProducts: [],
+    bannedProcuts: [],
     searchedResult: [],
     photos: [],
     status: 'idle',
     error: null,
   };
 
+
+  export const banProduct = createAsyncThunk(
+    'adminProducts/banProduct',
+    async([token, selectedProductId]) => {
+      try {
+        console.log("id", selectedProductId, "token", token)
+        const response= await axios.put("/admin/delete", {"productId": selectedProductId} ,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
+        console.log('banUser ok', response.data)
+        return sub
+      } catch (error) {
+        console.log('error banUser', error.response.data)
+        throw error.response.data
+      }
+    }
+  )
+
+
   export const putProduct = createAsyncThunk(
     'adminProducts/putProduct',
-    async([token,idProduct, valueEdit]) => {
-      console.log('idProuct', idProduct, 'values', valueEdit, 'token', token)
+    async([token,selectedProductId, valueEdit]) => {
       try {
-          response  = await axios.put(`admin/update/${idProduct}`,valueEdit,{
+        console.log('REDUX idProuct', selectedProductId, 'values', valueEdit, 'token', token)
+          response  = await axios.put(`admin/update/${selectedProductId}`,valueEdit ,{
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -79,6 +101,30 @@ const adminProductsSlice = createSlice({
     reducers:{},
     extraReducers: (builder) => {
         builder
+
+
+        .addCase(banProduct.pending, (state, action) => {
+          state.status = 'loading';
+        })
+        .addCase(banProduct.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          // const id = action.payload;
+          // const product = state.allProducts.find((product)=> product.id === id)
+          // if (product){
+          //   product.is_available = !product.is_available
+          //   if(product.is_available){
+          //     state.bannedProcuts.push(product)
+          //   }else{
+          //     state.bannedProcuts = state.bannedProcuts.filter((bannedProduct)=> bannedProduct.id!==id)
+          //   }
+          // }
+          state.bannedProcuts = action.payload;
+          state.error = null;
+        })
+        .addCase(banProduct.rejected, (state, action) => {
+          state.status = 'rejected';
+          state.error = action.error.message;
+        })
 
 
         .addCase(getAllProducts.pending, (state) => {

@@ -27,8 +27,8 @@ const handlerUpdateProduct = async (req, res) => {
     e_product_type,
     is_available,
     product_favorite,
-   /*  categoryId,
-    brandId, */
+    categoryId,
+     brandId, 
     inventoryItems,
   } = req.body;
 
@@ -43,8 +43,8 @@ const handlerUpdateProduct = async (req, res) => {
       e_product_type,
       is_available,
       product_favorite,
-    /*   categoryId,
-      brandId, */
+     categoryId,
+      brandId, 
       inventoryItems
     );
 

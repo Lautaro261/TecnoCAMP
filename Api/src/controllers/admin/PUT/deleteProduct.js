@@ -22,21 +22,22 @@ const deleteProduct = async (productId) => {
   }
 
   // Actualizar la propiedad "is_available" del producto
-  product.is_available = false;
+  //product.is_available = false;
+  product.is_available = !product.is_available;
 
   // Verificar si se deshabilita la disponibilidad del producto
-  if (!product.isAvailable) {
-    product.total_quantity_inventory = 0; // Establecer el stock total a 0
-    product.categoryId = null;
-    product.brandId = null;
-  }
+  // if (!product.isAvailable) {
+  //   product.total_quantity_inventory = 0; // Establecer el stock total a 0
+  //   product.categoryId = null;
+  //   product.brandId = null;
+  // }
 
   await product.save();
 
   // Actualizar la propiedad "is_available" de los elementos de inventario asociados si el ID proporcionado es de un producto en la tabla "Product"
   if (productId.includes("-")) {
     await Inventory.update(
-      { is_available: false, quantity_inventory: 0 },
+      { is_available: product.is_available }, //is : false quantity_inventory: 0
       {
         where: {
           productId: product.id,
