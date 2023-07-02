@@ -25,7 +25,7 @@ const items = [
   getItem('Clientes', '/admin/clients', <TeamOutlined />),
   getItem('Inventario', '/admin/inventary', <InboxOutlined />),
   getItem('Crear Producto', '/admin/createproduct', <PlusCircleOutlined /> ),
-  getItem('Pedido en curso', '/admin/orders', <SendOutlined />),
+  getItem('Pedidos en curso', '/admin/ongoing-orders', <SendOutlined />),
   getItem('Reviews', '/admin/reviews', <CommentOutlined />),
   
  

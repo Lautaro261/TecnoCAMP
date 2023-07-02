@@ -1,6 +1,6 @@
 import { Row, Col, Rate, Divider } from 'antd';
 
-const desc = ['terrible', 'malo', 'regular', 'bueno', 'excelente'];
+const desc = ['Terrible', 'Malo', 'Regular', 'Bueno', 'Excelente'];
 
 const ReviewsSectionCard = (props) => {
     const { rating, comment, userSub } = props;

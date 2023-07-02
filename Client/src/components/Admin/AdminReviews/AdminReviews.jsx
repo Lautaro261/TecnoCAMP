@@ -3,7 +3,7 @@ import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllReviews } from '../../../Redux/Features/reviews/adminReviewSlice'; 
+import { getAllReviews } from '../../../Redux/Features/reviews/adminReviewsSlice'; 
 
 const AdminReviews = () => {
     const token = localStorage.getItem('token');

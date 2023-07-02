@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createReview } from '../../../Redux/Features/reviews/clientReviewsSlice';
 
-const desc = ['terrible', 'malo', 'regular', 'bueno', 'excelente'];
+const desc = ['Terrible', 'Malo', 'Regular', 'Bueno', 'Excelente'];
 const { TextArea } = Input;
 
 const ReviewForm = (props) => {
@@ -19,7 +19,6 @@ const ReviewForm = (props) => {
     }, [rating]);
 
     const onFinish = (values) => {
-        console.log(values);
         dispatch(createReview({ values, token }));
         props.closeModal();
     };
