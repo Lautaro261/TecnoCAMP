@@ -1,7 +1,6 @@
-import React from 'react';
 import { Layout, Space, Divider, Row, Col } from 'antd';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin';
-import AdminReviews from '../../../components/Admin/AdminReviews/AdminReviews';
+import OngoingOrders from '../../../components/Admin/OngoingOrders/OngoingOrders';
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -42,10 +41,10 @@ const AdminReviewsView = () => {
         <Layout>
           <Sider style={siderStyle}><DashboardAdmin /></Sider>
           <Layout>
-            <Header style={headerStyle}><Divider style={{ color: "black", }}>Reviews</Divider></Header>
+            <Header style={headerStyle}><Divider style={{ color: "black", }}>Pedidos en Curso</Divider></Header>
             <Content style={contentStyle}>
 
-              <AdminReviews />
+              <OngoingOrders />
 
             </Content>
           </Layout>

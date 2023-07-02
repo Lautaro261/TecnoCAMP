@@ -1,23 +1,29 @@
-import { ShopOutlined, ShoppingCartOutlined, TeamOutlined, MobileOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { Card, Statistic, Col, Row, Typography, Space } from "antd";
+import { ShoppingCartOutlined, TeamOutlined, MobileOutlined, PlusCircleOutlined, FastForwardOutlined, CommentOutlined } from "@ant-design/icons";
+import { Card, Statistic, Col, Row, Typography } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getInventories, getClientsNumber } from '../../../Redux/Features/admin/Statistics/adminStatistics';
 import { Link } from "react-router-dom";
+import { getAllOngoingOrders } from "../../../Redux/Features/admin/ongoingOrders/ongoingOrdersSlice";
+import { getAllReviews } from "../../../Redux/Features/reviews/adminReviewsSlice";
 
 const Statistics = () => {
 
     const token = window.localStorage.getItem("token");
     const dispatch = useDispatch();
-    const inventoriesStatistic = useSelector((state) => state.adminStatistics.inventoriesStatistic)
-    const clientsStatistic = useSelector((state) => state.adminStatistics.clientsStatistic)
+    const inventoriesStatistic = useSelector((state) => state.adminStatistics.inventoriesStatistic);
+    const clientsStatistic = useSelector((state) => state.adminStatistics.clientsStatistic);
+    const allOngoingOrders = useSelector(state => state.ongoingOrders.allOngoingOrders);
+    const allReviews = useSelector(state => state.adminReviews.allReviews);
 
     console.log('clientes', clientsStatistic)
     console.log('inventario', inventoriesStatistic)
 
     useEffect(() => {
-        dispatch(getInventories(token))
-        dispatch(getClientsNumber(token))
+        dispatch(getInventories(token));
+        dispatch(getClientsNumber(token));
+        dispatch(getAllOngoingOrders(token));
+        dispatch(getAllReviews(token));
     }, [dispatch])
 
     return (
@@ -86,6 +92,38 @@ const Statistics = () => {
                         <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Agregar producto</Typography.Text>} valueRender={() => '+'} />
                     </Link>
                 </Card>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+                    <Card>
+                        <Link to='/admin/ongoing-orders'>
+                            <FastForwardOutlined style={{
+                                fontSize: '36px',
+                                color: 'yellow',
+                                borderRadius: 30,
+                                backgroundColor: "orange",
+                                padding: 8
+
+                            }} />
+                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Pedidos en Curso</Typography.Text>} value={ allOngoingOrders.length } />
+                        </Link>
+                    </Card>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+                    <Card>
+                        <Link to='/admin/reviews'>
+                            <CommentOutlined style={{
+                                fontSize: '36px',
+                                color: 'black',
+                                borderRadius: 30,
+                                backgroundColor: "gray",
+                                padding: 8
+
+                            }} />
+                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Reviews</Typography.Text>} value={ allReviews.length } />
+                        </Link>
+                    </Card>
                 </Col>
             </Row>
         </div>

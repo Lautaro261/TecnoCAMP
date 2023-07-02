@@ -88,7 +88,7 @@ clientRouter.post("/filtersComb", handlerFiltersComb);
 
 //Reviews
 clientRouter.post("/review", verifyToken, handlerCreateReview);
-clientRouter.get("/reviews", verifyToken, handlerGetReviewId);
+clientRouter.get("/reviews", handlerGetReviewId);
 
 // DEPARTAMENTOS Y MUNICIPIOS DE COLOMBIA
 clientRouter.get("/alldepartments", verifyToken, handlerGetAllDepartments);
