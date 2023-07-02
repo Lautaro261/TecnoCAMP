@@ -6,7 +6,6 @@ import ReviewsSectionCard from '../ReviewsSectionCard/ReviewsSectionCard';
 import { getAllReviewsByProductId } from '../../../Redux/Features/reviews/clientReviewsSlice';
 
 const ReviewsSection = () => {
-    const token = localStorage.getItem('token');
     const dispatch = useDispatch();
     const location = useLocation();
     const pathname = location.pathname;
@@ -14,7 +13,7 @@ const ReviewsSection = () => {
     const allReviewsByProductId = useSelector(state => state.clientReviews.allReviewsByProductId);
 
     useEffect(() => {
-        dispatch(getAllReviewsByProductId({ productId, token }));
+        dispatch(getAllReviewsByProductId(productId));
     }, []);
 
     return (

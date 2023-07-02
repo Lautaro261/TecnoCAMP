@@ -27,13 +27,9 @@ export const createReview = createAsyncThunk(
 
 export const getAllReviewsByProductId = createAsyncThunk(
     'clientReviews/getAllReviewsByProductId',
-    async ({ productId, token }) => {
+    async (productId) => {
         try {
-            const response = await axios.get(`/client/reviews?productId=${ productId }`, {
-                headers: {
-                    Authorization: `Bearer ${ token }`
-                }
-            });
+            const response = await axios.get(`/client/reviews?productId=${ productId }`);
             return response.data;
         } catch (error) {
             console.error(error.message);
