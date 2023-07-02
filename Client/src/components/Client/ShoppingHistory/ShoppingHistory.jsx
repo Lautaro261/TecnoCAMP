@@ -31,7 +31,7 @@ const ShoppingHistory=()=>{
             <div style={{marginLeft:"20vw"}}>
                 {history.map((order)=>{
                     return(
-                    <div>
+                    <div key={ order.order.id }>
                     <Card
                     title={`Fecha: ${order.order.payment_date.split("T")[0]}   Hora: ${order.order.payment_date.split("T")[1].split(":")[0]}:${order.order.payment_date.split("T")[1].split(":")[1]} `}
                     extra={<p >{order.order.shipping_status}</p>}
@@ -41,7 +41,7 @@ const ShoppingHistory=()=>{
                   >
                     {order.products.map((item)=>{
                         return(
-                            <div>
+                            <div key={item.id}>
                             <Row justify='center' align='middle'>
                                 <Col span={6}><img src={item.photo} style={{maxHeight:"10vh"}} /></Col>
                                 <Col span={6}><p>{item.name}</p></Col>
@@ -54,7 +54,7 @@ const ShoppingHistory=()=>{
                             <Row>
                                 <p>Colores Comprados: </p>
                                 {item.inventoryIds.map((color)=>{
-                                return(<p style={{backgroundColor:`${color.color}`, width:"20px", height:"20px", borderRadius:"20%", paddingLeft:"0.5%"}}>{color.quantity_unit_product}</p>)})}
+                                return(<p key={ color.id } style={{backgroundColor:`${color.color}`, width:"20px", height:"20px", borderRadius:"20%", paddingLeft:"0.5%"}}>{color.quantity_unit_product}</p>)})}
                             </Row>
                             
                             
