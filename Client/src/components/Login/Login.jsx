@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Button, Form, Input, message, Typography, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -11,7 +10,6 @@ const { Text } = Typography;
 const Login = () => {
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { userSession, error } = useSelector((state) => state.logInAndSignUp);
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -46,20 +44,13 @@ const Login = () => {
               }else{
         
               console.log('logueado en el front como: ', rol, 'token: ' ,token,'banned: ', banned);
-              // setToken(token);
-              // setRol(rol);
+              
               window.localStorage.setItem('rol', rol);
               window.localStorage.setItem('token', token);
-              // if(rol === 'client'){
-              //   navigate('/home')
-              // }
-              // if(rol === 'admin'){
-              //   navigate('/admin/home')
-              // }
             }
       }
   }
-  },[userSession.token])
+  },[userSession?.token])
 
   useEffect(() => {
 

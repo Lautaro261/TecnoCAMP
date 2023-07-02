@@ -4,7 +4,6 @@ import { Row, Col, Popconfirm, Tooltip } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
-// import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Logout = () => {
@@ -17,10 +16,7 @@ const Logout = () => {
     const handleLogout = () => {
         window.localStorage.clear();
         dispatch(logoutOwn());
-        // window.localStorage.removeItem('token');
-        // window.localStorage.removeItem('rol');
-        // logout()
-
+      
         console.log('te deslogueaste')
         navigate('/');
     }
