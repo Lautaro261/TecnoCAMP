@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { Tooltip } from "antd";
 const IconFavorite = () => {
     return (
-        <Tooltip title='Ir a favoritos'>
         <Link to="/favorites">
+            <Tooltip title='Ir a favoritos'>
             <div name="favorites">
                 <svg
                     width="30"
@@ -21,8 +21,8 @@ const IconFavorite = () => {
                     />
                 </svg>
             </div>
-        </Link>
         </Tooltip>
+        </Link>
     )
 }
 

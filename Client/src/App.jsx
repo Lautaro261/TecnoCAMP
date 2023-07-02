@@ -42,7 +42,7 @@ function App() {
   // TOCAR
 
   return (
-    <div>
+    
       <Routes>
         {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
         <Route path="/" element={<Landing />} />
@@ -77,7 +77,7 @@ function App() {
         {/* RUTA DE CONSTRUCCION*/}
         <Route path="*" element={<ErrorView />} />
       </Routes>
-    </div>
+
   );
 }
 

@@ -4,7 +4,7 @@ import { Row, Col, Popconfirm, Tooltip } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutOwn } from "../../Redux/Features/login/logInAndSignUpSlice";
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Logout = () => {
@@ -12,11 +12,11 @@ const Logout = () => {
     const navigate = useNavigate();
     const [open, setOpen] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const { logout } = useAuth0()
+    // const { logout } = useAuth0()
 
     const handleLogout = () => {
         window.localStorage.clear();
-        dispatch(logoutOwn())
+        dispatch(logoutOwn());
         // window.localStorage.removeItem('token');
         // window.localStorage.removeItem('rol');
         // logout()
@@ -58,11 +58,11 @@ const Logout = () => {
                     }}
                     onCancel={handleCancel}
                 >
-                    <Tooltip title='Cerrar sesión'>
                         <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+                    <Tooltip title='Cerrar sesión'>
                             <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
-                        </button>
                     </Tooltip>
+                        </button>
                 </Popconfirm>
             </Col>
         </Row>

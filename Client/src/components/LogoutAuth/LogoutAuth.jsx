@@ -18,9 +18,10 @@ const LogoutAuth = () => {
     const { logout }  = useAuth0()
 
     const handleLogoutAuth = () => {
-        dispatch(logoutOwn())    
-        window.localStorage.removeItem('token');
-        window.localStorage.removeItem('rol');
+        dispatch(logoutOwn())
+        window.localStorage.clear()
+        // window.localStorage.removeItem('token');
+        // window.localStorage.removeItem('rol');
         logout()
        // navigate('/')
     }
@@ -58,12 +59,12 @@ const LogoutAuth = () => {
                 }}
                 onCancel={handleCancel}
             >
-                <Tooltip title='Cerrar sesión'>
                 <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
+                <Tooltip title='Cerrar sesión'>
                     <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
                     {/* <DeleteOutlined style={{ fontSize: '28px', color: '#6699FF' }}/> */}
-                </button>
                 </Tooltip>
+                </button>
             </Popconfirm>
         </Col>
     </Row>

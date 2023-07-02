@@ -1,3 +1,4 @@
+import React from 'react';
 import { Layout } from 'antd';
 import DashboardUser from '../../components/Client/DashboardUser/DashboardUser';
 import FooterUser from '../../components/Client/Footer/FooterUser';
@@ -32,9 +33,8 @@ const footerStyle = {
 
 };
 
-const LoginView = () => (
-
-
+const LoginView = () => {
+     return(
     <Layout >
         <Header style={headerStyle}><DashboardUser /></Header>
         <Content style={contentStyle}>
@@ -42,7 +42,11 @@ const LoginView = () => (
         </Content>
         <Footer style={footerStyle}><FooterUser /></Footer>
     </Layout>
+     )
+}
 
 
-);
+
+
+
 export default LoginView;

@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Form, Input, Checkbox, message, Typography, Modal } from 'antd';
+import React, { useEffect } from 'react';
+import { Button, Form, Input, message, Typography, Modal } from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../../Redux/Features/login/logInAndSignUpSlice';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const { Text } = Typography;
 
 const Login = () => {
+  const { user } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { userSession, error } = useSelector((state) => state.logInAndSignUp);
@@ -23,44 +25,42 @@ const Login = () => {
     console.log('Failed:', errorInfo);
   };
 
-  // const openmodal=()=>{
-  //   Modal.warning({
-  //     title: 'Lo sentimos mucho😕',
-  //     icon: <ExclamationCircleOutlined />,
-  //     content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
-  //     okText: 'Aceptar',
-  //   })
-  // }
+  const openmodal = () => {
+    Modal.warning({
+      title: 'Lo sentimos mucho😕',
+      icon: <ExclamationCircleOutlined />,
+      content: 'Este usuario se encuentra restringido de nuestra plataforma. Si crees que esto es un error, ponte en contacto con nosotros',
+      okText: 'Aceptar',
+    })
+  }
+
+  useEffect(()=>{
+    if(userSession.message === '¡Has ingresado correctamente!'){
+      if( !user && userSession.token && userSession.rol){
+        const token = userSession.token;
+        const rol = userSession.rol;
+        const banned = userSession.erased;
+        if (banned){
+                openmodal()
+                console.log("te banearon puto")
+              }else{
+        
+              console.log('logueado en el front como: ', rol, 'token: ' ,token,'banned: ', banned);
+              // setToken(token);
+              // setRol(rol);
+              window.localStorage.setItem('rol', rol);
+              window.localStorage.setItem('token', token);
+            }
+      }
+  }
+  },[userSession.token])
 
   useEffect(() => {
-  //   if (userSession.token && userSession.rol) {
-  //     const token = userSession.token;
-  //     const rol = userSession.rol;
-  //     const banned=userSession.erased;
-  //     if (banned){
-  //       openmodal()
-  //       console.log("te banearon puto")
-  //     }else{
 
-  //     console.log('logueado en el front como: ', rol, 'token: ', banned);
-  //     setToken(token);
-  //     setRol(rol);
-  //     window.localStorage.setItem('rol', rol);
-  //     window.localStorage.setItem('token', token);
-
-  //     if (rol === 'client') {
-  //       navigate('/home');
-  //     } else if (rol === 'admin') {
-  //       navigate('/admin/home');
-  //     } else if (rol === 'superAdmin') {
-  //       navigate('/super/admins');
-  //     }
-  //   }
-  // }
     if (userSession.message === '¡Credenciales Incorrectas!') {
       messageApi.error(userSession.message);
     }
-  }, [userSession, /*navigate*/ messageApi])
+  }, [userSession, /*navigate messageApi*/ ])
 
   return (
     <div>
@@ -93,7 +93,7 @@ const Login = () => {
           rules={[{ required: true, message: '¡Por favor ingrese su contraseña!' },
           { pattern: /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,20}$/, message: 'La contraseña debe tener al menos 1 número y 1 mayúscula' },
           { min: 7, max: 20, message: 'La contraseña debe tener entre 7 y 20 caracteres' }
-        ]}
+          ]}
         >
           <Input.Password />
         </Form.Item>

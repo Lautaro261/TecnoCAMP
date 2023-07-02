@@ -5,8 +5,8 @@ import { Tooltip } from "antd";
 const IconCart = () => {
     return (
         //Icono Carrito
-        <Tooltip title='Ir a carrito'>
         <Link to="/cart">
+            <Tooltip title='Ir a carrito'>
             <div name="cart">
                 <svg
                     width="30"
@@ -30,8 +30,8 @@ const IconCart = () => {
                     />
                 </svg>
             </div>
-        </Link>
         </Tooltip>
+        </Link>
     )
 }
 

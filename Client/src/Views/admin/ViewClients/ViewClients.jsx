@@ -1,3 +1,4 @@
+import React from 'react';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider, } from 'antd';
@@ -8,6 +9,7 @@ import CustomerTable from '../../../components/Admin/TableClients/CustomerTable'
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
   // width:'100vh',
+
   textAlign: 'center',
   color: '#fff',
   height: 64,

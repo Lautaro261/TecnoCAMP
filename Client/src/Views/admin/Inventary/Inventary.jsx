@@ -1,3 +1,4 @@
+import React from 'react';
 import TableInventory from '../../../components/Admin/TableInventory/TableInventory';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import { Layout, Space, Divider, Row, Col } from 'antd';
