@@ -35,9 +35,7 @@ const ProductsSorting = () => {
         placeholder="Seleccionar ordenamiento"
         onChange={ handleSelectChange }
         value={ selectedValueToFilter }
-        style={{
-        width: 200,
-        }}
+        style={{ width: 200, marginBlockStart: '20px', marginInlineEnd: '20px' }}
     >
       <Select.Option value="moreExpensive">Mayor Precio</Select.Option>
       <Select.Option value="cheapest">Menor Precio</Select.Option>

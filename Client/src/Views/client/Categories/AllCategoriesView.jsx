@@ -31,7 +31,7 @@ const footerStyle = {
   margin:"0px",
   padding:"0px"
 };
-const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi", "All"];
 let  current = window.localStorage.getItem('current');
 
 const AllCategoriesView = () => {
