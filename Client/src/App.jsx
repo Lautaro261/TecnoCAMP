@@ -39,8 +39,8 @@ function App() {
 
 
  // Ahora si NO tocar. real real  
-  const rol = window.localStorage.getItem('rol');
-  const token = window.localStorage.getItem('token');
+  const rol = window.localStorage.getItem('rol'); 
+  const token = window.localStorage.getItem('token'); 
 
   const redirect = {
     client: "/home",
@@ -48,7 +48,9 @@ function App() {
     superAdmin: "/super/admins",
   };
 
-  useEffect(() => {
+
+  useEffect(() => { 
+
     if (userSession?.rol) {
       switch (userSession.rol) {
         case 'client':
@@ -88,6 +90,7 @@ function App() {
       {/* RUTAS PROTEGIDAS CLIENTE */}
       <Route element={<ProtectedRoutes logged={!!token} allowed={rol === 'client'} redirect={rol === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/shoppinghistory" element={<HistoryView />} />
+        
         <Route path="/profile" element={<ProfileView />} />
         <Route path="/cart" element={<CartView />} />
       </Route>
@@ -95,6 +98,7 @@ function App() {
       {/* RUTAS PROTEGIDAS ADMIN*/}
       <Route element={<ProtectedRoutes logged={!!token} allowed={rol === "admin"} redirect={rol === "client" ? redirect.client : redirect.superAdmin} />} >
         <Route path="/admin/home" element={<AdminHome />} />
+
         <Route path="/admin/createproduct" element={<CreateProductVew />} />
         <Route path="/admin/clients" element={<ViewClients />} />
         <Route path="/admin/inventary" element={<Inventary />} />
