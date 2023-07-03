@@ -120,6 +120,8 @@ const AdminReviews = () => {
         };
     }) : 0
 
+    console.log(allReviews);
+
     const columns = [
         {
             key: 'key', 

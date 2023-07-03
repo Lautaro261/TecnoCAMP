@@ -7,6 +7,12 @@ const initialState = {
     error: null
 };
 
+
+//http://localhost:3001/admin/createbrand crear
+//http://localhost:3001/admin/brand/${idBrand} traer por id 
+//http://localhost:3001/admin/updatebrand modificar
+//http://localhost:3001/admin/deletebrand delete 
+
 export const getAllBrands = createAsyncThunk(
     'clientBrands/getAllBrands',
     async () => {

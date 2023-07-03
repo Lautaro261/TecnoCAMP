@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Pagination, Divider } from 'antd';
+import { Pagination } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
   setCurrentFilteredProducts, 
@@ -46,7 +46,6 @@ const ProductsPagination = () => {
     };
 
     return (
-      <Divider>
         <Pagination
             total={ totalItems }
             current={ currentPage }
@@ -55,7 +54,6 @@ const ProductsPagination = () => {
             onChange={ handlePageChange }
             itemRender={ itemRender }
         />
-      </Divider>
     );
 };
 
