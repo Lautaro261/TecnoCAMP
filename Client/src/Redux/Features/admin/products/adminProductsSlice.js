@@ -35,25 +35,29 @@ const initialState = {
     }
   )
 
-
-  export const putProduct = createAsyncThunk(
-    'adminProducts/putProduct',
+  export const EditProduct= createAsyncThunk(
+    'adminProducts/EditProduct',
     async([token,selectedProductId, valueEdit]) => {
       try {
-        console.log('REDUX idProuct', selectedProductId, 'values', valueEdit, 'token', token)
-          response  = await axios.put(`admin/update/${selectedProductId}`,valueEdit ,{
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-        console.log('okokok put product', response.data)
-        return  response.data;
+        console.log("soy el editar producto")
+        const response= await axios.put(`admin/update/${selectedProductId}`,valueEdit ,{
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      })
+        console.log('editado correctamente', response.data)
+        console.log(valueEdit)
+
+        return response.data
       } catch (error) {
-        console.log('putttproduct,errorr', error.response.data)
+        console.log('error al editar', error.response.data)
         throw error.response.data
       }
     }
   )
+
+
+
 
 
   export const getAllProducts = createAsyncThunk(
@@ -108,16 +112,7 @@ const adminProductsSlice = createSlice({
         })
         .addCase(banProduct.fulfilled, (state, action) => {
           state.status = "succeeded";
-          // const id = action.payload;
-          // const product = state.allProducts.find((product)=> product.id === id)
-          // if (product){
-          //   product.is_available = !product.is_available
-          //   if(product.is_available){
-          //     state.bannedProcuts.push(product)
-          //   }else{
-          //     state.bannedProcuts = state.bannedProcuts.filter((bannedProduct)=> bannedProduct.id!==id)
-          //   }
-          // }
+       
           state.bannedProcuts = action.payload;
           state.error = null;
         })
@@ -152,20 +147,6 @@ const adminProductsSlice = createSlice({
           .addCase(getProductsSearched.rejected, (state, action) => {
             state.status = "rejected";
             state.errorSearch = action.error;
-          })
-
-
-          .addCase(putProduct.pending, (state) => {
-            state.status = "loading";
-          })
-          .addCase(putProduct.fulfilled, (state, action) => {
-            state.status = "succeeded";
-            state.productPut = action.payload;
-            state.error = null;
-          })
-          .addCase(putProduct.rejected, (state, action) => {
-            state.status = "rejected";
-            state.error = action.error.message;
           })
 
     }
