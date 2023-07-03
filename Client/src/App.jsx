@@ -91,19 +91,20 @@ function App() {
         <Route path="/cart" element={<CartView />} />
       </Route>
 
-      {/* RUTAS PROTEGIDAS ADMIN*/}
-      <Route element={<ProtectedRoutes logged={!!token} allowed={rol === "admin"} redirect={rol === "client" ? redirect.client : redirect.superAdmin} />} >
-        <Route path="/admin/home" element={<AdminHome />} />
-        <Route path="/admin/createproduct" element={<CreateProductVew />} />
-        <Route path="/admin/clients" element={<ViewClients />} />
-        <Route path="/admin/inventary" element={<Inventary />} />
-        <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin />} />
-        <Route path="/admin/reviews" element={<AdminReviewsView />} />
-      </Route>
-      {/* RUTA DE CONSTRUCCION*/}
-      <Route path="*" element={<ErrorView />} />
-    </Routes>
-
+        {/* RUTAS PROTEGIDAS ADMIN*/}
+        <Route element={ <ProtectedRoutes logged={!!tokenA} allowed={rolA === "admin"} redirect={ rolA === "client" ? redirect.client : redirect.superAdmin } /> } >
+          <Route path="/admin/home" element={<AdminHome />} />
+          <Route path="/admin/createproduct" element={<CreateProductVew />} />
+          <Route path="/admin/clients" element={<ViewClients />} />
+          <Route path="/admin/inventary" element={<Inventary />} />
+          <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin />} />
+          <Route path="/admin/ongoing-orders" element={<OngoingOrdersView />} />
+          <Route path="/admin/reviews" element={<AdminReviewsView />} />
+          {/* <Route path="/admin/editinventary" element={< EditInventary/> } /> */}
+        </Route>
+        {/* RUTA DE CONSTRUCCION*/}
+        <Route path="*" element={<ErrorView />} />
+      </Routes>
   );
 }
 
