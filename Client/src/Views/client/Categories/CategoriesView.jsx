@@ -53,7 +53,7 @@ const CategoriesView = () => {
 
   // },[nameCategory])
 
-  const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi"];
+  const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
   let  current = window.localStorage.getItem('current');
 
 /*
@@ -73,7 +73,7 @@ const CategoriesView = () => {
   const maxPrice = useSelector(state => state.clientProducts.maxPrice);
 
   const currentCategory = allCategories.find(category => category.name === searchedCategory);
-  const currentCategoryId = currentCategory ? currentCategory.id : '';
+  const currentCategoryId = currentCategory ? currentCategory.id : null;
 
   useEffect(() => {
       dispatch(getAllCategories());
@@ -92,10 +92,6 @@ const CategoriesView = () => {
           minPrice,
           maxPrice
       };
-      console.log('idCategory:', idCategory);
-  console.log('idBrand:', idBrand);
-  console.log('minPrice', minPrice);
-  console.log('maxPrice', maxPrice);
       dispatch(getFilteredProducts(data));
       dispatch(setCurrentPage(1));
       dispatch(setSelectedValueToFilter(null));

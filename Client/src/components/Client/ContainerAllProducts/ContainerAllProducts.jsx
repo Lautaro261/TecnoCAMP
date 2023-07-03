@@ -33,8 +33,8 @@ const ContainerAllProducts = () => {
                 direction="vertical"
                 size="middle"    
             >
-                {/*  <Pagination defaultCurrent={1} total={50} /> */}
-                <ProductsPagination/>
+               {/*  <Pagination defaultCurrent={1} total={50} /> */}
+               <ProductsPagination/>
 
                 <Row gutter={[16, 16]}>
                     {currentFilteredProducts.length ? currentFilteredProducts.map(product => {

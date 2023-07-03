@@ -18,8 +18,8 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 	};
 
 	return (
-		<Row justify='center' style={{ marginBlockEnd: '20px' }}>
-		    <Col>
+		<Row justify='center'>
+		    <Col >
 		        <Row justify='end' >
 		            <button onClick={ onClick } >
 		                {
@@ -28,19 +28,19 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 		            </button>
 		    	</Row>
 				<Link to={`/categories/product/${id}`}>
-					<Card
-						hoverable
-						style={{ width: 180, margin: 0 }}
-						cover={<img alt={ name } src={ photo[0] } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
-						margin: '0 auto'} } />}
-					>
-						<div>{ e_product_type }</div>
-						<Meta 
-							title={ name }
-						/>
-						<div>$ { price }</div>
-					</Card>
-		        </Link> 
+				<Card
+				    hoverable
+				    style={{ width: 180, margin: 0 }}
+				    cover={<img alt={ name } src={ photo[0] } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
+					margin: '0 auto'} } />}
+				>
+				    <div>{ e_product_type }</div>
+				    <Meta 
+				        title={ name }
+				    />
+				    <div>$ { price }</div>
+				</Card>
+		</Link> 
 			</Col>
 		</Row>
 	);

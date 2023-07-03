@@ -24,7 +24,7 @@ const Holder = () => (
       </Link>
     </Col>
     <Col span={8}>
-      <Link to='/categories/Smartwatch'>
+      <Link to='/categories/Smartwatche'>
         <img alt="SmartWatches" src={SmartWatches} style={styles}/>
       </Link>
     </Col>
