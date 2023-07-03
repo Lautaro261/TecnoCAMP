@@ -86,7 +86,7 @@ function App() {
       <Route path='/success-payment' element={<SuccessPaymentView />} />
       <Route path='/failure-payment' element={<FailurePaymentView />} />
       <Route path="/shopping-history" element={<HistoryView />} />
-
+// cami cami
       {/* RUTAS PROTEGIDAS CLIENTE */}
       <Route element={<ProtectedRoutes logged={!!token} allowed={rol === 'client'} redirect={rol === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/shoppinghistory" element={<HistoryView />} />
@@ -94,6 +94,7 @@ function App() {
         <Route path="/cart" element={<CartView />} />
       </Route>
 
+// camicamicami
       {/* RUTAS PROTEGIDAS ADMIN*/}
       <Route element={<ProtectedRoutes logged={!!token} allowed={rol === "admin"} redirect={rol === "client" ? redirect.client : redirect.superAdmin} />} >
         <Route path="/admin/home" element={<AdminHome />} />
