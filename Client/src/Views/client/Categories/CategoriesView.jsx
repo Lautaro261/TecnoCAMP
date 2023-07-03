@@ -53,7 +53,7 @@ const CategoriesView = () => {
 
   // },[nameCategory])
 
-  const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+  const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi", "All"];
   let  current = window.localStorage.getItem('current');
 
 /*
