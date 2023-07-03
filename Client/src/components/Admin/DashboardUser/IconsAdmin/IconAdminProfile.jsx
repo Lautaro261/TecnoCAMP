@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {Tooltip} from 'antd';
 
 const IconAdminProfile = () => {
 
     return (
         <Link to='/admin/profile'>
+                
+            <Tooltip title='Ir a perfil'>
             <div name='admin-profile'>
                 <svg
                     width="32"
@@ -23,6 +26,7 @@ const IconAdminProfile = () => {
                     />
                 </svg>
             </div>
+            </Tooltip>
         </Link>
     )
 }

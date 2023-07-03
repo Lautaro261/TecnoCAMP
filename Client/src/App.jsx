@@ -26,6 +26,7 @@ import HistoryView from "./Views/client/HistoryView/HistoryView";
 import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView.jsx';
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
+import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -99,6 +100,7 @@ function App() {
         <Route path="/admin/inventary" element={<Inventary />} />
         <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin />} />
         <Route path="/admin/reviews" element={<AdminReviewsView />} />
+        <Route path="/admin/createcategorybrand" element={<CategoryAndBrandCreateView/>} />
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   HomeOutlined,
   InboxOutlined,
@@ -5,10 +6,10 @@ import {
   PlusCircleOutlined,
   SendOutlined,
   CommentOutlined,
+  CheckCircleOutlined,
 
 } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 function getItem(label, key, icon, children, type) {
@@ -21,35 +22,36 @@ function getItem(label, key, icon, children, type) {
   };
 }
 const items = [
-  getItem('Inicio', '/admin/home', <HomeOutlined />, ),
+  getItem('Inicio', '/admin/home', <HomeOutlined />,),
   getItem('Clientes', '/admin/clients', <TeamOutlined />),
   getItem('Inventario', '/admin/inventary', <InboxOutlined />),
-  getItem('Crear Producto', '/admin/createproduct', <PlusCircleOutlined /> ),
+  getItem('Gestionar Categorias', '/admin/createcategorybrand', <CheckCircleOutlined />),
+  getItem('Crear Producto', '/admin/createproduct', <PlusCircleOutlined />),
   getItem('Pedidos en curso', '/admin/ongoing-orders', <SendOutlined />),
   getItem('Reviews', '/admin/reviews', <CommentOutlined />),
-  
- 
+
+
 ];
 const Nav = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate()
   const current = window.localStorage.getItem("current")
   const onClick = (e) => {
     console.log('click ', e);
     window.localStorage.setItem("current", e.key)
-    navigate(e.key) 
+    navigate(e.key)
   };
   return (
     <div
       style={{
         width: 200,
-        backgroundColor:"#111D43"
-        
+        backgroundColor: "#111D43"
+
       }}
     >
       <Menu
-        onClick={onClick} 
+        onClick={onClick}
         selectedKeys={[current]}
-        items={items} 
+        items={items}
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         mode="inline"

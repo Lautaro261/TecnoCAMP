@@ -1,4 +1,4 @@
-import { ShoppingCartOutlined, TeamOutlined, MobileOutlined, PlusCircleOutlined, FastForwardOutlined, CommentOutlined } from "@ant-design/icons";
+import { ShoppingCartOutlined, TeamOutlined, MobileOutlined ,PlusCircleOutlined, FastForwardOutlined, CommentOutlined, CheckCircleOutlined } from "@ant-design/icons";
 import { Card, Statistic, Col, Row, Typography } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -80,6 +80,23 @@ const Statistics = () => {
 
                 <Col xs={24} sm={12} md={8} lg={6} xl={6}>
                 <Card>
+                    <Link to='/admin/createcategorybrand'>
+                    <CheckCircleOutlined style={{
+                            fontSize: '36px',
+                            color: 'rgba(81,75,154)',
+                            borderRadius: 30,
+                            backgroundColor: "rgba(174, 160, 212)",
+                            padding: 8
+
+                        }}/>
+                       
+                        <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Gestionar categorías y marcas</Typography.Text>} valueRender={() => '++'} />
+                    </Link>
+                </Card>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+                <Card>
                     <Link to='/admin/createproduct'>
                         <PlusCircleOutlined style={{
                             fontSize: '36px',
@@ -99,9 +116,9 @@ const Statistics = () => {
                         <Link to='/admin/ongoing-orders'>
                             <FastForwardOutlined style={{
                                 fontSize: '36px',
-                                color: 'yellow',
+                                color: 'orange',
                                 borderRadius: 30,
-                                backgroundColor: "orange",
+                                backgroundColor: "yellow",
                                 padding: 8
 
                             }} />
