@@ -28,7 +28,7 @@ const footerStyle = {
   color: '#fff',
   backgroundColor: '#7dbcea',
 };
-const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi"];
 
 const SearchedResultsView = () => (
 

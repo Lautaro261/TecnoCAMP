@@ -106,7 +106,6 @@ function App() {
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />
-    </Routes>
 
 
         {/* RUTAS PROTEGIDAS ADMIN*/}
@@ -123,8 +122,6 @@ function App() {
         {/* RUTA DE CONSTRUCCION*/}
         <Route path="*" element={<ErrorView />} />
       </Routes>
-    </div>
-
   );
 }
 
