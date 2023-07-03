@@ -1,3 +1,4 @@
+import { useState } from "react";
 import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +8,7 @@ import "./App.css";
 import ClientHome from "./Views/client/ClientHome/ClientHome";
 import LoginView from "./Views/login/LoginView";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
+// import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import AdminHome from "./Views/admin/AdminHome/AdminHome";
 import CartView from "./Views/client/CartView/CartView";
 import CreateProductVew from "./Views/admin/CreateProduct/CreateProductView";
@@ -20,6 +22,7 @@ import SearchedResultsView from "./Views/client/SearchedResultView/SearchedResul
 import AboutUs from "./Views/client/AboutUs/AboutUs";
 import Inventary from "./Views/admin/Inventary/Inventary";
 import SearchedResultViewAdmin from "./components/Admin/SearchedResultViewAdmin/SearchedResultViewAdmin";
+// import EditInventary from "./Views/admin/EditInventary/EditInventary";
 import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 import HistoryView from "./Views/client/HistoryView/HistoryView";
@@ -50,7 +53,6 @@ function App() {
 
 
   useEffect(() => { 
-
     if (userSession?.rol) {
       switch (userSession.rol) {
         case 'client':
@@ -88,9 +90,9 @@ function App() {
       <Route path="/shopping-history" element={<HistoryView />} />
 
       {/* RUTAS PROTEGIDAS CLIENTE */}
-      <Route element={<ProtectedRoutes logged={!!token} allowed={rol === 'client'} redirect={rol === "admin" ? redirect.admin : redirect.superAdmin} />}>
+      <Route element={<ProtectedRoutes logged={!!tokenA} allowed={rolA === 'client'} redirect={rolA === "admin" ? redirect.admin : redirect.superAdmin} />}>
         <Route path="/shoppinghistory" element={<HistoryView />} />
-        
+      
         <Route path="/profile" element={<ProfileView />} />
         <Route path="/cart" element={<CartView />} />
       </Route>

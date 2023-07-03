@@ -17,7 +17,7 @@ const Icons = () => {
 
   return (
     <div>
-      {rol && rol === 'client' && token 
+      {rol && rol === 'client' && token // cuando se corrija la ruta de login para usuarios auth0 esta consulta 'isAuthenticated' se borra de aqui.
         ? <Row justify="center" >
           <Col span={4} ><IconCart /></Col>
           <Col span={4}><IconHistory/></Col>
