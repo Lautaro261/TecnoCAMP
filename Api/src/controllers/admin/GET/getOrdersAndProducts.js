@@ -14,7 +14,7 @@ const getOrdersAndProducts = async () => {
       payment_status: "approved",
       payment_transaction_id: { [Op.not]: null },
       shipping_status: {
-        [Op.or]: ["En preparacion", "Despachado"],
+        [Op.or]: ["En preparacion", "Despachado", "Entregado"],
       },
     },
     attributes: [
@@ -77,8 +77,8 @@ const getOrdersAndProducts = async () => {
     for (const product of products) {
       const productId = product.product.id;
       const cartQuantity = product.quantity_unit_product;
-      const inventoryId = product.inventory.id;
-      const color = product.inventory.color;
+      const inventoryId = product.inventory ? product.inventory.id : null;
+      const color = product.inventory && product.inventory.color ? product.inventory.color : null;
       console.log(inventoryId);
       console.log(color);
       console.log(cartQuantity);
