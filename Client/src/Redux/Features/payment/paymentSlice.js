@@ -101,7 +101,7 @@ export const postPaymentNotification = createAsyncThunk(
 
 const paymentSlice = createSlice({
     name: 'payment',
-    initialState, 
+    initialState,  
     extraReducers: (builder) => {
         builder
 

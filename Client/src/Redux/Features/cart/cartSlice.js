@@ -16,7 +16,7 @@ export const Fill = createAsyncThunk(
             }
         })
 
-        console.log(response.data)
+        console.log('Respuesta de fill', response.data)
         if(response.data.message){
             
             return ([])
