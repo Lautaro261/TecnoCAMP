@@ -1,15 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button, Input, Space, Table, Row, Col, Popconfirm, Empty } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import Highlighter from "react-highlight-words";
-import { banUser } from "../../../Redux/Features/admin/clients/adminClientsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
+import { getAllAdmins } from "../../../Redux/Features/superAdmin/createAdmin/createAdminSlice";
+import { banUser } from "../../../Redux/Features/superAdmin/createAdmin/createAdminSlice";
 
 const AdminTable = () => {
   const dispatch = useDispatch();
   const token = window.localStorage.getItem("token");
-  const clients = useSelector((state) => state.superAdminAdmins.allAdmins);
+  const clients = useSelector((state) => state.createAdmin.allAdmins);
+
+  useEffect(() => {
+    dispatch(getAllAdmins());
+  }, []);
 
   const dataClients =
     clients &&
@@ -151,7 +156,7 @@ const AdminTable = () => {
         : `Se ha bloqueado al usuario con el mail ${key}`,
       placement: "top",
     });
-    console.log("baneando", key);
+    console.log("baneando", key, token);
   };
 
   const columns = [
@@ -207,7 +212,7 @@ const AdminTable = () => {
   return (
     <Row>
       {!clients.length ? (
-        <Col span={24} style={{ marginTop: "10vh" }}>
+        <Col span={24} style={{ marginTop: "2px" }}>
           <Empty />
         </Col>
       ) : (
@@ -215,7 +220,7 @@ const AdminTable = () => {
           <Table
             columns={columns}
             dataSource={dataClients}
-            style={{ marginTop: "10vh" }}
+            style={{ marginTop: "2px" }}
             pagination={{
               pageSize: 5, // Número de registros por página
               pageSizeOptions: pageSizeOptions,

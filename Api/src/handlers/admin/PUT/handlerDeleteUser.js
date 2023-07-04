@@ -14,7 +14,7 @@ const handlerDeleteUser = async (req, res) => {
     //2) Traer usuario y verificar si tiene rol Admin
     const user = await getUser(decoToken.sub);
 
-    if (user.rol !== "admin") {
+    if (user.rol !== "superAdmin") {
       return res
         .status(404)
         .json({ message: "No cuenta con permisos para realizar la peticion" });

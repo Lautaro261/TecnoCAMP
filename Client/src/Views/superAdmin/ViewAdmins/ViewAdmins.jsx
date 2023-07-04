@@ -4,6 +4,7 @@ import { Layout, Space, Divider } from "antd";
 import { useEffect } from "react";
 import { getAllAdmins } from "../../../Redux/Features/superAdmin/admins/superAdminAdminsSlice";
 import AdminTable from "../../../components/SuperAdmin/TableAdmins/AdminTable";
+import CreateAdminComponent from "../../../components/SuperAdmin/createAdmin/createAdminComponent";
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -59,6 +60,7 @@ const ViewAdmins = () => {
               <Divider style={{ color: "black" }}>Admins</Divider>
             </Header>
             <Content style={contentStyle}>
+              <CreateAdminComponent />
               <AdminTable />
             </Content>
           </Layout>

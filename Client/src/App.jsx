@@ -23,8 +23,8 @@ import SuccessPaymentView from "./Views/client/PaymentView/SuccessPaymentView";
 import FailurePaymentView from "./Views/client/PaymentView/FailurePaymentView";
 import HistoryView from "./Views/client/HistoryView/HistoryView";
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
-import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 import ViewAdmins from "./Views/superAdmin/ViewAdmins/ViewAdmins";
+// import SuperAdminHome from "./Views/superAdmin/SuperAdminHome/SuperAdminHome";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
