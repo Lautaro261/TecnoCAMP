@@ -27,6 +27,7 @@ import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
+import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -45,7 +46,7 @@ function App() {
   const redirect = {
     client: "/home",
     admin: "/admin/home",
-    superAdmin: "/super/admins",
+    superAdmin: "/superadmin/admins",
   };
 
 
@@ -60,7 +61,7 @@ function App() {
           navigate('/admin/home');
           break;
         case 'superAdmin':
-          navigate('/super/admins');
+          navigate('/superadmin/admins');
           break;
         default:
           navigate('/home');
@@ -109,8 +110,24 @@ function App() {
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />
-    </Routes>
 
+      //// ANDY ////
+
+        {/* RUTAS PROTEGIDAS SUPERADMIN*/}
+        <Route
+          element={
+            <ProtectedRoutes
+              logged={!!tokenA}
+              allowed={rolA === "superAdmin"}
+              redirect={rolA === "client" ? redirect.client : redirect.admin}
+            />
+          }
+        >
+          {/* <Route path="/superadmin/admins" element={<SuperAdminHome />} /> */}
+          <Route path="/superadmin/admins" element={<ViewAdmins />} />
+        </Route>
+
+    </Routes>
   );
 }
 
