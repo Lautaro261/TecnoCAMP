@@ -48,6 +48,11 @@ const {
   handlerGetMunicipalitiesByDepartment,
 } = require("../handlers/client/GET/handlerGetDepMunCo.js");
 
+//FAVORITES
+const handlerMyFavourites = require("../handlers/client/GET/handlerMyFavourites.js");
+const handlerPostFavorites = require("../handlers/client/POST/handlerPostFavorites.js");
+const handlerDeleteFavorite = require("../handlers/client/PUT/handlerDeleteFavorite.js");
+
 /////////// ROUTES ////////////
 
 // PRODUCTOS
@@ -97,6 +102,11 @@ clientRouter.get(
   verifyToken,
   handlerGetMunicipalitiesByDepartment
 );
+
+//FAVORITES
+clientRouter.get("/myfavourites", verifyToken, handlerMyFavourites);
+clientRouter.post("/myfavourites", verifyToken, handlerPostFavorites);
+clientRouter.put("/myfavourites", verifyToken, handlerDeleteFavorite);
 
 //// EXPORTACION DE RUTAS ////
 module.exports = clientRouter;

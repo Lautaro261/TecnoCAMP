@@ -4,12 +4,15 @@ module.exports = (sequelize) => {
   sequelize.define(
     "favorite",
     {
-      id: {
+      id_favorite: {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
         allowNull: true,
-      }
+      },
+      favorite: {
+        type: DataTypes.BOOLEAN,
+      },
       
     },
     { timestamps: false }
