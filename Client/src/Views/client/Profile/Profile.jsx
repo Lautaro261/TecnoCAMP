@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
+import EditProfile from '../../../components/EditProfile/editProfile';
 
 const { Header, Footer, Content } = Layout;
 
@@ -34,7 +35,7 @@ const ProfileView = () => (
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
-    
+    <EditProfile/>
     </Content>
     <Footer style={footerStyle}><FooterUser/></Footer>
   </Layout>
