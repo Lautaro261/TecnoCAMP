@@ -25,6 +25,7 @@ import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSl
 import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
 import ColorPicker from "../ColorPicker/ColorPicker";
+import PseudoColorPicker from "../PseudoColorPicker/PseudoColorPicker";
 
 function TableInventory() {
   const [form] = useForm();
@@ -253,7 +254,7 @@ function TableInventory() {
       };
     });
 
-  
+  console.log("soy all", allProducts);
 
   const [open, setOpen] = useState(false);
   const showDrawer = (productId) => {
@@ -273,13 +274,14 @@ var toc=[]
   };
 
   const onClose = () => {
+    form.resetFields()
     setOpen(false);
-    location.reload();
   };
 
   const onFinish = (values) => {
-     const inventoryItems=DefinitiveColors.map((color)=>{
-       return({color:color[0], quantity:color[1]})
+    const ids= selectedProduct.inventories.map((item)=>{return(item.id)})
+     const inventoryItems=DefinitiveColors.map((color, index)=>{
+       return({color:color[0], quantity:color[1], id:ids[index] , is_available:true})
      })
     const valueEdit = {
       ...values,
@@ -287,6 +289,7 @@ var toc=[]
     };
 
    enviar([token, selectedProductId, valueEdit])
+   console.log("lo Que Llega a back", inventoryItems)
     //location.reload();
   };
  
@@ -306,6 +309,7 @@ var toc=[]
 
 
 
+console.log(selectedProduct)
   return (
     <>
 
@@ -469,7 +473,7 @@ var toc=[]
             ]}>
               <Col>
               Colores Disponibles:  
-              <ColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
+              <PseudoColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
               </Col>
             </Form.Item>
             </Col>

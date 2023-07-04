@@ -152,11 +152,11 @@ const getDataOfOrders = async () => {
     },
   });
 
-  return {
+  return [{
     totalNumberOrders,
     totalSalesRevenue,
     totalProductsSold,
-  };
+  }];
 };
 
 module.exports = { getAllApprovedOrders, getDataOfOrders, getHistoryOfOrders };

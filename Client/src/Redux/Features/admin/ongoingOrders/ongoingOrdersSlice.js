@@ -3,10 +3,48 @@ import axios from 'axios';
 
 const initialState = {
     allOngoingOrders: [], 
+    odersByUser: [],
+    dataOrders : [],
     shippingStatusResponse: {}, 
     status: 'idle',
     error: null
 };
+
+export const getOrdersByUser = createAsyncThunk(
+    'ongoingOrders/getOrdersByUser',
+    async(token) =>{
+        try {
+            const response = await axios.get('/admin/ordersbyuser',{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            })
+            return response.data
+        } catch (error) {
+            console.error(error.message)
+            throw error
+        }
+    }
+)
+
+export const getDataOrders = createAsyncThunk(
+    'ongoingOrders/getDataOrders',
+    async(token) =>{
+        try {
+            const response = await axios.get('/admin/dataorders',{
+                headers:{
+                    Authorization:`Bearer ${token}`
+                }
+            });
+            return response.data;
+            
+        } catch (error) {
+            console.error(error.message)
+            throw error
+            
+        }
+    }
+)
 
 export const getAllOngoingOrders = createAsyncThunk(
     'ongoingOrders/getAllOngoingOrders',
@@ -79,6 +117,32 @@ const ongoingOrdersSlice = createSlice({
                 state.status = 'rejected',
                 state.error = action.error.message
             })
+
+            .addCase(getDataOrders.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getDataOrders.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.dataOrders = action.payload
+            })
+            .addCase(getDataOrders.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message
+            })
+
+            .addCase(getOrdersByUser.pending, (state) => {
+                state.status = 'loading'
+            })
+            .addCase(getOrdersByUser.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.odersByUser = action.payload
+            })
+            .addCase(getOrdersByUser.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message
+            })
+
+
     }
 });
 
