@@ -13,47 +13,49 @@ const CategoryAndBrandCreate = () => {
     const allCategories = useSelector(state => state.adminCategories.allCategories)
     const allBrands = useSelector(state => state.adminBrands.allBrands)
     const token = window.localStorage.getItem('token')
-    const categoryResponse = useSelector(state => state.adminCategories.updateResponseCat)
+    // const categoryResponse = useSelector(state => state.adminCategories.updateResponseCat)
     const [editCategoryData, setEditCategoryData] = useState({
         visible: false,
-        name:'',
-        id:null,
+        name: '',
+        id: null,
     })
     const [editBrandData, setEditBrandData] = useState({
         visible: false,
-        name:'',
-        id:null,
+        name: '',
+        id: null,
     })
 
     const [createCategoryData, setCreateCategoryData] = useState({
         visible: false,
-        name:'',
+        name: '',
     })
     const [createBrandData, setCreateBrandData] = useState({
         visible: false,
-        name:'',
+        name: '',
     })
 
-    // useEffect(()=> {
-    //     if(categoryResponse.message )
-    // },[])
+    const [forceUpdate, setForceUpdate] = useState(false);
 
 
     useEffect(() => {
         dispatch(getAllCategories(token))
         dispatch(getAllBrands(token))
-    }, [])
+    }, [forceUpdate])
 
     const handleCreateCategory = () => {
         const values = { name: createCategoryData.name };
         dispatch(createCategory({ token, values }));
         setCreateCategoryData({ visible: false, name: '' });
+        setForceUpdate(prevState => !prevState);
     }
 
     const handleCreateBrand = () => {
         const values = { name: createBrandData.name };
         dispatch(createBrand({ token, values }));
         setCreateBrandData({ visible: false, name: '' });
+
+        setForceUpdate(prevState => !prevState);
+
     }
 
     const dataCategory = allCategories.map(category => {
@@ -89,15 +91,19 @@ const CategoryAndBrandCreate = () => {
     );
 
     const handleSubmitCategory = () => {
-        const values = { id: editCategoryData.id, name: editCategoryData.name};
-        dispatch(updateCategory({token, values}));
-        setEditCategoryData({visible:false, id:null, name:''})
+        const values = { id: editCategoryData.id, name: editCategoryData.name };
+        dispatch(updateCategory({ token, values }));
+        setEditCategoryData({ visible: false, id: null, name: '' })
+        setForceUpdate(prevState => !prevState);
+
     }
 
     const handleSubmitBrand = () => {
-        const values = { id: editBrandData.id, name: editBrandData.name};
-        dispatch(updateBrand({token, values}));
-        setEditBrandData({visible:false, id:null, name:''})
+        const values = { id: editBrandData.id, name: editBrandData.name };
+        dispatch(updateBrand({ token, values }));
+        setEditBrandData({ visible: false, id: null, name: '' })
+        setForceUpdate(prevState => !prevState);
+
     }
 
 
@@ -116,17 +122,21 @@ const CategoryAndBrandCreate = () => {
             align: 'center',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button icon={<EditOutlined />} onClick={()=>{
+                    <Button icon={<EditOutlined />} onClick={() => {
                         setEditCategoryData({
                             visible: true,
                             name: record.category,
                             id: record.key
                         })
-                    }}/>
+                    }} />
 
                     <Popconfirm
                         title='¿Estas seguro de eliminar esta categoría?'
-                        onConfirm={() => dispatch(deleteCategory({ token, id: record.key }))}
+                        onConfirm={() => {
+                            dispatch(deleteCategory({ token, id: record.key }))
+                            setForceUpdate(prevState => !prevState);
+
+                        }}
                         onText='Sí'
                         cancelText='No'
                     >
@@ -151,7 +161,7 @@ const CategoryAndBrandCreate = () => {
             align: 'center',
             render: (_, record) => (
                 <Space size="middle">
-                    <Button icon={<EditOutlined />} onClick={()=>{
+                    <Button icon={<EditOutlined />} onClick={() => {
                         setEditBrandData({
                             visible: true,
                             name: record.brand,
@@ -160,7 +170,10 @@ const CategoryAndBrandCreate = () => {
                     }} />
                     <Popconfirm
                         title='¿Estas seguro de eliminar esta marca?'
-                        onConfirm={() => dispatch(deleteBrand({ token, id: record.key }))}
+                        onConfirm={() => {
+                            dispatch(deleteBrand({ token, id: record.key }))
+                            setForceUpdate(prevState => !prevState);
+                        }}
                         onText='Sí'
                         cancelText='No'
                     >
@@ -175,7 +188,7 @@ const CategoryAndBrandCreate = () => {
             <Row>
                 <Col span={24}> <Title level={3}>Gestionar categorías y marcas.</Title></Col>
                 <Col xs={24} sm={24} md={12} lg={12}>
-                    <Button block  onClick={() => setCreateCategoryData({ visible: true, name: '' })}>Crear nueva categoría</Button>
+                    <Button block onClick={() => setCreateCategoryData({ visible: true, name: '' })}>Crear nueva categoría</Button>
                     <Table columns={columnsCategory} dataSource={dataCategory} />
                 </Col>
                 <Col xs={24} sm={24} md={12} lg={12}>
@@ -187,11 +200,11 @@ const CategoryAndBrandCreate = () => {
             <Modal
                 title='Editar categoría'
                 open={editCategoryData.visible}
-                onCancel={() => setEditCategoryData({...editCategoryData, visible:false})}
+                onCancel={() => setEditCategoryData({ ...editCategoryData, visible: false })}
                 footer={null}>
-                <Input 
-                value={editCategoryData.name}
-                onChange={(e)=> setEditCategoryData({...editCategoryData, name: e.target.value})}
+                <Input
+                    value={editCategoryData.name}
+                    onChange={(e) => setEditCategoryData({ ...editCategoryData, name: e.target.value })}
                 />
 
                 <Button type="primary" onClick={handleSubmitCategory}>Enviar</Button>
@@ -202,13 +215,13 @@ const CategoryAndBrandCreate = () => {
             <Modal
                 title='Editar marca'
                 open={editBrandData.visible}
-                onCancel={() => setEditBrandData({...editBrandData, visible: false})}
+                onCancel={() => setEditBrandData({ ...editBrandData, visible: false })}
                 footer={null}>
-                        <Input 
-                        value={editBrandData.name}
-                        onChange={(e)=> setEditBrandData({...editBrandData, name: e.target.value})}
-                        />
-                    <Button type="primary" onClick={handleSubmitBrand}>Enviar</Button>
+                <Input
+                    value={editBrandData.name}
+                    onChange={(e) => setEditBrandData({ ...editBrandData, name: e.target.value })}
+                />
+                <Button type="primary" onClick={handleSubmitBrand}>Enviar</Button>
             </Modal>
 
             <Modal
