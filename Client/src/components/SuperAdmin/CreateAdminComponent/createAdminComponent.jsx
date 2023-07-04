@@ -22,7 +22,7 @@ const CreateAdminComponent = () => {
       dispatch(getAllAdmins());
       dispatch(setUserCreated({}));
       showSuccessMessage();
-      // handleCloseModal(); // Cerrar el modal en caso de éxito
+      handleCloseModal(); // Cerrar el modal en caso de éxito
       form.resetFields(); // Restablecer los campos del formulario en caso de éxito
     }
   }, [userCreated.message]);
@@ -74,7 +74,7 @@ const CreateAdminComponent = () => {
     <div
       align="right"
       style={{
-        paddingRight: "31px",
+        paddingRight: "77px",
       }}
     >
       <Button type="primary" onClick={showModal}>

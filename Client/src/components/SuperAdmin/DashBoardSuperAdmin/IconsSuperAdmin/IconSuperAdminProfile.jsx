@@ -6,8 +6,7 @@ const IconSuperAdminProfile = () => {
     <Link to="/superadmin/profile">
       <div name="superadmin-profile">
         <svg
-          width="32"
-          height="43"
+          height="54"
           viewBox="0 0 32 43"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -25,4 +24,5 @@ const IconSuperAdminProfile = () => {
     </Link>
   );
 };
+
 export default IconSuperAdminProfile;

@@ -1,17 +1,33 @@
 import React from "react";
 import { Row, Col } from "antd";
 import styles from "./ContactIconsSuperAdmin.module.css";
+import { notification } from "antd";
 
 export default function ContactIconsSuperAdmin() {
+
+    const notificationEmail = () => {
+        notification.open({
+            message: 'Nuestro Email de Contacto',
+            description: "andyopina96@gmail.com",
+            placement:"top"
+          });
+    }
+    const notificationWhatsApp = () => {
+        notification.open({
+            message: 'Escribanos a Nuestro WhatsApp:',
+            description: "+57 318 722 2743",
+            placement:"top",
+          });
+    }
+    
   return (
     <Row className={styles.cont}>
       <Col span={11}>
         {" "}
         <div>
-          <button className={styles.button}>
+          <button className={styles.button} onClick={notificationEmail}>
             <svg
-              width="20"
-              height="20"
+              height="22"
               viewBox="0 0 66 56"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -26,8 +42,7 @@ export default function ContactIconsSuperAdmin() {
       </Col>
       <Col span={2}>
         <svg
-          width="20"
-          height="20"
+          height="31"
           viewBox="0 0 2 63"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -42,10 +57,9 @@ export default function ContactIconsSuperAdmin() {
         </svg>
       </Col>
       <Col span={11}>
-        <button className={styles.button}>
+        <button className={styles.button} onClick={notificationWhatsApp}>
           <svg
-            width="20"
-            height="20"
+            height="22"
             viewBox="0 0 60 67"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"

@@ -55,7 +55,7 @@ export const banUser = createAsyncThunk(
     try {
       console.log(sub, token, "777");
       const response = await axios.put(
-        "/admin/client/delete",
+        "/superadmin/admin/delete",
         { sub: sub },
         {
           headers: {

@@ -117,9 +117,9 @@ function App() {
         <Route
           element={
             <ProtectedRoutes
-              logged={!!tokenA}
-              allowed={rolA === "superAdmin"}
-              redirect={rolA === "client" ? redirect.client : redirect.admin}
+              logged={!!token}
+              allowed={rol === "superAdmin"}
+              redirect={rol === "client" ? redirect.client : redirect.admin}
             />
           }
         >

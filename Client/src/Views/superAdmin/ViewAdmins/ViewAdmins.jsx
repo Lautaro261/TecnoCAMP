@@ -8,34 +8,32 @@ import CreateAdminComponent from "../../../components/SuperAdmin/CreateAdminComp
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
-  // width:'100vh',
   textAlign: "center",
-  color: "#fff",
-  height: 64,
+  height: 62,
   paddingInline: 50,
   lineHeight: "64px",
-  backgroundColor: "#7dbcea",
+  backgroundColor: "#56E0DA",
 };
 const contentStyle = {
   textAlign: "center",
   minHeight: 120,
   lineHeight: "120px",
   color: "#0000",
-  backgroundColor: "#ffff",
+  backgroundColor: "#f7f7f7",
 };
 const siderStyle = {
   width: "300px",
   textAlign: "center",
   lineHeight: "40px",
   color: "#fff",
-  backgroundColor: "#001529",
+  backgroundColor: "#1d1d1d",
   height: "100vh",
 };
 
 const ViewAdmins = () => {
   const token = window.localStorage.getItem("token");
   const dispatch = useDispatch();
-  const admins = useSelector((state) => state.superAdminAdmins.allAdmins);
+  const admins = useSelector((state) => state.createAdmin.allAdmins);
   useEffect(() => {
     dispatch(getAllAdmins({ token }));
     console.log("**");
@@ -56,9 +54,9 @@ const ViewAdmins = () => {
             <DashBoardSuperAdmin />
           </Sider>
           <Layout>
-            <Header style={headerStyle}>
-              <Divider style={{ color: "black" }}>Admins</Divider>
-            </Header>
+              <Header style={headerStyle}>
+                <Divider style={{ color: "black" }}>Administradores de la Tienda</Divider>
+              </Header>
             <Content style={contentStyle}>
               <CreateAdminComponent />
               <AdminTable />

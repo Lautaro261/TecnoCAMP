@@ -19,10 +19,10 @@ const IconsSuperAdmin = () => {
       </Col>
       <Col span={24}>
         <IconSuperAdminProfile />
-        <div>Armando</div>
+        <div style={{ fontSize: "22px", paddingBottom:"22px" }}>Armando</div>
       </Col>
       <Col span={24}>
-        <Logout />
+      <Logout/>
       </Col>
     </Row>
   );

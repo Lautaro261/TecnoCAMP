@@ -1,7 +1,7 @@
 import {
+  TeamOutlined,
     // HomeOutlined,
     // InboxOutlined,
-    TeamOutlined,
     // PlusCircleOutlined,
     // SendOutlined,
     // CommentOutlined,
@@ -20,8 +20,8 @@ import {
     };
   }
   const items = [
-    // getItem("Inicio", "/superadmin/home", <HomeOutlined />),
     getItem("Administradores", "/superadmin/admins", <TeamOutlined />),
+    // getItem("Inicio", "/superadmin/home", <HomeOutlined />),
     // getItem("Inventario", "/admin/inventary", <InboxOutlined />),
     // getItem("Crear Producto", "/admin/createproduct", <PlusCircleOutlined />),
     // getItem("Pedido en curso", "/admin/orders", <SendOutlined />),
@@ -39,10 +39,14 @@ import {
       <div
         style={{
           width: 200,
-          backgroundColor: "#111D43",
+          // backgroundColor: "#1d1d1d",
         }}
       >
         <Menu
+        style={{
+          width: 200,
+          backgroundColor: "#1a1a1a",
+        }}
           onClick={onClick}
           selectedKeys={[current]}
           items={items}
