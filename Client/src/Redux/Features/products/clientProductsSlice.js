@@ -18,6 +18,9 @@ const initialState = {
   minPrice: 1,
   maxPrice: 8000000,
   selectedValueToFilter: null,
+  favorites:[],
+  errorFavorite:{},
+  responseFavorite:{},
   status: "idle",
   error: null,
 };
@@ -94,6 +97,53 @@ export const getProductsSearched = createAsyncThunk(
       return response.data;
     } catch (error) {
       console.log("ERRORR GETALLPRODUCTS REDUX", error);
+      throw error;
+    }
+  }
+);
+export const getFavorites =  createAsyncThunk(
+  "clientProducts/getFavorites",
+  async(token)=>{
+    try {
+      const response =  await axios.get('/client/myfavourites',{
+        headers: {
+            Authorization: `Bearer ${ token }`
+        }
+    });
+      return response.data
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const addFavorite = createAsyncThunk(
+  "clientProducts/addFavorite",
+  async({token, data})=>{
+    try {
+      const response =  await axios.post('/client/myfavourites', data ,{
+        headers: {
+            Authorization: `Bearer ${ token }`
+        }
+    })
+    return response.data
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const deleteFavorite = createAsyncThunk(
+  "clientProducts/deleteFavorite",
+  async({token, data})=>{
+    try {
+      const response =  await axios.put('/client/myfavourites', data ,{
+        headers: {
+            Authorization: `Bearer ${ token }`
+        }
+    })
+    return response.data
+    } catch (error) {
       throw error;
     }
   }
@@ -275,6 +325,43 @@ const clientProductsSlice = createSlice({
         state.status = "rejected";
         state.errorSearch = action.error;
       })
+
+      .addCase(getFavorites.pending, (state)=>{
+        state.status = "loading";
+      })
+      .addCase(getFavorites.fulfilled, (state, action)=>{
+        state.status = "succeeded";
+        state.favorites = action.payload;
+      })
+      .addCase(getFavorites.rejected, (state)=>{
+        state.status = "rejected";
+        state.errorFavorite = action.error.message;
+      })
+
+      .addCase(addFavorite.pending, (state)=>{
+        state.status = "loading";
+      })
+      .addCase(addFavorite.fulfilled, (state, action)=>{
+        state.status = "succeeded";
+        state.responseFavorite = action.payload;
+      })
+      .addCase(addFavorite.rejected, (state)=>{
+        state.status = "rejected";
+        state.errorFavorite = action.error.message;
+      })
+
+      .addCase(deleteFavorite.pending, (state)=>{
+        state.status = "loading";
+      })
+      .addCase(deleteFavorite.fulfilled, (state, action)=>{
+        state.status = "succeeded";
+        state.responseFavorite = action.payload;
+      })
+      .addCase(deleteFavorite.rejected, (state)=>{
+        state.status = "rejected";
+        state.errorFavorite = action.error.message;
+      })
+
 
   },
 });
