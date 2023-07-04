@@ -1,4 +1,4 @@
-import { Col, Form, Rate, Button, Input } from 'antd';
+import { Col, Form, Rate, Button, Input, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createReview } from '../../../Redux/Features/reviews/clientReviewsSlice';
@@ -10,9 +10,11 @@ const ReviewForm = (props) => {
     const token = localStorage.getItem('token');
     const [rating, setRating] = useState(3);
     const [comment, setComment] = useState('');
+    const [messageApi, contextHolder] = message.useMessage();
     const [form] = Form.useForm();
     const dispatch = useDispatch();
-    const { productId } = props;
+    const { productId, orderId } = props;
+    const key = `${ productId } - ${ orderId }`;
 
     useEffect(() => {
         form.setFieldsValue({ rating });
@@ -20,7 +22,21 @@ const ReviewForm = (props) => {
 
     const onFinish = (values) => {
         dispatch(createReview({ values, token }));
+        form.resetFields();
         props.closeModal();
+        messageApi.open({
+            key, 
+            type: 'loading', 
+            content: 'Enviando...'
+        });
+        setTimeout(() => {
+            messageApi.open({
+                key, 
+                type: 'success', 
+                content: '¡Review enviada exitosamente!', 
+                duration: 2
+            });
+        }, 1000);
     };
     
     const onFinishFailed = (errorInfo) => {
@@ -31,7 +47,7 @@ const ReviewForm = (props) => {
         <Col align='middle'>
             <Form
                 form={ form }
-                name="dispatchForm"
+                name={ `dispatchForm - ${ productId } - ${ orderId }` }
                 style={{ maxInlineSize: 400 }}
                 onFinish={ onFinish }
                 onFinishFailed={ onFinishFailed }
@@ -80,6 +96,7 @@ const ReviewForm = (props) => {
                 </Form.Item>
 
                 <Form.Item>
+                    { contextHolder }
                     <Button type="primary" htmlType="submit">
                         Enviar
                     </Button>
