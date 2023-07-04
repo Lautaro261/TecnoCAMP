@@ -17,7 +17,7 @@ const getAllApprovedOrders = async () => {
         [Op.not]: null,
       },
       shipping_status: {
-        [Op.or]: ["En preparacion", "Despachado"],
+        [Op.or]: ["En preparacion", "Despachado", "Entregado"],
       },
     },
     attributes: [
