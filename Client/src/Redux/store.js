@@ -15,6 +15,7 @@ import historyReducer from "./Features/history/historySlice";
 import clientReviewsReducer from './Features/reviews/clientReviewsSlice';
 import adminReviewsReducer from './Features/reviews/adminReviewsSlice';
 import ongoingOrdersReducer from './Features/admin/ongoingOrders/ongoingOrdersSlice';
+import profileReducer from "./Features/profile/profileSlice";
 import createAdminSliceReducer from "./Features/SuperAdmin/createAdmin/createAdminSlice";
 
 const store = configureStore({
@@ -35,6 +36,7 @@ const store = configureStore({
         photos: photosReducer,
         history: historyReducer, 
         ongoingOrders: ongoingOrdersReducer,
+        profile:profileReducer,
         createAdmin: createAdminSliceReducer,
     }
 });
