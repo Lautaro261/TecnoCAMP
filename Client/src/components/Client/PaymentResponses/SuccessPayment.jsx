@@ -1,4 +1,4 @@
-import { Row, Col, Button, Descriptions } from 'antd';
+import { Row, Col, Button, Result, Descriptions } from 'antd';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -6,6 +6,7 @@ import { postPaymentNotification } from '../../../Redux/Features/payment/payment
 
 const SuccessPayment = () => {
     const { search } = useLocation();
+
     const params = new URLSearchParams(search);
     const { 
         collection_id, 
@@ -33,8 +34,9 @@ const SuccessPayment = () => {
     return (
         <Row justify='center' style={{ margin: '30px' }}>
             <Col span={ 16 }>
+                <Result status='success' title='Compra realizada con éxito'></Result>
                 <Descriptions 
-                    title='Successful Payment Confirmation' 
+                    title='Comprobante de pago exitoso' 
                     layout='vertical' bordered
                     style={{ marginBlockEnd: '20px' }}
                 >

@@ -1,4 +1,4 @@
-import { Row, Col, Button, Descriptions } from 'antd';
+import { Row, Col, Button, Result, Descriptions } from 'antd';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -33,8 +33,9 @@ const FailurePayment = () => {
     return (
         <Row justify='center' style={{ margin: '30px' }}>
             <Col span={ 16 }>
+                <Result status='error' title='Error en el proceso de compra'></Result>
                 <Descriptions 
-                    title='Failed Payment Confirmation' 
+                    title='Comprobante de pago rechazado' 
                     layout='vertical' bordered
                     style={{ marginBlockEnd: '20px' }}
                 >

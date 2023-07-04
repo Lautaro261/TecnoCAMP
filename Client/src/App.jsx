@@ -103,6 +103,7 @@ function App() {
         <Route path="/admin/clients" element={<ViewClients />} />
         <Route path="/admin/inventary" element={<Inventary />} />
         <Route path="/searchedProductsAdmin" element={<SearchedResultViewAdmin />} />
+        <Route path="/admin/ongoing-orders" element={<OngoingOrdersView />} />
         <Route path="/admin/reviews" element={<AdminReviewsView />} />
         <Route path="/admin/createcategorybrand" element={<CategoryAndBrandCreateView/>} />
       </Route>

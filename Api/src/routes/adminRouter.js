@@ -38,6 +38,7 @@ const handlerGetAllProducts = require("../handlers/admin/GET/handlerGetAllProduc
 const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductById.js");
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
+const handlerDeleteColorProduct = require("../handlers/admin/PUT/handlerDeleteColorProduct.js");
 
 // REVIEWS
 const handlerGetAllReview = require("../handlers/admin/GET/handlerGetAllReview.js");
@@ -89,6 +90,7 @@ adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
 adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
+adminRouter.put("/deletecolor", verifyToken, handlerDeleteColorProduct);
 
 // ORDENES DE PEDIDOS PAGADAS
 adminRouter.get("/allorders", verifyToken, handlerGetAllApprovedOrders);
