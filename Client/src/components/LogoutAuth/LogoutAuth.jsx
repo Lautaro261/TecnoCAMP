@@ -58,7 +58,7 @@ const LogoutAuth = () => {
                 >
                     <button onClick={showPopconfirm} style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}>
                         <Tooltip title='Cerrar sesión'>
-                            <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF' }} />
+                            <LogoutOutlined style={{ fontSize: '28px', color: '#6699FF'}} />
                             {/* <DeleteOutlined style={{ fontSize: '28px', color: '#6699FF' }}/> */}
                         </Tooltip>
                     </button>

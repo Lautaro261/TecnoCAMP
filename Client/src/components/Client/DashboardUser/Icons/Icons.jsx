@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Badge, Tooltip } from "antd";
+import { Row, Col, Badge } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import IconCart from "./IconCart";
 import IconFavorite from "./IconFavorite";
@@ -20,25 +20,25 @@ const Icons = () => {
     <div>
       {rol && rol === 'client' && token
         ? (
-          <Row justify="center">
+          <Row justify="center"  align="top" style={{ marginTop: 0 }}>
             <Col span={4}>
               <Badge count={favorites.length}> {/* FALTA ESTADO DE CARRITO */}
               <IconCart/>
               </Badge>
             </Col>
             <Col span={4}><IconHistory /></Col>
-            <Col span={4}><IconProfile /></Col>
             <Col span={4}>
               <Badge count={favorites.length}>
                 <IconFavorite/>
               </Badge>
             </Col>
-            {isAuthenticated ? <Col span={4}><LogoutAuth /></Col> : <Col span={4}><Logout /></Col>}
+            <Col span={4}><IconProfile /></Col>
+            {isAuthenticated ? <Col span={4}><LogoutAuth /></Col> : <Col span={4} ><Logout /></Col>}
           </Row>
         )
         : (
           <Row justify='end' align="top">
-            <Col span={6}><IconLogin /></Col>
+            <Col span={6} align="top"><IconLogin /></Col>
           </Row>
         )
       }
