@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react';
-import { Button, Input, Space, Table, Row, Col, Popconfirm, Empty } from 'antd';
+import { Button, Input, Space, Table, Row, Col, Popconfirm, Empty, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { banUser } from '../../../Redux/Features/admin/clients/adminClientsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { notification } from 'antd';
-
+ const {Title} = Typography;
 const CustomerTable = () => {
     const dispatch = useDispatch();
     const token = window.localStorage.getItem('token');
@@ -190,14 +190,16 @@ const CustomerTable = () => {
         },
     ];
     return (
-        <Row>{
+        <Row>
+            <Col span={24}> <Title level={3}>Tabla de usuarios.</Title></Col>
+            {
             !clients.length ?
-            <Col span={24} style={{ marginTop: "10vh" }}>
+            <Col span={24} style={{ marginTop: "2vh" }}>
             <Empty /> 
             </Col>
             :
             <Col span={24}>
-                <Table columns={columns} dataSource={dataClients} style={{ marginTop: "10vh" }} />
+                <Table columns={columns} dataSource={dataClients} style={{ marginTop: "2vh" }} />
             </Col>
             }
         </Row>
