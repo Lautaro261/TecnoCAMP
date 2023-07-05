@@ -59,6 +59,7 @@ const ConteinerProductsByCategory = () => {
                                 price={product.price}
                                 id={product.id}
                                 photo={product.photo}
+                                is_available={product.is_available}
                                 />
                             </Col>
                         )

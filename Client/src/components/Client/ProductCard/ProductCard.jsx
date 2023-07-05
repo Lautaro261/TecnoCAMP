@@ -1,14 +1,14 @@
 
-import { Row, Col, Space, Card } from 'antd';
+import { Row, Col, Space, Card, Tag } from 'antd';
 import {
-	HeartOutlined, 
-	HeartFilled 
+	HeartOutlined,
+	HeartFilled
 } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // id será usado para la vista de detalle
-const ProductCard = ({ id, e_product_type, photo, name, price }) => {
+const ProductCard = ({ id, e_product_type, photo, name, price, is_available }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
 	const { Meta } = Card;
 	//console.log(photo);
@@ -19,28 +19,33 @@ const ProductCard = ({ id, e_product_type, photo, name, price }) => {
 
 	return (
 		<Row justify='center'>
-		    <Col>
-		        <Row justify='end' >
-		            <button onClick={ onClick } >
-		                {
+			<Col>
+				<Row justify='end' >
+					<button onClick={onClick} >
+						{
 							isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
-		                }
-		            </button>
-		    	</Row>
+						}
+					</button>
+				</Row>
 				<Link to={`/categories/product/${id}`}>
 					<Card
 						hoverable
 						style={{ width: 180, margin: 0 }}
-						cover={<img alt={ name } src={ photo[0] } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
-						margin: '0 auto'} } />}
+						cover={<img alt={name} src={photo[0]} style={{
+							maxHeight: '20vh', width: 'auto', display: 'block',
+							margin: '0 auto'
+						}} />}
 					>
-						<div>{ e_product_type }</div>
-						<Meta 
-							title={ name }
+						<div>{e_product_type}</div>
+						<Meta
+							title={name}
 						/>
-						<div>$ { price }</div>
+						<div>$ {price}</div>
+						{is_available === false && (
+							<Tag color="red">Sin stock</Tag>
+						)}
 					</Card>
-			    </Link> 
+				</Link>
 			</Col>
 		</Row>
 	);
