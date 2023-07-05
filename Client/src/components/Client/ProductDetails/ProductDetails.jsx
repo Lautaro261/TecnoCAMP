@@ -54,7 +54,7 @@ const ProductDetails = () => {
       const val = value
       
       console.log([id, invId,val, token])
-      dispatch(AddgtoCart([id, invId,val, token])).then(dispatch(Fill(token))).then(notificationRed(val))
+      dispatch(AddtoCart([id, invId,val, token])).then(dispatch(Fill(token))).then(notificationRed(val))
       dispatch(Fill(token))
     }
     else{
