@@ -7,16 +7,16 @@ import { notification } from "antd";
 const Contacticons = () => {
     const notification1=()=>{
         notification.open({
-            message: 'Nuestro mail de reportes',
-            description: "andyopina@gmail.com",
+            message: 'Nuestro Email de Contacto',
+            description: "andyopina96@gmail.com",
             placement:"top"
           });
     }
     const notification2=()=>{
         notification.open({
-            message: 'Acceda a nuestra Linea Directa',
-            description: "+57 1234567",
-            placement:"top"
+            message: 'Escribanos a Nuestro WhatsApp:',
+            description: "+57 318 722 2743",
+            placement:"top",
           });
     }
 
