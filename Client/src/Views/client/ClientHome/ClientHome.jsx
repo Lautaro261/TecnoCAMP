@@ -43,7 +43,7 @@ const footerStyle = {
 };
 const ClientHome = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { user } = useAuth0();
   const userSession = useSelector((state) => state.logInAndSignUp.userSession)
   const userCreated = useSelector((state) => state.logInAndSignUp.userCreated)
@@ -52,7 +52,9 @@ const ClientHome = () => {
   useEffect(() => {
     const userValues = {
       sub: user?.sub,
-      email: user?.email
+      email: user?.email,
+      name: user?.name,
+      photo: user?.picture
     }
 
     const signUpAndLogin = async () => {
@@ -70,8 +72,11 @@ const ClientHome = () => {
   useEffect(() => {
     const userValues = {
       sub: user?.sub,
-      email: user?.email
+      email: user?.email,
+      name: user?.name,
+      photo: user?.picture
     };
+
     if (user && userCreated.message === '¡Usuario creado correctamente!' || user && userCreated.message === `El usuario con el email ${userValues.email}, ya existe`) {
       dispatch(loginUser(userValues));
       console.log('if 2, intento loguearme', userValues);
