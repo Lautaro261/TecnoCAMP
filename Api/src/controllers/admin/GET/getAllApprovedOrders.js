@@ -17,7 +17,7 @@ const getAllApprovedOrders = async () => {
         [Op.not]: null,
       },
       shipping_status: {
-        [Op.or]: ["En preparacion", "Despachado"],
+        [Op.or]: ["En preparacion", "Despachado", "Entregado"],
       },
     },
     attributes: [
@@ -152,11 +152,11 @@ const getDataOfOrders = async () => {
     },
   });
 
-  return {
+  return [{
     totalNumberOrders,
     totalSalesRevenue,
     totalProductsSold,
-  };
+  }];
 };
 
 module.exports = { getAllApprovedOrders, getDataOfOrders, getHistoryOfOrders };

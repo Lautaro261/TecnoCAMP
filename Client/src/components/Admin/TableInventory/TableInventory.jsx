@@ -14,19 +14,19 @@ import {
   Form,
   Row,
   Select,
+  Typography
 } from "antd";
 import { notification } from 'antd';
 import { useRef, useState, useEffect } from "react";
 
 import Highlighter from "react-highlight-words";
-import {
-  getAllProducts,
-  putProduct,
-} from "../../../Redux/Features/admin/products/adminProductsSlice";
+import {getAllProducts} from "../../../Redux/Features/admin/products/adminProductsSlice";
 import { getAllCategories } from "../../../Redux/Features/admin/categories/adminCategoriesSlice";
 import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSlice";
-import { banProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
+import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
+import ColorPicker from "../ColorPicker/ColorPicker";
+const {Title} = Typography;
 function TableInventory() {
   const [form] = useForm();
   const dispatch = useDispatch();
@@ -36,14 +36,12 @@ function TableInventory() {
     (state) => state.adminCategories.allCategories
   );
   const allBrands = useSelector((state) => state.adminBrands.allBrands);
-  const banProducts = useSelector((state)=> state.adminProducts.bannedProcuts)
+  
 
   useEffect(() => {
     dispatch(getAllProducts(token));
     dispatch(getAllCategories(token));
     dispatch(getAllBrands(token));
-    dispatch(banProduct(token))
-    
   }, [dispatch]);
 
   const [searchText, setSearchText] = useState("");
@@ -184,7 +182,6 @@ function TableInventory() {
       ...getColumnSearchProps("name"),
       sorter: (c, d) => c.name.length - d.name.length,
       sortDirections: ["descend", "ascend"],
-      // render:()=>(<><button onClick={console.log("hola soy key", columns.title)} >id</button></>)
     },
     {
       title: "Existencia",
@@ -201,7 +198,6 @@ function TableInventory() {
       dataIndex: "category",
       key: "key",
       width: "20%",
-      /* ...getColumnSearchProps("category"), */
     },
     {
       title: "Disponible",
@@ -226,7 +222,7 @@ function TableInventory() {
              Editar
            </Button> 
           
-          <Button onClick={()=> handleDelete(record.key, record.is_available)}>eliminar</Button>
+          <Button type="primary" id={record.key} onClick={handleDelete}>eliminar</Button>
         </>
       )
         
@@ -237,6 +233,8 @@ function TableInventory() {
 
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedColorsDefaut, setselectedColorsDefaut] = useState(null);
+  const [DefinitiveColors, setDefinitiveColors]= useState(null)
 
   const data =
     allProducts &&
@@ -252,62 +250,68 @@ function TableInventory() {
         aviable: c.is_available ? "disponible"  : "No disponible",
         e_product_type: c.e_product_type,
         inventories: c.inventories
-      //   .map((d) => {
-      //     return {
-      //       color: d.color,
-      //       quantity_inventory: d.quantity_inventory,
-      //     };
-      //   }),
+    
       };
     });
 
-  //console.log("soy todo", allProducts);
-  //console.log("soy id",idProduct);
+  
 
   const [open, setOpen] = useState(false);
   const showDrawer = (productId) => {
     const product = allProducts.find((p) => p.id === productId);
     setSelectedProduct(product);
     setSelectedProductId(productId);
-    //console.log("soy id", productId);
-    //console.log("soy product", product);
+    
+var toc=[]
+  for(var i=0;i<product.inventories.length;i=i+1 ){
+    console.log("ciclo for", product.inventories[i].color)
+    toc.push([product.inventories[i].color, product.inventories[i].quantity_inventory])
+  }
+  setselectedColorsDefaut(toc)
+  setDefinitiveColors(toc)
+  
     setOpen(true);
   };
 
   const onClose = () => {
     setOpen(false);
+    location.reload();
   };
 
   const onFinish = (values) => {
+     const inventoryItems=DefinitiveColors.map((color)=>{
+       return({color:color[0], quantity:color[1]})
+     })
     const valueEdit = {
       ...values,
-      inventoryItems: [],
+      inventoryItems,
     };
 
-    dispatch(putProduct([token, selectedProductId, valueEdit]));
-
-    location.reload();
+   enviar([token, selectedProductId, valueEdit])
+    //location.reload();
   };
  
- 
+ const enviar=(data)=>{
+   dispatch(EditProduct(data))
+     console.log("enviando")
+     console.log(data)
+ }
 
-  const handleDelete = (key) => {
-    dispatch(banProduct([token, key]))
+  const handleDelete = (e) => {
+    console.log(e.target.id)
+    dispatch(banProduct([token, e.target.id]))
     location.reload();
     
 };
 
+
+
+
   return (
     <>
-    <Col>
-              Colores Disponibles:  
-              <>
-                <a>hola</a>
-                {allProducts.inventories && allProducts.inventories.map((map)=>{
-                  <a>aqui itri{map.id}</a>
-                })}
-              </>
-              </Col>
+    <Row>
+    <Col span={24}> <Title level={3}>Inventario de productos.</Title></Col>
+    </Row>
 
       <Table
         columns={columns}
@@ -321,7 +325,7 @@ function TableInventory() {
         width={720}
         onClose={onClose}
         open={open}
-        
+        onFinish={onFinish}
         bodyStyle={{
           paddingBottom: 80,
         }}
@@ -331,7 +335,6 @@ function TableInventory() {
             <Button onClick={() => form.submit()} type="primary">
               Enviar
             </Button>
-            {/* <Switch checkedChildren="Disponible" unCheckedChildren="No disponible" defaultChecked onChange={onChange} />; */}
           </Space>
           
         }
@@ -470,9 +473,7 @@ function TableInventory() {
             ]}>
               <Col>
               Colores Disponibles:  
-              {allProducts.inventories ? allProducts.inventories.map((item)=>{
-                return (<Button key={ item.id } onClick={selector} id={[`${item.id}`,item.quantity_inventory]} style={{background:`${item.color}`, border:"border: 20px solid black", margin: "5px", borderColor: `${selected[0]===item.id? "green":"transparent"}`}}>{item.quantity_inventory}</Button>)
-              }): "??"} 
+              <ColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
               </Col>
             </Form.Item>
             </Col>

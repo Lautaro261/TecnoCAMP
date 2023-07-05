@@ -1,4 +1,4 @@
-import { Row, Col, Button, Input, Space, Table, Divider, Tag } from 'antd';
+import { Row, Col, Button, Input, Space, Table, Divider, Typography, Tag} from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { useState, useEffect, useRef } from 'react';
@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import OngoingOrdersDrawer from '../OngoingOrdersDrawer/OngoingOrdersDrawer';
 import OngoingOrdersDetails from '../OngoingOrdersDetails/OngoingOrdersDetails';
 import { getAllOngoingOrders } from '../../../Redux/Features/admin/ongoingOrders/ongoingOrdersSlice'; 
+
+const {Title} = Typography
 
 const AdminReviews = () => {
     const token = localStorage.getItem('token');
@@ -252,12 +254,16 @@ const AdminReviews = () => {
     ];
 
     return (
+        <>
+       <Title level={3}>Pedidos en curso.</Title>
+
         <Table 
             dataSource={ data } 
             columns={ columns } 
             pagination={{ pageSize: 4 }}
-            style={{ marginBlockStart: '8vh' }} 
+            style={{ marginTop: '4vh'}} 
         />
+        </>
     );
 };
 

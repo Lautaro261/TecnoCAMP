@@ -1,0 +1,16 @@
+/* .icon__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+} */
+
+.icon__image {
+    height: 10vh;
+    width: auto;
+}
+
+.icon__button {
+    background-color: transparent;
+    border: none;
+}
