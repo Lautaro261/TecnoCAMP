@@ -1,4 +1,4 @@
-import { SearchOutlined, ShoppingCartOutlined, TeamOutlined, MobileOutlined ,PlusCircleOutlined, FastForwardOutlined, CommentOutlined, CheckCircleOutlined } from "@ant-design/icons";
+import { SearchOutlined, ShoppingCartOutlined, TeamOutlined, MobileOutlined ,PlusCircleOutlined, FastForwardOutlined, CommentOutlined, CheckCircleOutlined,DollarOutlined } from "@ant-design/icons";
 import { Card, Statistic, Col, Row, Typography,Button, Input, Space, Table } from "antd";
 import Highlighter from 'react-highlight-words';
 import { useEffect,useState,useRef } from "react";
@@ -142,22 +142,24 @@ const Statistics = () => {
       });
       const columns = [
         {
-          title: 'Numero de ordenes',
+          title: 'Ordenes Totales',
           dataIndex: 'totalNumberOrders',
          
-          width: '30%',
+          width: '35%',
+          
          // ...getColumnSearchProps('totalNumberOrders'),
         },
         {
           title: 'Ventas totales',
           dataIndex: 'totalSalesRevenue',
           
-          width: '20%',
+          width: '35%',
           //...getColumnSearchProps('totalSalesRevenue'),
         },
         {
           title: 'Prodcutos vendidos',
           dataIndex: 'totalProductsSold',
+          width: '45%',
           
         //   ...getColumnSearchProps('address'),
         //   sorter: (a, b) => a.address.length - b.address.length,
@@ -209,9 +211,17 @@ const Statistics = () => {
           },
         },
       };
+
+     if (allDataOrders && allDataOrders.length > 0){
+
+       var totalSalesRevenue1 = allDataOrders[0].totalSalesRevenue;
+     }
+      
+
+      console.log("all", allDataOrders);
     
-    console.log("soy data orders",allDataOrders);
-    console.log("soy data", data);
+      
+   
     return (
         <div>
             <Typography.Title level={3}>DashboardAdmin</Typography.Title>
@@ -263,53 +273,18 @@ const Statistics = () => {
                     </Link>
                 </Card>
                 </Col>
-
-                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
-                <Card>
-                    <Link to='/admin/createcategorybrand'>
-                    <CheckCircleOutlined style={{
-                            fontSize: '36px',
-                            color: 'rgba(81,75,154)',
-                            borderRadius: 30,
-                            backgroundColor: "rgba(174, 160, 212)",
-                            padding: 8
-
-                        }}/>
-                       
-                        <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Gestionar categorías y marcas</Typography.Text>} valueRender={() => '++'} />
-                    </Link>
-                </Card>
-                </Col>
-
-                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
-                <Card>
-                    <Link to='/admin/createproduct'>
-                        <PlusCircleOutlined style={{
-                            fontSize: '36px',
-                            color: 'rgba(211, 0, 0)',
-                            borderRadius: 30,
-                            backgroundColor: "rgba(247, 18, 235, 0.377)",
-                            padding: 8
-
-                        }} />
-                        <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Agregar producto</Typography.Text>} valueRender={() => '+'} />
-                    </Link>
-                </Card>
-                </Col>
-
                 <Col xs={24} sm={12} md={8} lg={6} xl={6}>
                     <Card>
-                        <Link to='/admin/ongoing-orders'>
-                            <FastForwardOutlined style={{
+                   
+                            <DollarOutlined style={{
                                 fontSize: '36px',
-                                color: 'orange',
+                                color: 'red',
                                 borderRadius: 30,
-                                backgroundColor: "yellow",
+                                backgroundColor: "pink",
                                 padding: 8
-
                             }} />
-                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Pedidos en Curso</Typography.Text>} value={ allOngoingOrders.length } />
-                        </Link>
+                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Revenue</Typography.Text>} value= { totalSalesRevenue1 } />
+                        
                     </Card>
                 </Col>
 
@@ -330,27 +305,64 @@ const Statistics = () => {
                 </Col>
                 <Col xs={24} sm={12} md={8} lg={6} xl={6}>
                     <Card>
-                       
-                            <CommentOutlined style={{
+                        <Link to='/admin/ongoing-orders'>
+                            <FastForwardOutlined style={{
                                 fontSize: '36px',
-                                color: 'red',
+                                color: 'orange',
                                 borderRadius: 30,
-                                backgroundColor: "gray",
+                                backgroundColor: "yellow",
                                 padding: 8
+
                             }} />
-                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Reviews</Typography.Text>} value={ allReviews.length } />
-                        
+                            <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Pedidos en Curso</Typography.Text>} value={ allOngoingOrders.length } />
+                        </Link>
                     </Card>
                 </Col>
+              
+
+                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+                <Card>
+                    <Link to='/admin/createproduct'>
+                        <PlusCircleOutlined style={{
+                            fontSize: '36px',
+                            color: 'rgba(211, 0, 0)',
+                            borderRadius: 30,
+                            backgroundColor: "rgba(247, 18, 235, 0.377)",
+                            padding: 8
+
+                        }} />
+                        <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Agregar producto</Typography.Text>} valueRender={() => '+'} />
+                    </Link>
+                </Card>
+                </Col>
+
+                <Col xs={24} sm={12} md={8} lg={6} xl={6}>
+                <Card>
+                    <Link to='/admin/createcategorybrand'>
+                    <CheckCircleOutlined style={{
+                            fontSize: '36px',
+                            color: 'rgba(81,75,154)',
+                            borderRadius: 30,
+                            backgroundColor: "rgba(174, 160, 212)",
+                            padding: 8
+
+                        }}/>
+                       
+                        <Statistic title={<Typography.Text style={{ fontSize: '18px', color: '#888888' }} >Gestionar categorías y marcas</Typography.Text>} valueRender={() => '++'} />
+                    </Link>
+                </Card>
+                </Col>
+
+                
             </Row>
-            <Row  gutter={16} >
-                <Col span={12}>
+            <Row justify="center" gutter={[16, 16]} style={{}}>
+              <br/>
+                
                 <Table columns={columns} dataSource={dataTable} />;
-                </Col>
-                <Col span={12}>
-                <Column {...config} />;
-                </Col>
+                
+                
             </Row>
+                <Column {...config} />;
         </div>
     )
 }

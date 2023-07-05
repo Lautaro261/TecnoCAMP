@@ -289,27 +289,26 @@ var toc=[]
     };
 
    enviar([token, selectedProductId, valueEdit])
-   console.log("lo Que Llega a back", inventoryItems)
-    //location.reload();
+   
+    location.reload();
   };
  
  const enviar=(data)=>{
    dispatch(EditProduct(data))
-     console.log("enviando")
-     console.log(data)
+     
  }
 
   const handleDelete = (e) => {
-    console.log(e.target.id)
+    
     dispatch(banProduct([token, e.target.id]))
-    //location.reload();
+    location.reload();
     
 };
 
 
 
 
-console.log(selectedProduct)
+
   return (
     <>
 
