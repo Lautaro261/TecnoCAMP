@@ -25,7 +25,6 @@ import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSl
 import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
 import ColorPicker from "../ColorPicker/ColorPicker";
-import PseudoColorPicker from "../PseudoColorPicker/PseudoColorPicker";
 
 function TableInventory() {
   const [form] = useForm();
@@ -222,7 +221,7 @@ function TableInventory() {
              Editar
            </Button> 
           
-          <button id={record.key} onClick={handleDelete}>eliminar</button>
+          <Button type="primary" id={record.key} onClick={handleDelete}>eliminar</Button>
         </>
       )
         
@@ -254,7 +253,7 @@ function TableInventory() {
       };
     });
 
-  console.log("soy all", allProducts);
+  
 
   const [open, setOpen] = useState(false);
   const showDrawer = (productId) => {
@@ -274,14 +273,13 @@ var toc=[]
   };
 
   const onClose = () => {
-    form.resetFields()
     setOpen(false);
+    location.reload();
   };
 
   const onFinish = (values) => {
-    const ids= selectedProduct.inventories.map((item)=>{return(item.id)})
-     const inventoryItems=DefinitiveColors.map((color, index)=>{
-       return({color:color[0], quantity:color[1], id:ids[index] , is_available:true})
+     const inventoryItems=DefinitiveColors.map((color)=>{
+       return({color:color[0], quantity:color[1]})
      })
     const valueEdit = {
       ...values,
@@ -289,22 +287,21 @@ var toc=[]
     };
 
    enviar([token, selectedProductId, valueEdit])
-   
-    location.reload();
+    //location.reload();
   };
  
  const enviar=(data)=>{
    dispatch(EditProduct(data))
-     
+     console.log("enviando")
+     console.log(data)
  }
 
   const handleDelete = (e) => {
-    
+    console.log(e.target.id)
     dispatch(banProduct([token, e.target.id]))
     location.reload();
     
 };
-
 
 
 
@@ -472,7 +469,7 @@ var toc=[]
             ]}>
               <Col>
               Colores Disponibles:  
-              <PseudoColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
+              <ColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
               </Col>
             </Form.Item>
             </Col>
