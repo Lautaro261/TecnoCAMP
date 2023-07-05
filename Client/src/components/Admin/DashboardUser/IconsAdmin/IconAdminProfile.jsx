@@ -16,12 +16,12 @@ const IconAdminProfile = () => {
         dispatch(Fill(token))
     },[])
     return (
-        <Link to='/admin/profile'>
+        <Link to='/super'>
                 
             <Tooltip title='Ir a perfil'>
             <Avatar shape="circle" size={115} icon={<UserOutlined />} src={profile.photo}/>
             <div style={{color:"white"}}>{profile.name?profile.name:null}</div>
-            <div style={{color:"gray"}}>{profile.sub}</div>
+            <div style={{color:"gray"}}>{profile.mail}</div>
             </Tooltip>
         </Link>
     )
