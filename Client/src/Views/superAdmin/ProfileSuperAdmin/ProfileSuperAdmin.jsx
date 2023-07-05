@@ -1,3 +1,9 @@
+// import { Layout } from 'antd';
+// import DashBoardSuperAdmin from "../../../components/superAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
+// // import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
+// // import FooterUser from '../../../components/Client/Footer/FooterUser';
+// import EditProfile from '../../../components/SuperAdmin/EditProfile/EditProfile';
+
 import { useDispatch, useSelector } from "react-redux";
 import { Layout, Space, Divider } from "antd";
 import { useEffect } from "react";
@@ -5,6 +11,7 @@ import { getAllAdmins } from "../../../Redux/Features/SuperAdmin/createAdmin/cre
 import DashBoardSuperAdmin from "../../../components/superAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
 import AdminTable from "../../../components/SuperAdmin/DashBoardSuperAdmin/AdminTable/AdminTable";
 import CreateAdminComponent from "../../../components/SuperAdmin/CreateAdminComponent/createAdminComponent";
+import EditProfile from '../../../components/SuperAdmin/EditProfile/EditProfile';
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -15,11 +22,9 @@ const headerStyle = {
   backgroundColor: "#56E0DA",
 };
 const contentStyle = {
-  textAlign: "center",
-  minHeight: 120,
-  lineHeight: "120px",
-  color: "#0000",
-  backgroundColor: "#f7f7f7",
+  width:"100vw",
+  color: '#0000',
+  minHeight:'60vh'
 };
 const siderStyle = {
   width: "300px",
@@ -32,10 +37,9 @@ const siderStyle = {
   flexDirection: "column", // Alinear los elementos verticalmente
 };
 
-const ViewAdmins = () => {
+const ProfileSuperAdmin = () => {
   const token = window.localStorage.getItem("token");
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(getAllAdmins({ token }));
   }, []);
@@ -55,11 +59,10 @@ const ViewAdmins = () => {
           </Sider>
           <Layout>
               <Header style={headerStyle}>
-                <Divider style={{ color: "black" }}>Administradores de la Tienda</Divider>
+                <Divider style={{ color: "black" }}>Datos del Perfil Del Super Admin</Divider>
               </Header>
             <Content style={contentStyle}>
-              <CreateAdminComponent />
-              <AdminTable />
+              <EditProfile />
             </Content>
           </Layout>
         </Layout>
@@ -68,4 +71,4 @@ const ViewAdmins = () => {
   );
 };
 
-export default ViewAdmins;
+export default ProfileSuperAdmin;

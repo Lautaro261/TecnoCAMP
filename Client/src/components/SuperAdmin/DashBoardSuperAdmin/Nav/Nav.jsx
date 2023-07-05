@@ -35,6 +35,7 @@ import {
       window.localStorage.setItem("current", e.key);
       navigate(e.key);
     };
+    
     return (
       <div
         style={{
@@ -50,8 +51,8 @@ import {
           onClick={onClick}
           selectedKeys={[current]}
           items={items}
-          defaultSelectedKeys={["1"]}
-          defaultOpenKeys={["sub1"]}
+          defaultSelectedKeys={["2"]}
+          defaultOpenKeys={["sub2"]}
           mode="inline"
           theme="dark"
         />

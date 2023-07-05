@@ -28,6 +28,7 @@ import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
 import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
+import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -125,6 +126,7 @@ function App() {
         >
           {/* <Route path="/superadmin/admins" element={<SuperAdminHome />} /> */}
           <Route path="/superadmin/admins" element={<ViewAdmins />} />
+          <Route path="/superadmin/profile" element={<ProfileSuperAdmin />} />
         </Route>
 
     </Routes>
