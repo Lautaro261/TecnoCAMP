@@ -18,7 +18,7 @@ const ReviewFormModal = (props) => {
     return (
         <Col>
             <Button type='primary' onClick={ showModal }>
-                Dejar review
+                Dejar Review
             </Button>
             <Modal 
                 title='Formulario para calificación de producto' 

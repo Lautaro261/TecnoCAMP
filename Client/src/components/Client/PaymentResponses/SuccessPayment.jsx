@@ -5,8 +5,8 @@ import { useDispatch } from 'react-redux';
 import { postPaymentNotification } from '../../../Redux/Features/payment/paymentSlice';
 
 const SuccessPayment = () => {
+    const clientToken = localStorage.getItem('token');
     const { search } = useLocation();
-
     const params = new URLSearchParams(search);
     const { 
         collection_id, 
@@ -28,7 +28,7 @@ const SuccessPayment = () => {
         `collection_status=${ collection_status }`;
 
     useEffect(() => {
-        dispatch(postPaymentNotification(queryParams));
+        dispatch(postPaymentNotification({ queryParams, clientToken }));
     }, []);
 
     return (
