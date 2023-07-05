@@ -5,7 +5,7 @@ const getAllAdmins = async () => {
 
   const allAdmin = await User.findAll({
     where: { rol: rolName },
-    attributes: ["sub", "name", "email", "rol", "photo"],
+    attributes: ["sub", "name", "email", "rol", "photo","erased"],
   });
 
   if (allAdmin.length === 0) {

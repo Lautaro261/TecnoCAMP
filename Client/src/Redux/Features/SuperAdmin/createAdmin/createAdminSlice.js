@@ -33,11 +33,11 @@ export const createNewAdmin = createAsyncThunk(
 
 export const getAllAdmins = createAsyncThunk(
   "createAdmin/getAllAdmins",
-  async () => {
+  async (tokena) => {
     try {
       const response = await axios.get("/superadmin/allAdmins", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${tokena}`,
         },
       });
       console.log("Aqui estan todos los admins", response.data);

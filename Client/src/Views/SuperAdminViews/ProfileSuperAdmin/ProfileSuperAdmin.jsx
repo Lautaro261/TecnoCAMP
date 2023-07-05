@@ -11,7 +11,7 @@ import { getAllAdmins } from "../../../Redux/Features/SuperAdmin/createAdmin/cre
 import DashBoardSuperAdmin from "../../../components/superAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
 import AdminTable from "../../../components/SuperAdmin/DashBoardSuperAdmin/AdminTable/AdminTable";
 import CreateAdminComponent from "../../../components/SuperAdmin/CreateAdminComponent/createAdminComponent";
-import EditProfile from '../../../components/SuperAdmin/EditProfile/EditProfile';
+import EditProfile from "../../../components/EditProfile/editProfile";
 
 const { Header, Footer, Sider, Content } = Layout;
 const headerStyle = {
@@ -62,7 +62,7 @@ const ProfileSuperAdmin = () => {
                 <Divider style={{ color: "black" }}>Datos del Perfil Del Super Admin</Divider>
               </Header>
             <Content style={contentStyle}>
-              <EditProfile />
+              <EditProfile/>
             </Content>
           </Layout>
         </Layout>
