@@ -32,7 +32,7 @@ const Icons = () => {
         ? (
           <Row justify="center">
             <Col span={4}>
-              <Badge count={cart.length}> {/* FALTA ESTADO DE CARRITO */}
+              <Badge count={cart?cart.length:null}> {/* FALTA ESTADO DE CARRITO */}
               <IconCart/>
               </Badge>
             </Col>
