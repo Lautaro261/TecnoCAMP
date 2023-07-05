@@ -11,7 +11,6 @@ const IconsAdmin = () => {
             <Col span={24} style={{ marginBottom: '10vh'}} ><Link to='/admin/home'><img src={Logo} alt="Logo" style={{height: 'auto', width:'20vh'}}/></Link></Col>
             <Col span={24}>
                 <IconAdminProfile />
-                <div>Andres</div>
             </Col>
             <Col span={24}><Logout /></Col>
 
