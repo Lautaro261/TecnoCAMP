@@ -24,6 +24,7 @@ const siderStyle = {
   width: '300px',
   textAlign: 'center',
   lineHeight: '40px',
+  minHeight:"100vh",
   color: '#fff',
   backgroundColor: '#001529',
   // height: "100vh",

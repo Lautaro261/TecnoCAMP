@@ -27,6 +27,7 @@ import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
+import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -106,6 +107,7 @@ function App() {
         <Route path="/admin/ongoing-orders" element={<OngoingOrdersView />} />
         <Route path="/admin/reviews" element={<AdminReviewsView />} />
         <Route path="/admin/createcategorybrand" element={<CategoryAndBrandCreateView/>} />
+        <Route path="/admin/profile" element={<AdminProfileView/>} />
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />

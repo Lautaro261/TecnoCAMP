@@ -27,7 +27,7 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  // height: "100vh",
+  minHeight: "100vh",
 };
 
 function Inventary() {
