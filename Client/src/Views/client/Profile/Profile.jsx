@@ -2,7 +2,10 @@ import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import FooterUser from '../../../components/Client/Footer/FooterUser';
 import EditProfile from '../../../components/EditProfile/editProfile';
-
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
+import { getFavorites } from '../../../Redux/Features/products/clientProductsSlice';
 const { Header, Footer, Content } = Layout;
 
 const headerStyle = {
@@ -29,9 +32,17 @@ const footerStyle = {
   padding:"0px"
 };
 
-const ProfileView = () => (
-    
-
+const ProfileView = () => {
+  const token = window.localStorage.getItem("token")
+  const dispatch=useDispatch()
+  useEffect(() => {
+    if (token) {
+      dispatch(CreateCart(token));
+      dispatch(getFavorites(token));
+    }
+  }, [token])
+  
+  return(
   <Layout >
     <Header style={headerStyle}><DashboardUser /></Header>
     <Content style={contentStyle}>
@@ -41,5 +52,5 @@ const ProfileView = () => (
   </Layout>
 
 
-);
+)};
 export default ProfileView ;

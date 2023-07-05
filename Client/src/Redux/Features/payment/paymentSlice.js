@@ -1,8 +1,6 @@
 import { createAsyncThunk, createAction, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const token = localStorage.getItem('token');
-
 const initialState = {
     cart: [],
     allDepartments: [],
@@ -32,11 +30,11 @@ export const getCartForAUser = createAsyncThunk(
 
 export const getAllDepartments = createAsyncThunk(
     'payment/getAllDepartments',
-    async () => {
+    async (clientToken) => {
         try {
             const response = await axios.get('/client/alldepartments', {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
             return response.data;
@@ -49,11 +47,11 @@ export const getAllDepartments = createAsyncThunk(
 
 export const getAllMunicipalities = createAsyncThunk(
     'payment/getAllMunicipalities',
-    async (departmentId) => {
+    async ({ departmentId, clientToken }) => {
         try {
             const response = await axios.get(`/client/munbydep?departmentId=${ departmentId }`, {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
             return response.data;
@@ -73,7 +71,6 @@ export const createPaymentOrder = createAsyncThunk(
                     Authorization: `Bearer ${ clientToken }`
                 }
             });
-            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -84,11 +81,11 @@ export const createPaymentOrder = createAsyncThunk(
 
 export const postPaymentNotification = createAsyncThunk(
     'payment/postPaymentNotification',
-    async (queryParams) => {
+    async ({ queryParams, clientToken }) => {
         try {
             const response = await axios.post(`/client/postnotification?${ queryParams }`, {}, {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
             return response.data;

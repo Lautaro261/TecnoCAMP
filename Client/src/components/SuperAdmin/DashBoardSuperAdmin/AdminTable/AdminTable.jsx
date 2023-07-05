@@ -13,8 +13,8 @@ const AdminTable = () => {
   const clients = useSelector((state) => state.createAdmin.allAdmins);
 
   useEffect(() => {
-    dispatch(getAllAdmins());
-  }, []);
+    dispatch(getAllAdmins(token));
+  }, [token]);
 
   const dataClients =
     clients &&
@@ -189,8 +189,10 @@ const AdminTable = () => {
       dataIndex: "acciones",
       key: "acciones",
       render: (_, record) =>
+    
         dataClients.length >= 1 && record.erased ? (
           <Popconfirm
+          
             title="¿Desea restaurar a este usuario?"
             onConfirm={() => handleDelete(record.key, record.erased)}
           >

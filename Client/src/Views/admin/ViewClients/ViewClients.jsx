@@ -3,7 +3,7 @@ import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdm
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout, Space, Divider, } from 'antd';
 import { useEffect } from 'react';
-import { getAllClients } from '../../../Redux/Features/admin/clients/adminClientsSlice';
+import { getAllClients } from '../../../Redux/Features/admin/clients/clientsSlice';
 import CustomerTable from '../../../components/Admin/TableClients/CustomerTable';
 
 const { Header, Footer, Sider, Content } = Layout;
@@ -39,7 +39,7 @@ const siderStyle = {
 const ViewClients = ()=>{
   const token =window.localStorage.getItem("token")
   const dispatch= useDispatch()
-  const clientes = useSelector(state=>state.adminClients.allClients)
+  const clientes = useSelector(state=>state.clients.allClients)
   useEffect(()=>{
     dispatch(getAllClients({token}))
     console.log(clientes)

@@ -16,21 +16,22 @@ const DispatchForm = (props) => {
     const paymentOrderResponse = useSelector(state => state.payment.paymentOrderResponse);
 
     useEffect(() => {
-        dispatch(getAllDepartments());
+        dispatch(getAllDepartments(clientToken));
     }, []);
 
     useEffect(() => {
         if (paymentOrderResponse.payment_link) {
-            window.open(paymentOrderResponse.payment_link);
+            window.open(paymentOrderResponse.payment_link, '_self');
         }
     }, [paymentOrderResponse.payment_link]);
 
     const handleChange = (value) => {
         form.setFieldsValue({ municipalityId: '' })
-        dispatch(getAllMunicipalities(parseInt(value)));
+        dispatch(getAllMunicipalities({ departmentId: value, clientToken }));
     };
 
     const onFinish = (values) => {
+        console.log(values);
         dispatch(createPaymentOrder({ values, clientToken }));
         props.closeModal();
     };
@@ -79,8 +80,12 @@ const DispatchForm = (props) => {
                             message: 'Ingrese un número válido',
                         },
                         {
-                            max: 10,
-                            message: 'El número de celular debe tener máximo 10 dígitos',
+                            max: 12,
+                            message: 'El número de celular debe tener máximo 12 dígitos',
+                        },
+                        {
+                            min: 10,
+                            message: 'El número de celular debe tener mínimo 10 dígitos',
                         },
                     ]}
                 >
