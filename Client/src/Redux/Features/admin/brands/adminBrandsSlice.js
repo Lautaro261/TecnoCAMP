@@ -61,9 +61,9 @@ export const brandById = createAsyncThunk(
   
   export const deleteBrand = createAsyncThunk(
     'adminBrands/deleteBrand',
-    async ({ token, idBrand }) => {
+    async ({ token, id }) => {
       try {
-        const response = await axios.put('http://localhost:3001/admin/deletebrand', idBrand, {
+        const response = await axios.put('http://localhost:3001/admin/deletebrand', {id: id}, {
           headers: {
             Authorization: `Bearer ${token}`
           }

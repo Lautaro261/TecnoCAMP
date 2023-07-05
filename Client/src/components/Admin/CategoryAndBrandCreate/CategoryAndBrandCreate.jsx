@@ -134,6 +134,7 @@ const CategoryAndBrandCreate = () => {
                         title='¿Estas seguro de eliminar esta categoría?'
                         onConfirm={() => {
                             dispatch(deleteCategory({ token, id: record.key }))
+                            console.log('delete recordkey', record.key)
                             setForceUpdate(prevState => !prevState);
 
                         }}

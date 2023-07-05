@@ -58,8 +58,9 @@ export const updateCategory = createAsyncThunk(
 export const deleteCategory = createAsyncThunk(
   'adminCategories/deleteCategory',
   async ({ token, id }) => {
+    console.log('id deletecategory', id)
     try {
-      const response = await axios.put('http://localhost:3001/admin/deletecategory', id, {
+      const response = await axios.put('http://localhost:3001/admin/deletecategory', {id: id}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
