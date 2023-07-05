@@ -81,7 +81,7 @@ function App() {
     <Routes>
       {/* RUTAS PARA TODOS ---SIN REGISTRO--- */}
       <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<LoginView />} />
+      <Route path="/login" element={<Login2View />} />
       <Route path="/home" element={<ClientHome />} />
       <Route path="/all-categories" element={<AllCategoriesView />} />
       <Route path='/categories/:category' element={<CategoriesView />} />
