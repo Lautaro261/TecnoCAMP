@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ReviewForm from '../ReviewForm/ReviewForm';
 
 const ReviewFormModal = (props) => {
-    const { productId } = props;
+    const { productId, orderId } = props;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,7 +26,7 @@ const ReviewFormModal = (props) => {
                 footer={ null }
                 onCancel= { handleCancel } 
             >
-                <ReviewForm productId={ productId } closeModal={ handleCancel } />
+                <ReviewForm productId={ productId } orderId={ orderId } closeModal={ handleCancel } />
             </Modal>
         </Col>
     );

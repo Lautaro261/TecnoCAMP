@@ -24,7 +24,7 @@ const DispatchFormModal = () => {
                 footer={ null }
                 onCancel= { handleCancel } 
             >
-                <DispatchForm />
+                <DispatchForm closeModal={ handleCancel } />
             </Modal>
         </Col>
     );

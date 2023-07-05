@@ -16,7 +16,7 @@ export const Fill = createAsyncThunk(
             }
         })
 
-        console.log(response.data)
+        console.log('Respuesta de fill', response.data)
         if(response.data.message){
             
             return ([])
@@ -84,7 +84,7 @@ export const Delete = createAsyncThunk(
             })
     
             console.log(dataset.data, "refill")
-            if(dataset.data.message==="El carrito no tiene productos agregados"){
+            if(dataset.data.message==="El usuario no tiene productos agregados en el carrito"){
                 return ([])
             }else{return dataset.data} 
 

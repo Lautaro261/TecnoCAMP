@@ -27,6 +27,7 @@ import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
+import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
 import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
 import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
 
@@ -108,6 +109,7 @@ function App() {
         <Route path="/admin/ongoing-orders" element={<OngoingOrdersView />} />
         <Route path="/admin/reviews" element={<AdminReviewsView />} />
         <Route path="/admin/createcategorybrand" element={<CategoryAndBrandCreateView/>} />
+        <Route path="/admin/profile" element={<AdminProfileView/>} />
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />
