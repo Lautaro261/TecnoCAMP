@@ -10,6 +10,7 @@ import { loginUser, signUpUser } from "../../../Redux/Features/login/logInAndSig
 import Holder from "../../../components/Client/Categories/Holder/Holder";
 import { CreateCart } from '../../../Redux/Features/cart/cartSlice';
 import { useNavigate } from 'react-router-dom';
+import { getFavorites } from '../../../Redux/Features/products/clientProductsSlice';
 
 const { Header, Footer, Content } = Layout;
 const headerStyle = {
@@ -114,6 +115,7 @@ const ClientHome = () => {
   useEffect(() => {
     if (token) {
       dispatch(CreateCart(token));
+      dispatch(getFavorites(token));
     }
   }, [token])
 

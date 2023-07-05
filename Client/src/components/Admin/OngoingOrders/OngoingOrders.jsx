@@ -1,4 +1,4 @@
-import { Row, Col, Button, Input, Space, Table, Divider, Typography} from 'antd';
+import { Row, Col, Button, Input, Space, Table, Divider, Typography, Tag} from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { useState, useEffect, useRef } from 'react';
@@ -171,8 +171,8 @@ const AdminReviews = () => {
                         { products.map(product => (
                             product.inventoryIds.map(inventory => (
                                 <div key={ inventory.id } style={{ marginBlock: '15px' }}>
-                                    <div><span style={{ fontWeight: 620 }}>Nombre:</span> { product.name }</div>
-                                    <Row align='middle'><span style={{ fontWeight: 620 }}>Foto:</span><img src={ product.photo[0] } alt={ product.name } style={{ inlineSize: '100px' }} /></Row>
+                                    <div><span style={{ fontWeight: 620 }}>{product.name}</span></div>
+                                    <Row align='middle'><span style={{ fontWeight: 620 }}></span><img src={ product.photo[0] } alt={ product.name } style={{ inlineSize: '100px' }} /></Row>
                                     <Row>
                                             <Col>
                                                 <span style={{ fontWeight: 620 }}>Color:</span> 
@@ -191,16 +191,31 @@ const AdminReviews = () => {
             }
         }, 
         {
-            key: 'key', 
-            title: 'Estado de Envío', 
-            dataIndex: 'shipping_status', 
+            key: 'key',
+            title: 'Estado de Envío',
+            dataIndex: 'shipping_status',
             filters: [
-                { text: 'En preparación', value: 'En preparacion' }, 
-                { text: 'Despachado', value: 'Despachado' }, 
-                { text: 'Entregado', value: 'Entregado' }
-            ], 
-            onFilter: (value, record) => record.shipping_status === value
-        }, 
+              { text: 'En preparación', value: 'En preparacion' },
+              { text: 'Despachado', value: 'Despachado' },
+              { text: 'Entregado', value: 'Entregado' }
+            ],
+            onFilter: (value, record) => record.shipping_status === value,
+            render: (shipping_status) => {
+              let color = '';
+              if (shipping_status === 'En preparacion') {
+                color = 'geekblue';
+              } else if (shipping_status === 'Despachado') {
+                color = 'green';
+              } else if (shipping_status === 'Entregado') {
+                color = 'volcano';
+              }
+              return (
+                <Tag color={color} key={shipping_status} style={{ fontSize: '17px' }}>
+                  {shipping_status}
+                </Tag>
+              );
+            }
+          },
         {
             key: 'key', 
             title: 'Acciones', 

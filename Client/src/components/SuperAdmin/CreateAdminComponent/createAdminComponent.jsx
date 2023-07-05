@@ -17,6 +17,11 @@ const CreateAdminComponent = () => {
   const [open, setOpen] = useState(false); // Estado para controlar la visibilidad del modal
   const [form] = Form.useForm(); // Estado del formulario
 
+
+  useEffect(()=>{
+    dispatch(getAllAdmins())
+  },[userCreated.message])
+
   useEffect(() => {
     if (userCreated.message === "¡Administrador creado correctamente!") {
       dispatch(getAllAdmins());
