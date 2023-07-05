@@ -1,10 +1,12 @@
-import React from 'react'
+import React from 'react';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import EditInventarycomponent from '../../../components/Admin/FormEditInventary/FormEditInventary';
+import Statistics from '../../../components/Admin/Statistics/Statistics';
 
 import { Layout, Space, Divider } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+import EditProfile from '../../../components/EditProfile/editProfile';
+const { Header, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,
@@ -14,8 +16,7 @@ const headerStyle = {
 };
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
+  
   color: '#0000',
   backgroundColor: '#ffff',
 };
@@ -25,15 +26,13 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  
-};
-const footerStyle = {
-  textAlign: 'center',
-  color: '#fff',
-  backgroundColor: '#7dbcea',
+  minHeight:"100vh",
 };
 
-function EditInventary() {
+
+
+const AdminProfileView= ()=>{
+
     return(
         <div>
              <Space
@@ -46,10 +45,9 @@ function EditInventary() {
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}> Bienvenido </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
         <Content style={contentStyle}>
-            <EditInventarycomponent/>
-        
+        <EditProfile />
         </Content>
       </Layout>
     </Layout>
@@ -58,4 +56,4 @@ function EditInventary() {
     )
 }
 
-export default EditInventary
+export default AdminProfileView;

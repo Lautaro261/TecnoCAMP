@@ -222,7 +222,7 @@ function TableInventory() {
              Editar
            </Button> 
           
-          <button id={record.key} onClick={handleDelete}>eliminar</button>
+          <Button type="primary" id={record.key} onClick={handleDelete}>eliminar</Button>
         </>
       )
         
@@ -300,7 +300,7 @@ var toc=[]
   const handleDelete = (e) => {
     console.log(e.target.id)
     dispatch(banProduct([token, e.target.id]))
-    //location.reload();
+    location.reload();
     
 };
 

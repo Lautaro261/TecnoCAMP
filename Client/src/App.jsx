@@ -27,6 +27,9 @@ import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
+import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
+import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
+import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
 
 axios.defaults.baseURL = "http://localhost:3001";
 
@@ -45,7 +48,7 @@ function App() {
   const redirect = {
     client: "/home",
     admin: "/admin/home",
-    superAdmin: "/super/admins",
+    superAdmin: "/superadmin/admins",
   };
 
 
@@ -60,7 +63,7 @@ function App() {
           navigate('/admin/home');
           break;
         case 'superAdmin':
-          navigate('/super/admins');
+          navigate('/superadmin/admins');
           break;
         default:
           navigate('/home');
@@ -106,11 +109,29 @@ function App() {
         <Route path="/admin/ongoing-orders" element={<OngoingOrdersView />} />
         <Route path="/admin/reviews" element={<AdminReviewsView />} />
         <Route path="/admin/createcategorybrand" element={<CategoryAndBrandCreateView/>} />
+        <Route path="/admin/profile" element={<AdminProfileView/>} />
       </Route>
       {/* RUTA DE CONSTRUCCION*/}
       <Route path="*" element={<ErrorView />} />
-    </Routes>
 
+      //// ANDY ////
+
+        {/* RUTAS PROTEGIDAS SUPERADMIN*/}
+        <Route
+          element={
+            <ProtectedRoutes
+              logged={!!token}
+              allowed={rol === "superAdmin"}
+              redirect={rol === "client" ? redirect.client : redirect.admin}
+            />
+          }
+        >
+          {/* <Route path="/superadmin/admins" element={<SuperAdminHome />} /> */}
+          <Route path="/superadmin/admins" element={<ViewAdmins />} />
+          <Route path="/superadmin/profile" element={<ProfileSuperAdmin />} />
+        </Route>
+
+    </Routes>
   );
 }
 
