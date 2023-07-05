@@ -16,7 +16,7 @@ const IconAdminProfile = () => {
         dispatch(Fill(token))
     },[])
     return (
-        <Link to='/super'>
+        <Link to='/admin/profile'>
                 
             <Tooltip title='Ir a perfil'>
             <Avatar shape="circle" size={115} icon={<UserOutlined />} src={profile.photo}/>
