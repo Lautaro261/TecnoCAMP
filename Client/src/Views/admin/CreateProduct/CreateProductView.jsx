@@ -23,6 +23,7 @@ const siderStyle = {
   width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
+  minHeight:"99vh",
   color: '#fff',
   backgroundColor: '#001529',
   // maxWidth:'100%',
