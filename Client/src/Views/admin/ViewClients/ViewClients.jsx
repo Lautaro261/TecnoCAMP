@@ -30,7 +30,7 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  height:"100vh",
+  // height:"100vh",
 };
 
 
