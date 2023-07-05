@@ -5,8 +5,10 @@ import axios from 'axios';
 // const token = localStorage.getItem('token');
 
 const initialState = {
+    postProduct:{},
     productPut: [],
     allProducts: [],
+    bannedProcuts: [],
     searchedResult: [],
     photos: [],
     status: 'idle',
@@ -14,24 +16,48 @@ const initialState = {
   };
 
 
-  export const putProduct = createAsyncThunk(
-    'adminProducts/putProduct',
-    async([token,idProduct, valueEdit]) => {
-      console.log('idProuct', idProduct, 'values', valueEdit, 'token', token)
+  export const banProduct = createAsyncThunk(
+    'adminProducts/banProduct',
+    async([token, selectedProductId]) => {
       try {
-          response  = await axios.put(`admin/update/${idProduct}`,valueEdit,{
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+        console.log("id", selectedProductId, "token", token)
+        const response= await axios.put("/admin/delete", {"productId": selectedProductId} ,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         })
-        console.log('okokok put product', response.data)
-        return  response.data;
+        console.log('banUser ok', response.data)
+        return sub
       } catch (error) {
-        console.log('putttproduct,errorr', error.response.data)
+        console.log('error banUser', error.response.data)
         throw error.response.data
       }
     }
   )
+
+  export const EditProduct= createAsyncThunk(
+    'adminProducts/EditProduct',
+    async([token,selectedProductId, valueEdit]) => {
+      try {
+        console.log("soy el editar producto")
+        const response= await axios.put(`admin/update/${selectedProductId}`,valueEdit ,{
+          headers: {
+              Authorization: `Bearer ${token}`
+          }
+      })
+        console.log('editado correctamente', response.data)
+        console.log(valueEdit)
+
+        return response.data
+      } catch (error) {
+        console.log('error al editar', error.response.data)
+        throw error.response.data
+      }
+    }
+  )
+
+
+
 
 
   export const getAllProducts = createAsyncThunk(
@@ -79,6 +105,23 @@ const adminProductsSlice = createSlice({
     reducers:{},
     extraReducers: (builder) => {
         builder
+
+
+        .addCase(banProduct.pending, (state, action) => {
+          state.status = 'loading';
+        })
+        .addCase(banProduct.fulfilled, (state, action) => {
+          state.status = "succeeded";
+       
+          state.bannedProcuts = action.payload;
+          state.error = null;
+        })
+        .addCase(banProduct.rejected, (state, action) => {
+          state.status = 'rejected';
+          state.error = action.error.message;
+        })
+
+
         .addCase(getAllProducts.pending, (state) => {
             state.status = "loading";
           })
@@ -91,6 +134,8 @@ const adminProductsSlice = createSlice({
             state.status = "rejected";
             state.error = action.error.message;
           })
+
+
           .addCase(getProductsSearched.pending, (state) => {
             state.status = "loading";
           })
@@ -104,19 +149,6 @@ const adminProductsSlice = createSlice({
             state.errorSearch = action.error;
           })
 
-
-          .addCase(putProduct.pending, (state) => {
-            state.status = "loading";
-          })
-          .addCase(putProduct.fulfilled, (state, action) => {
-            state.status = "succeeded";
-            state.productPut = action.payload;
-            state.error = null;
-          })
-          .addCase(putProduct.rejected, (state, action) => {
-            state.status = "rejected";
-            state.error = action.error.message;
-          })
     }
 })
 

@@ -42,7 +42,8 @@ const footerStyle = {
   textAlign: 'center',
   color: '#fff',
   margin:"0px",
-  padding:"0px"
+  padding:"0px",
+  width: '100%'
 };
 
 const CategoriesView = () => {
@@ -52,7 +53,7 @@ const CategoriesView = () => {
 
   // },[nameCategory])
 
-  const brands = ["Apple", "Huawei", "Motorola", "Realme", "Samsung", "Xiaomi"];
+  const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi", "All"];
   let  current = window.localStorage.getItem('current');
 
 /*
@@ -108,8 +109,8 @@ const CategoriesView = () => {
         <Row justify="end">
           <ProductsSorting />
         </Row>
-        <Row gutter={[32, 32]}>
-          <Col span={6}>
+        <Row gutter={[16, 16]}>
+          <Col xs={24} sm={24} md={6} lg={6} xl={6}>
             <ProductsSliderFilter />
             <ProductsByBrandFilter />
             <Button
@@ -119,7 +120,7 @@ const CategoriesView = () => {
               Aplicar filtros
             </Button>
           </Col>
-          <Col span={18}>
+          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
             <ConteinerProductsByCategory />
           </Col>
         </Row>

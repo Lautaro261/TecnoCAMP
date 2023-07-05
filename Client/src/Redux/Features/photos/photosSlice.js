@@ -6,6 +6,7 @@ const initialState = {
 
 export const setPhotos = createAction("photos/setPhotos");
 export const removePhoto = createAction("photos/removePhoto");
+export const resetPhotos = createAction("photos/resetPhotos");
 
 const photosSlice = createSlice({
   name: "photos",
@@ -17,6 +18,9 @@ const photosSlice = createSlice({
     removePhoto: (state, action) => {
       const filteredPhotos = state.photos.filter(photo => photo !== action.payload);
       state.photos = filteredPhotos;
+    },
+    resetPhotos: (state, action) => {
+      state.photos = action.payload;
     }
   }
 });

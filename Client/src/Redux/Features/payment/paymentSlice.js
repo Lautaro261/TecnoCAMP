@@ -1,8 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createAction, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
-const rol = localStorage.getItem('rol');
-const token = rol === 'client' && localStorage.getItem('token');
+const token = localStorage.getItem('token');
 
 const initialState = {
     cart: [],
@@ -16,11 +15,11 @@ const initialState = {
 
 export const getCartForAUser = createAsyncThunk(
     'payment/getCartForAUser',
-    async () => {
+    async (clientToken) => {
         try {
             const response = await axios.get('/client/cartuser', {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
             return response.data;
@@ -67,14 +66,14 @@ export const getAllMunicipalities = createAsyncThunk(
 
 export const createPaymentOrder = createAsyncThunk(
     'payment/createPaymentOrder',
-    async (data) => {
-        console.log('ESTO ENVIO AL BACK',data)
+    async ({ values, clientToken }) => {
         try {
-            const response = await axios.post('/client/createorder', data, {
+            const response = await axios.post('/client/createorder', values, {
                 headers: {
-                    Authorization: `Bearer ${ token }`
+                    Authorization: `Bearer ${ clientToken }`
                 }
             });
+            console.log(response.data);
             return response.data;
         } catch (error) {
             console.error(error.message);
@@ -102,7 +101,7 @@ export const postPaymentNotification = createAsyncThunk(
 
 const paymentSlice = createSlice({
     name: 'payment',
-    initialState,
+    initialState,  
     extraReducers: (builder) => {
         builder
 

@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Row, Col } from 'antd';
+import { Button, Form, Input, Select, Row, Col, Alert, Typography } from 'antd';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,11 +6,11 @@ import UploadButton from '../../Client/Cloudinary/UploadButton';
 import ColorPicker from '../ColorPicker/ColorPicker.jsx';
 import { getAllCategories } from '../../../Redux/Features/admin/categories/adminCategoriesSlice';
 import { getAllBrands } from '../../../Redux/Features/admin/brands/adminBrandsSlice';
+import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
+import { useForm } from 'antd/lib/form/Form';
 
-
-
-
+const {Title} = Typography
 const FormProductos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.photos.photos);
@@ -20,39 +20,101 @@ const FormProductos = () => {
   const [FormColors, SetFormColors] = useState([])
   const [cantidad, setCantidad] = useState([])
   const [color, setcolor] = useState([])
+  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertWarning, setShowAlertWarning] = useState(false);
+  const [form] = useForm();
+  const [errors,setErrors]=useState()
+  const [errors1,setErrors1]=useState([])
+
+
 
 
   useEffect(() => {
-    dispatch(getAllCategories());
-    dispatch(getAllBrands());
+    dispatch(resetPhotos([]));
+    dispatch(getAllCategories(token));
+    dispatch(getAllBrands(token));
   }, []);
+
+  useEffect(() => {
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }
+
+    if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+  }, [FormColors, photos]);
+
 
   const post = async (values) => {
     const coloresA = FormColors.map(e => { return (e[0]) })
     const cantidadesA = FormColors.map(e => { return (e[1]) })
     const data = { ...values, photo: photos, colors: coloresA, quantities: cantidadesA }
-    console.log(data)
     const response = await axios.post('/admin/createproduct', data, {
       headers: {
+
         Authorization: `Bearer ${token}`
       }
     });
-    return response
+    console.log('response', response)
+
+    if (response.data && response.data.id) {
+      setShowAlert(true)
+    }
+    if (response.data.message && response.data.message === "Nombre de producto ya creado") {
+      setShowAlertWarning(true)
+    }
   }
 
   const onFinish = (values) => {
-    console.log(FormColors, "todododoo")
-    console.log('Success:');
-    post(values)
+
+    if (FormColors.length<1){
+      setErrors("No puedes crear un producto sin colores ni cantidades")
+    }else{
+      setErrors(null)
+    }if (photos.length<1){
+      setErrors1("No puedes crear un producto sin fotos")
+    }else{
+      setErrors1(null)
+    }
+    
+    if (!errors&&!errors1){
+      console.log(FormColors,"aki")
+      post(values);
+    }
   };
+
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
-
   return (
-    <div style={{  maxWidth: '100%', marginTop:'10vh' }}>
-
+    <Row>
+      <Col span={24}> <Title level={3}>Creación de producto.</Title>
+   
+    {/* <div style={{ maxWidth: '100%', marginTop: '10vh' }}> */}
+      {showAlert && (
+        <Alert
+          message="¡Producto creado exitosamente!"
+          type="success"
+          showIcon
+          closable
+          onClose={() => setShowAlert(false)}/>
+      )}
+      {showAlertWarning && (
+        <Alert
+          message="Cuidado"
+          type="warning"
+          description="Verifique estar ingresando correctamente todos los datos.El nombre de producto no puede ser repetido."
+          closable
+          onClose={() => setShowAlertWarning(false)}
+        />
+      )}
       <Form
         name="basic"
         labelCol={{
@@ -65,14 +127,14 @@ const FormProductos = () => {
           maxWidth: '100%'
         }}
         initialValues={{
-          remember: true,
+         
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Row gutter={[8, 8]}>
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12} style={{marginTop:'4vh'}}>
             <Form.Item
               label="Nombre del producto:"
               name="name"
@@ -81,6 +143,10 @@ const FormProductos = () => {
                   required: true,
                   message: 'porfavor introduce el nombre del artículo',
                 },
+                {
+                  pattern: /^[a-zA-Z0-9\s]+$/,
+                  message: 'Solo se permiten letras, números y espacios',
+                }
               ]}
             >
               <Input />
@@ -94,34 +160,43 @@ const FormProductos = () => {
                   required: true,
                   message: 'Por favor colocar un precio',
                 },
+                {
+                  pattern: /^[0-9]+$/,
+                  message: 'Solo puedes ingresar números',
+                }
               ]}
             >
-              <Input />
+              <Input type='number' min={1} />
             </Form.Item>
 
             <Form.Item
               label="Precio de oferta:"
               name="price_promotion"
             >
-              <Input />
+              <Input type='number' min={1} />
             </Form.Item>
 
             <Form.Item
               label="Colores:"
               name="inventories"
-
             >
+              <div>
               <ColorPicker SetFormColors={SetFormColors} />
+              <span style={{color:"red"}}>{errors}</span>
+              </div>
             </Form.Item>
 
             <Form.Item
               label="Fotos:"
             >
+              <div>
               <UploadButton />
+              <span style={{color:"red"}}>{errors1}</span>
+              </div>
             </Form.Item>
           </Col>
 
-          <Col span={12}>
+          <Col xs={24} sm={24} md={12} lg={12} style={{marginTop:'4vh'}}>
 
             <Form.Item
               label="Categoría:"
@@ -208,7 +283,9 @@ const FormProductos = () => {
           </Col>
         </Row>
       </Form>
-    </div>
+      </Col>
+    {/* </div> */}
+    </Row>
   )
 };
 export default FormProductos;

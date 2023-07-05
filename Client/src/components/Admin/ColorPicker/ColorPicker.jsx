@@ -6,8 +6,9 @@ const colors=['#FFF8F2', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', 
 
 
 
-const ColorPicker = ( {SetFormColors} ) =>{
-    const [total,SetTotal]= useState([])
+const ColorPicker = ( {SetFormColors, formColors} ) =>{
+    const [total,SetTotal]= useState(formColors?formColors:[])
+
     const [open, SetOpen] = useState(false)
     const [Acolor, setcolor]=useState("#FFFFFF")
     const [Acant, setCant]=useState(1)
@@ -59,7 +60,7 @@ const ColorPicker = ( {SetFormColors} ) =>{
             {total.map((i)=>{
                 return(
                     <div key={i}>
-                        <div data={i} style={{width:"30px", height:"30px",borderRadius:"100px" , background:`${i[0]}`}} onClick={deleteColor} key={i[0]}>{i[1]}
+                        <div data={i} style={{width:"30px", height:"30px",borderRadius:"100px" , background:`${i[0]}`}} onClick={deleteColor} >{i[1]}
                         </div>
                         
                     </div>

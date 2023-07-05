@@ -9,8 +9,8 @@ const updateProduct = async (
   e_product_type,
   is_available,
   product_favorite,
-  /* categoryId,
-  brandId, */
+   categoryId,
+  brandId, 
   inventoryItems
 ) => {
   // Validar que el producto, la categoría y la marca existen
@@ -78,8 +78,8 @@ const updateProduct = async (
   product.e_product_type = e_product_type;
   product.is_available = is_available;
   product.product_favorite = product_favorite;
- /*  product.categoryId = categoryId;
-  product.brandId = brandId; */
+  product.categoryId = categoryId;
+  product.brandId = brandId; 
 
   // Actualizar los elementos de inventario asociados
   if (inventoryItems && inventoryItems.length > 0) {

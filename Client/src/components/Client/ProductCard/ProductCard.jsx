@@ -1,46 +1,60 @@
-import styles from './ProductCard.module.css';
-import { Row, Col, Space, Card } from 'antd';
+import { Row, Col, Space, Card, Tag, Button } from 'antd';
 import {
-	HeartOutlined, 
-	HeartFilled 
+	HeartOutlined,
+	HeartFilled
 } from '@ant-design/icons';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { addFavorite } from '../../../Redux/Features/products/clientProductsSlice';
+import { useDispatch } from 'react-redux';
 
 // id será usado para la vista de detalle
-const ProductCard = ({ id, e_product_type, photo, name, price }) => {
+const ProductCard = ({ id, e_product_type, photo, name, price, is_available }) => {
 	const [isFavorite, setIsFavorite] = useState(false);
 	const { Meta } = Card;
+	const dispacth = useDispatch();
+	const token = window.localStorage.getItem("token");
 	//console.log(photo);
 
-	const onClick = () => {
+	const onClick = (id) => {
+		//console.log(id)
+		const data = {
+			productId: id,
+			favorite: true
+		}
 		setIsFavorite(!isFavorite);
+		dispacth(addFavorite({token, data}))
 	};
 
 	return (
-		<Row justify='center' className={ styles.productCard__mainCardContainer }>
-		    <Col className={ styles.productCard__secondaryCardContainer }>
-		        <Row justify='end' className={ styles.productCard__heart }>
-		            <button onClick={ onClick } className={ styles.productCard__heartButton }>
-		                {
+		<Row justify='center'>
+			<Col>
+				<Row justify='end' >
+					<button onClick={()=>{onClick(id)}} >
+						{
 							isFavorite ? (<HeartFilled />) : (<HeartOutlined />)
-		                }
-		            </button>
-		    	</Row>
+						}
+					</button>
+				</Row>
 				<Link to={`/categories/product/${id}`}>
-				<Card
-				    hoverable
-				    style={{ width: 240 }}
-				    cover={<img alt={ name } src={ photo } style={{maxHeight: '20vh', width: 'auto' , display: 'block',
-					margin: '0 auto'} } />}
-				>
-				    <div>{ e_product_type }</div>
-				    <Meta 
-				        title={ name }
-				    />
-				    <div>$ { price }</div>
-				</Card>
-		</Link> 
+					<Card
+						hoverable
+						style={{ width: 180, margin: 0 }}
+						cover={<img alt={name} src={photo[0]} style={{
+							maxHeight: '20vh', width: 'auto', display: 'block',
+							margin: '0 auto'
+						}} />}
+					>
+						<div>{e_product_type}</div>
+						<Meta
+							title={name}
+						/>
+						<div>$ {price}</div>
+						{is_available === false && (
+							<Tag color="red">Sin stock</Tag>
+						)}
+					</Card>
+				</Link>
 			</Col>
 		</Row>
 	);

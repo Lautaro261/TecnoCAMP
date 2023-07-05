@@ -4,7 +4,7 @@ require("dotenv").config();
 const { EMAIL_ADMIN, PASS_ADMIN } = process.env;
 const {sendRegisterEmail} = require("../../notificationEmail");
 
-const postCreateUser = async (sub, email, password) => {
+const postCreateUser = async ({sub, email,name, photo, password}) => {
   const user = await User.findOne({ where: { sub: sub } });
   const hashNum = 10;
 
@@ -15,12 +15,14 @@ const postCreateUser = async (sub, email, password) => {
   const newObjUser = {
     sub,
     email,
+    name,
+    photo
   };
 
   if (password !== undefined) {
     newObjUser.password = password;
 
-    console.log('SOY PASSWORD', password);
+    //console.log('SOY PASSWORD', password);
     if (newObjUser.email === EMAIL_ADMIN && newObjUser.password === PASS_ADMIN) {
       newObjUser.rol = "superAdmin";
     }
@@ -36,7 +38,6 @@ const postCreateUser = async (sub, email, password) => {
   }
 
   await sendRegisterEmail(newUser);
-
   return newUser;
 };
 

@@ -59,6 +59,7 @@ const {
   Brand,
   Department,
   Municipality,
+  Favorite,
 } = sequelize.models;
 
 /////// ACA VIENEN LAS RELACIONES ///////
@@ -79,6 +80,11 @@ Order.belongsTo(User);
 User.hasMany(Review);
 Review.belongsTo(User);
 
+//Usuario con Favorite
+User.hasMany(Favorite);
+Favorite.belongsTo(User);
+
+
 ////////////////////////////////////
 
 // Producto con Inventario
@@ -98,6 +104,10 @@ Cart.hasOne(Order);
 Order.belongsTo(Cart);
 
 ////////////////////////////////////
+
+//Producto con Favorite
+Product.hasMany(Favorite);
+Favorite.belongsTo(Product);
 
 // Producto con Review
 Product.hasMany(Review);
@@ -122,6 +132,7 @@ Department.hasOne(Order);
 // Orden con Municipio
 Order.belongsTo(Municipality);
 Municipality.hasOne(Order);
+
 
 module.exports = {
   ...sequelize.models,

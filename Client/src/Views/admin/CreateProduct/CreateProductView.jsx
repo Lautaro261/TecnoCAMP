@@ -1,8 +1,10 @@
+import React from 'react';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import FormProductos from '../../../components/Admin/FormProductos/FormProductos';
 import { Layout, Space, Divider } from 'antd';
 const { Header, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,
@@ -21,9 +23,11 @@ const siderStyle = {
   width:'300px',
   textAlign: 'center',
   lineHeight: '40px',
+  minHeight:"99vh",
   color: '#fff',
   backgroundColor: '#001529',
-  height:"100vh",
+  // maxWidth:'100%',
+  // height:"100vh",
 };
 
 

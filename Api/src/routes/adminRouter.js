@@ -38,6 +38,7 @@ const handlerGetAllProducts = require("../handlers/admin/GET/handlerGetAllProduc
 const handlerGetProductById = require("../handlers/admin/GET/handlerGetProductById.js");
 const handlerUpdateProduct = require("../handlers/admin/PUT/handlerPutProduct.js");
 const handlerDeleteProduct = require("../handlers/admin/PUT/handlerDeleteProduct.js");
+const handlerDeleteColorProduct = require("../handlers/admin/PUT/handlerDeleteColorProduct.js");
 
 // REVIEWS
 const handlerGetAllReview = require("../handlers/admin/GET/handlerGetAllReview.js");
@@ -49,11 +50,16 @@ const handlerCreateDepMunCo = require("../handlers/admin/POST/handlerCreateDepMu
 const {
   handlerGetAllApprovedOrders,
   handlerGetDataOfOrders,
+  handlerGetHistoryOfOrders,
 } = require("../handlers/admin/GET/handlerGetAllApprovedOrders.js");
+const handlerGetOrdersAndProducts = require("../handlers/admin/GET/handlerGetOrdersAndProducts.js");
 const handlerGetFilterOrderByUser = require("../handlers/admin/GET/handlerGetFilterOrderByUser.js");
 
 // INVENTARIOS
 const handlerGetNumberInventories = require("../handlers/admin/GET/handlerGetNumberInventories.js");
+
+//MODIFICAR ORDER
+const handlerPutOrder = require("../handlers/admin/PUT/handlerPutOrder.js");
 
 /////////// ROUTES ////////////
 
@@ -84,11 +90,17 @@ adminRouter.post("/createproduct", verifyToken, handlerCreateProduct);
 adminRouter.post("/createcolorproduct", verifyToken, handlerCreateColorProduct);
 adminRouter.put("/update/:id", verifyToken, handlerUpdateProduct);
 adminRouter.put("/delete", verifyToken, handlerDeleteProduct);
+adminRouter.put("/deletecolor", verifyToken, handlerDeleteColorProduct);
 
 // ORDENES DE PEDIDOS PAGADAS
 adminRouter.get("/allorders", verifyToken, handlerGetAllApprovedOrders);
+adminRouter.get("/orderhistory", verifyToken, handlerGetHistoryOfOrders);
+adminRouter.get("/ordersandproducts", verifyToken, handlerGetOrdersAndProducts);
 adminRouter.get("/dataorders", verifyToken, handlerGetDataOfOrders);
 adminRouter.get("/ordersbyuser", verifyToken, handlerGetFilterOrderByUser);
+
+//MODIFICAR ORDER
+adminRouter.put("/orderput/:orderId", verifyToken, handlerPutOrder);
 
 // INVENTARIOS
 adminRouter.get(

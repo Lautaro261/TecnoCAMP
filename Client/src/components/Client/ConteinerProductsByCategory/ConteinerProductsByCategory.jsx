@@ -42,24 +42,24 @@ const ConteinerProductsByCategory = () => {
     }, [allProducts, idCategory]);
 
     return (
-        <div>
-
+      
             <Space
                 direction="vertical"
                 size="middle"
             >
                 <ProductsPagination />
 
-                <Row justify='center' gutter={[16, 16]}>
+                <Row justify='center' gutter={[8, 8]}>
                     {currentFilteredProducts.length ? currentFilteredProducts.map(product => {
                         return (
-                            <Col span={6} key={product.id}>
+                            <Col  xs={24} sm={12} md={8} lg={6} key={product.id}>
                                 <ProductCard
                                 e_product_type={product.e_product_type}
                                 name={product.name}
                                 price={product.price}
                                 id={product.id}
                                 photo={product.photo}
+                                is_available={product.is_available}
                                 />
                             </Col>
                         )
@@ -71,7 +71,7 @@ const ConteinerProductsByCategory = () => {
                 </Row>
 
             </Space>
-        </div>
+      
     )
 }
 

@@ -9,10 +9,6 @@ const DispatchFormModal = () => {
         setIsModalOpen(true);
     };
 
-    const handleOk = () => {
-        setIsModalOpen(false);
-    }
-
     const handleCancel = () => {
         setIsModalOpen(false);
     };
@@ -20,16 +16,15 @@ const DispatchFormModal = () => {
     return (
         <Col>
             <Button type='primary' onClick={ showModal }>
-                Llenar forma para entrega
+                Llenar formulario de entrega
             </Button>
             <Modal 
-                title='Forma para entrega' 
+                title='Formulario para entrega' 
                 open={ isModalOpen } 
-                onOk={ handleOk } 
-                okText="Continuar"
+                footer={ null }
                 onCancel= { handleCancel } 
             >
-                <DispatchForm />
+                <DispatchForm closeModal={ handleCancel } />
             </Modal>
         </Col>
     );

@@ -1,9 +1,11 @@
+import React from 'react';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import Statistics from '../../../components/Admin/Statistics/Statistics';
 
 import { Layout, Space, Divider } from 'antd';
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Sider, Content } = Layout;
 const headerStyle = {
+  // width:'100vh',
   textAlign: 'center',
   color: '#fff',
   height: 64,
@@ -24,7 +26,7 @@ const siderStyle = {
   lineHeight: '40px',
   color: '#fff',
   backgroundColor: '#001529',
-  height:"100vh",
+  // height:"100vh",
 };
 
 

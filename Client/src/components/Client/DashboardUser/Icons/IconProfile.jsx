@@ -1,9 +1,11 @@
 import React from "react";
+import { Tooltip } from "antd";
 import { Link } from "react-router-dom";
-
+//cami cami cami
 const IconProfile = () =>{
     return (
-        <Link to="/profile">
+      <Link to="/profile">
+          <Tooltip title='Ir a perfil'>
         <div name="profile">
           <svg
             width="20"
@@ -22,6 +24,7 @@ const IconProfile = () =>{
             />
           </svg>
         </div>
+      </Tooltip>
       </Link>
     )
 }
