@@ -9,7 +9,7 @@ import logInAndSignUpReducer from './Features/login/logInAndSignUpSlice';
 import cartReducer from "./Features/cart/cartSlice";
 import paymentReducer from "./Features/payment/paymentSlice";
 import photosReducer from "./Features/photos/photosSlice";
-import adminClientsReducer from './Features/admin/clients/adminClientsSlice'
+import clientsReducer from './Features/admin/clients/clientsSlice'
 import adminStatisticsReducer from "./Features/admin/Statistics/adminStatistics";
 import historyReducer from "./Features/history/historySlice";
 import clientReviewsReducer from './Features/reviews/clientReviewsSlice';
@@ -23,7 +23,7 @@ import photoSuperAdminSliceReducer from "./Features/SuperAdmin/photoSuperAdmin/p
 const store = configureStore({
     reducer: {
         adminStatistics: adminStatisticsReducer,
-        adminClients: adminClientsReducer,
+        clients: clientsReducer,
         adminCategories: adminCategoriesReducer,
         adminBrands: adminBrandsReducer,
         adminProducts: adminProductsReducer, 

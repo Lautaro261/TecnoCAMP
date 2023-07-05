@@ -97,7 +97,7 @@ const ClientHome = () => {
           const banned = userSession.erased;
           if (banned){
                   openmodal()
-                  console.log("te banearon puto")
+                  console.log("baneado")
                 }else{
           
                 console.log('logueado en el front como: ', rol, 'token: ' ,token,'banned: ', banned);

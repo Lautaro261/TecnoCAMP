@@ -9,12 +9,22 @@ import IconLogin from "./IconLogin";
 import Logout from "../../../Logout/Logout";
 import LogoutAuth from "../../../LogoutAuth/LogoutAuth";
 import { useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { CreateCart, Fill } from "../../../../Redux/Features/cart/cartSlice";
 
 const Icons = () => {
   const { isAuthenticated } = useAuth0();
+  const dispatch=useDispatch()
   const rol = window.localStorage.getItem('rol');
   const token = window.localStorage.getItem('token');
   const favorites = useSelector(state => state.clientProducts.favorites);
+  const cart = useSelector(state => state.cart.cartFill);
+
+  useEffect(()=>{
+    dispatch(CreateCart(token)).then(dispatch(Fill(token)))
+  }, [token, dispatch])
+  
 
   return (
     <div>
@@ -22,7 +32,7 @@ const Icons = () => {
         ? (
           <Row justify="center">
             <Col span={4}>
-              <Badge count={favorites.length}> {/* FALTA ESTADO DE CARRITO */}
+              <Badge count={cart.length}> {/* FALTA ESTADO DE CARRITO */}
               <IconCart/>
               </Badge>
             </Col>
