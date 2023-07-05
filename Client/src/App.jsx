@@ -32,8 +32,8 @@ import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
 import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
 import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
 
-axios.defaults.baseURL = "http://localhost:3001";
-//axios.defaults.baseURL = "https://tecnocamp-back-production.up.railway.app";
+//axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://tecnocamp-production.up.railway.app/";
 
 function App() {
   const navigate = useNavigate();
