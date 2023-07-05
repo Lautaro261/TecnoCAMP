@@ -26,7 +26,10 @@ import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSl
 import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
 import ColorPicker from "../ColorPicker/ColorPicker";
+
+import PseudoColorPicker from "../PseudoColorPicker/PseudoColorPicker"
 const {Title} = Typography;
+
 function TableInventory() {
   const [form] = useForm();
   const dispatch = useDispatch();
@@ -222,12 +225,9 @@ function TableInventory() {
              Editar
            </Button> 
           
-          <Button type="primary" id={record.key} onClick={handleDelete}>eliminar</Button>
+          <button type="primary" id={record.key} onClick={handleDelete}>eliminar</button>
         </>
       )
-        
-        
-      
     },
   ];
 
@@ -279,8 +279,11 @@ var toc=[]
   };
 
   const onFinish = (values) => {
-     const inventoryItems=DefinitiveColors.map((color)=>{
-       return({color:color[0], quantity:color[1]})
+    //  const inventoryItems=DefinitiveColors.map((color)=>{
+    //    return({color:color[0], quantity:color[1]})
+       const ids= selectedProduct.inventories.map((item)=>{return(item.id)})
+     const inventoryItems=DefinitiveColors.map((color, index)=>{
+       return({color:color[0], quantity:color[1], id:ids[index] , is_available:true})
      })
     const valueEdit = {
       ...values,
@@ -288,7 +291,7 @@ var toc=[]
     };
 
    enviar([token, selectedProductId, valueEdit])
-    //location.reload();
+    location.reload();
   };
  
  const enviar=(data)=>{
@@ -473,7 +476,7 @@ var toc=[]
             ]}>
               <Col>
               Colores Disponibles:  
-              <ColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
+              <PseudoColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
               </Col>
             </Form.Item>
             </Col>
