@@ -104,6 +104,16 @@ export const AddtoCart = createAsyncThunk(
                 }
             });
             console.log(response.data)
+            const response2= await axios.get("/client/cartuser/", {
+                headers: {
+                    Authorization: `Bearer ${data[3]}`
+                }
+            })
+    
+            console.log('Respuesta de fill Add to cart', response2.data)
+            if(response2.data.message){
+                return ([])
+            }else{return response2.data} 
         } catch (error) {
             console.log(error)
         }
@@ -138,6 +148,19 @@ export const cartSlice = createSlice({
                 
             })
             .addCase(Delete.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message 
+            })
+            .addCase(AddtoCart.pending, (state) => {
+                state.status = 'loading'
+                
+            })
+            .addCase(AddtoCart.fulfilled, (state, action) => {
+                state.status = 'succeeded'
+                state.cartFill = action.payload
+                
+            })
+            .addCase(AddtoCart.rejected, (state, action) => {
                 state.status = 'rejected',
                 state.error = action.error.message 
             })

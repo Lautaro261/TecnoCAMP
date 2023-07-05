@@ -6,7 +6,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { Button, InputNumber} from 'antd';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { AddtoCart } from "../../../Redux/Features/cart/cartSlice";
+import { AddtoCart, Fill } from "../../../Redux/Features/cart/cartSlice";
 
 
 
@@ -54,8 +54,8 @@ const ProductDetails = () => {
       const val = value
       
       console.log([id, invId,val, token])
-      notificationRed(val)
-      dispatch(AddtoCart([id, invId,val, token]))
+      dispatch(AddtoCart([id, invId,val, token])).then(dispatch(Fill(token))).then(notificationRed(val))
+      dispatch(Fill(token))
     }
     else{
       openmodal()

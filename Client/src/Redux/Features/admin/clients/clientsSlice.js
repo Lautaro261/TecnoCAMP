@@ -9,7 +9,7 @@ const initialState = {
   };
   
   export const banUser = createAsyncThunk(
-    'adminClients/banUser',
+    'clients/banUser',
     async([sub,token]) => {
       try {
         console.log(sub, token, "AAAAAAAAAAA")
@@ -29,7 +29,7 @@ const initialState = {
   )
 
   export const getAllClients = createAsyncThunk(
-    'adminClients/getAllClients',
+    'clients/getAllClients',
     async({token})=>{
         try {
             const response = await axios.get("/admin/allclients", {
@@ -48,8 +48,8 @@ const initialState = {
   )
 
 
-const adminClientsSlice = createSlice({
-    name: 'adminClients',
+const clientsSlice = createSlice({
+    name: 'clients',
     initialState,
     reducers:{},
     extraReducers: (builder) => {
@@ -74,7 +74,7 @@ const adminClientsSlice = createSlice({
           .addCase(banUser.fulfilled, (state, action) => {
             state.status = 'succeeded';
             const sub = action.payload;  // acá tenemos el sub
-            const user = state.clients.find((user)=> user.sub === sub); //buscamos en el estado allUsers al usuario
+            const user = state.allClients.find((user)=> user.sub === sub); //buscamos en el estado allUsers al usuario
             if(user){                                              // que corresponde a nuestro sub y verificamos si tenemos el user.
                 user.erased = !user.erased                       // acá cambiamos la propiedad de borrado, si era true ahora es false y viceversa
                 if(user.erased){                                   //si la propiedad borrado es true 
@@ -95,4 +95,4 @@ const adminClientsSlice = createSlice({
     }
 })
 
-export default adminClientsSlice.reducer;
+export default clientsSlice.reducer;

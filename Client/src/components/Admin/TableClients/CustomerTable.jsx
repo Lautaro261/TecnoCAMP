@@ -1,15 +1,19 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, Space, Table, Row, Col, Popconfirm, Empty, Typography } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
-import { banUser } from '../../../Redux/Features/admin/clients/adminClientsSlice';
+import { banUser } from '../../../Redux/Features/admin/clients/clientsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { notification } from 'antd';
+import { getAllClients } from '../../../Redux/Features/admin/clients/clientsSlice';
  const {Title} = Typography;
 const CustomerTable = () => {
     const dispatch = useDispatch();
     const token = window.localStorage.getItem('token');
-    const clients = useSelector(state => state.adminClients.allClients)
+    const clients = useSelector(state => state.clients.allClients)
+    useEffect(()=>{
+        dispatch(getAllClients(token))
+    }, [])
 
     const dataClients = clients && clients.map(c => {
         return (
@@ -142,12 +146,14 @@ const CustomerTable = () => {
 
 
     const handleDelete = (key, erased) => {
-        dispatch(banUser([key, token]))
-        notification.open({
-            message: 'ATENCIÓN',
-            description: erased ? `Se ha restaurado el acceso al  usuario con el email ${key}` : `Se ha bloqueado al usuario con el mail ${key}`,
-            placement: "top"
-        });
+        dispatch(banUser([key, token])).then(dispatch(getAllClients(token)))
+        .then(
+            notification.open({
+                message: 'ATENCIÓN',
+                description: erased ? `Se ha restaurado el acceso al  usuario con el email ${key}` : `Se ha bloqueado al usuario con el mail ${key}`,
+                placement: "top"
+            })
+        )
         console.log("baneando", key)
     };
 
