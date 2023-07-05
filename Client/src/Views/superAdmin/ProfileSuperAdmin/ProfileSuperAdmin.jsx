@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Layout, Space, Divider } from "antd";
 import { useEffect } from "react";
 import { getAllAdmins } from "../../../Redux/Features/SuperAdmin/createAdmin/createAdminSlice";
-import DashBoardSuperAdmin from "../../../components/superAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
+import DashBoardSuperAdmin from "../../../components/SuperAdmin/DashBoardSuperAdmin/DashBoardSuperAdmin";
 import AdminTable from "../../../components/SuperAdmin/DashBoardSuperAdmin/AdminTable/AdminTable";
 import CreateAdminComponent from "../../../components/SuperAdmin/CreateAdminComponent/createAdminComponent";
 import EditProfile from '../../../components/SuperAdmin/EditProfile/EditProfile';
