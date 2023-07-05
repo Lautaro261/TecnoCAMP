@@ -32,7 +32,7 @@ const siderStyle = {
   flexDirection: "column", // Alinear los elementos verticalmente
 };
 
-const ViewAdmins = () => {
+const ViewAdmin = () => {
   const token = window.localStorage.getItem("token");
   const dispatch = useDispatch();
 
@@ -68,4 +68,4 @@ const ViewAdmins = () => {
   );
 };
 
-export default ViewAdmins;
+export default ViewAdmin;

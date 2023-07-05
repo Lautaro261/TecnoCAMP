@@ -59,7 +59,7 @@ const CreateAdminComponent = () => {
   let onFinish = (values) => {
     values.sub = values.email;
     console.log("Success:", "Enviando...", values);
-    dispatch(createNewAdmin(values));
+    dispatch(createNewAdmin(values)).then(location.reload());
   };
 
   const onFinishFailed = (errorInfo) => {
