@@ -135,13 +135,14 @@ export const addFavorite = createAsyncThunk(
 
 export const deleteFavorite = createAsyncThunk(
   "clientProducts/deleteFavorite",
-  async({token, data})=>{
+  async({token, inf})=>{
     try {
-      const response =  await axios.put('/client/myfavourites', data ,{
+      const response =  await axios.put('/client/myfavourites', inf ,{
         headers: {
             Authorization: `Bearer ${ token }`
         }
     })
+    //console.log(response.data);
     return response.data
     } catch (error) {
       throw error;
@@ -343,7 +344,7 @@ const clientProductsSlice = createSlice({
       })
       .addCase(addFavorite.fulfilled, (state, action)=>{
         state.status = "succeeded";
-        state.responseFavorite = action.payload;
+        state.favorites = action.payload;
       })
       .addCase(addFavorite.rejected, (state)=>{
         state.status = "rejected";
@@ -355,7 +356,7 @@ const clientProductsSlice = createSlice({
       })
       .addCase(deleteFavorite.fulfilled, (state, action)=>{
         state.status = "succeeded";
-        state.responseFavorite = action.payload;
+        state.favorites = action.payload;
       })
       .addCase(deleteFavorite.rejected, (state)=>{
         state.status = "rejected";

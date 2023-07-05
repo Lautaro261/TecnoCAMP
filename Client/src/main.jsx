@@ -10,7 +10,6 @@ const { VITE_DOMAIN, VITE_CLIENTID } = import.meta.env;
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
     <Auth0Provider
    /*  domain = {VITE_DOMAIN}
     clientId= {VITE_CLIENTID} */
@@ -29,5 +28,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       </BrowserRouter>
     </Provider>
     </Auth0Provider>
-  </React.StrictMode>
 );

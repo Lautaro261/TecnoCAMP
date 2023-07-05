@@ -46,6 +46,7 @@ const ContainerAllProducts = () => {
                                 price={product.price} 
                                 id={product.id} 
                                 photo={product.photo}
+                                
                                 />
                             </Col>
                         )

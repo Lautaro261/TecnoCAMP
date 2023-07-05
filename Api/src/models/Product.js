@@ -50,10 +50,7 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: true,
       },
-      product_favorite: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-      },
+
     },
     { timestamps: false }
   );

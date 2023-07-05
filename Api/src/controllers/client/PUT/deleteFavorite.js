@@ -1,16 +1,17 @@
-const { Favorite } =require("../../../db");
+const { Favorite } = require("../../../db");
 
-const deleteFavorite = async(id_favorite)=>{
-    const exist = await Favorite.findByPk(id_favorite);
+const deleteFavorite = async (id_favorite) => {
+  const favorite = await Favorite.findByPk(id_favorite);
 
-    if(!exist){
-        return null
-    }
-   
-    exist.favorite =! exist.favorite;
+  if (!favorite) {
+    return null;
+  }
 
-    await Favorite.update({favorite: exist.favorite});
-    return true;
-}
+  favorite.favorite = !favorite.favorite; 
+
+  await favorite.save();
+
+  return true;
+};
 
 module.exports = deleteFavorite;
