@@ -29,7 +29,7 @@ import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
 import ClientFavorite from "./Views/client/Favorite/ClientFavorite";
 import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
-import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
+import ViewAdmins from "./Views/superAdmin/ViewAdmins/ViewAdmins"
 import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
 
 //axios.defaults.baseURL = "http://localhost:3001";
