@@ -14,6 +14,7 @@ import {
   Form,
   Row,
   Select,
+  Typography
 } from "antd";
 import { notification } from 'antd';
 import { useRef, useState, useEffect } from "react";
@@ -25,7 +26,9 @@ import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSl
 import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
 
 import ColorPicker from "../ColorPicker/ColorPicker";
+
 import PseudoColorPicker from "../PseudoColorPicker/PseudoColorPicker"
+const {Title} = Typography;
 
 function TableInventory() {
   const [form] = useForm();
@@ -309,6 +312,9 @@ var toc=[]
 
   return (
     <>
+    <Row>
+    <Col span={24}> <Title level={3}>Inventario de productos.</Title></Col>
+    </Row>
 
       <Table
         columns={columns}

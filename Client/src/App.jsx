@@ -27,6 +27,7 @@ import OngoingOrdersView from './Views/admin/OngoingOrdersView/OngoingOrdersView
 import AdminReviewsView from "./Views/admin/AdminReviewsView/AdminReviewsView";
 import ProfileView from "./Views/client/Profile/Profile";
 import CategoryAndBrandCreateView from "./Views/admin/CategoryAndBrandCreateView/CategoryAndBrandCreateView";
+import ClientFavorite from "./Views/client/Favorite/ClientFavorite";
 import AdminProfileView from "./Views/admin/AdminProfileView/AdminProfileView";
 import ViewAdmins from "./Views/SuperAdmin/ViewAdmins/ViewAdmins"
 import ProfileSuperAdmin from "./Views/superAdmin/ProfileSuperAdmin/ProfileSuperAdmin"
@@ -95,6 +96,7 @@ function App() {
         <Route path="/shoppinghistory" element={<HistoryView />} />
         <Route path="/profile" element={<ProfileView />} />
         <Route path="/cart" element={<CartView />} />
+        <Route path="/myfavourites" element={<ClientFavorite/>}/>
       </Route>
 
 // camicamicami

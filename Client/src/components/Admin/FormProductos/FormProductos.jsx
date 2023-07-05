@@ -1,4 +1,4 @@
-import { Button, Form, Input, Select, Row, Col, Alert } from 'antd';
+import { Button, Form, Input, Select, Row, Col, Alert, Typography } from 'antd';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import { resetPhotos } from '../../../Redux/Features/photos/photosSlice';
 const { TextArea } = Input;
 import { useForm } from 'antd/lib/form/Form';
 
+const {Title} = Typography
 const FormProductos = () => {
   const dispatch = useDispatch();
   const photos = useSelector(state => state.photos.photos);
@@ -93,7 +94,10 @@ const FormProductos = () => {
   };
 
   return (
-    <div style={{ maxWidth: '100%', marginTop: '10vh' }}>
+    <Row>
+      <Col span={24}> <Title level={3}>Creación de producto.</Title>
+   
+    {/* <div style={{ maxWidth: '100%', marginTop: '10vh' }}> */}
       {showAlert && (
         <Alert
           message="¡Producto creado exitosamente!"
@@ -130,7 +134,7 @@ const FormProductos = () => {
         autoComplete="off"
       >
         <Row gutter={[8, 8]}>
-          <Col xs={24} sm={24} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12} style={{marginTop:'4vh'}}>
             <Form.Item
               label="Nombre del producto:"
               name="name"
@@ -192,7 +196,7 @@ const FormProductos = () => {
             </Form.Item>
           </Col>
 
-          <Col xs={24} sm={24} md={12} lg={12}>
+          <Col xs={24} sm={24} md={12} lg={12} style={{marginTop:'4vh'}}>
 
             <Form.Item
               label="Categoría:"
@@ -279,7 +283,9 @@ const FormProductos = () => {
           </Col>
         </Row>
       </Form>
-    </div>
+      </Col>
+    {/* </div> */}
+    </Row>
   )
 };
 export default FormProductos;
