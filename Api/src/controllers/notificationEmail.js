@@ -20,7 +20,7 @@ async function sendPaymentStatusEmail(order) {
     // Configurar los detalles del correo electrónico
     let mailOptions = {
         from: `Tecnocamp ${EMAIL_USER}`, // dirección de correo electrónico del remitente
-        to: user.sub, // lista de destinatarios
+        to: user.email, // lista de destinatarios
         subject: "Actualización del estado de pago", // asunto del correo electrónico
         // text: `Hola ${user.name},\n\nEl estado de pago de tu(s) reserva(s) con numero de referencia ${reservation.payment_transaction_id} ha sido "${reservation.payment_status}"\n\nGracias por reservar con nosotros,\n Att: Equipo Paby`, // cuerpo del correo electrónico en texto plano
         text: `Estimado/a usuario,\n\nLe informamos que el estado de pago de su compra con número de referencia ${order.payment_transaction_id} ha sido actualizado a "${order.payment_status}".\n\nSi tiene alguna duda o necesita ayuda adicional, no dude en ponerse en contacto con nosotros.\n\nGracias por elegir nuestra tienda para su compra,\n Atentamente, el equipo de Tecnocamp`, // cuerpo del correo electrónico en texto plano
