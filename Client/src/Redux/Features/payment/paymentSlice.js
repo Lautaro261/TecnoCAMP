@@ -86,6 +86,7 @@ export const postPaymentNotification = createAsyncThunk(
     'payment/postPaymentNotification',
     async (queryParams) => {
         try {
+            console.log("query: ", queryParams, "token :", token)
             const response = await axios.post(`/client/postnotification?${ queryParams }`, {}, {
                 headers: {
                     Authorization: `Bearer ${ token }`
@@ -93,7 +94,7 @@ export const postPaymentNotification = createAsyncThunk(
             });
             return response.data;
         } catch (error) {
-            console.error(error.message);
+            console.log(response);
             throw error;
         }
     }
