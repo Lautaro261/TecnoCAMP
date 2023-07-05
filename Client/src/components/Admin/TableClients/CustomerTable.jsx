@@ -13,7 +13,7 @@ const CustomerTable = () => {
     const clients = useSelector(state => state.clients.allClients)
     useEffect(()=>{
         dispatch(getAllClients(token))
-    })
+    }, [])
 
     const dataClients = clients && clients.map(c => {
         return (
