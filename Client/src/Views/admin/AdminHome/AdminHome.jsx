@@ -18,7 +18,7 @@ const contentStyle = {
   minHeight: 120,
   lineHeight: '120px',
   color: '#0000',
-  backgroundColor: '#ffff',
+  backgroundColor: '#F5F5F5',
 };
 const siderStyle = {
   width:'300px',
