@@ -1,8 +1,9 @@
 import { Row, Col, Button, Result, Descriptions } from 'antd';
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postPaymentNotification } from '../../../Redux/Features/payment/paymentSlice';
+import { FillNOT } from '../../../Redux/Features/cart/cartSlice';
 
 const SuccessPayment = () => {
     const clientToken = localStorage.getItem('token');
@@ -23,13 +24,23 @@ const SuccessPayment = () => {
     } = Object.fromEntries(params.entries());
 
     const dispatch = useDispatch();
+    const ok=useSelector(state=>state.payment.paymentNotificationResponse)
     const queryParams = `collection_id=${ collection_id }&` + 
         `preference_id=${ preference_id }&` + 
         `collection_status=${ collection_status }`;
 
     useEffect(() => {
-        dispatch(postPaymentNotification({ queryParams, clientToken }));
+        dispatch(postPaymentNotification({ queryParams, clientToken })).then(dispatch(FillNOT()));
+        dispatch(FillNOT())
     }, []);
+    useEffect(()=>{
+        if(ok.id){
+            dispatch(FillNOT())
+    console.log("entreeee", ok)
+        
+        }
+    }, [ok.id, dispatch])
+    console.log("aaa", ok)
 
     return (
         <Row justify='center' style={{ margin: '30px' }}>
