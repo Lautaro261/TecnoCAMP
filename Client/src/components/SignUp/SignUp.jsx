@@ -56,6 +56,22 @@ const SignUp = () => {
         autoComplete="off"
       >
 
+        <Form.Item
+          name="name"
+          label="Nombre"
+          rules={[
+            {
+              required: true,
+              message: "¡Por favor ingresa tu nombre y apellido!",
+            },
+            {
+              pattern: /^[A-Za-z\s]+$/,
+              message: "¡El nombre solo puede contener letras y espacios!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
 
         <Form.Item
           name="email"

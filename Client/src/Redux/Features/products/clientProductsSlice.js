@@ -334,7 +334,7 @@ const clientProductsSlice = createSlice({
         state.status = "succeeded";
         state.favorites = action.payload;
       })
-      .addCase(getFavorites.rejected, (state)=>{
+      .addCase(getFavorites.rejected, (state, action)=>{
         state.status = "rejected";
         state.errorFavorite = action.error.message;
       })
@@ -346,7 +346,7 @@ const clientProductsSlice = createSlice({
         state.status = "succeeded";
         state.favorites = action.payload;
       })
-      .addCase(addFavorite.rejected, (state)=>{
+      .addCase(addFavorite.rejected, (state, action)=>{
         state.status = "rejected";
         state.errorFavorite = action.error.message;
       })
@@ -358,7 +358,7 @@ const clientProductsSlice = createSlice({
         state.status = "succeeded";
         state.favorites = action.payload;
       })
-      .addCase(deleteFavorite.rejected, (state)=>{
+      .addCase(deleteFavorite.rejected, (state,action)=>{
         state.status = "rejected";
         state.errorFavorite = action.error.message;
       })

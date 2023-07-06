@@ -59,7 +59,7 @@ function App() {
     if (userSession?.rol) {
       switch (userSession.rol) {
         case 'client':
-          navigate('/profile');
+          navigate('/home');
           break;
         case 'admin':
           navigate('/admin/home');
