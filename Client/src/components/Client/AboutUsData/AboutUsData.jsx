@@ -1,4 +1,5 @@
 import logo from "./../../../img/LogoTienda.png"
+import Team from "./Team"
 
 const AboutUsData =()=>{
     const bg ={
@@ -17,7 +18,13 @@ const AboutUsData =()=>{
 
     return(      
         <div style={{minHeight:"70vh", background:"linear-gradient(-180deg, rgb(0, 112, 177) 0%, rgb(38, 78, 114)70%, #ffffff 200%)"}}>
+            
             <img src={logo} alt="" style={{width:"20vw", marginLeft:"40vw", marginTop:"10vh"}}/>
+            <div style={{display:"flex", gap:"10vw", width:"170vw", marginLeft:"47vw"}}>
+                <h1 style={{color:"white", fontSize:"2vw"}}>Equipo</h1>
+            </div>
+                <Team/>
+
             <div style={{display:"flex", gap:"10vw", width:"70vw", marginLeft:"15vw"}}>
             <p style={{color:"white", fontSize:"1vw"}}>¡Bienvenido a nuestra tienda en línea, tu destino definitivo para la última tecnología! En nuestro ecommerce, te ofrecemos una amplia selección de productos de alta calidad que te permitirán estar a la vanguardia en el mundo digital. Explora nuestra colección de teléfonos inteligentes, donde encontrarás las marcas más reconocidas y los modelos más populares. Desde los últimos lanzamientos hasta los clásicos favoritos, estamos aquí para satisfacer tus necesidades y superar tus expectativas. Ya sea que busques una potente cámara, una pantalla vibrante o un rendimiento impecable, encontrarás el teléfono perfecto que se ajuste a tu estilo de vida.
             </p>
