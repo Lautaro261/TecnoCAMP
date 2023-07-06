@@ -93,7 +93,7 @@ const DispatchForm = (props) => {
                 </Form.Item>
 
                 <Form.Item
-                    label="Departmento:"
+                    label="Departamento:"
                     name="departmentId"
                     rules={[
                         {

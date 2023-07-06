@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import DashboardUser from '../../../components/Client/DashboardUser/DashboardUser';
 import Brands from '../../../components/Client/Brands/Brands';
+import FooterUser from "../../../components/Client/Footer/FooterUser";
 import ConteinerProductsSearched from '../../../components/Client/ConteinerProductsSearched/ConteinerProductSearched';
 
 const { Header, Footer, Content } = Layout;
@@ -17,7 +18,7 @@ const headerStyle = {
 };
 const contentStyle = {
   textAlign: 'center',
-  minHeight: 220,
+  minHeight: "54vh",
   lineHeight: '8',
   color: '#0000',
   backgroundColor: '#fff',
@@ -26,7 +27,9 @@ const contentStyle = {
 const footerStyle = {
   textAlign: 'center',
   color: '#fff',
-  backgroundColor: '#7dbcea',
+  margin:"0px",
+  padding:"0px",
+  width:"100vw"
 };
 const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi", "All"];
 
@@ -42,7 +45,9 @@ const SearchedResultsView = () => (
 
 
     </Content>
-    <Footer style={footerStyle}>Footer</Footer>
+    <Footer style={footerStyle}>
+        <FooterUser />
+      </Footer>
   </Layout>
 
 
