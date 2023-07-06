@@ -2,8 +2,7 @@ import React from 'react';
 import { BlockPicker } from 'react-color';
 import { Button, Form, InputNumber, Row, Col } from 'antd';
 import { useState } from 'react';
-const colors=['#FFF8F2', '#F47373', '#697689', '#37D67A', '#2CCCE4', '#555555', '#dce775', '#ff8a65', '#ba68c8']
-
+const colors=['#FFFFF', '#000000', '#004dcf', '#37D67A', '#ff9800', '#9c27b0', '#F44336', '#46241F', '#E0EB12']
 
 
 const PseudoColorPicker = ( {SetFormColors, formColors} ) =>{
@@ -71,7 +70,7 @@ const PseudoColorPicker = ( {SetFormColors, formColors} ) =>{
             {open &&
             <Row style={{width:"30vw", margin:"30px", background:"#D9E3F0"}}>
                 <Col span={12}>                
-                <BlockPicker colors={colors} onChange={handleChange}  />
+                <BlockPicker colors={colors} onChange={handleChange}  color={Acolor} />
                 </Col>
 
                 <Col span={12}>
