@@ -2,7 +2,7 @@ import React from 'react';
 import { BlockPicker } from 'react-color';
 import { Button, Form, InputNumber, Row, Col } from 'antd';
 import { useState } from 'react';
-const colors=['#FFFFF', '#000000', '#004dcf', '#37D67A', '#ff9800', '#9c27b0', '#F44336', '#46241F', '#E0EB12']
+const colors=['#FFFFFF', '#000000', '#004dcf', '#37D67A', '#ff9800', '#9c27b0', '#F44336', '#46241F', '#E0EB12']
 
 
 
