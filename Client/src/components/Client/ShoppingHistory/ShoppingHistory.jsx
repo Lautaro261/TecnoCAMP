@@ -1,13 +1,21 @@
 import { useEffect } from "react";
 import { Fill } from "../../../Redux/Features/history/historySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Divider, Row, Col, Button} from 'antd';
+import { Card, Divider, Row, Col, Button, Steps } from 'antd';
 import ReviewFormModal from '../ReviewFormModal/ReviewFormModal';
 
 const ShoppingHistory=()=>{
     const dispatch=useDispatch()
     const token=window.localStorage.getItem("token")
     const history=useSelector(state=>state.history.historyFill)
+ 
+
+      const statusSteps = [
+        'En preparacion',
+        'Despachado',
+        'Entregado'
+      ];
+      
 
     useEffect(()=>{
         if(token){
@@ -15,12 +23,8 @@ const ShoppingHistory=()=>{
         console.log(history)
     }, [])
 
-    // const valorate=(e)=>{
-    //     if(e.target.id){
-    //         console.log(e.target.id)
-    //     }
-    // }
 
+    
     return(
         <div>
             <div>
@@ -30,11 +34,17 @@ const ShoppingHistory=()=>{
             
             <div style={{marginLeft:"20vw"}}>
                 {history.map((order)=>{
+                    console.log("SOY STATUS",order.order.shipping_status)
                     return(
                     <div key={ order.order.id }>
                     <Card
                     title={`Fecha: ${order.order.payment_date.split("T")[0]}   Hora: ${order.order.payment_date.split("T")[1].split(":")[0]}:${order.order.payment_date.split("T")[1].split(":")[1]} `}
-                    extra={<p >{order.order.shipping_status}</p>}
+                    extra={<Steps
+                        current={statusSteps.indexOf(order.order.shipping_status) + 1}
+                        items={statusSteps.map((status, index) => ({
+                          title: status,
+                        }))}
+                      />}
                     style={{
                       width:"60vw",
                     }}
