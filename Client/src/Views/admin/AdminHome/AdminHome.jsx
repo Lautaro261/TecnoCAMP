@@ -1,6 +1,7 @@
 import React from 'react';
 import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
 import Statistics from '../../../components/Admin/Statistics/Statistics';
+import { useSelector } from 'react-redux';
 
 import { Layout, Space, Divider } from 'antd';
 const { Header, Sider, Content } = Layout;
@@ -32,6 +33,7 @@ const siderStyle = {
 
 
 const AdminHome = ()=>{
+  const profile = useSelector(state=>state.profile.profiledat)
 
     return(
         <div>
@@ -45,7 +47,7 @@ const AdminHome = ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido/a {profile.name}</Divider></Header>
         <Content style={contentStyle}>
         <Statistics/>
         </Content>

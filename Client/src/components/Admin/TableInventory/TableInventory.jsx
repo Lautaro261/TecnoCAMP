@@ -333,7 +333,7 @@ function TableInventory() {
         columns={columns}
         dataSource={data}
         pagination={{ pageSize: 5 }}
-        style={{ marginTop: "8vh" }}
+        style={{ marginTop: "4vh" }}
       />
 
       <Drawer

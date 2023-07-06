@@ -1,6 +1,5 @@
 import React from 'react';
-import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin'
-import Statistics from '../../../components/Admin/Statistics/Statistics';
+import DashboardAdmin from '../../../components/Admin/DashboardUser/DashboardAdmin';
 
 import { Layout, Space, Divider } from 'antd';
 import EditProfile from '../../../components/EditProfile/editProfile';
@@ -46,7 +45,7 @@ const AdminProfileView= ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
+      <Header style={headerStyle}><Divider style={{color:"black",}}>Perfil de admin</Divider></Header>
         <Content style={contentStyle}>
         <EditProfile />
         </Content>
