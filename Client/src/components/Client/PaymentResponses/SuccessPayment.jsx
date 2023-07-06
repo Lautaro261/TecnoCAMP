@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { postPaymentNotification } from '../../../Redux/Features/payment/paymentSlice';
+import { FillNOT } from '../../../Redux/Features/cart/cartSlice';
 
 const SuccessPayment = () => {
     const clientToken = localStorage.getItem('token');
@@ -28,8 +29,12 @@ const SuccessPayment = () => {
         `collection_status=${ collection_status }`;
 
     useEffect(() => {
-        dispatch(postPaymentNotification({ queryParams, clientToken }));
+        dispatch(postPaymentNotification({ queryParams, clientToken })).then(dispatch(FillNOT()));
+        dispatch(FillNOT())
     }, []);
+    useEffect(()=>{
+        dispatch(FillNOT())
+    }, [])
 
     return (
         <Row justify='center' style={{ margin: '30px' }}>
