@@ -15,6 +15,7 @@ const ConteinerProductsByCategory = () => {
     const dispatch = useDispatch()
     const productsByCategory = useSelector( state => state.clientProducts.productsByCategory)
     const idProduct = window.localStorage.getItem('category_id')
+    const token = window.localStorage.getItem("token");
 
    // console.log('idparams en productcategori componente', idProduct)
    // console.log('estoy en conteinerProductByCategory', productsByCategory)
@@ -60,6 +61,7 @@ const ConteinerProductsByCategory = () => {
                                 id={product.id}
                                 photo={product.photo}
                                 is_available={product.is_available}
+                                token={token}
                                 />
                             </Col>
                         )
