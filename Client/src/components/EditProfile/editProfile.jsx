@@ -63,7 +63,7 @@ const EditProfile = () => {
       <br />
       {profile.profile ? <div>
       <Row gutter={16}>
-        <Col span={24}>
+        <Col span={24}  align='center'>
         <Col span={8}>
         <Avatar shape="square" size={200} icon={<UserOutlined />} src={profile.photo}/>
         </Col>
@@ -128,7 +128,7 @@ const EditProfile = () => {
       </Row>
       <Row gutter={16}>
         {/* <Col span={8}></Col> */}
-        <Col span={24} style={{marginTop:'5vh'}}>
+        <Col span={24} style={{marginTop:'5vh'}}  align='center'>
           <button
             style={{border:"0px", cursor:"pointer", color:"blue"}}
             onChange={() => setComponentDisabled(!componentDisabled)}
