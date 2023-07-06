@@ -18,7 +18,7 @@ const contentStyle = {
   minHeight: 120,
   lineHeight: '120px',
   color: '#0000',
-  backgroundColor: '#ffff',
+  backgroundColor: '#F5F5F5',
 };
 const siderStyle = {
   width:'300px',
@@ -45,7 +45,7 @@ const CategoryAndBrandCreateView = ()=>{
     <Layout>
       <Sider style={siderStyle}><DashboardAdmin/></Sider>
       <Layout>
-        <Header style={headerStyle}><Divider style={{color:"black",}}>Bienvenido </Divider></Header>
+        <Header style={headerStyle}><Divider style={{color:"black",}}>Marcas & Categorías</Divider></Header>
         <Content style={contentStyle}>
       <CategoryAndBrandCreate/>
         </Content>

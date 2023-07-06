@@ -15,7 +15,11 @@ const Landing = () => {
 
                 <img src={logo} alt="logo Tecnocamp" className={style.imgs} />
                 <p className={style.linktext}>Tenemos lo que buscas.</p>
-                {/* token && */ rol && rol === 'admin' ?
+                {/* token && */ rol && rol === 'superAdmin' ?
+                    <div className={style.Link}>
+                        <Link to="/superadmin/admins" className={style.linktext}>Ingresar</Link>
+                    </div>
+                    : rol && rol === 'admin' ?
                     <div className={style.Link}>
                         <Link to="/admin/home" className={style.linktext}>Ingresar</Link>
                     </div>

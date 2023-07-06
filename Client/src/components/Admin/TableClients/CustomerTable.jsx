@@ -213,7 +213,7 @@ const CustomerTable = () => {
             </Col>
             :
             <Col span={24}>
-                <Table columns={columns} dataSource={dataClients} style={{ marginTop: "2vh" }} />
+                <Table columns={columns} dataSource={dataClients} style={{ marginTop: "4vh", borderCollapse: "separate", borderSpacing: "0 1px", borderColor: "#1890ff" }} />
             </Col>
             }
         </Row>

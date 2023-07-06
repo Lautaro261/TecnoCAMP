@@ -61,31 +61,33 @@ const EditProfile = () => {
     <>
       <br />
       <br />
-      {profile.profile ? <div style={{ width:"50vw", marginLeft:"25vw"}}>
+      {profile.profile ? <div>
       <Row gutter={16}>
+        <Col span={24}>
         <Col span={8}>
         <Avatar shape="square" size={200} icon={<UserOutlined />} src={profile.photo}/>
         </Col>
         <Col span={8}>
           <h1 style={{color:"black"}}>{profile.name? `Bienvenido/a, ${profile.name}`:`Bienvenido/a` }</h1>
         </Col>
+        </Col>
       </Row>
       <Row gutter={16}>
-        <Col span={8}>
-        </Col>
+        {/* <Col span={8}>
+        </Col> */}
 
-        <Col span={8}>
+        {/* <Col span={8}>
           
 
         </Col>
         <Col span={8}>
-        </Col>
+        </Col> */}
       </Row>
       <Row gutter={16}>
-        <Col span={8}>
-          <h1 style={{color:"black"}}></h1>
-        </Col>
-        <Col span={8}>
+        {/* <Col span={8}>
+          <h1 style={{color:"black"}}>mnmn</h1>
+        </Col> */}
+        <Col span={24}>
           <h3 style={{color:"black"}}>Datos Personales</h3>
         </Col>
       </Row>
@@ -125,8 +127,8 @@ const EditProfile = () => {
         </Col>
       </Row>
       <Row gutter={16}>
-        <Col span={8}></Col>
-        <Col span={8}>
+        {/* <Col span={8}></Col> */}
+        <Col span={24} style={{marginTop:'5vh'}}>
           <button
             style={{border:"0px", cursor:"pointer", color:"blue"}}
             onChange={() => setComponentDisabled(!componentDisabled)}
