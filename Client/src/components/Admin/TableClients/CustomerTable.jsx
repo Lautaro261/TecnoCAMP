@@ -6,6 +6,8 @@ import { banUser } from '../../../Redux/Features/admin/clients/clientsSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { notification } from 'antd';
 import { getAllClients } from '../../../Redux/Features/admin/clients/clientsSlice';
+import { Avatar} from 'antd';
+import { UserOutlined } from '@ant-design/icons';
  const {Title} = Typography;
 const CustomerTable = () => {
     const dispatch = useDispatch();
@@ -162,7 +164,13 @@ const CustomerTable = () => {
             title: 'Imagen',
             dataIndex: 'photo',
             key: 'photo',
-            width: '20%',
+            render: (photo) => (
+                <>
+                  {" "}
+                  <Avatar shape="circle" size={90} icon={<UserOutlined />}                    src={photo}
+                  />{" "}
+                </>
+              ),
         },
         {
             title: 'Nombre',
