@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { notification } from "antd";
 import { getAllAdmins } from "../../../../Redux/Features/SuperAdmin/createAdmin/createAdminSlice";
 import { banUser } from "../../../../Redux/Features/SuperAdmin/createAdmin/createAdminSlice";
-
+import { Avatar} from 'antd';
+import { UserOutlined } from '@ant-design/icons';  
 const AdminTable = () => {
   const dispatch = useDispatch();
   const token = window.localStorage.getItem("token");
@@ -164,7 +165,13 @@ const AdminTable = () => {
       title: "Imagen",
       dataIndex: "photo",
       key: "photo",
-      width: "20%",
+      render: (photo) => (
+        <>
+          {" "}
+          <Avatar shape="circle" size={90} icon={<UserOutlined />}                    src={photo}
+          />{" "}
+        </>
+      ),
     },
     {
       title: "Nombre",
