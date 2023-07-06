@@ -9,6 +9,7 @@ import {
   Table,
   Switch,
   Col,
+  Tag,
   Popconfirm,
   Drawer,
   Form,
@@ -20,7 +21,7 @@ import { notification } from 'antd';
 import { useRef, useState, useEffect } from "react";
 
 import Highlighter from "react-highlight-words";
-import {getAllProducts} from "../../../Redux/Features/admin/products/adminProductsSlice";
+import { getAllProducts } from "../../../Redux/Features/admin/products/adminProductsSlice";
 import { getAllCategories } from "../../../Redux/Features/admin/categories/adminCategoriesSlice";
 import { getAllBrands } from "../../../Redux/Features/admin/brands/adminBrandsSlice";
 import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/adminProductsSlice";
@@ -28,7 +29,7 @@ import { banProduct, EditProduct } from "../../../Redux/Features/admin/products/
 import ColorPicker from "../ColorPicker/ColorPicker";
 
 import PseudoColorPicker from "../PseudoColorPicker/PseudoColorPicker"
-const {Title} = Typography;
+const { Title } = Typography;
 
 function TableInventory() {
   const [form] = useForm();
@@ -39,7 +40,7 @@ function TableInventory() {
     (state) => state.adminCategories.allCategories
   );
   const allBrands = useSelector((state) => state.adminBrands.allBrands);
-  
+
 
   useEffect(() => {
     dispatch(getAllProducts(token));
@@ -163,6 +164,16 @@ function TableInventory() {
       ),
   });
 
+  const renderDisponibleTags = (_, record) => (
+    record.aviable === 'Disponible' ?
+      <Tag color='blue' key={record.aviable}>
+        {record.aviable}
+      </Tag> :
+      <Tag color='volcano' key={record.aviable}>
+        {record.aviable}
+      </Tag>
+  );
+
   const columns = [
     {
       title: "Foto",
@@ -205,7 +216,9 @@ function TableInventory() {
     {
       title: "Disponible",
       dataIndex: "aviable",
-      
+      key: 'key',
+      render: renderDisponibleTags,
+
     },
     {
       title: "Marca",
@@ -222,9 +235,9 @@ function TableInventory() {
       render: (_, record) => (
         <>
           <Button type="primary" onClick={() => showDrawer(record.key)}>
-             Editar
-           </Button> 
-          
+            Editar
+          </Button>
+
           <button type="primary" id={record.key} onClick={handleDelete}>eliminar</button>
         </>
       )
@@ -234,7 +247,7 @@ function TableInventory() {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [selectedColorsDefaut, setselectedColorsDefaut] = useState(null);
-  const [DefinitiveColors, setDefinitiveColors]= useState(null)
+  const [DefinitiveColors, setDefinitiveColors] = useState(null)
 
   const data =
     allProducts &&
@@ -242,34 +255,34 @@ function TableInventory() {
       return {
         key: c.id,
         price: c.price,
-        photo: c.photo? c.photo[0]: 'no hay foto',
+        photo: c.photo ? c.photo[0] : 'no hay foto',
         name: c.name,
         total_quantity_inventory: c.total_quantity_inventory,
         category: c.category.name,
         brand: c.brand.name,
-        aviable: c.is_available ? "disponible"  : "No disponible",
+        aviable: c.is_available ? "Disponible" : "No disponible",
         e_product_type: c.e_product_type,
         inventories: c.inventories
-    
+
       };
     });
 
-  
+
 
   const [open, setOpen] = useState(false);
   const showDrawer = (productId) => {
     const product = allProducts.find((p) => p.id === productId);
     setSelectedProduct(product);
     setSelectedProductId(productId);
-    
-var toc=[]
-  for(var i=0;i<product.inventories.length;i=i+1 ){
-    console.log("ciclo for", product.inventories[i].color)
-    toc.push([product.inventories[i].color, product.inventories[i].quantity_inventory])
-  }
-  setselectedColorsDefaut(toc)
-  setDefinitiveColors(toc)
-  
+
+    var toc = []
+    for (var i = 0; i < product.inventories.length; i = i + 1) {
+      console.log("ciclo for", product.inventories[i].color)
+      toc.push([product.inventories[i].color, product.inventories[i].quantity_inventory])
+    }
+    setselectedColorsDefaut(toc)
+    setDefinitiveColors(toc)
+
     setOpen(true);
   };
 
@@ -281,46 +294,46 @@ var toc=[]
   const onFinish = (values) => {
     //  const inventoryItems=DefinitiveColors.map((color)=>{
     //    return({color:color[0], quantity:color[1]})
-       const ids= selectedProduct.inventories.map((item)=>{return(item.id)})
-     const inventoryItems=DefinitiveColors.map((color, index)=>{
-       return({color:color[0], quantity:color[1], id:ids[index] , is_available:true})
-     })
+    const ids = selectedProduct.inventories.map((item) => { return (item.id) })
+    const inventoryItems = DefinitiveColors.map((color, index) => {
+      return ({ color: color[0], quantity: color[1], id: ids[index], is_available: true })
+    })
     const valueEdit = {
       ...values,
       inventoryItems,
     };
 
-   enviar([token, selectedProductId, valueEdit])
+    enviar([token, selectedProductId, valueEdit])
     location.reload();
   };
- 
- const enviar=(data)=>{
-   dispatch(EditProduct(data))
-     console.log("enviando")
-     console.log(data)
- }
+
+  const enviar = (data) => {
+    dispatch(EditProduct(data))
+    console.log("enviando")
+    console.log(data)
+  }
 
   const handleDelete = (e) => {
     console.log(e.target.id)
     dispatch(banProduct([token, e.target.id]))
     location.reload();
-    
-};
+
+  };
 
 
 
 
   return (
     <>
-    <Row>
-    <Col span={24}> <Title level={3}>Inventario de productos.</Title></Col>
-    </Row>
+      <Row>
+        <Col span={24}> <Title level={3}>Inventario de productos.</Title></Col>
+      </Row>
 
       <Table
         columns={columns}
         dataSource={data}
         pagination={{ pageSize: 5 }}
-        style={{ marginTop: "8vh" }}
+        style={{ marginTop: "4vh" }}
       />
 
       <Drawer
@@ -339,7 +352,7 @@ var toc=[]
               Enviar
             </Button>
           </Space>
-          
+
         }
       >
         <Form
@@ -466,19 +479,19 @@ var toc=[]
             </Col>
 
             <Col>
-            <Form.Item
-            
-            rules={[
-              {
-                required: false,
-                message: "Please select an owner",
-              },
-            ]}>
-              <Col>
-              Colores Disponibles:  
-              <PseudoColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors}/>
-              </Col>
-            </Form.Item>
+              <Form.Item
+
+                rules={[
+                  {
+                    required: false,
+                    message: "Please select an owner",
+                  },
+                ]}>
+                <Col>
+                  Colores Disponibles:
+                  <PseudoColorPicker formColors={selectedColorsDefaut} SetFormColors={setDefinitiveColors} />
+                </Col>
+              </Form.Item>
             </Col>
           </Row>
 

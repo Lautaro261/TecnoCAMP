@@ -124,7 +124,8 @@ const FormProductos = () => {
           span: 16,
         }}
         style={{
-          maxWidth: '100%'
+          maxWidth: '100%',
+          backgroundColor: '#FAFAFA'
         }}
         initialValues={{
          

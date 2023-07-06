@@ -144,7 +144,7 @@ const Statistics = () => {
         {
           title: 'Ordenes Totales',
           dataIndex: 'totalNumberOrders',
-         
+          align: 'center',
           width: '35%',
           
          // ...getColumnSearchProps('totalNumberOrders'),
@@ -152,7 +152,7 @@ const Statistics = () => {
         {
           title: 'Ventas totales',
           dataIndex: 'totalSalesRevenue',
-          
+          align: 'center',
           width: '35%',
           //...getColumnSearchProps('totalSalesRevenue'),
         },
@@ -160,6 +160,7 @@ const Statistics = () => {
           title: 'Prodcutos vendidos',
           dataIndex: 'totalProductsSold',
           width: '45%',
+          align: 'center',
           
         //   ...getColumnSearchProps('address'),
         //   sorter: (a, b) => a.address.length - b.address.length,
@@ -356,13 +357,14 @@ const Statistics = () => {
                 
             </Row>
             <Row justify="center" gutter={[16, 16]} style={{}}>
-              <br/>
-                
-                <Table columns={columns} dataSource={dataTable} />;
-                
-                
-            </Row>
+              <Col span={22} style={{height:'30vh'}}>
+                <Table columns={columns} dataSource={dataTable} style={{marginTop: '6vh'}}/>;
+              </Col> 
+
+              <Col span={20}>
                 <Column {...config} />;
+              </Col> 
+            </Row>
         </div>
     )
 }
