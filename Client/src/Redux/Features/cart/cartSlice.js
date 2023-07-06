@@ -27,6 +27,16 @@ export const Fill = createAsyncThunk(
         }
     }
 )
+export const FillNOT = createAsyncThunk(
+    'cart/FillNOT',
+    async () => {
+        try {
+            return([])
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
 
 export const CreateCart = createAsyncThunk(
     'cart/CreateCart',
@@ -161,6 +171,18 @@ export const cartSlice = createSlice({
                 
             })
             .addCase(AddtoCart.rejected, (state, action) => {
+                state.status = 'rejected',
+                state.error = action.error.message 
+            })
+            .addCase(FillNOT.pending, (state) => {
+                state.status = 'loading'
+                
+            })
+            .addCase(FillNOT.fulfilled, (state, action) => {
+                state.status = 'succeeded',
+                state.cartFill = []
+            })
+            .addCase(FillNOT.rejected, (state, action) => {
                 state.status = 'rejected',
                 state.error = action.error.message 
             })

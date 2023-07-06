@@ -1,0 +1,78 @@
+
+.conteinerMembers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .memberCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 50px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #000000;
+    width: calc(25% - 40px);
+  }
+  
+  .mermberCard:hover {
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  }
+  
+  .image{
+    max-width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .memberCard h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .socialLinks {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: auto;
+  }
+  .name{
+    color: black;
+    text-align: center;
+  }
+  
+  .socialLinks a {
+    font-size: 1.2rem;
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  .socialLinks a:hover {
+    color: #0077b5;
+  }
+
+  .gif {
+    display: table-cell;
+    padding-top: 2.5vw;
+    width:3vw;
+    margin: -4px;
+    height: auto;
+}
+
+  h3 {
+    font-family: "Ysabeau", serif;
+    font-weight: bold;
+  
+  }
+  a {
+    font-family: "Ysabeau", serif;
+    font-weight: bold;
+  
+  }
+  
+  
