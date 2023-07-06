@@ -13,6 +13,7 @@ const ContainerAllProducts = () => {
     const dispatch = useDispatch()
     const allProducts = useSelector((state) => state.clientProducts.allProducts)
     const categoryName = window.localStorage.getItem('category_name');
+    const token = window.localStorage.getItem("token");
     //console.log('estoy en conteinerProduct', allProducts)
 
     const currentFilteredProducts = useSelector(state => state.clientProducts.currentFilteredProducts);
@@ -47,6 +48,7 @@ const ContainerAllProducts = () => {
                                 id={product.id} 
                                 photo={product.photo}
                                 is_available={product.is_available}
+                                token={token}
                                 />
                             </Col>
                         )

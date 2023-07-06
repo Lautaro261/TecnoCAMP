@@ -37,7 +37,7 @@ const FooterUser= ()=>{
 
                 <Col span={8}>
                     
-                    <Link to="/developers"><p>Nuestro Equipo</p></Link>
+                    
                 </Col>
 
                 <Col span={8}>

@@ -7,6 +7,7 @@ const ConteinerProductsSearched = () => {
 
 
     const searchedResult = useSelector(state => state.clientProducts.searchedResult)
+    const token = window.localStorage.getItem("token");
     console.log('searchedresult', searchedResult)
     return (
         <div>
@@ -34,7 +35,7 @@ const ConteinerProductsSearched = () => {
                                         id={product.id}
                                         photo={product.photo}
                                         is_available={product.is_available}
-
+                                        token={token}
                                     />
                                 </Col>
 
