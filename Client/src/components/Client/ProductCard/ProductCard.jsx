@@ -1,6 +1,7 @@
-import { Row, Col, Space, Card, Tag, Button, notification } from 'antd';
+/* eslint-disable react/prop-types */
+import { Row, Col, Card, Tag, Button, notification } from 'antd';
 import { HeartOutlined } from '@ant-design/icons';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { addFavorite } from '../../../Redux/Features/products/clientProductsSlice';
 import { useDispatch } from 'react-redux';
@@ -18,7 +19,7 @@ const ProductCard = ({ id, e_product_type, photo, name, price, is_available, tok
 	notification.success({
 		message: 'Se cargó/quitó el producto a favoritos',
 		placement:"top"
-	  });
+ });
   };
 
   return (

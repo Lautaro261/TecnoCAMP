@@ -19,7 +19,7 @@ import {
 import FooterUser from '../../../components/Client/Footer/FooterUser';
 
 const { Header, Footer, Content } = Layout;
-const trendingBrands=[];
+// const trendingBrands=[];
 const headerStyle = {
   textAlign: 'center',
   paddingInline: "0px",
@@ -47,14 +47,14 @@ const footerStyle = {
 };
 
 const CategoriesView = () => {
-  let nameCategory = window.localStorage.getItem('category_name');
+  // let nameCategory = window.localStorage.getItem('category_name');
 
   // useEffect(()=>{
 
   // },[nameCategory])
 
   const brands = ["Apple", "Huawei", "Nokia", "Amazfit", "Samsung", "Xiaomi", "All"];
-  let  current = window.localStorage.getItem('current');
+  // let  current = window.localStorage.getItem('current');
 
 /*
   useEffect(()=>{
