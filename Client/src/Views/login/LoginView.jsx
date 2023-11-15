@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Layout } from 'antd';
 import DashboardUser from '../../components/Client/DashboardUser/DashboardUser';
@@ -15,11 +16,12 @@ const headerStyle = {
     // display:"flex",
     // width: "100vw",
     lineHeight: '60px',
-    width: "100vw"
+    // width: "100vw"
     // backgroundColor: '#7dbcea',
 };
 const contentStyle = {
-    width: "100vw",
+    textAlign: 'center',
+    width: "100%",
     color: '#0000',
 
 };
@@ -29,7 +31,7 @@ const footerStyle = {
     color: '#fff',
     margin: "0px",
     padding: "0px",
-    width: "100vw"
+    // width: "100vw"
 
 };
 

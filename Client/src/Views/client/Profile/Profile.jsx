@@ -40,6 +40,7 @@ const ProfileView = () => {
       dispatch(CreateCart(token));
       dispatch(getFavorites(token));
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
   
   return(

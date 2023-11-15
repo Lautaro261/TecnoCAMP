@@ -6,7 +6,7 @@ import ContainerAllProducts from '../../../components/Client/ContainerAllProduct
 import FooterUser from '../../../components/Client/Footer/FooterUser';
 
 const { Header, Footer, Content } = Layout;
-const trendingBrands=[];
+// const trendingBrands=[];
 const headerStyle = {
   textAlign: 'center',
   paddingInline: "0px",
